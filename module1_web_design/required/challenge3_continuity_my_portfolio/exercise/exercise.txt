@@ -1,0 +1,9 @@
+Desafío:
+
+En este desafío van a desarrollar la primera sección de la landing page, con cierta información de ustedes. Tal cuál como se muestra en la imagen "example-section-information1.png".
+
+Y seguido de esta, puedan hacer una sección siguiente, con un texto X de información para seguir completando, a medida que nuestro "usuario", haga scroll. Tal cuál como se muestra en la imagen "example-section-information2.png".
+
+Tengan en cuenta que todos los desafíos, no son para entregar. 
+Si les recomendamos que lo actualicen a su repo (el que crearon en el desafío anterior, "SUPUESTAMENTE").
+Si tienen dudas, vayan directamente a consultar en el servidor de Discord (recordá las reglas para poder hacer consultas o participar del canal privado).

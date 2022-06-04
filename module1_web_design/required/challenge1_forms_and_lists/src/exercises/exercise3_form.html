@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>Actividad 1 - Ejercicio 3</title>
+	</head>
+	<body>
+		<!-- Aclaración: Si bien no es del todo correcto utilizar la etiqueta "<br>", en este ejercicio la utilicé para hacer los saltos de 
+    línea al final de cada elemento. Esto lo hice así debido a que aún no vimos CSS y debíamos hacerlo todo con HTML, pero lógicamente esto
+    se podría hacer con CSS sin ningún problema, y ni hablar qué sería mucho más recomendable que utilizar la etiqueta "<br>". -->
+		<h1>Formulario de registro</h1>
+
+		<form>
+			<div>
+				<label for="name">Nombre: </label>
+				<input type="text" name="name" id="name" autofocus required />
+			</div>
+			<br />
+			<div>
+				<label for="lastname">Apellidos: </label>
+				<input type="text" name="lastname" id="lastname" required />
+			</div>
+			<br />
+			<div>
+				<label for="sex">Sexo: </label>
+				<input type="radio" name="sex" id="men" required /> hombre <input type="radio" name="sex" id="women" required /> mujer
+			</div>
+			<br />
+			<div>
+				<label for="email">Correo: </label>
+				<input type="email" name="email" id="email" required />
+			</div>
+			<br />
+			<div>
+				<input type="checkbox" name="checkboxInformation" id="checkboxInformation" checked />
+				<label for="checkboxInformation">Deseo recibir información sobre novedades y ofertas</label>
+			</div>
+			<br />
+			<div>
+				<input type="checkbox" name="checkboxConditions" id="checkboxConditions" />
+				<label for="checkboxConditions">
+					Declaro haber leído y aceptar las condiciones generales del programa y la normativa sobre protección de datos
+				</label>
+			</div>
+			<br />
+			<div>
+				<input type="submit" name="submit" id="submit" />
+			</div>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,3 @@
+Solución:
+
+Con "desafío anterior" se están refiriendo al primer desafío entregable. Ese repo ya fue vinculado a Vercel, y el link es: https://forms-and-lists.vercel.app/

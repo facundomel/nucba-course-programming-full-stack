@@ -1,0 +1,5 @@
+Desafío:
+
+1. Crear un repositorio.
+2. Subir el material de los desafíos que hicimos en las clases anteriores.
+3. Compartir el repo en el canal privado de Discord.

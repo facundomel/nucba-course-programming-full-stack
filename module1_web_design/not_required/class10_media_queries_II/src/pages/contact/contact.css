@@ -1,0 +1,26 @@
+form {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+label {
+  color: white;
+}
+
+textarea {
+  resize: none;
+}
+
+.flexbox-elements-form {
+  justify-content: space-around;
+  flex-direction: column;
+  width: 30%;
+  height: 50%;
+}
+
+.flexbox-item-form {
+  justify-content: space-between;
+  width: 100%;
+}

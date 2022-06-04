@@ -1,0 +1,9 @@
+Desafío:
+
+Tomar un tema que nos guste, y crear un sitio de varias páginas en HTML y utilizar flexbox y box model para ordenar el contenido del sitio.
+
+Los estilos son libres, es decir pueden crear la temática que les gusten.
+
+El sitio debe incluir, una página de contacto, una de “acerca de..”, otra con el “home” y todas las extras que quieran.
+
+Hagan volar la imaginación, pueden chequear referencias en Codepen, Behance, Dribbble, Etc.

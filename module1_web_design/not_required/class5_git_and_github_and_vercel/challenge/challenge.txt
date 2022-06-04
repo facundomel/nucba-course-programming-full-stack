@@ -1,0 +1,6 @@
+Desafío:
+
+1. Practicar Ramas en Github. 
+👉 Tranqui si no sale, lleva mucho tiempo, pero hay que empezar por algo!.
+2. Por último, agarrar el repo del desafío anterior y vincularlo con Vercel.
+3. Compartí el link en el canal privado de Discord.

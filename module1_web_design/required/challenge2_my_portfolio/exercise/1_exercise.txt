@@ -1,0 +1,17 @@
+En este desafío van a tener que realizar un navbar cómo el que les vamos a adjuntar (Imagen llamada "Example Navbar").
+
+La diferencia es que en lugar del logo pueden utilizar sus iniciales o mismo realizar un logo a gusto.
+Si no tienes mucha idea del tema logo, puedes utilizar https://es.freelogodesign.org/
+También te recomendamos visitar https://coolors.co/ para poder elegir 1 paleta de colores.
+Por último, podes visitar la sección de recursos de nucba o https://www.designresourc.es/ para aplicar criterios óptimos de diseño a tu trabajo.
+
+Ahora bien, la idea es que en el menú puedan agregar algunas opciones que representen su portfolio o landing page de un sitio a elección.
+
+EJ: INICIO | SERVICIOS | CLIENTES | CONTACTO.
+EJ: INICIO | PRODUCTOS | TAKE AWAY | CONTACTANOS.
+
+A medida que vayan transitando, van a ir realizando otras fracciones de secciones de una web.
+
+Tengan en cuenta que todos los desafíos, no son para entregar. 
+Si les recomendamos que lo suban a su repo (armen uno solo con el nombre que quieran, ej: "Landing Page Portfolio" y luego van actualizando.
+Si tienen dudas, vayan directamente a consultar en el servidor de Discord (recordá las reglas para poder hacer consultas o participar del canal privado).
