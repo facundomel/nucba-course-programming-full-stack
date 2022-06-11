@@ -1,196 +1,262 @@
-html {
-  min-height: 100%;
-  position: relative;
-}
-
 body {
   margin: 0;
-  margin-bottom: 40px;
-	padding: 0;
-	background-color: #1d1d1d;
+  padding: 0;
+  background-color: #1d1d1d;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100vh;
 }
 
 header {
-	background-color: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0);
 }
 
 ul {
-	list-style: none;
-	padding-right: 2%;
+  list-style: none;
+  padding-right: 2%;
 }
 
 li {
-	margin-right: 2%;
+  margin-right: 2%;
 }
 
 li a {
-	text-decoration: none;
-	color: rgb(255, 255, 255);
-	font-weight: bold;
-	font-size: calc(0.1em + 1vw);
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: calc(0.1em + 1vw);
+}
+
+h1 {
+  margin: 0;
+  color: #5FA4DA;
+  font-style: italic;
+  font-size: 2em;
 }
 
 h2 {
-	margin: 0;
-	color: #5FA4DA;
-	font-style: italic;
+  margin: 0;
+  color: #5FA4DA;
+  font-style: italic;
 }
 
 .logo-img {
-	width: 3%;
-	margin: 0.5%;
-}
-
-.header-hr {
-	height: 0.3%;
-	margin: 0;
-	background-color: white;
-	border: none;
+  width: 3%;
+  margin: 0.5%;
 }
 
 .section-hr {
-	height: 0.4%;
-	margin: 0 4% 0 4%;
-	border: none;
+	width: 95%;
 	background-color: #5FA4DA;
-	border-radius: 50%;
+	border: 1px solid #5FA4DA;
 }
 
 .flexbox {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .flexbox-header {
-	justify-content: space-between;
+  justify-content: space-between;
+	border-bottom: 2px solid white;
 }
 
 .flexbox-nav {
-	justify-content: flex-end;
-	width: 100%;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .flexbox-ul-list {
-	justify-content: space-between;
-	margin: 0;
-	width: 40%;
+  justify-content: space-between;
+  margin: 0;
+  width: 40%;
 }
 
 .flexbox-section {
-	justify-content: space-between;
-	margin: 3%;
+  justify-content: space-between;
+  margin: 3%;
 }
 
 .flexbox-section1-information {
-	flex-direction: column;
-	text-align: center;
-	color: white;
-	font-size: calc(0.4em + 1vw);
-	margin-right: 10%;
-	font-style: italic;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: calc(0.4em + 1vw);
+  margin-right: 10%;
 }
 
 .flexbox-section1-image {
-	justify-content: flex-end;
-	width: 15%;
+  justify-content: flex-end;
+  width: 15%;
 }
 
 .img-photo-profile {
-	width: 100%;
-	border-radius: 50%;
+  width: 100%;
+  border-radius: 100%;
 }
 
 .flexbox-section2-information {
-	flex-direction: column;
-	width: 100%;
-	text-align: center;
-	color: white;
-	font-size: calc(0.4em + 1vw);
-	font-style: italic;
-	margin-bottom: 10%;
-}
-
-.footer-hr {
-	height: 0.3%;
-	margin: 0;
-	border: none;
-	background-color: white;
-	position: absolute;
-  bottom: 80px;
-	width: 100%;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: calc(0.4em + 1vw);
 }
 
 .flexbox-footer {
-	justify-content: center;
-	background-color: black;
-	color: white;
-  position: absolute;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  position: relative;
   bottom: 0;
   width: 100%;
-  height: 80px;
-	font-size: calc(0.2em + 1vw);
-	flex-wrap: wrap;
-	font-style: italic;
+  height: auto;
+  font-size: calc(0.2em + 1vw);
+  flex-wrap: wrap;
+  font-style: italic;
+	border-top: 2px solid white;
 }
 
 .flexbox-footer a {
-	text-decoration: none;
-	color: rgb(255, 255, 255);
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
 .flexbox-footer p {
-	margin-right: 3%;
+  margin-right: 3%;
 }
 
 .flexbox-footer-p-copyright {
-	margin-left: 3%;
+  margin-left: 3%;
+}
+
+.flexbox-benefits-section {
+  flex-direction: column;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.flexbox-benefits-section h2 {
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+.flexbox-benefits-section1 {
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  color: white;
+}
+
+.flexbox-benefits-section2 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  text-align: center;
+  margin-right: 5%;
+  font-size: calc(0.4em + 1vw);
+}
+
+.flexbox-benefits-section2 p {
+  height: 150px;
+}
+
+.flexbox-benefits-section2 img {
+  width: 100%;
+  height: 150px;
 }
 
 /* Media queries */
 @media (max-width: 1000px) {
-	.logo-img {
-		width: 5%;
+  .logo-img {
+    width: 5%;
+  }
+
+  li a {
+    font-size: calc(0.3em + 1vw);
+  }
+
+	.flexbox-section1-image {
+		width: 20%;
 	}
 
-	li a {
-		font-size: calc(0.3em + 1vw);
-	}
+  .flexbox-section1-information {
+    font-size: calc(0.6em + 1vw);
+  }
 
-	.flexbox-section1-information {
-		font-size: calc(0.6em + 1vw);
-	}
+  .flexbox-section2-information {
+    font-size: calc(0.6em + 1vw);
+  }
 
-	.flexbox-section2-information {
-		font-size: calc(0.6em + 1vw);
-	}
+  .flexbox-footer {
+    font-size: calc(0.4em + 1vw);
+  }
 
-	.flexbox-footer {
-		font-size: calc(0.4em + 1vw);
-	}
+  .flexbox-benefits-section2 {
+    font-size: calc(0.6em + 1vw);
+  }
 }
 
 @media (max-width: 600px) {
-	.logo-img {
-		margin-left: auto;
-		margin-right: auto;
+  .logo-img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .flexbox-header {
+    flex-wrap: wrap;
+  }
+
+  .flexbox-nav {
+    justify-content: center;
+  }
+
+	.flexbox-section1-image {
+		width: 25%;
 	}
 
-	.flexbox-header {
-		flex-wrap: wrap;
+  .flexbox-ul-list {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 80%;
+  }
+
+  .flexbox-footer {
+    text-align: center;
+  }
+
+  .flexbox-benefits-section2 img {
+    width: 80%;
+    height: 80px;
+  }
+}
+
+@media (max-width: 400px) {
+	.flexbox-section1-image {
+		width: 50%;
 	}
 
-	.flexbox-nav {
-		justify-content: center;
-	}
+  .flexbox-benefits-section1 {
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+  }
 
-	.flexbox-ul-list {
-		justify-content: space-around;
-		flex-wrap: wrap;
-		padding: 0;
-		width: 80%;
-	}
+  .flexbox-benefits-section2 {
+    width: 80%;
+    margin-bottom: 2%;
+		margin-right: 0;
+  }
 
-	.flexbox-footer {
-		text-align: center;
-	}
+  .flexbox-benefits-section2 img {
+    width: 40%;
+  }
+
+  .flexbox-benefits-section2 p {
+    height: auto;
+  } 
 }
