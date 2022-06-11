@@ -1,0 +1,7 @@
+Desafío:
+
+En este desafío van a desarrollar las siguientes secciones de la landing page, con cierta información de ustedes/servicios que prestan. Tal como se muestra en la imagen "2-example-section-information1.png" y en la imagen "3-example-section-information2".
+
+Tengan en cuenta que todos los desafíos, no son para entregar. 
+Si les recomendamos que lo actualicen a su repo (el que crearon en el desafío anterior, "SUPUESTAMENTE").
+Si tienen dudas, vayan directamente a consultar en el servidor de Discord (recordá las reglas para poder hacer consultas o participar del canal privado). 

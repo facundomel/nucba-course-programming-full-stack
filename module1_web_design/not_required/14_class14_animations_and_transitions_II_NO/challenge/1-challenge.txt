@@ -1,0 +1,10 @@
+Desafío:
+
+En esta práctica, tendrán que:
+
+1- Crear un navbar con HTML y CSS, respetando la estructura semántica que aprendimos durante las clases (no se olviden del < navbar > < /navbar > como nuestra etiqueta "padre"). Tal cuál como se muestra en la imagen "example-navbar.jpeg".
+
+2- Crear tres versiones de un botón, tal cuál como se muestra en la imagen "example-buttons.jpeg":
+(a) Redondo
+(b) Rectangular con bordes redondeados
+(c) Con fondo transparente.
