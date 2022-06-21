@@ -1,0 +1,16 @@
+Desafío:
+
+En este desafío van a desarrollar las últimas secciones de la landing page, con cierta información de ustedes/servicios que prestan.  
+  
+En la sección de clientes, pueden reemplazarlo a priori con otros trabajos que ustedes tengan o dejan un "por defecto" y a medida que vayan haciendo challenges, lo van sumando.
+Sería ideal tener un hover que cuando pasamos el cursor nos muestre un título en el card o un botón con una llamada a la acción (y tenga el hipervínculo al link de vercel/codepen de ese proyecto).
+Un ejemplo de la sección de clientes se puede ver en la imagen "2-example-section-clients.png".
+
+Por último, tenemos la parte de contacto, en la imagen pueden utilizar una ilustración o mismo insertar algún iframe de mapa, etc.
+Por último en el footer pueden utilizar sus iniciales o logo, mismo si quieren hacer otro tipo de footer, bienvenido sea!
+Un ejemplo de esta sección se puede ver en la imagen "3-example-section-contact-and-footer.png".
+
+Recuerden agregar animaciones o alguna interacción (SUTILES POR FAVOR).
+Tengan en cuenta que todos los desafíos, no son para entregar. 
+Una vez que esté óptimo, pueden subirlo a vercel para ya tenerlo completo y empezar a compartir con la comunidad, pedir feedback, etc.
+Si tienen dudas, vayan directamente a consultar en el servidor de Discord (recordá las reglas para poder hacer consultas o participar del canal privado).

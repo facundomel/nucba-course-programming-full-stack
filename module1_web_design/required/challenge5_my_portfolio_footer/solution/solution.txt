@@ -1,0 +1,3 @@
+Solución:
+
+Este challenge es la continuidad del challenge 2, el cuál se llama "challenge2_my_portfolio".
