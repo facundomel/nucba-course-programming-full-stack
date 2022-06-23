@@ -153,7 +153,6 @@ h2 {
 
 .flexbox-techs {
   justify-content: space-between;
-  flex-wrap: wrap;
   width: 100%;
   margin-bottom: 5%;
 }
@@ -281,9 +280,12 @@ h2 {
     text-align: center;
   }
 
+  .flexbox-div-benefits-hard-skills {
+    width: 90%;
+  }
+
   .flexbox-techs img {
-    height: calc(6em + 1vw);;
-    width: calc(4.5em + 1vw);
+    width: 16%;
   }
 }
 
@@ -318,5 +320,12 @@ h2 {
 
   .flexbox-techs {
     justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .flexbox-techs img {
+    height: calc(3em + 1vh);
+    width: calc(3em + 1vw);
+    margin-top: 5%;
   }
 }
