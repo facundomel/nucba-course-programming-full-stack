@@ -1,0 +1,14 @@
+Desafío:
+
+Para este ejercicio deben recrear esta Landing page. La misma tiene dos breakpoints, en desktop y en mobile, los cuales son obligatorios.
+Si quieren generar breakpoints intermedios, suma!
+
+Les dejamos los assets necesarios (diseño, logos, fondo, fuentes) y una pequeña guía de estilos a seguir.
+
+Pueden elegir la herramienta que ustedes quieran (CSS, Bootstrap, Tailwind).
+
+Si se animan pueden agregar lo que crean necesario con Javascript (interacción del menú, form, etc).
+
+Suban a su repo el Challenge y a continuación les dejamos los recursos adjuntos.
+
+En este mismo directorio se encuentran todos los recursos necesarios para realizar el challenge.

@@ -1,0 +1,8 @@
+Desafío:
+
+Para este challenge deben crear una pantalla de login - sign up.
+La misma debería contener algún título, un formulario con los campos a completar (dependiendo de si es login o sign up), y un botón para enviar los datos.
+
+Se puede hacer con CSS, Bootstrap, Tailwind, o la herramienta que ustedes elijan.
+
+Les adjuntamos algunos ejemplos los cuales pueden copiar o simplemente inspirarse! En este mismo directorio se encuentran las imágenes de los ejemplos de login.
