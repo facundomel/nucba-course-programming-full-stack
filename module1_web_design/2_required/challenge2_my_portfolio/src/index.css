@@ -18,7 +18,7 @@ ul {
 }
 
 li {
-	height: 100%;
+	height: 50px;
 }
 
 li a {
@@ -81,7 +81,7 @@ h2 {
   width: 40%;
 	height: 100%;
   padding: 0;
-  margin: 1% 3.2% 1% 3.2%;
+  margin: 0 3.2% 0 3.2%;
 }
 
 .flexbox-section {
@@ -99,11 +99,13 @@ h2 {
 
 .flexbox-section1-image {
   justify-content: flex-end;
-  width: 15%;
+  max-width: 150px;
+  min-width: 60px;
 }
 
 .img-photo-profile {
-  width: 100%;
+  max-width: 150px;
+  min-width: 60px;
   border-radius: 100%;
 }
 
@@ -159,12 +161,15 @@ h2 {
 
 .flexbox-techs img {
   margin: 0 2% 0 2%;
-  height: 100%;
-  width: 10%;
+  width: calc(5em + 1vw);
+}
+
+.height-flexbox-techs {
+  height: calc(5em + 1vh);
 }
 
 .img-techs {
-  border-radius: 20%;
+  border-radius: 10%;
 }
 
 .flexbox-benefit {
@@ -182,7 +187,6 @@ h2 {
 }
 
 .flexbox-benefit img {
-  height: calc(6em + 1vh);
   width: calc(5em + 1vw);
 }
 
@@ -226,10 +230,6 @@ h2 {
     font-size: calc(0.3em + 1vw);
   }
 
-	.flexbox-section1-image {
-		width: 20%;
-	}
-
   .flexbox-section1-information {
     font-size: calc(0.6em + 1vw);
   }
@@ -249,12 +249,20 @@ h2 {
   .flexbox-techs img {
     width: 14%;
   }
+
+  .height-flexbox-techs {
+    height: calc(4.5em + 1vw);;
+  }
 }
 
 @media (max-width: 600px) {
   .logo-img {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  li {
+    height: 30px;
   }
 
   .flexbox-header {
@@ -264,10 +272,6 @@ h2 {
   .flexbox-nav {
     justify-content: center;
   }
-
-	.flexbox-section1-image {
-		width: 40%;
-	}
 
   .flexbox-ul-list {
     justify-content: space-around;
@@ -294,9 +298,9 @@ h2 {
     width: 5%;
   }
 
-	.flexbox-section1-image {
-		width: 60%;
-	}
+  li {
+    height: 20px;
+  }
 
   .flexbox-div-benefits {
     flex-direction: column;
@@ -310,7 +314,6 @@ h2 {
   }
 
   .flexbox-benefit img {
-    height: calc(5em + 1vh);
     width: calc(4em + 1vw);
   }
 
@@ -324,8 +327,11 @@ h2 {
   }
 
   .flexbox-techs img {
-    height: calc(3em + 1vh);
     width: calc(3em + 1vw);
     margin-top: 5%;
+  }
+
+  .height-flexbox-techs {
+    height: calc(3.5em + 1vw);;
   }
 }
