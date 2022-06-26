@@ -1,0 +1,152 @@
+/* HTML y Body */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(0deg, rgb(255, 156, 85), rgb(255, 241, 119));
+}
+
+/* Principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex: 1;
+}
+
+/* Navbar */
+nav a {
+  color: white !important;
+}
+
+nav a:hover {
+  background-color: white;
+  color: rgb(0, 0, 0) !important;
+}
+
+nav a img {
+  width: 25px;
+  height: 30px;
+}
+
+.button-login {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 2%;  
+  background: linear-gradient(0deg, rgb(255, 156, 85), rgb(255, 241, 119));
+}
+
+.button-login:hover {
+  transform: scale(1.1);
+}
+
+.link-logo {
+  border-radius: 100%;
+  margin-right: 1%;
+}
+
+/* Flexbox principal */
+.flexbox {
+  display: flex;
+}
+
+/* Carousel */
+.carousel .carousel-item {
+  max-height: 450px;
+  min-height: 250px;
+}
+
+.carousel-item img {
+  max-height: 450px;
+  min-height: 250px;
+}
+
+/* Footer */
+.footer {
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #343A40;
+  color: white;
+  bottom: 0;
+  height: 250px;
+  flex-wrap: wrap;
+  font-style: italic;
+  text-align: center;
+}
+
+.footer-title {
+  justify-content: center;
+}
+
+.footer-title img {
+  width: 50px;
+  height: 50px;
+  padding-right: 1%;
+}
+
+.footer-title span {
+  font-size: 2em;
+}
+
+.footer-section-final {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-contact {
+  justify-content: space-between;
+  width: 20%;
+  padding: 1.5%;
+}
+
+.footer p {
+  margin: 0;
+  padding: 1.5%;
+}
+
+.footer hr {
+  margin: 2%;
+  border: 1px solid gray;
+}
+
+.footer i {
+  color: white;
+}
+
+.footer .fa-envelope:hover {
+  color: #CD3C30;
+}
+
+.footer .fa-linkedin:hover {
+  color: #0073B1;
+}
+
+.footer .fa-whatsapp-square:hover {
+  color: #00A884;
+}
+
+.footer a {
+  color: rgb(255, 255, 255);
+  text-decoration: none !important;
+}
+
+.footer a:hover {
+  color: black;
+}
+
+/* Media queries */
+@media (max-width:800px) {
+  /* Footer */
+  .footer-section-final {
+    justify-content: center;
+  }
+
+  .footer-contact {
+    width: 40%;
+  }
+}

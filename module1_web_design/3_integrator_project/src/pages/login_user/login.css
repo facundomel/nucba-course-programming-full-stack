@@ -1,0 +1,56 @@
+/* Principal */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form */
+form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2%;
+  padding: 2%;
+  background-color: #343A40;
+  color: white;
+  margin: 2%;
+}
+
+form div {
+  width: 80%;
+}
+
+form input {
+  width: 90%;
+  height: 30px;
+  margin: 0;
+}
+
+form button {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 2%;  
+  background: linear-gradient(0deg, rgb(255, 156, 85), rgb(255, 241, 119));
+}
+
+form button:hover {
+  transform: scale(1.1);
+}
+
+form span {
+  margin-top: 5%;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+form span a {
+  text-decoration: none !important;
+  color: rgb(255, 233, 33);
+}
+
+form span a:hover {
+  color: rgb(255, 129, 39);
+}
