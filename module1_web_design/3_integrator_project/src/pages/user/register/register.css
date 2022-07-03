@@ -58,7 +58,7 @@ form input {
 }
 
 .image-cancel {
-  background-image: url(/module1_web_design/3_integrator_project/src/assets/images/button-cancel2.png);
+  background-image: url(../../../assets/images/button-cancel2.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 25px;
@@ -66,7 +66,7 @@ form input {
 }
 
 .image-accept {
-  background-image: url(/module1_web_design/3_integrator_project/src/assets/images/button-accept2.png);
+  background-image: url(../../../assets/images/button-accept2.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 35px;
