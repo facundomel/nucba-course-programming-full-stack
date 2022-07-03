@@ -1,8 +1,8 @@
 /* Main */
 main {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   margin-top: 56px;
 }
@@ -17,7 +17,9 @@ form {
   padding: 2% 0;
   background-color: #343A40;
   color: white;
+  margin: 2%;
   width: min(80%, 400px);
+  height: calc(38em + 1vh);
   -webkit-box-shadow: var(--webkit-box-shadow); 
   box-shadow: var(--box-shadow);
 }
@@ -26,24 +28,26 @@ form div {
   width: 80%;
 }
 
-form p {
-  margin-top: 5%;
-  font-size: 0.7em;
-  text-align: center;
+form input {
+  width: 90%;
+  height: 30px;
+  margin: 0;
 }
 
-form p a {
-  text-decoration: none !important;
-  color: var(--yellow-weight);
-}
-
-form p a:hover {
-  color: var(--orange-weight);
+form textarea {
+  resize: none;
 }
 
 .form-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.message-phone {
+  font-weight: bold;
+  color: var(--orange-weight);
+  font-size: 0.7em;
+  margin: 0;
 }
 
 .button-image-cancel {
@@ -74,17 +78,71 @@ form p a:hover {
   height: 25px;
 }
 
+/* Contact data */
+.contact-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 2%;
+  width: min(80%, 400px);
+  height: calc(38em + 1vh);
+  border-radius: 10px;
+  background: var(--black);
+  padding: 1%;
+  top: 0;
+  -webkit-box-shadow: var(--webkit-box-shadow); 
+  box-shadow: var(--box-shadow);
+}
+
+.contact-data p {
+  color: var(--white);
+  margin-top: 2%;
+  text-align: justify;
+}
+
+.contact-data iframe {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  height: 100%;
+  border:0;
+}
+
+.contact-data div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.contact-data div i {
+  color: var(--white);
+}
+
+.contact-data div .fa-envelope:hover {
+  color: var(--red);
+}
+
+.contact-data div .fa-linkedin:hover {
+  color: var(--blue);
+}
+
+.contact-data div .fa-whatsapp-square:hover {
+  color: var(--green);
+}
+
 /* Footer */
 footer {
   margin-top: 0;
 }
 
 /* Media queries */
-@media (max-width:400px) {
-  form p {
-    width: 80%;
+@media (max-width: 600px) {
+  main {
+    flex-direction: column;
   }
+}
 
+@media (max-width: 400px) {
   .button-cancel {
     display: none;
   }

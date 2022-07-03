@@ -26,9 +26,10 @@
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous"
 		></script>
-    <link rel="icon" href="/module1_web_design/3_integrator_project/src/assets/icons/logo5.ico">
+		<link rel="icon" href="/module1_web_design/3_integrator_project/src/assets/icons/logo5.ico">
 		<link rel="stylesheet" href="/module1_web_design/3_integrator_project/src/common.css">
-		<link rel="stylesheet" href="/module1_web_design/3_integrator_project/src/pages/login_user/login.css">
+		<link rel="stylesheet" href="/module1_web_design/3_integrator_project/src/index.css" />
+		<link rel="stylesheet" href="/module1_web_design/3_integrator_project/src/pages/contact/contact.css">
 		<title>Turismo La Isla</title>
 	</head>
 	<body>
@@ -57,9 +58,6 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/module1_web_design/3_integrator_project/src/pages/about/about.html">¿Quiénes somos?</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/module1_web_design/3_integrator_project/src/pages/contact/contact.html">Contáctenos</a>
-							</li>
 						</ul>
             <a href="/module1_web_design/3_integrator_project/src/pages/login_user/login.html">
               <button>Login</button>
@@ -69,15 +67,28 @@
 			</header>
 
 			<main>
-				<form>
-					<div class="form-group">
-						<label for="inputEmail">Email</label>
-						<input type="email" class="form-control" id="inputEmail" placeholder="Email" required autofocus>
-					</div>
-					<div class="form-group">
-						<label for="inputPassword">Password</label>
-						<input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
-					</div>
+        <form>
+          <div class="form-group">
+            <label for="inputName">Nombre</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Nombre" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="inputLastName">Apellido</label>
+            <input type="text" class="form-control" id="inputLastName" placeholder="Apellido" required>
+          </div>
+          <div class="form-group">
+            <label for="inputPhone">Teléfono</label>
+            <input type="number" class="form-control" id="inputPhone" placeholder="Teléfono" required autofocus>
+            <p class="message-phone">Debe contener solo números</p>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="inputMessage">Mensaje</label>
+            <textarea cols="30" rows="5" class="form-control" id="inputMessage" placeholder="Mensaje" required></textarea>
+          </div>
 					<div class="form-buttons">
 						<button onclick="history.back()" class="button-cancel">Cancelar</button>
 						<button onclick="history.back()" class="button-image-cancel"><div class="image-cancel"></div></button>
@@ -85,8 +96,16 @@
 						<button type="submit" class="button-accept">Aceptar</button>
 						<button type="submit" class="button-image-accept"><div class="image-accept"></div></button>
 					</div>
-					<p>Si no tiene cuenta registrese haciendo click <a href="/module1_web_design/3_integrator_project/src/pages/register_user/register.html">aquí</a></p>
-				</form>
+        </form>
+
+        <div class="contact-data">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106714.09075843387!2d-66.37970542140839!3d-33.29749377275228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d43954196ca6cd%3A0x7fc2e3b4d49ecc83!2sSan%20Luis!5e0!3m2!1ses!2sar!4v1656784125239!5m2!1ses!2sar"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        
+          <p>También podés escribirnos por alguno de los siguientes medios:</p>
+          <div>
+            <a href="mailto:facundo.melgarr@gmail.com" title="Gmail" target="_blank"><i class="fa-solid fa-envelope fa-2x"></i></i></a>
+            <a href="https://www.linkedin.com/in/facu-melgar/" title="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=5493456543830" title="WhatsApp" target="_blank"><i class="fa-brands fa-whatsapp-square fa-2x"></i></a>
+          </div>
       </main>
 
       <footer>
