@@ -84,7 +84,12 @@
 
 .card-text {
   height: 150px;
-  overflow: scroll;
+  overflow: auto;
+  padding: 0 6px;
+}
+
+.card-text::-webkit-scrollbar {
+  width: 5px;
 }
 
 /* Media queries */

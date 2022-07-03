@@ -80,6 +80,7 @@ footer {
 
 /* Media queries */
 @media (max-width:400px) {
+  /* Form */
   .button-cancel {
     display: none;
   }

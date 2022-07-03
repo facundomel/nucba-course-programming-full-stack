@@ -81,6 +81,7 @@ footer {
 
 /* Media queries */
 @media (max-width:400px) {
+  /* Form */
   form p {
     width: 80%;
   }

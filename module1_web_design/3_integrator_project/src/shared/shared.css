@@ -16,11 +16,6 @@
   --box-shadow: 6px -4px 5px 5px rgba(0,0,0,0.58);
 }
 
-/* Hidde scrollbar */
-::-webkit-scrollbar {
-  display: none;
-}
-
 /* HTML y Body */
 html {
   scroll-behavior: smooth;
@@ -31,6 +26,25 @@ body {
   margin: 0;
   padding: 0;
   background: var(--gradient-body);
+}
+
+/* Scrollbar */
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+  border-radius: 20px;
+  border: 3px solid var(--white);
 }
 
 /* Main */
