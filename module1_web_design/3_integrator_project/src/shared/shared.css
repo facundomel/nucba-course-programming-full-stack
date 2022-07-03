@@ -148,12 +148,12 @@ footer {
   display: flex;
   justify-content: space-between;
   width: 20%;
-  padding: 1.5% 2.2% 1.5% 2.2%;
+  padding: 1.5% 2%;
 }
 
 footer p {
   margin: 0;
-  padding: 1.5%;
+  padding: 1.5% 2%;
 }
 
 .footer-divisor {
