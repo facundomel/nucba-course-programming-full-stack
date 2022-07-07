@@ -15,11 +15,21 @@ form {
   align-items: center;
   border-radius: 10px;
   padding: 2% 0;
+  margin: 2%;
   background-color: #343A40;
   color: white;
   width: min(80%, 400px);
   -webkit-box-shadow: var(--webkit-box-shadow); 
   box-shadow: var(--box-shadow);
+}
+
+form img {
+  height: 70px;
+}
+
+form img:hover {
+  border-radius: 100%;
+  background-color: var(--white);
 }
 
 form div {

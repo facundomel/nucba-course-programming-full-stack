@@ -90,7 +90,7 @@ nav a img {
 button {
   padding: 0.5em 1em;
   border: none;
-  border-radius: 100px;
+  border-radius: 3px;
   font-weight: bold;
   text-transform: uppercase;
   background: var(--gradient);
@@ -99,10 +99,6 @@ button {
 
 button:hover {
   transform: scale(1.05);
-}
-
-.link-button {
-  border-radius: 100px;
 }
 
 /* Footer */
@@ -118,7 +114,6 @@ footer {
   flex-wrap: wrap;
   font-style: italic;
   text-align: center;
-  margin-top: 4%;
 }
 
 .footer-title {
