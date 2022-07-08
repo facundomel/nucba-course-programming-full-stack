@@ -5,4 +5,4 @@ La misma debería contener algún título, un formulario con los campos a comple
 
 Se puede hacer con CSS, Bootstrap, Tailwind, o la herramienta que ustedes elijan.
 
-Les adjuntamos algunos ejemplos los cuales pueden copiar o simplemente inspirarse! En este mismo directorio se encuentran las imágenes de los ejemplos de login.
+Les adjuntamos algunos ejemplos los cuales pueden copiar o simplemente inspirarse! En este mismo directorio se encuentran las imágenes de los ejemplos de login. Estos ejemplos se encuentran en el RAR llamado "2-examp-login".

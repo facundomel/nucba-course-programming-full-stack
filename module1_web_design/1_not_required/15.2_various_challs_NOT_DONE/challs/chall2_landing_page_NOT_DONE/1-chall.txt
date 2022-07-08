@@ -11,4 +11,4 @@ Si se animan pueden agregar lo que crean necesario con Javascript (interacción 
 
 Suban a su repo el Challenge y a continuación les dejamos los recursos adjuntos.
 
-En este mismo directorio se encuentran todos los recursos necesarios para realizar el challenge.
+En este mismo directorio se encuentran todos los recursos necesarios para realizar el challenge. Todos estos recursos se encuentran en un RAR llamado "2-land".

@@ -77,7 +77,7 @@ form p a:hover {
 }
 
 .image-cancel {
-  background-image: url(../shared/assets/images/button-cancel2.png);
+  background-image: url(./assets/images/button-cancel2.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 25px;
@@ -85,7 +85,7 @@ form p a:hover {
 }
 
 .image-accept {
-  background-image: url(../shared/assets/images/button-accept2.png);
+  background-image: url(./assets/images/button-accept2.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 35px;
