@@ -1,0 +1,13 @@
+Teniendo en cuenta lo visto en clase sobre scopes, ¿ qué es lo que nos va a imprimir la consola en el siguiente ejercicio?
+
+let valor = "hola";
+
+function mostrarvariable() {
+  let valor = "chau";
+}
+
+console.log(valor);
+
+Solución:
+
+El código anterior va a imprimir "hola".

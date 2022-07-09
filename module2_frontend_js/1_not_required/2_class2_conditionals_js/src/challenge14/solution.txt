@@ -1,0 +1,17 @@
+¿Qué es lo que va a imprimirse en consola en el siguiente ejercicio?
+
+let a = false;
+
+let b = true;
+
+if (a && !b) {
+  console.log("opcion a");
+} else if (a || b) {
+  console.log("opcion b");
+} else {
+  console.log("opcion c");
+}
+
+Solución:
+
+El código anterior va a imprimir "opcion b".

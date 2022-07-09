@@ -1,0 +1,52 @@
+Desafíos:
+
+Challenge 1- Crea una variable con tu nombre y otra con tu edad. Imprimí ambas variables en consola
+
+Challenge 2- Escribí un código que imprima en consola “Hola! Mi nombre es (tu nombre) y tengo (tu edad) años.
+
+Challenge 3- Reasigna los valores de las variables nombre y edad y volvé a imprimir el mensaje del ejercicio anterior en consola.
+
+Challenge 4- Crea dos variables con valores de tipo número e imprimí la suma de ambos por consola.
+
+Challenge 5- El siguiente código nos esta dando un error en consola. Corregilo de manera tal que se imprima en la consola el número 25. Este código se encuentra en la imagen llamada "2-code-challenge5.png".
+
+Challenge 6- Escribí un código que pase el valor de una variable como una alerta en el navegador.
+
+Challenge 7- Escribí un código que pida por pantalla un valor, lo almacene en una variable y muestre la variable por consola.
+
+Challenge 8- Escribí un código que pida haga lo mismo que el ejercicio anterior pero esta vez que muestre el valor como una alerta que diga : “El valor ingresado es (el valor)”.
+
+Challenge 9- Escribí un código que pida dos nombres por pantalla, los almacene en una variable y que muestre una alerta que diga: “El primer valor ingresado es (valor1) y el segundo es (valor2)”.
+
+Challenge 10- El siguiente código nos devuelve “undefined” por consola. Modificalo de manera que nos devuelva el valor de la variable nombre. Este código se encuentra en la imagen llamada "3-code-challenge10.png".
+
+Challenge 11- Teniendo en cuenta lo visto en clase sobre scopes, ¿ qué es lo que nos va a imprimir la consola en el siguiente ejercicio? Este código se encuentra en la imagen llamada "4-code-challenge11.png".
+
+Challenge 12- ¿Qué es lo que va a imprimirse en consola en el siguiente ejercicio? Este código se encuentra en la imagen llamada "5-code-challenge12.png".
+
+Challenge 13- ¿Qué es lo que va a imprimirse en consola en el siguiente ejercicio? Este código se encuentra en la imagen llamada "6-code-challenge13.png".
+
+Challenge 14- ¿Qué es lo que va a imprimirse en consola en el siguiente ejercicio? Este código se encuentra en la imagen llamada "7-code-challenge14.png".
+
+Challenge 15- Escribí un código que tome una variable edad con un valor numérico e imprima por consola “soy mayor de edad” si el número es mayor o igual a 18 , y “soy menor de edad” en caso contrario.
+
+Challenge 16- Escribí un código que tome dos valores numéricos e imprima por consola la opción que corresponda :
+- valor1 es mayor a el valor2
+- valor2 es mayor a el valor1
+- valor1 y valor2 son iguales.
+Podes crear dos variables numéricas e ir cambiándolas para ver los distintos resultados
+
+Challenge 17- Escribí un código que pida un string mediante un prompt, lo almacene en una variable y cumpla con las siguientes condiciones:
+- Si el string es “alerta”, que imprima una alerta en pantalla que diga “Soy una alerta”
+- Si el string es “consola”, que imprima en consola “Soy un mensaje en la consola”
+- En caso de que no sea ninguno de los casos anteriores, que se imprima una alerta y también en consola “Me muestro en ambos lados”
+
+Challenge 18- Escribí un código mediante el uso de condicionales que defina una variable “edad” y que cumpla las siguientes condiciones :
+- Si la edad es menor a 20 y menor a 13 , imprima por consola “Soy un niño”
+- Si la edad es menor a 20 y mayor o igual a 13, imprima por consola “Soy un adolescente”
+- Si la edad es mayor o igual a 20 y menor a 50 , imprima por consola “Soy un adulto”
+- Si la edad es mayor a 50 , imprima por consola “Soy un adulto mayor”.
+
+Challenge 19- Escribí una sentencia switch que cumpla con las siguientes condiciones:
+- Deberán definir una variable con una palabra ( por fuera del switch ) sobre la cual analizarán los casos.
+- Debe tener 4 casos posibles (cada uno será una fruta distinta) que imprimirán en consola “Soy un/a “nombre de la fruta de este caso”” y un caso default que imprimirá en consola “No se que soy”

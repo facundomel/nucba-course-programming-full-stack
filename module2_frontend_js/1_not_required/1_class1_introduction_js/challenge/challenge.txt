@@ -1,0 +1,4 @@
+Desafío:
+
+Bienvenidos a JS. 
+El desafío de hoy va a ser cortito. Van a tener que escribir un código que imprima en consola: “Hola! Mi nombre es (tu nombre) y tengo (tu edad) años. 
