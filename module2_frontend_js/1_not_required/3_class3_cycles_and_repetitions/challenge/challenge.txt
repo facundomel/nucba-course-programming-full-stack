@@ -1,0 +1,7 @@
+Desafío:
+
+1- Crear un array con los números del 1 al 10.
+2- Crear un bucle for que imprima en consola todos los números del array.
+3- Crear un bucle que imprima solo los primeros 5 números.
+4- Crear un bucle que imprima los últimos 5 números.
+5- Crear un bucle que imprima todos los números, excepto el que este en la 4ta posición.
