@@ -1,16 +1,16 @@
 Desafíos:
 
-Challenge 1: Escribí una función que reciba como parámetro un nombre y que imprima en consola “hola, soy {nombre}".
+Desafío 1: Escribí una función que reciba como parámetro un nombre y que imprima en consola “hola, soy {nombre}".
 
-Challenge 2: Escribí una función que imprima en consola la suma de dos números pasados por parámetro.
+Desafío 2: Escribí una función que imprima en consola la suma de dos números pasados por parámetro.
 
-Challenge 3: Escribí una función que reciba dos números por parámetro, multiplique a cada uno por dos y luego imprima por consola la suma de ambos números multiplicados.
+Desafío 3: Escribí una función que reciba dos números por parámetro, multiplique a cada uno por dos y luego imprima por consola la suma de ambos números multiplicados.
 
-Challenge 4: Escribí una función que pueda recibir un número como parámetro y que imprima por consola la tabla de multiplicación del 1 al 10 de ese número.
+Desafío 4: Escribí una función que pueda recibir un número como parámetro y que imprima por consola la tabla de multiplicación del 1 al 10 de ese número.
 Nota: El mensaje en consola debe ser "user-friendly" (Ej. : El “(número) multiplicado por (número actual de la tabla) es igual a (resultado) “)
 
-Challenge 5: Escribí una función que reciba dos números por parámetro y que imprima por consola todo el intervalo entre ambos números, incluyéndolos. Por ejemplo , si ingresamos 1 y 3 deben imprimirse en consola los números “1” , “2” y “3”. Sin son iguales, que se imprima “Ambos números son iguales”.
+Desafío 5: Escribí una función que reciba dos números por parámetro y que imprima por consola todo el intervalo entre ambos números, incluyéndolos. Por ejemplo , si ingresamos 1 y 3 deben imprimirse en consola los números “1” , “2” y “3”. Sin son iguales, que se imprima “Ambos números son iguales”.
 
-Challenge 6: Llegamos al último ejercicio. ¿Estás listo? vas a tener que :
+Desafío 6: Llegamos al último ejercicio. ¿Estás listo? vas a tener que :
 - Escribir las funciones “sumar” , “restar” , “multiplicar” “dividir” que puedan recibir dos parámetros e imprima en consola el resultado de la operación matemática correspondiente
 - Escribir una función que reciba dos números y una función como parámetros y que muestre en consola el resultado correspondiente a la operación matemática pasada como parámetro.
