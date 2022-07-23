@@ -1,0 +1,19 @@
+Desafíos:
+
+Challenge 1: Vamos a trabajar con objetos. Empecemos tranqui, crea un objeto literal “zapatilla” que tenga las propiedades “talle” , “color “ y “marca”
+Además, que el código imprima por consola : “Soy una zapatilla {marca} de talle {talle} y color {color} ”
+
+Challenge 2: Ahora vamos a meter funciones. Crea otro objeto literal “zapatilla2” con las mismas propiedades que la anterior. Luego , escribí una función que reciba dos zapatillas como parámetro que compare el talle de ambas y que según el caso correspondiente imprima en consola:
+- Si el talle de la primera es mayor que el de la segunda, que imprima : “El talle de la zapatilla {marca1} es mayor que el de la zapatilla {marca2}".
+- Si el talle de la primera es menor que el de la segunda, que imprima : “El talle de la zapatilla {marca1} es menor que el de la zapatilla {marca2}”.
+- Si los talles coinciden, que imprima : “Los talles de ambas zapatillas son iguales”
+
+Challenge 3: Ahora pasemos a crear nuestro objetos con clases constructoras. Creá una clase “Zapatilla” que tenga las mismas propiedades que los objetos creados anteriormente. Luego, creá 2 zapatillas utilizando esa clase e imprimí ambas por consola.
+
+Challenge 4: En el ejercicio anterior imprimimos las zapatillas por consola, pero no esta bueno mostrar el objeto de una manera que no sea "user-friendly". Creá un método “getInfo” en la clase zapatilla que retorne :
+- “Soy una zapatilla “marca” de color “color” y de talle “talle”.“
+Finalmente, imprimí por consola la información de ambas zapatillas que creaste.
+
+Challenge 5: A la clase Zapatilla, agregale una propiedad “precio”. Luego creá una función que reciba dos zapatillas , compare el precio de ambas y que devuelva por consola un mensaje que diga:
+> “La zapatilla {marca} es la mas cara del mercado, con un valor de ${precio}.”
+Si ambas tienen el mismo precio, imprimí un mensaje que diga que las zapatillas de ambas marcas son las mas caras del mercado, con un valor de ${precio}.
