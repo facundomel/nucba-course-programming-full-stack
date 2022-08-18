@@ -1,0 +1,21 @@
+Desafíos:
+
+Desafío 1: Creá un array con al menos 5 gustos de helados y luego crea una función que:
+- Coloque el último sabor de helado del array al principio del mismo
+- Agregue un sabor (recibido como parámetro) al final del array
+- Imprima el array en consola
+
+Desafío 2: Ahora hagamos el camino inverso, crea una función que elimine el primer elemento del array y lo coloque al final. Imprimí el array en consola.
+
+Desafío 3: Creá una función que invierta el orden de los elementos del array e imprima en consola un “string” a partir de ese array invertido, separando las palabras con “-”.
+
+Desafío 4: Crea otro array de gustos de helado con al menos 3 gustos de helado. Luego, crea una función que una ambos arrays y retorne un único array que solo deje los dos últimos elementos del primer array y los primeros del segundo. Finalmente, imprimí ese nuevo array por pantalla.
+
+Desafío 5: Escribí un código en el cual crees un array con gustos de helados y una función que reciba un array de gustos de helados como parámetro que imprima en consola un array con los mismos gustos pero que solo estén las primeras 3 letras de cada gusto, pasadas todas a mayúscula.
+
+Desafío 6: Llegamos al último ejercicio, el cual es bastante particular.
+Un integrante del equipo de Nucba es fanático de Cristiano Ronaldo y de escribir las palabras al revés. Como si esto fuera poco, suele poner muchos espacios al principio y al final de cada frase. El otro día escribió la frase que se muestra en la imagen "2- example-phrase.png".
+Para arreglar esto, les pedimos que escriban una función que:
+- Elimine los espacios al principio y al final de la frase.
+- invierta todas las palabras para que el texto pueda leerse correctamente.
+- Reemplace la palabra “Ronaldo” por la palabra “Messi” y viceversa.
