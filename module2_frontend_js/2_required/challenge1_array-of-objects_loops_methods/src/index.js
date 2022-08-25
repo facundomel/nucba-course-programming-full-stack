@@ -1,4 +1,4 @@
-import Exercises from "./model/Exercises.js";
+import Exercises from "./service/Exercises.js";
 
 // Ejercicio 1
 const getPizzasIDOdd = document.getElementById("getPizzasIDOdd");

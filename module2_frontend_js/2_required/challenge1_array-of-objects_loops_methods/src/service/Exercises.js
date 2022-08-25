@@ -1,4 +1,4 @@
-import Pizza from "./Pizza.js";
+import Pizza from "../model/Pizza.js";
 
  // Array de objetos de tipo Pizza
  const pizzas = [
