@@ -1,4 +1,4 @@
-function eventsHandler() {
+function onloadEvent() {
 	const title = document.getElementById("title");
 	const paragraph = document.getElementById("paragraph");
 
@@ -8,4 +8,4 @@ function eventsHandler() {
   }, 3000));
 }
 
-eventsHandler();
+onloadEvent();
