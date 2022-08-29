@@ -1,5 +1,4 @@
 const form = document.getElementById("form");
-const formGroupPhone = document.getElementById("formGroupPhone");
 
 function createElementPagraphCompleteField(elementId) {
   let pagraphCompleteField = document.createElement("p");
