@@ -6,6 +6,7 @@ function showError(input, message) {
 	const parentInput = input.parentElement;
 	const messageError = parentInput.querySelector("small");
 	parentInput.classList.add("error");
+	parentInput.classList.remove("success");
 	messageError.textContent = message;
 	input.focus();
 }
@@ -14,6 +15,7 @@ function showSuccess(input) {
 	const parentInput = input.parentElement;
 	const messageError = parentInput.querySelector("small");
 	parentInput.classList.remove("error");
+	parentInput.classList.add("success");
 	messageError.textContent = null;
 }
 
@@ -78,10 +80,34 @@ function eventKeypressEnter() {
 	}
 }
 
+function debounce(callback, timeout = 1000) {
+	let timer;
+	return (...args) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			callback.apply(this, args);
+		}, timeout);
+	}
+}
+
+function eventInputChange() {
+	form.addEventListener("input", debounce((e) => {
+		switch (e.target.id) {
+			case "inputEmail":
+				validEmail();
+				break;
+			case "inputPassword":
+				validPassword();
+				break;
+		}
+	}))
+}
+
 function init() {
 	eventClickCancel();
 	eventClickSubmit();
   eventKeypressEnter();
+	eventInputChange();
 }
 
 init();

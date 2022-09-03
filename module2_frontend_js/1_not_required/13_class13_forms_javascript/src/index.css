@@ -49,7 +49,11 @@ form input {
 
 /* Error / Success */
 .form-group.error input {
-  border: 2px solid var(--red-weight);
+  border: 3px solid var(--red-weight);
+}
+
+.form-group.success input {
+  border: 3px solid var(--green-weight);
 }
 
 .form-group small {
