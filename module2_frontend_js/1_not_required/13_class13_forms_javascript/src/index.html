@@ -70,29 +70,19 @@
 			</header>
 
 			<main>
-        <form id="form">
+        <form id="form" novalidate>
 					<a href="#">
           	<img src="./assets/images/logo5.png" alt="Logo" title="Inicio" />
 					</a>
-          <div class="form-group" id="formGroupName">
-            <label for="inputName">Nombre</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Nombre" required autofocus>
-          </div>
-          <div class="form-group" id="formGroupLastName">
-            <label for="inputLastName">Apellido</label>
-            <input type="text" class="form-control" id="inputLastName" placeholder="Apellido" required>
-          </div>
-          <div class="form-group" id="formGroupPhone">
-            <label for="inputPhone">Teléfono</label>
-            <input type="number" class="form-control" id="inputPhone" placeholder="Teléfono" required>
-          </div>
           <div class="form-group" id="formGroupEmail">
             <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required autofocus>
+						<small></small>
           </div>
           <div class="form-group" id="formGroupPassword">
             <label for="inputPassword">Password</label>
             <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+						<small></small>
           </div>
 					<div class="form-buttons">
 						<button class="button-cancel" name="buttonCancel">Cancelar</button>

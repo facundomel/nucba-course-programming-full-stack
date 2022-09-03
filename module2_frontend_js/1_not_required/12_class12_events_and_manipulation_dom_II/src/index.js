@@ -50,7 +50,8 @@ function eventFocusInAndOutInputs(input, elementPId, formGroup) {
 
 function eventClickCancel() {
   document.getElementsByName("buttonCancel").forEach((elem) => {
-    elem.addEventListener(("click"), () => {
+    elem.addEventListener(("click"), (e) => {
+      e.preventDefault();
       alert("¡Vuelva pronto!");
       window.location.reload();
     });
@@ -59,7 +60,9 @@ function eventClickCancel() {
 
 function eventClickSubmit() {
   let allFieldsComplete = true;
-  form.addEventListener("submit", () => {
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
     for (let i = 0; i < form.elements.length; i++) {
       if (form.elements[i].tagName == "INPUT" && form.elements[i].value == "") {
         allFieldsComplete = false;
@@ -69,6 +72,8 @@ function eventClickSubmit() {
     if (allFieldsComplete) {
       alert("¡Muchas gracias por registrarse!");
       window.location.reload();
+    } else {
+      alert("Debe completar todos los campos");
     }
   })
 }

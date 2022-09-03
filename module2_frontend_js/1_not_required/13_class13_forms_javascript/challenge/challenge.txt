@@ -1,0 +1,5 @@
+Desafío:
+
+-Crear un archivo HTML que contenga un input mail y un input password.
+-Validar que el primero sea un mail válido.
+-Validar que el segundo tenga un mínimo de 5 y un máximo de 12 caracteres.

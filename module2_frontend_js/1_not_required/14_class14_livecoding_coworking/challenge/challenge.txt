@@ -1,0 +1,3 @@
+Desafío:
+
+El desafío del día de hoy será leer el código visto en las últimas clases para afianzar la información sobre eventos y manipulación del DOM. 📚
