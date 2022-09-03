@@ -10,7 +10,7 @@ import Pizza from "../model/Pizza.js";
   new Pizza(6, "Pizza 6", ["Salame", "Aceitunas"], 900)
 ]
 
-class Exercises {
+export default new class Exercises {
   // Ejercicio 1
   getPizzasIDOdd() { 
     console.clear(); 
@@ -53,4 +53,4 @@ class Exercises {
   // getNamePizzaAndPrice();
   // getIngredientsPizza();
 }
-export default new Exercises;
+// export default new Exercises;
