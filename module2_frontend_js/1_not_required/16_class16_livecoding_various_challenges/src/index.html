@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./styles.css" />
+		<script src="./index.js" type="module" defer></script>
+		<title>Módulo 2 - Clase 16 - Various Challenges</title>
+	</head>
+	<body>
+		<header>
+			<h2>Ejercicio 1: Menú hamburguesa</h2>
+			<nav class="navbar">
+				<div class="menu-label">
+					<img src="./assets/images/menu.png" alt="" class="menu-icon" />
+				</div>
+				<ul class="navbar-list">
+					<li><a href="#" class="navbar-link">Home</a></li>
+					<li><a href="#" class="navbar-link">Contact</a></li>
+					<li><a href="#" class="navbar-link">About</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="ej-2">
+			<h2>Ejercicio 2: Validación de form</h2>
+			<form id="formExercise2" novalidate>
+				<div class="form__field">
+					<label for="email">Email</label>
+					<input type="email" id="email" placeholder="Email" autofocus />
+					<small></small>
+				</div>
+				<div class="form__field">
+					<label for="pass">Password</label>
+					<input type="password" id="pass" placeholder="Password" />
+					<small></small>
+				</div>
+
+				<button class="cursor-pointer" type="submit" value="Enviar">ENVIAR</button>
+			</form>
+		</div>
+		<div class="ej-3">
+			<h2>Ejercicio 3: Renderizar tareas + Local storage</h2>
+			<form id="formExercise3" novalidate>
+				<div class="form__field">
+					<input type="text" id="inputTask" placeholder="Tarea" />
+					<small></small>
+				</div>
+				<button class="cursor-pointer" type="submit" value="Enviar">ENVIAR</button>
+				<button class="cursor-pointer" id="buttonClearLocalStorage">LIMPIAR LOCAL STORAGE</button>
+			</form>
+			<div id="tasks"></div>
+		</div>
+		<div class="ej-cards">
+			<h2>Ejercicio 4: Renderizar cards</h2>
+			<form id="formExercise4" novalidate>
+				<button class="cursor-pointer" type="submit" value="Enviar">MOSTRAR CARDS</button>
+				<button class="cursor-pointer" id="buttonRefreshPage">OCULTAR CARDS</button>
+			</form>
+			<div id="cards"></div>
+		</div>
+	</body>
+</html>
