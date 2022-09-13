@@ -13,7 +13,19 @@ export default new (class Util {
 		const messageError = parentInput.querySelector("small");
 		parentInput.classList.remove("error");
 		parentInput.classList.add("success");
-		messageError.textContent = null;
+		messageError.textContent = "";
+	}
+
+	showErrorV2(parentInput, message) {
+		const messageError = parentInput.querySelector("small");
+		parentInput.classList.add("error");
+		messageError.textContent = message;
+	}
+
+	showSuccessV2(parentInput) {
+		const messageError = parentInput.querySelector("small");
+		parentInput.classList.remove("error");
+		messageError.textContent = "";
 	}
 
 	clearStyleShowMessage(input) {

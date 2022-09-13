@@ -35,8 +35,7 @@
 					<input type="password" id="pass" placeholder="Password" />
 					<small></small>
 				</div>
-
-				<button class="cursor-pointer" type="submit" value="Enviar">ENVIAR</button>
+				<input type="submit" class="cursor-pointer" value="ENVIAR" />
 			</form>
 		</div>
 		<div class="ej-3">
@@ -46,17 +45,20 @@
 					<input type="text" id="inputTask" placeholder="Tarea" />
 					<small></small>
 				</div>
-				<button class="cursor-pointer" type="submit" value="Enviar">ENVIAR</button>
-				<button class="cursor-pointer" id="buttonClearLocalStorage">LIMPIAR LOCAL STORAGE</button>
+				<input type="submit" class="cursor-pointer" value="ENVIAR" />
+				<input type="button" class="cursor-pointer" id="buttonClearLocalStorage" value="LIMPIAR LOCAL STORAGE" />
 			</form>
 			<div id="tasks"></div>
 		</div>
 		<div class="ej-cards">
 			<h2>Ejercicio 4: Renderizar cards</h2>
-			<form id="formExercise4" novalidate>
-				<button class="cursor-pointer" type="submit" value="Enviar">MOSTRAR CARDS</button>
-				<button class="cursor-pointer" id="buttonRefreshPage">OCULTAR CARDS</button>
-			</form>
+			<div class="form__field" id="div-exercise-4" novalidate>
+				<div>
+					<button class="cursor-pointer" id="button-show-cards">MOSTRAR CARDS</button>
+					<button class="cursor-pointer" id="button-hide-cards">OCULTAR CARDS</button>
+				</div>
+				<small></small>
+			</div>
 			<div id="cards"></div>
 		</div>
 	</body>

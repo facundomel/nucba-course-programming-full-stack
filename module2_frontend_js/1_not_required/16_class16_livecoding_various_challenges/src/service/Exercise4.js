@@ -1,8 +1,10 @@
 import Movie from "../model/Movie.js";
+import Util from "../util/Util.js";
 
-const formExercise4 = document.getElementById("formExercise4");
+const divExercise4 = document.getElementById("div-exercise-4");
+const buttonShowCards = document.getElementById("button-show-cards");
+const buttonHideCards = document.getElementById("button-hide-cards");
 const cards = document.getElementById("cards");
-const buttonRefreshPage = document.getElementById("buttonRefreshPage");
 
 let movies = [
 	new Movie(
@@ -77,13 +79,20 @@ export default new (class Exercise4 {
 	}
 
 	eventClickRenderAllCards() {
-		formExercise4.addEventListener("submit", () => this.renderAllCards(movies));
+		buttonShowCards.addEventListener("click", () => { 
+			Util.showSuccessV2(divExercise4);
+			this.renderAllCards(movies)
+		});
 	}
 
 	eventClickHideAllCards() {
-		buttonRefreshPage.addEventListener("click", (e) => {
+		buttonHideCards.addEventListener("click", (e) => {
 			e.preventDefault();
-			cards.innerHTML = "";
+			if (cards.innerHTML == "") {
+				Util.showErrorV2(divExercise4, "No hay cards para ocultar")
+			} else {
+				cards.innerHTML = "";
+			}
 		});
 	}
 })();

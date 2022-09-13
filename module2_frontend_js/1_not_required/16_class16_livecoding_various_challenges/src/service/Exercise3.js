@@ -80,7 +80,6 @@ export default new (class Exercise2 {
 				divTasks.innerHTML = "";
 				tasks = [];
 				Util.formReset(formExercise3, inputTask);
-				inputTask.focus();
 			} else {
 				Util.showError(inputTask, "No hay datos para limpiar");
 			}
