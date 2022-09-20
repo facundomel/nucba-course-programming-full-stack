@@ -1,8 +1,8 @@
-import StarWars from "./service/StarWars.js";
+import StarWarsService from "./service/StarWarsService.js";
 
 function getAllCharacters() {
 	try {
-		StarWars.getAllCharacters()
+		StarWarsService.getAllCharacters()
 			.then((data) => {
 				console.log("Personajes de Star Wars: ");
 				console.log(data.results);

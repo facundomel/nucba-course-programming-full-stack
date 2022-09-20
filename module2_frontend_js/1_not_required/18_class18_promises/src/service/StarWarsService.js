@@ -1,6 +1,6 @@
 import Utils from "../utils/Utils.js";
 
-export default new (class StarWars {
+export default new (class StarWarsService {
 	getAllCharacters() {
 		const options = {
 			method: "get",
