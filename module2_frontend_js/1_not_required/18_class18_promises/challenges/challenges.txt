@@ -1,3 +1,0 @@
-Desafíos:
-
-Consumir alguna api (Star Wars, Pokemon, etc.) y mostrar el resultado obtenido por consola.

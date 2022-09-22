@@ -1,0 +1,4 @@
+Desafío:
+
+-Hacer un llamado a la API de https://reqres.in/
+-Imprimir en consola la respuesta obtenida. 
