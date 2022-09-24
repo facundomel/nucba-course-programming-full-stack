@@ -1,0 +1,18 @@
+Desafío:
+
+¡Volvemos a trabajar con nuestro array de Pizzas🍕 !:
+
+Deberán realizar el siguiente desafio: 
+
+👉 A cada Pizza, agregarle una imagen. 
+👉 Crear un archivo HTML que contenga un card en donde se renderice el nombre, imagen, ingredientes y precio de una pizza (Estilizarlo con CSS 🎨). 
+👉 Debajo del card tiene que haber un input y un botón. 
+
+Deberemos colocar un numero en el input y, al apretar el botón, deberá renderizar en el card la pizza cuyo id coincida con el numero ingresado en el input.
+
+🚨 Si no coincide con ningún id, renderizar un mensaje de error.
+
+¿Cuál es el desafío final?
+Deberán guardar en localStorage la última pizza buscada y renderizada, y al recargar la página será esa pizza la que se deberá mostrar en la página.
+
+🆙 Entregar el link de Github , en el cual debe estar linkeado el deploy del Vercel de su aplicación (mediante Github nosotros deberíamos poder ver el Vercel vinculado a su repositorio).
