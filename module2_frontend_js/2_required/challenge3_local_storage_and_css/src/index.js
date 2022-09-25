@@ -103,8 +103,10 @@ function eventButtonClearLocalStorage() {
 			pizzaRepository.remove("pizza");
 			renderPizza(null);
 			utils.clearErrorAndSuccess();
-			inputPizzaId.focus();
+		} else {
+			utils.showError("No hay nada para limpiar");
 		}
+		inputPizzaId.focus();
 	});
 }
 
