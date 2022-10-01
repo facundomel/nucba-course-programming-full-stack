@@ -112,11 +112,6 @@ footer {
   width: 250px;
 }
 
-.footer-title img:hover {
-  border-radius: 5px;
-  background-color: var(--white);
-}
-
 .footer-title p {
   font-size: 2em;
 }
