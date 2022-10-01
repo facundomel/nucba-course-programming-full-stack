@@ -1,6 +1,6 @@
 import Pokemon from "./model/Pokemon.js";
-import { default as utils } from "./utils/Utils.js";
-import { default as pokemonService } from "./service/PokemonService.js";
+import utils from "./utils/Utils.js";
+import pokemonService from "./service/PokemonService.js";
 
 // Constants
 const cardsPokemon = document.getElementById("cards-pokemon");
@@ -45,6 +45,7 @@ function renderPokemon(pokemon) {
 		const poke = new Pokemon(pokemon);
 		cardsPokemon.classList.add("cards-pokemon");
 		cardsPokemon.classList.remove("cards-pokemon-none");
+
 		card.innerHTML = `<img src=${poke.image} class="card-img-top" alt=${poke.name}>
 		<div class="card-body">
 			<div>
@@ -94,7 +95,7 @@ function eventButtonRefresh() {
 	buttonrefreshPage.addEventListener("click", (e) => {
 		e.preventDefault();
 		document.location.reload();
-	})
+	});
 }
 
 // Init

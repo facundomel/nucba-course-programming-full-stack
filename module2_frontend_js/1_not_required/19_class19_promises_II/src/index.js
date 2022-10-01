@@ -1,7 +1,7 @@
-import StarWarsService from "./service/ReqResService.js";
+import reqResService from "./service/ReqResService.js";
 
 function getAllUsers() {
-	StarWarsService.getAllUsers()
+	reqResService.getAllUsers()
 		.then((data) => {
 			if (data.length > 0) {
 				console.log("Lista de usuarios: ");

@@ -1,0 +1,4 @@
+Desafío:
+
+Continuamos con el trabajo en la API de reqres del desafío de hace 2 clases.
+-Esta vez, Manejaremos la respuesta obtenida para mostrar información en el navegador .
