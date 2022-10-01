@@ -25,42 +25,35 @@
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous"
 		></script>
-		<link rel="icon" href="./assets/logo/logo2.ico">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<link rel="icon" href="./assets/logo2.png">
 		<link rel="stylesheet" href="./shared/shared.css">
 		<link rel="stylesheet" href="./style.css" />
 		<script type="module" src="./index.js" defer></script>
-		<title>Las mejores pizzas</title>
+		<title>Pokémon</title>
 	</head>
 	<body>
 		<div class="container">
 			<main id="main">
-        <section class="section-pizza">
-          <h1>Las mejores pizzas...</h1>
-					<h2>¡Encuentra la tuya aquí!</h2>
-					<div class="cards-pizza-none" id="cards-pizza">
+        <section class="section-pokemon">
+					<a href="#main">
+          	<img src="./assets/logo.png" alt="Logo" title="Inicio" />
+					</a>
+					<h1>¡Encuentra el tuyo aquí!</h1>
+					<div class="cards-pokemon-none" id="cards-pokemon">
 						<div class="card" id="card">
-							<!-- <img src="./assets/pizzas/mozzarella.jpg" class="card-img-top" alt="Pizza muzarella">
-							<div class="card-body">
-								<div>
-									<h5 class="card-title">Pizza muzarella</h5>
-									<div class="card-text">
-										<p>Ingredientes: Aceituna</p>
-										<p>Precio: $950</p>
-									</div>
-								</div>
-							</div> -->
 						</div>
 					</div>
 					
 					<form class="form" id="form">
 						<div>
-							<input type="number" id="input-pizza-id" placeholder="ID Pizza" autofocus />
+							<input type="number" id="input-pokemon-id" placeholder="ID Pokémon" autofocus />
 							<small id="message-error" class="message-error"></small>
 						</div>
 			
 						<div>
-							<button id="button-get-pizza">Obtener Pizza</button>
-							<button id="button-clear-local-storage">Limpiar</button>
+							<button id="button-get-pokemon">Obtener Pokémon</button>
+							<button id="button-refresh-page">Refrescar</button>
 						</div>
 					</form>
 				</section>
@@ -69,9 +62,8 @@
       <footer>
         <div class="footer-title">
 					<a href="#main">
-          	<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
+          	<img src="./assets/logo.png" alt="Logo" title="Inicio" />
 					</a>
-          <p>Las mejores pizzas...</p>
 				</div>
 				<span class="footer-divisor"></span>
         <div class="footer-section-final">
