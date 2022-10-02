@@ -1,4 +1,4 @@
-export default new (class ReqResService {
+export default new (class ReqResServ {
 	async getAllUsers() {
 		try {
 			const result = await axios.get("https://reqres.in/api/users");

@@ -1,4 +1,4 @@
-import reqResService from "./service/ReqResService.js";
+import reqResService from "./service/ReqResServ.js";
 
 const listUsers = document.getElementById("list-users");
 
