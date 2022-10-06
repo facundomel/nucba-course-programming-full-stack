@@ -29,7 +29,7 @@
 	font-size: 2em;
 	font-weight: bold;
 	color: var(--white);
-	margin-top: 30px;
+	margin: 30px 10px;
 	font-style: italic;
 }
 
@@ -116,6 +116,7 @@
 	justify-content: space-around;
 	align-items: center;
 	height: 150px;
+	width: 100%;
 }
 
 .form input {
@@ -125,6 +126,14 @@
 	text-transform: uppercase;
 	display: block;
 	outline: none;
+}
+
+.button-get-pokemon {
+	margin: 10px;
+}
+
+.button-refresh-page {
+	margin: 0 10px 0 10px;
 }
 
 /* Pokemon types */
@@ -215,4 +224,21 @@
 
 .fairy {
 	background-color: #e9e;
+}
+
+/* Media queries */
+@media (max-width: 500px) {
+	.section-pokemon-title-image {
+		width: 350px;
+	}
+}
+
+@media (max-width: 370px) {
+	.section-pokemon-title-image {
+		width: 300px;
+	}
+	
+	.section-pokemon h1 {
+		font-size: 1.5em;
+	}
 }
