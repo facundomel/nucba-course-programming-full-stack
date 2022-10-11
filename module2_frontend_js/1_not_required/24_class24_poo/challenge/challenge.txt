@@ -1,0 +1,3 @@
+Desafío:
+
+Partiendo del prototipo, crear un método propio de un array.
