@@ -12,6 +12,7 @@ function addMethodsArray() {
 function init() {
 	addMethodsArray();
 
+	console.log("Metodo propio creado en el prototipo de un array: getEvenNumbers()");
 	console.log(numbers.getEvenNumbers());
 	console.log(numbers2.getEvenNumbers());
 }
