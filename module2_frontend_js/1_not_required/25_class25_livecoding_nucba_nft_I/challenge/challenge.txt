@@ -1,0 +1,3 @@
+Desafío:
+
+Creemos que con la clase practica de hoy ya tienen bastante para revisar. La tarea de hoy es leer el código realizado en clase, intentar entender todo lo que se hizo y anotar dudas puntuales para realizar la próxima clase.
