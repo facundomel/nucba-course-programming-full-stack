@@ -1,0 +1,4 @@
+Desafío:
+
+Una clase más, más código para revisar.
+La idea de hoy es que, una vez más, entiendan todo el paso a paso realizado en clase. Ante cualquier duda, pueden revisar la documentación oficial para despejar dudas. Si aun así siguen perdidos sobre algo, anotar las preguntas a realizar la próxima clase.
