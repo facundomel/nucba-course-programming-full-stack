@@ -1,0 +1,18 @@
+/* Media queries */
+@media (max-width:800px) {
+  /* Footer */
+  .footer-section-final {
+    justify-content: center;
+  }
+
+  .footer-contact {
+    width: 40%;
+  }
+}
+
+@media (max-width:400px) {
+  /* Footer */
+  .footer-contact {
+    width: 60%;
+  }
+}

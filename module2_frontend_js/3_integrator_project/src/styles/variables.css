@@ -1,0 +1,19 @@
+/* Variables */
+:root {
+  --orange: rgb(255, 156, 85);
+  --yellow: rgb(255, 241, 119);
+  --yellow-weight: rgb(255, 233, 33);
+  --orange-weight: rgb(255, 129, 39);
+  --black: rgb(52, 58, 64);
+  --white: white;
+  --gray: gray;
+  --red: #CD3C30;
+  --blue: #0073B1;
+  --blue-light: #4E8BB8;
+  --green: #00A884;
+  --gradient: linear-gradient(0deg, var(--orange), var(--yellow));
+  --gradient-body: linear-gradient(90deg, var(--yellow) 0%, var(--orange) 80%);
+  --webkit-box-shadow: 6px -4px 5px 5px rgba(0,0,0,0.58);
+  --box-shadow: 6px -4px 5px 5px rgba(0,0,0,0.58);
+  --btn: linear-gradient(98.81deg, #4E8BB8 -0.82%, #bbf0ff 101.53%);
+}

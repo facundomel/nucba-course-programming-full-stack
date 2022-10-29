@@ -1,0 +1,108 @@
+/* Main */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 56px;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 2% 0;
+  margin: 2%;
+  background-color: #343A40;
+  color: white;
+  width: min(80%, 400px);
+  -webkit-box-shadow: var(--webkit-box-shadow); 
+  box-shadow: var(--box-shadow);
+}
+
+form img {
+  height: 70px;
+}
+
+form img:hover {
+  border-radius: 100%;
+  background-color: var(--white);
+}
+
+form div {
+  width: 80%;
+}
+
+form input {
+  width: 90%;
+  height: 30px;
+  margin: 0;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.message-phone {
+  font-weight: bold;
+  color: var(--orange-weight);
+  font-size: 0.7em;
+  margin: 0;
+}
+
+.button-image-cancel {
+  padding: 10px;
+  display: none;
+  border-radius: 100%;
+}
+
+.button-image-accept {
+  padding: 5px;
+  display: none;
+  border-radius: 100%;
+}
+
+.image-cancel {
+  background-image: url(../../../assets/images/button-cancel2.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 25px;
+  height: 25px;
+}
+
+.image-accept {
+  background-image: url(../../../assets/images/button-accept2.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 35px;
+  height: 25px;
+}
+
+/* Footer */
+footer {
+  margin-top: 0;
+}
+
+/* Media queries */
+@media (max-width:400px) {
+  /* Form */
+  .button-cancel {
+    display: none;
+  }
+
+  .button-accept {
+    display: none;
+  }
+
+  .button-image-cancel {
+    display: block;
+  }
+
+  .button-image-accept {
+    display: block;
+  }
+}

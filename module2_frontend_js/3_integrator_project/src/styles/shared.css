@@ -1,0 +1,230 @@
+/* HTML y Body */
+html {
+  scroll-behavior: smooth;
+  scroll-padding: 56px;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+
+/* Hidden and show */
+.hidden {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+/* Scrollbar */
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+  border-radius: 20px;
+  /* border: 3px solid var(--white); */
+}
+
+/* Main */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex: 1;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: black;
+}
+
+.button-hamburger-menu {
+  background: transparent;
+}
+
+nav a {
+  color: var(--white) !important;
+  font-weight: bold;
+}
+
+nav a:hover {
+  background-color: var(--white);
+  color: var(--black) !important;
+  font-weight: bold;
+}
+
+nav a img {
+  width: 50px;
+}
+
+.link-logo {
+  border-radius: 100%;
+  margin-right: 1%;
+}
+
+.list-navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+  width: 40%;
+  list-style: none;
+}
+
+.icon-navbar {
+  color: var(--white);
+  padding: 0;
+  margin: 10px 10px 0 0;
+  font-size: 20px;
+}
+
+.icon-navbar:hover {
+  cursor: pointer;
+  color: var(--blue-light);
+}
+
+/* Cart */
+.quantity-products-cart {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 13px;
+	height: 13px;
+	position: absolute;
+	border-radius: 50px;
+	border: 1px solid var(--text-white);
+	margin-left: 15px;
+	margin-top: -2px;
+	background-color: red;
+	font-size: 11px;
+	text-align: center;
+	font-weight: bold;
+	color: var(--text-white);
+}
+
+.show-quantity-products-cart {
+	display: flex;
+}
+
+/* Buttons */
+button {
+  padding: 0.5em 1em;
+  border: 2px solid var(--black);
+  border-radius: 100px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: var(--btn);
+  color: var(--black);
+  transition: 0.1s all ease-out;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+.link-button {
+  border-radius: 100px;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: black;
+  color: var(--white);
+  width: 100%;
+  bottom: 0;
+  height: 250px;
+  flex-wrap: wrap;
+  font-style: italic;
+  text-align: center;
+  margin-top: 6%;
+}
+
+.footer-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  margin: 0 2% 0 2%;
+}
+
+.footer-title img {
+  width: 50px;
+}
+
+.footer-title img:hover {
+  border-radius: 100%;
+  background-color: var(--white);
+}
+
+.footer-title p {
+  font-size: 2em;
+}
+
+.footer-section-final {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-contact {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+  margin-right: 2%;
+}
+
+footer p {
+  margin: 0;
+  padding: 1.5% 2%;
+}
+
+.footer-divisor {
+  margin: 2%;
+  border: 1px solid var(--gray);
+}
+
+footer i {
+  color: var(--white);
+}
+
+footer .fa-street-view:hover {
+  color: var(--orange);
+}
+
+footer .fa-envelope:hover {
+  color: var(--red);
+}
+
+footer .fa-linkedin:hover {
+  color: var(--blue);
+}
+
+footer .fa-whatsapp-square:hover {
+  color: var(--green);
+}
