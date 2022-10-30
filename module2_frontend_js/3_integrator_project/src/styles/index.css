@@ -19,15 +19,6 @@
   top: 65px;
 }
 
-/* Sections */
-.title-section {
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: var(--white);
-}
-
 /* Section products */
 .section-products {
   display: flex;
@@ -35,6 +26,16 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin: 0 5% 0 5%;
+  width: 96%;
+}
+
+.title-section {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--white);
 }
 
 /* Section offers */
@@ -44,8 +45,18 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 20px;
   margin: 5% 0;
+  width: 100%;
+}
+
+.products-container-offer {
+  display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+  flex-direction: row;
+  width: 80%;
+	gap: 20px;
+  margin-top: 50px;
 }
 
 .product-offer {
@@ -61,10 +72,20 @@
   font-style: italic;
 }
 
+.product-offer .item-title {
+  font-size: 1.5rem;
+}
+
 .product-offer img {
-	width: 100px;
-	height: 100px;
-	object-fit: cover;
+	width: 80px;
+	height: 80px;
+  border-radius: 20px;
+  margin-left: 5px;
+  object-fit: cover;
+}
+
+.item-info-offer {
+  width: 45%;
 }
 
 .product-offer i {
@@ -90,6 +111,18 @@
   transform: scale(1.05);
 }
 
+.prices-offer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.item-price-old {
+  font-weight: 700;
+  text-decoration: line-through;
+}
+
 /* Section all products */
 .section-all-products {
   display: flex;
@@ -97,6 +130,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 100%;
 }
 
 .filters-products {
@@ -109,7 +143,7 @@
 	border: none;
 	transition: 0.05s all ease-out;
   gap: 10px;
-  margin: 50px;
+  margin: 50px 0;
 }
 
 .filters-products div {
@@ -187,9 +221,4 @@
 	-moz-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	-moz-text-fill-color: transparent;
-}
-
-.item-price-old {
-  font-weight: 700;
-  text-decoration: line-through;
 }

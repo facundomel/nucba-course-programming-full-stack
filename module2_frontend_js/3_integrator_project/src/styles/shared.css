@@ -94,6 +94,10 @@ nav a img {
   list-style: none;
 }
 
+.link-home {
+  background-color: transparent !important;
+}
+
 .icon-navbar {
   color: var(--white);
   padding: 0;

@@ -87,7 +87,9 @@
           <ul class="list-navbar">
             <!-- Home -->
             <li>
-              <i class="icon-navbar fa-solid fa-house"></i>
+              <a href="#main" class="link-home">
+                <i class="icon-navbar fa-solid fa-house"></i>
+              </a>
             </li>
             <!-- Cart -->
             <li id="btn-cart" class="btn-cart">
@@ -151,8 +153,8 @@
           <section class="section-offers">
             <span class="title-section">Nuestras ofertas</span>
             
-            <div class="products-container-cards">
-              <div class="product-offer">
+            <div class="products-container-offer" id="container-products-offer">
+              <!-- <div class="product-offer">
                 <img src="./assets/offers-products/xbox-series-s.png" alt="Oferta" />
                 <div class="item-info">
                     <h3 class="item-title">${name}</h3>
@@ -169,79 +171,7 @@
                   data-category="${category}"
                   data-popular="${popular}">
                 </i>
-              </div>
-              <div class="product-offer">
-                <img src="./assets/offers-products/xbox-series-s.png" alt="Oferta" />
-                <div class="item-info">
-                    <h3 class="item-title">${name}</h3>
-                    <p class="item-description">${description}</p>
-                    <span class="item-price-old">${price}</span>
-                    <span class="item-price">${price}</span>
-                </div>
-                <i class="fa-solid fa-cart-plus btn-add" 
-                  data-id="${id}"
-                  data-name="${name}"
-                  data-description="${description}"
-                  data-price="${price}"
-                  data-img="${img}"
-                  data-category="${category}"
-                  data-popular="${popular}">
-                </i>
-              </div>
-              <div class="product-offer">
-                <img src="./assets/offers-products/xbox-series-s.png" alt="Oferta" />
-                <div class="item-info">
-                    <h3 class="item-title">${name}</h3>
-                    <p class="item-description">${description}</p>
-                    <span class="item-price-old">${price}</span>
-                    <span class="item-price">${price}</span>
-                </div>
-                <i class="fa-solid fa-cart-plus btn-add" 
-                  data-id="${id}"
-                  data-name="${name}"
-                  data-description="${description}"
-                  data-price="${price}"
-                  data-img="${img}"
-                  data-category="${category}"
-                  data-popular="${popular}">
-                </i>
-              </div>
-              <div class="product-offer">
-                <img src="./assets/offers-products/xbox-series-s.png" alt="Oferta" />
-                <div class="item-info">
-                    <h3 class="item-title">${name}</h3>
-                    <p class="item-description">${description}</p>
-                    <span class="item-price-old">${price}</span>
-                    <span class="item-price">${price}</span>
-                </div>
-                <i class="fa-solid fa-cart-plus btn-add" 
-                  data-id="${id}"
-                  data-name="${name}"
-                  data-description="${description}"
-                  data-price="${price}"
-                  data-img="${img}"
-                  data-category="${category}"
-                  data-popular="${popular}">
-                </i>
-              </div>
-              <div class="product-offer">
-                <img src="./assets/offers-products/xbox-series-s.png" alt="Oferta" />
-                <div class="item-info">
-                    <h3 class="item-title">${name}</h3>
-                    <p class="item-description">${description}</p>
-                    <span class="item-price-old">${price}</span>
-                    <span class="item-price">${price}</span>
-                </div>
-                <i class="fa-solid fa-cart-plus btn-add" 
-                  data-id="${id}"
-                  data-name="${name}"
-                  data-description="${description}"
-                  data-price="${price}"
-                  data-img="${img}"
-                  data-category="${category}"
-                  data-popular="${popular}">
-                </i>
-              </div>
+              </div> -->
             </div>
           </section>
           
@@ -256,8 +186,8 @@
               <div>⌚Relojes</div>
             </div>
 
-            <div class="products-container-cards">
-              <div class="product-card">
+            <div class="products-container-cards" id="container-products-all">
+              <!-- <div class="product-card">
                 <img src="./assets/all-products/xbox-series-s.png" alt="Producto recomendado" />
                 <div class="item-info">
                   <h3 class="item-title">${name}</h3>
@@ -278,139 +208,7 @@
                   Agregar
                   </button>
                 </div>
-              </div>
-              <div class="product-card">
-                <img src="./assets/all-products/play-station-3.png" alt="Producto recomendado" />
-                <div class="item-info">
-                  <h3 class="item-title">${name}</h3>
-                  <p class="item-description">${description}</p>
-                </div>
-                <div class="buy-container">
-                  <span class="item-price">${price}</span>
-                  <button
-                    class="btn-add"
-                    data-id="1"
-                    data-name="Pizza 1"
-                    data-description="My description 1"
-                    data-price="950"
-                    data-img="./"
-                    data-category="pizza"
-                    data-popular="true"
-                  >
-                    Agregar
-                  </button>
-                </div>
-              </div>
-              <div class="product-card">
-                <img src="./assets/img/pizza/lacharlygarcia.png" alt="Producto recomendado" />
-                <div class="item-info">
-                  <h3 class="item-title">${name}</h3>
-                  <p class="item-description">${description}</p>
-                </div>
-                <div class="buy-container">
-                  <span class="item-price">${price}</span>
-                  <button
-                    class="btn-add"
-                    data-id="1"
-                    data-name="Pizza 1"
-                    data-description="My description 1"
-                    data-price="950"
-                    data-img="./"
-                    data-category="pizza"
-                    data-popular="true"
-                  >
-                  Agregar
-                  </button>
-                </div>
-              </div>
-              <div class="product-card">
-                <img src="./assets/img/pizza/lacharlygarcia.png" alt="Producto recomendado" />
-                <div class="item-info">
-                  <h3 class="item-title">${name}</h3>
-                  <p class="item-description">${description}</p>
-                </div>
-                <div class="buy-container">
-                  <span class="item-price">${price}</span>
-                  <button
-                    class="btn-add"
-                    data-id="1"
-                    data-name="Pizza 1"
-                    data-description="My description 1"
-                    data-price="950"
-                    data-img="./"
-                    data-category="pizza"
-                    data-popular="true"
-                  >
-                  Agregar
-                  </button>
-                </div>
-              </div>
-              <div class="product-card">
-                <img src="./assets/img/pizza/lacharlygarcia.png" alt="Producto recomendado" />
-                <div class="item-info">
-                  <h3 class="item-title">${name}</h3>
-                  <p class="item-description">${description}</p>
-                </div>
-                <div class="buy-container">
-                  <span class="item-price">${price}</span>
-                  <button
-                    class="btn-add"
-                    data-id="1"
-                    data-name="Pizza 1"
-                    data-description="My description 1"
-                    data-price="950"
-                    data-img="./"
-                    data-category="pizza"
-                    data-popular="true"
-                  >
-                  Agregar
-                  </button>
-                </div>
-              </div>
-              <div class="product-card">
-                <img src="./assets/img/pizza/lacharlygarcia.png" alt="Producto recomendado" />
-                <div class="item-info">
-                  <h3 class="item-title">${name}</h3>
-                  <p class="item-description">${description}</p>
-                </div>
-                <div class="buy-container">
-                  <span class="item-price">${price}</span>
-                  <button
-                    class="btn-add"
-                    data-id="1"
-                    data-name="Pizza 1"
-                    data-description="My description 1"
-                    data-price="950"
-                    data-img="./"
-                    data-category="pizza"
-                    data-popular="true"
-                  >
-                  Agregar
-                  </button>
-                </div>
-              </div>
-              <div class="product-card">
-                <img src="./assets/img/pizza/lacharlygarcia.png" alt="Producto recomendado" />
-                <div class="item-info">
-                  <h3 class="item-title">${name}</h3>
-                  <p class="item-description">${description}</p>
-                </div>
-                <div class="buy-container">
-                  <span class="item-price">${price}</span>
-                  <button
-                    class="btn-add"
-                    data-id="1"
-                    data-name="Pizza 1"
-                    data-description="My description 1"
-                    data-price="950"
-                    data-img="./"
-                    data-category="pizza"
-                    data-popular="true"
-                  >
-                  Agregar
-                  </button>
-                </div>
-              </div>
+              </div> -->
             </div>
           </section>
         </section>
