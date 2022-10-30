@@ -11,6 +11,11 @@
 }
 
 @media (max-width:400px) {
+  /* Section offers */
+  .product-offer .item-title {
+    font-size: 1.3rem !important;
+  }
+
   /* Footer */
   .footer-contact {
     width: 60%;

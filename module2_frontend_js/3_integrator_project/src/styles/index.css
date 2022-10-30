@@ -27,7 +27,6 @@
   align-items: center;
   text-align: center;
   margin: 0 5% 0 5%;
-  width: 96%;
 }
 
 .title-section {
@@ -222,3 +221,5 @@
 	-webkit-text-fill-color: transparent;
 	-moz-text-fill-color: transparent;
 }
+
+/* Cart */
