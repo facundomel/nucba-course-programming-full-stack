@@ -144,7 +144,7 @@ nav a img {
 }
 
 .link-logo {
-	border-radius: 100%;
+	border-radius: 100px;
 	margin-right: 1%;
 }
 
@@ -154,10 +154,6 @@ nav a img {
 	align-items: center;
 	width: 40%;
 	list-style: none;
-}
-
-.link-home {
-	background-color: transparent !important;
 }
 
 .list-navbar i {
@@ -248,7 +244,7 @@ footer {
 }
 
 .footer-title img:hover {
-	border-radius: 100%;
+	border-radius: 100px;
 	background-color: var(--white);
 }
 
