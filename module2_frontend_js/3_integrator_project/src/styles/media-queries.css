@@ -1,23 +1,34 @@
 /* Media queries */
-@media (max-width:800px) {
-  /* Footer */
-  .footer-section-final {
-    justify-content: center;
-  }
+@media (max-width: 800px) {
+	/* Footer */
+	.footer-section-final {
+		justify-content: center;
+	}
 
-  .footer-contact {
-    width: 40%;
-  }
+	.footer-contact {
+		width: 40%;
+	}
 }
 
-@media (max-width:400px) {
-  /* Section offers */
-  .product-offer .item-title {
-    font-size: 1.3rem !important;
-  }
+@media (max-width: 400px) {
+	/* Hamburger menu */
+	.btn-home,
+	.btn-cart,
+	.btn-user {
+		display: none;
+	}
 
-  /* Footer */
-  .footer-contact {
-    width: 60%;
-  }
+	.btn-hamburger-menu {
+		display: flex;
+	}
+
+	/* Section offers */
+	.product-offer .item-title {
+		font-size: 1.3rem !important;
+	}
+
+	/* Footer */
+	.footer-contact {
+		width: 60%;
+	}
 }

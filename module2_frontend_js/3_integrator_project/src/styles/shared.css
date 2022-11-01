@@ -1,23 +1,23 @@
 /* HTML y Body */
 html {
-  scroll-behavior: smooth;
-  scroll-padding: 56px;
-  height: 100%;
+	scroll-behavior: smooth;
+	scroll-padding: 56px;
+	height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: black;
+	margin: 0;
+	padding: 0;
+	background: black;
 }
 
 /* Hidden and show */
 .hidden {
-  display: none;
+	display: none;
 }
 
 .show {
-  display: flex;
+	display: flex;
 }
 
 /* Scrollbar */
@@ -26,91 +26,157 @@ body {
 } */
 
 *::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--black);
+	background: var(--black);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--white);
-  border-radius: 20px;
-  /* border: 3px solid var(--white); */
+	background-color: var(--white);
+	border-radius: 20px;
+	/* border: 3px solid var(--white); */
+}
+
+/* Overlay */
+.overlay {
+	top: 65px;
+	position: fixed;
+	bottom: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 100; /*Para que quede por encima del resto de las cosas*/
+	/*Efecto de Glassmorphismo*/
+	background: rgba(255, 255, 255, 0.05);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	display: none;
+}
+
+.show-overlay {
+	display: block;
 }
 
 /* Main */
 .container {
-  display: flex;
-  flex-direction: column;
-  min-width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
+	display: flex;
+	flex-direction: column;
+	min-width: 100%;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
 }
 
 main {
-  flex: 1;
+	flex: 1;
 }
 
-/* Navbar */
+/* Header y Navbar */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: black;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: black;
 }
 
-.button-hamburger-menu {
-  background: transparent;
+/* Hamburger Menu */
+.container-hamburger-menu {
+	display: flex;
+	position: absolute;
+	z-index: -2;
+	top: 65px;
+	right: 0;
+	width: 100vw;
+	background-color: black;
+	transform: translateY(-200%);
+	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+}
+
+.container-hamburger-menu .list-hamburger-menu {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 100%;
+	padding: 0;
+}
+
+.list-hamburger-menu li {
+	margin: 20px auto;
+}
+
+.hamburger-menu-footer-contact {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	gap: 10%;
+	margin: 0;
+	padding: 5%;
+}
+
+.btn-hamburger-menu {
+	display: none;
+  font-size: 25px !important;
+}
+
+.show-menu {
+	display: flex;
+	transform: translate(0%);
+	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
 }
 
 nav a {
-  color: var(--white) !important;
-  font-weight: bold;
+	color: var(--white) !important;
+	font-weight: bold;
 }
 
 nav a:hover {
-  background-color: var(--white);
-  color: var(--black) !important;
-  font-weight: bold;
+	background-color: var(--white);
+	color: var(--black) !important;
+	font-weight: bold;
 }
 
 nav a img {
-  width: 50px;
+	width: 50px;
 }
 
 .link-logo {
-  border-radius: 100%;
-  margin-right: 1%;
+	border-radius: 100%;
+	margin-right: 1%;
 }
 
 .list-navbar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 40px;
-  width: 40%;
-  list-style: none;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 40%;
+	list-style: none;
 }
 
 .link-home {
-  background-color: transparent !important;
+	background-color: transparent !important;
 }
 
-.icon-navbar {
-  color: var(--white);
-  padding: 0;
-  margin: 10px 10px 0 0;
-  font-size: 20px;
+.list-navbar i {
+	color: var(--white);
+	padding: 0;
+	margin: 10px 10px 0 0;
+	font-size: 20px;
 }
 
-.icon-navbar:hover {
-  cursor: pointer;
-  color: var(--blue-light);
+.list-navbar i:hover {
+	cursor: pointer;
+	color: var(--blue-light);
 }
 
 /* Cart */
+.btn-cart {
+	margin: 0 60px;
+}
+
 .quantity-products-cart {
 	display: none;
 	justify-content: center;
@@ -135,100 +201,100 @@ nav a img {
 
 /* Buttons */
 button {
-  padding: 0.5em 1em;
-  border: 2px solid var(--black);
-  border-radius: 100px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: var(--btn);
-  color: var(--black);
-  transition: 0.1s all ease-out;
+	padding: 0.5em 1em;
+	border: 2px solid var(--black);
+	border-radius: 100px;
+	font-weight: bold;
+	text-transform: uppercase;
+	background: var(--btn);
+	color: var(--black);
+	transition: 0.1s all ease-out;
 }
 
 button:hover {
-  transform: scale(1.03);
+	transform: scale(1.03);
 }
 
 .link-button {
-  border-radius: 100px;
+	border-radius: 100px;
 }
 
 /* Footer */
 footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: black;
-  color: var(--white);
-  width: 100%;
-  bottom: 0;
-  height: 250px;
-  flex-wrap: wrap;
-  font-style: italic;
-  text-align: center;
-  margin-top: 6%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	background-color: black;
+	color: var(--white);
+	width: 100%;
+	bottom: 0;
+	height: 250px;
+	flex-wrap: wrap;
+	font-style: italic;
+	text-align: center;
+	margin-top: 6%;
 }
 
 .footer-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  margin: 0 2% 0 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70px;
+	margin: 0 2% 0 2%;
 }
 
 .footer-title img {
-  width: 50px;
+	width: 50px;
 }
 
 .footer-title img:hover {
-  border-radius: 100%;
-  background-color: var(--white);
+	border-radius: 100%;
+	background-color: var(--white);
 }
 
 .footer-title p {
-  font-size: 2em;
+	font-size: 2em;
 }
 
 .footer-section-final {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .footer-contact {
-  display: flex;
-  justify-content: space-between;
-  width: 20%;
-  margin-right: 2%;
+	display: flex;
+	justify-content: space-between;
+	width: 20%;
+	margin-right: 2%;
 }
 
 footer p {
-  margin: 0;
-  padding: 1.5% 2%;
+	margin: 0;
+	padding: 1.5% 2%;
 }
 
 .footer-divisor {
-  margin: 2%;
-  border: 1px solid var(--gray);
+	margin: 2%;
+	border: 1px solid var(--gray);
 }
 
 footer i {
-  color: var(--white);
+	color: var(--white);
 }
 
 footer .fa-street-view:hover {
-  color: var(--orange);
+	color: var(--orange);
 }
 
 footer .fa-envelope:hover {
-  color: var(--red);
+	color: var(--red);
 }
 
 footer .fa-linkedin:hover {
-  color: var(--blue);
+	color: var(--blue);
 }
 
 footer .fa-whatsapp-square:hover {
-  color: var(--green);
+	color: var(--green);
 }
