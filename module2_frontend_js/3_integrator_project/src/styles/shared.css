@@ -82,28 +82,75 @@ main {
 }
 
 /* Hamburger Menu */
-.container-hamburger-menu {
-	display: flex;
-	position: absolute;
-	z-index: -2;
-	top: 65px;
-	right: 0;
-	width: 100vw;
-	background-color: black;
-	transform: translateY(-200%);
-	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
-}
-
-.list-hamburger-menu {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	width: 100%;
+.hamburger-menu {
+	display: none;
+	flex-direction: row;
+	list-style-type: none;
+	margin: 0;
 	padding: 0;
 }
 
-.list-hamburger-menu li {
-	margin: 20px auto;
+.hamburger-menu > li {
+	margin: 0 1rem;
+	overflow: hidden;
+}
+
+.hamburger-menu-button-container {
+	display: none;
+	height: 100%;
+	width: 30px;
+	cursor: pointer;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#hamburger-menu-toggle {
+	display: none;
+}
+
+.hamburger-menu-button,
+.hamburger-menu-button::before,
+.hamburger-menu-button::after {
+	display: block;
+	background-color: #fff;
+	position: absolute;
+	height: 4px;
+	width: 30px;
+	transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+	border-radius: 2px;
+}
+
+.hamburger-menu-button::before {
+	content: "";
+	margin-top: -8px;
+}
+
+.hamburger-menu-button::after {
+	content: "";
+	margin-top: 8px;
+}
+
+#hamburger-menu-toggle:checked + .hamburger-menu-button-container .hamburger-menu-button::before {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	top: 0;
+	margin-top: 0;
+}
+
+#hamburger-menu-toggle:checked + .hamburger-menu-button-container .hamburger-menu-button {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#hamburger-menu-toggle:checked + .hamburger-menu-button-container .hamburger-menu-button::after {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	bottom: 0;
+}
+
+#hamburger-menu-toggle:checked + .hamburger-menu-button-container + ul {
+	opacity: 1;
 }
 
 .hamburger-menu-footer-contact {
@@ -117,25 +164,39 @@ main {
 	padding: 5%;
 }
 
-.btn-hamburger-menu {
-	display: none;
-  font-size: 25px !important;
+.hamburger-menu-footer-contact a {
+	background-color: transparent !important;
 }
 
-.show-menu {
-	display: flex;
-	transform: translate(0%);
-	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+.hamburger-menu-footer-contact i {
+	color: var(--white);
+}
+
+.hamburger-menu-footer-contact .fa-street-view:hover {
+	color: var(--orange);
+}
+
+.hamburger-menu-footer-contact .fa-envelope:hover {
+	color: var(--red);
+}
+
+.hamburger-menu-footer-contact .fa-linkedin:hover {
+	color: var(--blue);
+}
+
+.hamburger-menu-footer-contact .fa-whatsapp-square:hover {
+	color: var(--green);
 }
 
 nav a {
 	color: var(--white) !important;
 	font-weight: bold;
+	text-align: center;
 }
 
 nav a:hover {
 	background-color: var(--white);
-	color: var(--black) !important;
+	color: black !important;
 	font-weight: bold;
 }
 
