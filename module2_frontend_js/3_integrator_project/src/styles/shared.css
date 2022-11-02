@@ -8,7 +8,7 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	background: black;
+	background: var(--black);
 }
 
 /* Hidden and show */
@@ -30,7 +30,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-	background: var(--black);
+	background: var(--black-light);
 }
 
 *::-webkit-scrollbar-thumb {
@@ -78,7 +78,7 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background: black;
+	background: var(--black);
 }
 
 /* Hamburger Menu */
@@ -196,7 +196,7 @@ nav a {
 
 nav a:hover {
 	background-color: var(--white);
-	color: black !important;
+	color: var(--black) !important;
 	font-weight: bold;
 }
 
@@ -259,12 +259,12 @@ nav a img {
 /* Buttons */
 button {
 	padding: 0.5em 1em;
-	border: 2px solid var(--black);
+	border: 2px solid var(--black-light);
 	border-radius: 100px;
 	font-weight: bold;
 	text-transform: uppercase;
-	background: var(--btn);
-	color: var(--black);
+	background: var(--button);
+	color: var(--black-light);
 	transition: 0.1s all ease-out;
 }
 
@@ -281,7 +281,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	background-color: black;
+	background-color: var(--black);
 	color: var(--white);
 	width: 100%;
 	bottom: 0;

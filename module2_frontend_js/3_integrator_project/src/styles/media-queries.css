@@ -31,7 +31,7 @@
 		top: 65px;
 		left: 0;
 		width: 100%;
-		background-color: black;
+		background-color: var(--black);
 	}
 
 	#hamburger-menu-toggle ~ .hamburger-menu li {
