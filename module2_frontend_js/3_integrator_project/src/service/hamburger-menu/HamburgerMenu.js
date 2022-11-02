@@ -1,8 +1,10 @@
 const hamburgerMenuToggle = document.getElementById("hamburger-menu-toggle");
-const btnHamburgerMenu = document.querySelector(".hamburger-menu-button");
-const overlay = document.querySelector(".overlay");
+const btnHamburgerMenu = document.getElementById("hamburger-menu-button");
+const overlay = document.getElementById("overlay");
 const btnCart = document.getElementById("btn-cart");
 const cart = document.getElementById("cart");
+const linkProfile = document.getElementById("link-profile");
+const linkHome = document.getElementById("link-home");
 
 export default new (class HamburgerMenu {
 	#toggleMenu() {
@@ -46,6 +48,15 @@ export default new (class HamburgerMenu {
 		// cartBtn.addEventListener("click", () => {
 		// 	this.#toggleCart();
 		// });
+
+		linkHome.addEventListener("click", () => {
+			document.location.href = "#main";
+			this.#closeMenu();
+		});
+
+		linkProfile.addEventListener("click", () => {
+			this.#closeMenu();
+		});
 	}
 
 	#eventsScroll() {
@@ -53,9 +64,9 @@ export default new (class HamburgerMenu {
 			this.#closeMenu();
 		});
 
-		// document.addEventListener("scroll", () => {
-		// 	this.#scroll();
-		// });
+		document.addEventListener("scroll", () => {
+			this.#scroll();
+		});
 	}
 
 	init() {

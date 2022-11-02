@@ -62,7 +62,7 @@ export default new (class Render {
 	}
 
 	#renderProductsAll() {
-        let productsAll = dataProduct.filter((product) => !product.offer);
+		let productsAll = dataProduct.filter((product) => !product.offer);
 		containerProductsAll.innerHTML = productsAll.map(this.#renderProduct).join("");
 	}
 
