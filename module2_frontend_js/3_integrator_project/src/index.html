@@ -88,6 +88,47 @@
 							></a>
 						</li>
 					</ul>
+
+					<!-- Cart -->
+					<div id="cart" class="cart">
+						<button id="btn-close-cart" class="btn-close-cart">X</button>
+						<h2>Tus Productos</h2>
+						<div id="cart-container" class="cart-container">
+							<!--card de producto en el carrito-->
+
+							<!-- <div class="cart-item">
+							<img src="${img}" alt="Producto del carrito" />
+							<div class="item-info">
+								<h3 class="item-title">${name}</h3>
+								<p class="item-description">${description}</p>
+								<span class="item-price">${price}</span>
+							</div>
+							<div class="item-handler">
+								<span class="quantity-handler down" data-id="${id}">-</span>
+								<span class="item-quantity">${quantity}</span>
+								<span class="quantity-handler up" data-id="${id}">+</span>
+							</div>
+						</div> -->
+						</div>
+						<div class="cart-subtotal">
+							<p>Subtotal:</p>
+							<span id="subtotal" class="subtotal"></span>
+						</div>
+						<div class="cart-envio">
+							<p>Envío:</p>
+							<span id="shipping-price"></span>
+						</div>
+						<span class="divider"></span>
+						<div class="cart-total">
+							<p>Total:</p>
+							<span id="total" class="total"></span>
+						</div>
+						<div class="div-buttons-cart">
+							<button id="btn-buy" class="btn-buy disabled">Comprar</button>
+							<button id="btn-clear-cart" class="btn-clear-cart disabled">Vaciar</button>
+						</div>
+						<span id="cart-more-products" class="cart-more-products">Ver más productos</span>
+					</div>
 				</nav>
 
 				<div class="bd-example">

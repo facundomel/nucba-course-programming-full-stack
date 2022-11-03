@@ -10,57 +10,30 @@
 	}
 }
 
+@media (max-width: 600px) {
+  /* Cart */
+  .cart {
+    width: 100%;
+  }
+}
+
 @media (max-width: 400px) {
-	/* Hamburger menu */
+	/* Cart and hamburger menu */
+  .list-navbar {
+    padding: 0;
+  }
+
+  .btn-cart {
+    margin: 0;
+  }
+
 	.btn-home,
-	.btn-cart,
 	.btn-user {
 		display: none;
 	}
 
 	.hamburger-menu-button-container {
 		display: flex;
-	}
-
-	.hamburger-menu {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		position: absolute;
-		top: 65px;
-		left: 0;
-		width: 100%;
-		background-color: var(--black);
-	}
-
-	#hamburger-menu-toggle ~ .hamburger-menu li {
-		height: 0;
-		margin: 0;
-		padding: 0;
-		border: 0;
-		transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
-	}
-
-	#hamburger-menu-toggle:checked ~ .hamburger-menu li {
-		/* border: 1px solid #333; */
-		height: 2.5em;
-		/* padding: 0.5em; */
-		margin: 20px;
-		transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
-	}
-
-	.hamburger-menu > li {
-		display: flex;
-		justify-content: center;
-		margin: 0;
-		padding: 0.5em 0;
-		width: 100%;
-		color: white;
-	}
-
-	.hamburger-menu > li:not(:last-child) {
-		border-bottom: 1px solid #444;
 	}
 
 	/* Section offers */
