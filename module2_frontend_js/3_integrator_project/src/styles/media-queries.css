@@ -11,21 +11,21 @@
 }
 
 @media (max-width: 600px) {
-  /* Cart */
-  .cart {
-    width: 100%;
-  }
+	/* Cart */
+	.cart {
+		width: 100%;
+	}
 }
 
 @media (max-width: 400px) {
 	/* Cart and hamburger menu */
-  .list-navbar {
-    padding: 0;
-  }
+	.list-navbar {
+		padding: 0;
+	}
 
-  .btn-cart {
-    margin: 0;
-  }
+	.btn-cart {
+		margin: 0;
+	}
 
 	.btn-home,
 	.btn-user {
