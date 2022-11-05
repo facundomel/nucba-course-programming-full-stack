@@ -2,6 +2,7 @@
 :root {
 	--black: black;
 	--black-light: rgb(52, 58, 64);
+	--black-light2: rgb(30, 31, 33);
 	--white: white;
 	--gray: gray;
 	--red: #cd3c30;
@@ -9,4 +10,6 @@
 	--blue-light: #4e8bb8;
 	--green: #00a884;
 	--button: linear-gradient(98.81deg, #4e8bb8 -0.82%, #bbf0ff 101.53%);
+	--green-light: rgb(113, 255, 113);
+	--red-light: rgb(255, 113, 113);
 }

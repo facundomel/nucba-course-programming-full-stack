@@ -20,7 +20,7 @@ export default class Product {
 			product.img,
 			product.category,
 			product.offer,
-			product.oldPrice,
+			product.oldprice,
 			1
 		);
 	}

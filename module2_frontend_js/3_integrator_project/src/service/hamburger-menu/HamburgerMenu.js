@@ -8,17 +8,17 @@ const linkHome = document.getElementById("link-home");
 
 export default new (class HamburgerMenu {
 	#toggleMenu() {
-		// if (cart.classList.contains("open-cart")) {
-		// 	cart.classList.remove("open-cart");
-		// 	return;
-		// }
+		if (cart.classList.contains("open-cart")) {
+			cart.classList.remove("open-cart");
+			return;
+		}
 		overlay.classList.toggle("show-overlay");
 	}
 
 	#toggleCart() {
 		cart.classList.toggle("open-cart");
-		if (hamburgerMenuToggle.classList.contains("show-menu")) {
-			hamburgerMenuToggle.classList.remove("show-menu");
+		if (hamburgerMenuToggle.checked) {
+			hamburgerMenuToggle.checked = false;
 			return;
 		}
 		overlay.classList.toggle("show-overlay");
@@ -45,9 +45,9 @@ export default new (class HamburgerMenu {
 			this.#closeMenu();
 		});
 
-		// cartBtn.addEventListener("click", () => {
-		// 	this.#toggleCart();
-		// });
+		btnCart.addEventListener("click", () => {
+			this.#toggleCart();
+		});
 
 		linkHome.addEventListener("click", () => {
 			document.location.href = "#main";

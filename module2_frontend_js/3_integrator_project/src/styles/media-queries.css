@@ -17,6 +17,17 @@
 	}
 }
 
+@media (max-width: 500px) {
+	.cart-item {
+		justify-content: center;
+	}
+
+	.img-and-item-info-cart {
+		justify-content: space-around;
+		width: 100%;
+	}
+}
+
 @media (max-width: 400px) {
 	/* Cart and hamburger menu */
 	.list-navbar {

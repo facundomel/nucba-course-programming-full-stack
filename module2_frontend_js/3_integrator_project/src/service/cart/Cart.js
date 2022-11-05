@@ -1,16 +1,16 @@
 // Imports
-import localStorage from "./repository/LocalStorage.js";
-import Product from "../model/Product.js";
-import utils from "../utils/Utils.js";
+import localStorage from "../../repository/LocalStorage.js";
+import Product from "../../model/Product.js";
+import utils from "../../utils/Utils.js";
 
 // Elements DOM
 const cartContainer = document.getElementById("cart-container");
-const productsContainer = document.querySelector(".products-container");
-const recomendationContainer = document.querySelector(".recomendation-container");
+const productsContainerOffer = document.querySelector(".container-products-offer");
+const productsContainerAll = document.querySelector(".container-products-all");
 const subtotal = document.getElementById("subtotal");
 const shippingPrice = document.getElementById("shipping-price");
 const total = document.getElementById("total");
-const btnBuy = document.getElementById("btn-buy");
+const btnBuyCart = document.getElementById("btn-buy-cart");
 const btnClearCart = document.getElementById("btn-clear-cart");
 const cart = document.getElementById("cart");
 const btnCloseCart = document.getElementById("btn-close-cart");
@@ -48,17 +48,23 @@ export default new (class Cart {
 	#renderProductInCart(product) {
 		return `
       <div class="cart-item">
-        <img src=${product.img} alt="Producto" title="Producto del carrito"/>
-        <div class="item-info">
-          <h3 class="item-title">${product.name}</h3>
-          <p class="item-description">${product.description}</p>
-          <span class="item-price">$ ${product.price}</span>
+        <div class=img-and-item-info-cart>
+          <img src=${product.img} alt="Producto" title="Producto del carrito"/>
+          <div class="item-info">
+            <h5 class="item-title">${product.name}</h5>
+            <div class=prices-product-cart>
+              <span class="item-price-old">$ ${product.oldPrice}</span>
+              <span class="item-price">$ ${product.price}</span>
+            </div>
+          </div>
         </div>
         <div class="item-handler">
-          <span class="quantity-handler down" data-id="${product.id}">-</span>
-          <span class="item-quantity">${product.quantity}</span>
-          <span class="quantity-handler up" data-id="${product.id}">+</span>
-          <i class="fa-solid fa-trash-can btn-delete" title="Eliminar" data-id="${product.id}"></i>
+          <div class="down-and-up-cart">
+            <span class="quantity-handler down" data-id="${product.id}">-</span>
+            <span class="item-quantity">${product.quantity}</span>
+            <span class="quantity-handler up" data-id="${product.id}">+</span>
+          </div>
+          <i class="fa-solid fa-trash-can btn-delete-product-cart" title="Eliminar" data-id="${product.id}"></i>
         </div>
       </div>
     `;
@@ -122,6 +128,8 @@ export default new (class Cart {
 
 	// Delete product
 	#deleteProduct(product) {
+		this.#disableScroll();
+
 		utils.showModalConfirm(
 			`¿Desea eliminar el producto "${product.name}" del carrito?`,
 			() => {
@@ -135,7 +143,7 @@ export default new (class Cart {
 	}
 
 	#btnDelete(e) {
-		if (!e.target.classList.contains("btn-delete")) return;
+		if (!e.target.classList.contains("btn-delete-product-cart")) return;
 		const product = this.#cartProducts.find((item) => item.id === e.target.dataset.id);
 		this.#deleteProduct(product);
 	}
@@ -145,14 +153,14 @@ export default new (class Cart {
 		let shippingPrice = 0;
 
 		const subTotal = this.#cartProducts.reduce((acc, cur) => {
-			return acc + Number(cur.price) * Number(cur.quantity);
+			return acc + Number(this.#getNumberWithoutDot(cur.price)) * Number(cur.quantity);
 		}, 0);
 
 		const total = this.#cartProducts.reduce((acc, cur) => {
-			return acc + Number(cur.price) * Number(cur.quantity);
+			return acc + Number(this.#getNumberWithoutDot(cur.price)) * Number(cur.quantity);
 		}, 0);
 
-		if (subTotal > 0 && subTotal < 2500) shippingPrice = 600;
+		if (subTotal > 0 && subTotal < 6500) shippingPrice = 1200;
 
 		return { subTotal, shippingPrice, total: total + shippingPrice };
 	}
@@ -160,19 +168,42 @@ export default new (class Cart {
 	#renderPrices() {
 		const prices = this.#getPricesProducts();
 
-		subtotal.innerHTML = `$ ${prices.subTotal.toFixed(2)}`;
-		shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + prices.shippingPrice.toFixed(2) : "Gratis"}`;
-		total.innerHTML = `$ ${prices.total.toFixed(2)}`;
+		subtotal.innerHTML = `$ ${this.#getNumberWithDot(prices.subTotal.toFixed(2))}`;
+		shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + this.#getNumberWithDot(prices.shippingPrice.toFixed(2)) : "Gratis"}`;
+		total.innerHTML = `$ ${this.#getNumberWithDot(prices.total.toFixed(2))}`;
+	}
+
+	#getNumberWithoutDot(number) {
+		return number.replace(/\./g, "").replace(/\,/g, ".");
+	}
+
+	#getNumberWithDot(number) {
+		let splitNum = number.split(".");
+		let nums = [];
+		let countForDot = 0;
+		let countElements = 0;
+
+		for (let index = splitNum[0].length - 1; index >= 0; index--) {
+			countForDot++;
+			countElements++;
+			nums.push(splitNum[0][index]);
+			if (countForDot == 3 && countElements < splitNum[0].length) {
+				nums.push(".");
+				countForDot = 0;
+			}
+		}
+
+		return nums.reverse().join("").concat(",").concat(splitNum[1]);
 	}
 
 	// Button buy and clear cart
 	#disableBuyBtn(btn) {
 		if (this.#cartProducts.length == 0) {
-			btn.classList.add("disabled");
+			btn.classList.add("disable-buttons-cart");
 			return;
 		}
 
-		btn.classList.remove("disabled");
+		btn.classList.remove("disable-buttons-cart");
 	}
 
 	#clearCartAndLocalStorage() {
@@ -182,7 +213,9 @@ export default new (class Cart {
 	}
 
 	#buttonBuyProducts() {
-		if (btnBuy.classList.contains("disabled")) return;
+		if (btnBuyCart.classList.contains("disable-buttons-cart")) return;
+
+		this.#disableScroll();
 
 		utils.showModalConfirm(
 			"¿Desea confirmar la compra?",
@@ -195,7 +228,9 @@ export default new (class Cart {
 	}
 
 	#buttonClearCart() {
-		if (btnClearCart.classList.contains("disabled")) return;
+		if (btnClearCart.classList.contains("disable-buttons-cart")) return;
+
+		this.#disableScroll();
 
 		utils.showModalConfirm(
 			"¿Desea vaciar el carrito?",
@@ -229,7 +264,7 @@ export default new (class Cart {
 		this.#renderAllProductsInCart();
 		this.#renderPrices();
 		this.#renderDefaultQuantityCart();
-		this.#disableBuyBtn(btnBuy);
+		this.#disableBuyBtn(btnBuyCart);
 		this.#disableBuyBtn(btnClearCart);
 	}
 
@@ -240,16 +275,16 @@ export default new (class Cart {
 		});
 	}
 
-	#eventAddProduct() {
-		productsContainer.addEventListener("click", (e) => {
+	#eventAddProductAll() {
+		productsContainerAll.addEventListener("click", (e) => {
 			e.preventDefault();
 			this.#product = Product.createProductForCart(e.target.dataset);
 			this.#addProductToCart(e);
 		});
 	}
 
-	#eventAddProductRecommended() {
-		recomendationContainer.addEventListener("click", (e) => {
+	#eventAddProductOffer() {
+		productsContainerOffer.addEventListener("click", (e) => {
 			e.preventDefault();
 			this.#product = Product.createProductForCart(e.target.dataset);
 			this.#addProductToCart(e);
@@ -265,9 +300,8 @@ export default new (class Cart {
 	}
 
 	#eventBuyProducts() {
-		btnBuy.addEventListener("click", (e) => {
+		btnBuyCart.addEventListener("click", (e) => {
 			e.preventDefault();
-			this.#disableScroll();
 			this.#buttonBuyProducts();
 		});
 	}
@@ -275,7 +309,6 @@ export default new (class Cart {
 	#eventClearCart() {
 		btnClearCart.addEventListener("click", (e) => {
 			e.preventDefault();
-			this.#disableScroll();
 			this.#buttonClearCart();
 		});
 	}
@@ -302,8 +335,8 @@ export default new (class Cart {
 	// Init
 	init() {
 		this.#eventLoadPage();
-		this.#eventAddProduct();
-		this.#eventAddProductRecommended();
+		this.#eventAddProductAll();
+		this.#eventAddProductOffer();
 		this.#eventCartContainer();
 		this.#eventBuyProducts();
 		this.#eventClearCart();

@@ -50,6 +50,7 @@ export default new (class Render {
                         data-id="${product.id}"
                         data-name="${product.name}"
                         data-description="${product.description}"
+                        data-oldprice="${product.oldPrice}"
                         data-price="${product.price}"
                         data-img="${product.img}"
                         data-category="${product.category}"
