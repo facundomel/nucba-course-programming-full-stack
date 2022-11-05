@@ -62,7 +62,7 @@ export default new (class Render {
         `;
 	}
 
-	#renderProductsAll() {
+	renderProductsAll() {
 		let productsAll = dataProduct.filter((product) => !product.offer);
 		containerProductsAll.innerHTML = productsAll.map(this.#renderProduct).join("");
 	}
@@ -73,7 +73,7 @@ export default new (class Render {
 	}
 
 	init() {
-		this.#renderProductsAll();
+		this.renderProductsAll();
 		this.#renderProductsOffer();
 	}
 })();

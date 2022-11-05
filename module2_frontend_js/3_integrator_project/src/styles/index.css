@@ -165,6 +165,14 @@
 	filter: drop-shadow(1px 1px 5px #ffffff);
 }
 
+.active {
+	background-image: var(--button) !important;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	color: var(--black) !important;
+}
+
 .container-products-all {
 	display: flex;
 	justify-content: center;

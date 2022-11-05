@@ -10,7 +10,7 @@ export default new (class Data {
 				"Sony PlayStation 3 Slim 120GB Standard color charcoal black",
 				"59.584,00",
 				"./assets/products/play-station-3.png",
-				"console",
+				"consolas",
 				true,
 				"65.755"
 			),
@@ -20,7 +20,7 @@ export default new (class Data {
 				"Microsoft Xbox Series S 512GB Standard color blanco",
 				"129.999,00",
 				"./assets/products/xbox-series-s.png",
-				"console",
+				"consolas",
 				true,
 				"139.999"
 			),
@@ -30,7 +30,7 @@ export default new (class Data {
 				"Nintendo Wii 512MB Standard color blanco",
 				"30.087,00",
 				"./assets/products/nintendo-wii.png",
-				"console",
+				"consolas",
 				false
 			),
 			new Product(
@@ -39,7 +39,7 @@ export default new (class Data {
 				"Sony PlayStation 4 500GB Standard color negro azabache",
 				"135.000,00",
 				"./assets/products/play-station-4.png",
-				"console",
+				"consolas",
 				false
 			),
 
