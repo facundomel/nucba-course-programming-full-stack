@@ -29,4 +29,9 @@ export default new (class Utils {
 	showAlert(message, success) {
 		Modal.alert(message, success);
 	}
+
+	getIntegersAndDecimalsOfPrices(number) {
+		let splitNum = number.split(",");
+		return splitNum;
+	}
 })();

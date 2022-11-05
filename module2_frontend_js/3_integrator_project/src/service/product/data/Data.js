@@ -12,7 +12,7 @@ export default new (class Data {
 				"./assets/products/play-station-3.png",
 				"consolas",
 				true,
-				"65.755"
+				"65.755,00"
 			),
 			new Product(
 				2,
@@ -22,7 +22,7 @@ export default new (class Data {
 				"./assets/products/xbox-series-s.png",
 				"consolas",
 				true,
-				"139.999"
+				"139.999,00"
 			),
 			new Product(
 				3,

@@ -46,6 +46,9 @@ export default new (class Cart {
 
 	// Render products
 	#renderProductInCart(product) {
+		let integersAndDecimalsOfOldPrice = product.offer == "true" ? utils.getIntegersAndDecimalsOfPrices(product.oldPrice) : "";
+		let integersAndDecimalsOfCurrentPrice = utils.getIntegersAndDecimalsOfPrices(product.price);
+
 		return `
       <div class="cart-item">
         <div class=img-and-item-info-cart>
@@ -53,8 +56,8 @@ export default new (class Cart {
           <div class="item-info">
             <h5 class="item-title">${product.name}</h5>
             <div class=prices-product-cart>
-              <span class="item-price-old">$ ${product.oldPrice}</span>
-              <span class="item-price">$ ${product.price}</span>
+              <span class="item-price-old">${product.offer == "true" ? `<div class="integer-price-old">$ ${integersAndDecimalsOfOldPrice[0]}</div> <sup class=decimal-price-old>${integersAndDecimalsOfOldPrice[1]}</sup>` : ""}</span>
+              <span class="item-price">$ ${integersAndDecimalsOfCurrentPrice[0]} <sup>${integersAndDecimalsOfCurrentPrice[1]}</sup></span>
             </div>
           </div>
         </div>
@@ -168,16 +171,16 @@ export default new (class Cart {
 	#renderPrices() {
 		const prices = this.#getPricesProducts();
 
-		subtotal.innerHTML = `$ ${this.#getNumberWithDot(prices.subTotal.toFixed(2))}`;
-		shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + this.#getNumberWithDot(prices.shippingPrice.toFixed(2)) : "Gratis"}`;
-		total.innerHTML = `$ ${this.#getNumberWithDot(prices.total.toFixed(2))}`;
+		subtotal.innerHTML = `$ ${this.#getNumberWithSemicolon(prices.subTotal.toFixed(2))}`;
+		shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + this.#getNumberWithSemicolon(prices.shippingPrice.toFixed(2)) : "Gratis"}`;
+		total.innerHTML = `$ ${this.#getNumberWithSemicolon(prices.total.toFixed(2))}`;
 	}
 
 	#getNumberWithoutDot(number) {
 		return number.replace(/\./g, "").replace(/\,/g, ".");
 	}
 
-	#getNumberWithDot(number) {
+	#getNumberWithSemicolon(number) {
 		let splitNum = number.split(".");
 		let nums = [];
 		let countForDot = 0;

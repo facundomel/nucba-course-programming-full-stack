@@ -1,4 +1,5 @@
 import data from "./data/Data.js";
+import utils from "../../utils/Utils.js";
 
 const containerProductsAll = document.getElementById("container-products-all");
 const containerProductsOffer = document.getElementById("container-products-offer");
@@ -7,6 +8,8 @@ const dataProduct = data.getData();
 
 export default new (class Render {
 	#renderProduct(product) {
+		let integersAndDecimalsOfCurrentPrice = utils.getIntegersAndDecimalsOfPrices(product.price);
+
 		return `
             <div class="product-card">
                 <img src=${product.img} alt="Producto recomendado" />
@@ -15,7 +18,7 @@ export default new (class Render {
                     <p class="item-description">${product.description}</p>
                 </div>
                 <div class="buy-container">
-                    <span class="item-price">$ ${product.price}</span>
+                    <span class="item-price">$ ${integersAndDecimalsOfCurrentPrice[0]} <sup>${integersAndDecimalsOfCurrentPrice[1]}</sup></span>
                     <button
                         class="btn-add"
                         data-id="${product.id}"
@@ -34,14 +37,17 @@ export default new (class Render {
 	}
 
 	#renderProductOffer(product) {
+        let integersAndDecimalsOfOldPrice = utils.getIntegersAndDecimalsOfPrices(product.oldPrice);
+		let integersAndDecimalsOfCurrentPrice = utils.getIntegersAndDecimalsOfPrices(product.price);
+        
 		return `
             <div class="product-offer">
                 <img src=${product.img} alt="Oferta" />
                 <div class="item-info-offer">
                     <h3 class="item-title">${product.name}</h3>
                     <div class="prices-offer">
-                        <span class="item-price-old">$ ${product.oldPrice}</span>
-                        <span class="item-price">$ ${product.price}</span>
+                        <span class="item-price-old"><div class="integer-price-old">$ ${integersAndDecimalsOfOldPrice[0]}</div> <sup class=decimal-price-old>${integersAndDecimalsOfOldPrice[1]}</sup></span>
+                        <span class="item-price">$ ${integersAndDecimalsOfCurrentPrice[0]} <sup>${integersAndDecimalsOfCurrentPrice[1]}</sup></span>
                     </div>
                 </div>
                 <div>
