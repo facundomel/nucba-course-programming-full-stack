@@ -224,37 +224,52 @@ export default class Modal {
 				<form>
 					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
 					<div class="form-group">
-						<label for="input-username">Username</label>
-						<input type="text" class="form-control" id="input-username" placeholder="Username">
+						<label for="input-username-login">Username</label>
+						<input type="text" class="form-control" id="input-username-login" placeholder="Username" autofocus>
+						<small class="message-error"></small>
 					</div>
 					<div class="form-group">
-						<label for="input-password">Password</label>
-						<input type="password" class="form-control" id="input-password" placeholder="Password">
+						<label for="input-password-login">Password</label>
+						<input type="password" class="form-control" id="input-password-login" placeholder="Password">
+						<small class="message-error"></small>
 					</div>
 					<p>Si no tiene cuenta registrese haciendo click <a class="register-user">aquí</a></p>
 				</form>
 			`,
 			header: "",
-			footer: '<button class="cancel">Cancelar</button> <button class="success">Aceptar</button>',
+			footer: '<button class="success">Aceptar</button>',
 		});
+		
+		modal.footerElement.classList.add("footer-login");
+		
 		modal.footerElement.querySelector(".success").onclick = (event) => {
 			event.preventDefault();
-			if (success) success();
-			modal.close();
+
+			var isSuccess = false;
+
+			if (success)
+				isSuccess = success();
+
+			if (isSuccess)
+				modal.close();
+
 			this.enableScroll();
 		};
-		modal.footerElement.querySelector(".cancel").onclick = (event) => {
-			event.preventDefault();
-			if (cancel) cancel();
-			modal.close();
-			this.enableScroll();
-		};
+
+		// modal.footerElement.querySelector(".cancel").onclick = (event) => {
+		// 	event.preventDefault();
+		// 	if (cancel) cancel();
+		// 	modal.close();
+		// 	this.enableScroll();
+		// };
+
 		modal.containerElement.querySelector(".register-user").onclick = (event) => {
 			event.preventDefault();
 			if (registerUser) registerUser();
 			modal.close();
 			this.enableScroll();
 		};
+
 		modal.open();
 	}
 
@@ -264,37 +279,50 @@ export default class Modal {
 				<form>
 					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
           <div class="form-group">
-            <label for="inputName">Nombre</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Nombre" required autofocus>
+            <label for="input-name">Nombre</label>
+            <input type="text" class="form-control" id="input-name" placeholder="Nombre" autofocus>
+						<small class="message-error"></small>
           </div>
           <div class="form-group">
-            <label for="inputLastName">Apellido</label>
-            <input type="text" class="form-control" id="inputLastName" placeholder="Apellido" required>
+            <label for="input-lastname">Apellido</label>
+            <input type="text" class="form-control" id="input-lastname" placeholder="Apellido">
+						<small class="message-error"></small>
           </div>
           <div class="form-group">
-            <label for="inputPhone">Teléfono</label>
-            <input type="number" class="form-control" id="inputPhone" placeholder="Teléfono" required autofocus>
-            <p class="message-phone">Debe contener solo números</p>
+            <label for="input-email">Email</label>
+            <input type="email" class="form-control" id="input-email" placeholder="Email">
+						<small class="message-error"></small>
+          </div>
+					<div class="form-group">
+            <label for="input-username-register">Username</label>
+            <input type="text" class="form-control" id="input-username-register" placeholder="Username">
+						<small class="message-error"></small>
           </div>
           <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required autofocus>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+            <label for="input-password-register">Password</label>
+            <input type="password" class="form-control" id="input-password-register" placeholder="Password">
+						<small class="message-error"></small>
           </div>
         </form>
 			`,
 			header: "",
 			footer: '<button class="cancel">Cancelar</button> <button class="success">Aceptar</button>',
 		});
+
 		modal.footerElement.querySelector(".success").onclick = (event) => {
 			event.preventDefault();
-			if (success) success();
-			modal.close();
+
+			var isSuccess = false;
+
+			if (success) 
+				isSuccess = success();
+
+			if (isSuccess)
+				modal.close();
+
 			this.enableScroll();
 		};
+
 		modal.footerElement.querySelector(".cancel").onclick = (event) => {
 			event.preventDefault();
 			if (cancel) cancel();

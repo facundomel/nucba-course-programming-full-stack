@@ -42,4 +42,29 @@ export default new (class Utils {
 		let splitNum = number.split(",");
 		return splitNum;
 	}
+
+	showMessageError(input, message) {
+		input.classList.remove("input-success");
+		input.classList.add("input-error");
+		let formGroup = input.parentElement;
+		let elementForMessage = formGroup.lastElementChild;
+		elementForMessage.innerText = message;
+	}
+
+	showMessageSuccess(input) {
+		input.classList.remove("input-error");
+		// input.classList.add("input-success");
+		let  formGroup = input.parentElement;
+		let elementForMessage = formGroup.lastElementChild;
+		elementForMessage.innerText = "";
+	}
+
+	clearMessageErrorAndSuccess(input) {
+		input.classList.remove("input-error");
+		input.classList.remove("input-success");
+		input.value = "";
+		let formGroup = input.parentElement;
+		let elementForMessage = formGroup.lastElementChild;
+		elementForMessage.innerText = "";
+	}
 })();

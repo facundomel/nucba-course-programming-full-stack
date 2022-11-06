@@ -654,10 +654,14 @@ footer .fa-whatsapp-square:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center !important;
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 .snackbar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	visibility: hidden; /* Hidden by default. Visible on click */
 	min-width: 250px; /* Set a default minimum width */
 	/* margin-left: -125px; /* Divide value of min-width by 2 */
@@ -669,7 +673,7 @@ footer .fa-whatsapp-square:hover {
 	padding: 16px; /* Padding */
 	margin: 10px;
 	position: fixed; /* Sit on top of the screen */
-	z-index: 1; /* Add a z-index if needed */
+	z-index: 9999999; /* Add a z-index if needed */
 	/* left: 50%; /* Center the snackbar */
 	bottom: 30px; /* 30px from the bottom */
 }
@@ -798,6 +802,7 @@ footer .fa-whatsapp-square:hover {
 
 .modal .container-modal .content p {
 	font-weight: bold;
+	color: var(--white) !important;
 }
 
 .modal .container-modal .content .prompt-input input {
@@ -894,6 +899,11 @@ footer .fa-whatsapp-square:hover {
 	font-weight: bold;
 }
 
+.modal .container-modal .footer-login {
+	justify-content: flex-end;
+}
+
+
 /* User */
 /* Form login user */
 form {
@@ -964,8 +974,18 @@ form p a:hover {
   cursor: pointer;
 }
 
-.message-phone {
-	text-align: start;
-	color: var(--blue-light);
-	margin: 0;
+/* Message Error and Success */
+.input-error {
+	border: 3px solid var(--red-weight);
+}
+
+.input-success {
+	border: 3px solid var(--green-weight);
+}
+
+.message-error {
+	color: var(--red);
+	max-width: 350px;
+	text-align: center;
+	padding: 7px 0;
 }
