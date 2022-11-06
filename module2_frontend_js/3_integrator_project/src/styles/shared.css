@@ -101,6 +101,7 @@ main {
 	padding: 0.5em 0;
 	width: 100%;
 	color: white;
+	text-transform: uppercase;
 }
 
 .hamburger-menu > li:not(:last-child) {
@@ -394,13 +395,17 @@ nav a img {
 	font-weight: 700;
 }
 
-.cart-total span {
+.cart-total p {
 	background-image: var(--button);
 	background-clip: text;
 	-webkit-background-clip: text;
 	-moz-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	-moz-text-fill-color: transparent;
+}
+
+.cart-total span {
+	color: var(--blue-light2) !important;
 }
 
 .btn-buy-cart,
@@ -905,7 +910,7 @@ footer .fa-whatsapp-square:hover {
 
 
 /* User */
-/* Form login user */
+/* Form login and register user */
 form {
   display: flex;
   flex-direction: column;
@@ -972,6 +977,69 @@ form p a {
 
 form p a:hover {
   cursor: pointer;
+}
+
+/* User Profile */
+.container-user-profile {
+	display: flex;
+	position: absolute;
+	top: 65px;
+	right: 0;
+	padding: 50px;
+	background: var(--black);
+	color: var(--white);
+	flex-direction: column;
+	z-index: 2;
+	border-bottom-left-radius: 15px;
+	/* width: 500px;
+	height: 95vh; */
+	transform: translate(200%);
+	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+	overflow: auto;
+}
+
+.list-user-profile {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.list-user-profile {
+	background-image: var(--button);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-text-fill-color: transparent;
+}
+
+.list-user-profile i {
+	font-size: 20px;
+}
+
+.btn-logout {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	gap: 20px;
+}
+
+.btn-logout span {
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.btn-logout:hover {
+	cursor: pointer;
+}
+
+.open-user-profile {
+	display: flex;
+	transform: translate(0%);
+	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
 }
 
 /* Message Error and Success */

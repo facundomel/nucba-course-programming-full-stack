@@ -1,12 +1,18 @@
+import utils from "../../utils/Utils.js";
+import localStorage from "../../repository/LocalStorage.js";
+
 const hamburgerMenuToggle = document.getElementById("hamburger-menu-toggle");
 const btnHamburgerMenu = document.getElementById("hamburger-menu-button");
 const overlay = document.getElementById("overlay");
 const btnCart = document.getElementById("btn-cart");
 const cart = document.getElementById("cart");
-const linkProfile = document.getElementById("link-profile");
+const linkCloseSession = document.getElementById("link-close-session");
 const linkHome = document.getElementById("link-home");
+const containerUserProfile = document.getElementById("container-user-profile");
 
 export default new (class HamburgerMenu {
+	#keyUserSessionLocalStorage = "userSession";
+
 	#toggleMenu() {
 		if (cart.classList.contains("open-cart")) {
 			cart.classList.remove("open-cart");
@@ -21,6 +27,10 @@ export default new (class HamburgerMenu {
 			hamburgerMenuToggle.checked = false;
 			return;
 		}
+		if (containerUserProfile.classList.contains("open-user-profile")) {
+			containerUserProfile.classList.remove("open-user-profile");
+			return;
+		}
 		overlay.classList.toggle("show-overlay");
 	}
 
@@ -33,6 +43,21 @@ export default new (class HamburgerMenu {
 	#scroll() {
 		if (!overlay.classList.contains("show-overlay")) return;
 		overlay.classList.remove("show-overlay");
+	}
+
+	#userLogout() {
+		localStorage.remove(this.#keyUserSessionLocalStorage);
+		location.reload();
+	}
+
+	#clickLinkLogout() {
+		utils.showModalConfirm(
+			"¿Desea cerrar sesión?",
+			() => {
+				this.#userLogout();
+			},
+			""
+		);
 	}
 
 	// Events
@@ -54,8 +79,8 @@ export default new (class HamburgerMenu {
 			this.#closeMenu();
 		});
 
-		linkProfile.addEventListener("click", () => {
-			this.#closeMenu();
+		linkCloseSession.addEventListener("click", () => {
+			this.#clickLinkLogout();
 		});
 	}
 

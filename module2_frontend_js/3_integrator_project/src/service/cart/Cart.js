@@ -169,11 +169,20 @@ export default new (class Cart {
 	}
 
 	#renderPrices() {
-		const prices = this.#getPricesProducts();
+		// const prices = this.#getPricesProducts();
 
-		subtotal.innerHTML = `$ ${this.#getNumberWithSemicolon(prices.subTotal.toFixed(2))}`;
-		shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + this.#getNumberWithSemicolon(prices.shippingPrice.toFixed(2)) : "Gratis"}`;
-		total.innerHTML = `$ ${this.#getNumberWithSemicolon(prices.total.toFixed(2))}`;
+		// subtotal.innerHTML = `$ ${this.#getNumberWithSemicolon(prices.subTotal.toFixed(2))}`;
+		// shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + this.#getNumberWithSemicolon(prices.shippingPrice.toFixed(2)) : "Gratis"}`;
+		// total.innerHTML = `$ ${this.#getNumberWithSemicolon(prices.total.toFixed(2))}`;
+
+		const prices = this.#getPricesProducts();
+		let integersAndDecimalsOfSubtotalPrice = utils.getIntegersAndDecimalsOfPrices(this.#getNumberWithSemicolon(prices.subTotal.toFixed(2)));
+		let integersAndDecimalsOfShippingPrice = utils.getIntegersAndDecimalsOfPrices(this.#getNumberWithSemicolon(prices.shippingPrice.toFixed(2)));
+		let integersAndDecimalsOfTotalPrice = utils.getIntegersAndDecimalsOfPrices(this.#getNumberWithSemicolon(prices.total.toFixed(2)));
+
+		subtotal.innerHTML = `$ ${integersAndDecimalsOfSubtotalPrice[0]} <sup>${integersAndDecimalsOfSubtotalPrice[1]}</sup>`;
+		shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + integersAndDecimalsOfShippingPrice[0] `<sup>${integersAndDecimalsOfSubtotalPrice[1]}</sup>` : "Gratis"}`;
+		total.innerHTML = `$ ${integersAndDecimalsOfTotalPrice[0]} <sup>${integersAndDecimalsOfTotalPrice[1]}</sup>`;
 	}
 
 	#getNumberWithoutDot(number) {

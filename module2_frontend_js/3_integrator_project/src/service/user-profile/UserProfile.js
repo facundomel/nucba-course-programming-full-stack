@@ -2,8 +2,12 @@ import utils from "../../utils/Utils.js";
 import localStorage from "../../repository/LocalStorage.js";
 import UserModel from "../../model/User.js";
 
+const overlay = document.getElementById("overlay");
 const btnUserProfile = document.getElementById("btn-user-profile");
+const containerUserProfile = document.getElementById("container-user-profile");
+const btnLogout = document.getElementById("btn-logout");
 const body = document.querySelector("body");
+const cart = document.getElementById("cart");
 
 export default new (class User {
 	#keyDataUserLocalStorage = "dataUser";
@@ -69,7 +73,7 @@ export default new (class User {
 				else return false;
 			},
 			() => {
-				this.#showLoginUser();
+				location.reload();
 			}
 		);
 	}
@@ -132,21 +136,73 @@ export default new (class User {
 		return false;
 	}
 
+	#userLogout() {
+		localStorage.remove(this.#keyUserSessionLocalStorage);
+		location.reload();
+	}
+
+	#clickButtonLogout() {
+		utils.showModalConfirm(
+			"¿Desea cerrar sesión?",
+			() => {
+				this.#userLogout();
+			},
+			""
+		);
+	}
+
+	#toggleUserProfile() {
+		// containerUserProfile.classList.toggle("open-user-profile");
+		// overlay.classList.toggle("show-overlay");
+		containerUserProfile.classList.toggle("open-user-profile");
+		if (cart.classList.contains("open-cart")) {
+			cart.classList.remove("open-cart");
+			return;
+		}		
+		overlay.classList.toggle("show-overlay");
+	}
+
+	#closeUserProfileOnScroll() {
+		if (!containerUserProfile.classList.contains("open-user-profile")) return;
+
+		this.#closeUserProfileAndOverlay();
+	}
+
+	#closeUserProfileAndOverlay() {
+		containerUserProfile.classList.remove("open-user-profile");
+		overlay.classList.remove("show-overlay");
+	}
+
 	// Scroll
 	#disableScroll() {
 		body.classList.add("disable-scroll");
 	}
 
 	// Events
-	#eventLoginUser() {
+	#eventsClick() {
 		btnUserProfile.addEventListener("click", () => {
-			this.#showLoginUser();
+			this.#toggleUserProfile();
+		});
+
+		btnLogout.addEventListener("click", () => {
+			this.#clickButtonLogout();
+		});
+
+		overlay.addEventListener("click", () => {
+			this.#closeUserProfileAndOverlay();
+		});
+	}
+
+	#eventCloseUserprofileOnScroll() {
+		window.addEventListener("scroll", () => {
+			this.#closeUserProfileOnScroll();
 		});
 	}
 
 	// Init
 	init() {
 		this.#showLoginUser();
-		// this.#eventLoginUser();
+		this.#eventsClick();
+		this.#eventCloseUserprofileOnScroll();
 	}
 })();

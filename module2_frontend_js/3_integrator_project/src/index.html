@@ -55,22 +55,24 @@
 						</li>
 						<!-- Cart -->
 						<li id="btn-cart" class="btn-cart">
-							<p id="quantity-products-cart" class="quantity-products-cart"></p>
+							<span id="quantity-products-cart" class="quantity-products-cart"></span>
 							<i class="fa-solid fa-cart-shopping"></i>
 						</li>
-						<!-- User -->
+						<!-- User Profile -->
 						<li>
 							<i id="btn-user-profile" class="fa-solid fa-user btn-user-profile"></i>
 						</li>
 					</ul>
 
-					<!-- <div id="user-profile" class="user-profile">
+					<!-- User Profile -->
+					<div id="container-user-profile" class="container-user-profile">
 						<ul class="list-user-profile">
-							<li>
-								<i id="btn-logout" class="fa-solid fa-person-to-door">Cerrar sesión</i>
+							<li id="btn-logout" class="btn-logout">
+								<span>Cerrar sesión</span>
+								<i class="fa-solid fa-right-from-bracket"></i>
 							</li>
 						</ul>
-					</div> -->
+					</div>
 
 					<!-- Hamburger menu -->
 					<input id="hamburger-menu-toggle" type="checkbox" />
@@ -83,7 +85,7 @@
 							<a id="link-home" class="nav-link">Inicio</a>
 						</li>
 						<li class="nav-item">
-							<a id="link-profile" class="nav-link">Perfil</a>
+							<a id="link-close-session" class="nav-link">Cerrar sesión</a>
 						</li>
 						<li class="hamburger-menu-footer-contact">
 							<a href="" title="Ubicación"><i class="fa-solid fa-street-view fa-2x"></i></a>
@@ -251,9 +253,9 @@
 				</section>
 			</main>
 
-      <div class="snackbar-container">
-        <div id="snackbar" class="snackbar"></div>
-      </div>
+			<div class="snackbar-container">
+				<div id="snackbar" class="snackbar"></div>
+			</div>
 
 			<footer>
 				<div class="footer-title">
