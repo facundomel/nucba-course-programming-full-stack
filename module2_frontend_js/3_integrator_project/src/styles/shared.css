@@ -745,13 +745,14 @@ footer .fa-whatsapp-square:hover {
 .modal .container-modal {
 	display: flex;
 	flex-flow: column;
-	background-color: #ffffff;
+	background-color: var(--black-light2);
 	box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.03);
 	margin: 50px;
 }
 
 .modal .container-modal.zoom {
 	transform: scale(0.5);
+	margin: 50px;
 }
 
 .modal .container-modal.slide {
@@ -809,7 +810,7 @@ footer .fa-whatsapp-square:hover {
 
 .modal .container-modal .footer {
 	border-top: 1px solid #e6e9ec;
-	background-color: #f9fafc;
+	background-color: var(--black-light2);
 	padding: 15px;
 	display: flex;
 	justify-content: space-between;
@@ -891,4 +892,80 @@ footer .fa-whatsapp-square:hover {
 	background: var(--green-light);
 	color: var(--black);
 	font-weight: bold;
+}
+
+/* User */
+/* Form login user */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: white;
+	width: 100%;
+  /* width: min(80%, 400px); */
+}
+
+form img {
+  height: 70px;
+}
+
+form div {
+  width: 80%;
+}
+
+form p {
+  font-size: 0.7em;
+  text-align: center;
+}
+
+form p a {
+  text-decoration: none !important;
+  color: var(--blue-light) !important;
+}
+
+form p a:hover {
+  cursor: pointer;
+}
+
+/* Form register user */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: white;
+	width: 100%;
+	height: 50%;
+  /* width: min(80%, 400px); */
+}
+
+form img {
+  height: 70px;
+}
+
+form div {
+  width: 80%;
+}
+
+form p {
+  font-size: 0.7em;
+  text-align: center;
+}
+
+form p a {
+  text-decoration: none !important;
+  color: var(--blue-light) !important;
+}
+
+form p a:hover {
+  cursor: pointer;
+}
+
+.message-phone {
+	text-align: start;
+	color: var(--blue-light);
+	margin: 0;
 }

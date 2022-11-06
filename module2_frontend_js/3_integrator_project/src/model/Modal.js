@@ -146,6 +146,10 @@ export default class Modal {
 		return this.options.element.querySelector(".footer");
 	}
 
+	get containerElement() {
+		return this.options.element.querySelector(".container-modal");
+	}
+
 	set footer(value) {
 		if (!value) {
 			this.options.element.querySelector(".footer").remove();
@@ -186,7 +190,7 @@ export default class Modal {
 		let modal = new Modal({
 			content: `<p style="color: black">${value}</p>`,
 			header: "",
-			footer: '<button class="cancel">Cancel</button> <button class="success">OK</button>',
+			footer: '<button class="cancel">Cancelar</button> <button class="success">Aceptar</button>',
 		});
 		modal.footerElement.querySelector(".success").onclick = (event) => {
 			event.preventDefault();
@@ -204,10 +208,96 @@ export default class Modal {
 	}
 
 	static alert(value, success) {
-		let modal = new Modal({ content: `<p style="color: black">${value}</p>`, header: "", footer: '<button class="success">OK</button>' });
+		let modal = new Modal({ content: `<p style="color: black">${value}</p>`, header: "", footer: '<button class="success">Aceptar</button>' });
 		modal.footerElement.querySelector(".success").onclick = (event) => {
 			event.preventDefault();
 			if (success) success();
+			modal.close();
+			this.enableScroll();
+		};
+		modal.open();
+	}
+
+	static loginUser(success, cancel, registerUser) {
+		let modal = new Modal({
+			content: `
+				<form>
+					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
+					<div class="form-group">
+						<label for="input-username">Username</label>
+						<input type="text" class="form-control" id="input-username" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="input-password">Password</label>
+						<input type="password" class="form-control" id="input-password" placeholder="Password">
+					</div>
+					<p>Si no tiene cuenta registrese haciendo click <a class="register-user">aquí</a></p>
+				</form>
+			`,
+			header: "",
+			footer: '<button class="cancel">Cancelar</button> <button class="success">Aceptar</button>',
+		});
+		modal.footerElement.querySelector(".success").onclick = (event) => {
+			event.preventDefault();
+			if (success) success();
+			modal.close();
+			this.enableScroll();
+		};
+		modal.footerElement.querySelector(".cancel").onclick = (event) => {
+			event.preventDefault();
+			if (cancel) cancel();
+			modal.close();
+			this.enableScroll();
+		};
+		modal.containerElement.querySelector(".register-user").onclick = (event) => {
+			event.preventDefault();
+			if (registerUser) registerUser();
+			modal.close();
+			this.enableScroll();
+		};
+		modal.open();
+	}
+
+	static registerUser(success, cancel) {
+		let modal = new Modal({
+			content: `
+				<form>
+					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
+          <div class="form-group">
+            <label for="inputName">Nombre</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Nombre" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="inputLastName">Apellido</label>
+            <input type="text" class="form-control" id="inputLastName" placeholder="Apellido" required>
+          </div>
+          <div class="form-group">
+            <label for="inputPhone">Teléfono</label>
+            <input type="number" class="form-control" id="inputPhone" placeholder="Teléfono" required autofocus>
+            <p class="message-phone">Debe contener solo números</p>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+          </div>
+        </form>
+			`,
+			header: "",
+			footer: '<button class="cancel">Cancelar</button> <button class="success">Aceptar</button>',
+		});
+		modal.footerElement.querySelector(".success").onclick = (event) => {
+			event.preventDefault();
+			if (success) success();
+			modal.close();
+			this.enableScroll();
+		};
+		modal.footerElement.querySelector(".cancel").onclick = (event) => {
+			event.preventDefault();
+			if (cancel) cancel();
 			modal.close();
 			this.enableScroll();
 		};

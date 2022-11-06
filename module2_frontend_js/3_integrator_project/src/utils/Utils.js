@@ -30,6 +30,14 @@ export default new (class Utils {
 		Modal.alert(message, success);
 	}
 
+	showLoginUser(success, cancel, registerUser) {
+		Modal.loginUser(success, cancel, registerUser);
+	}
+
+	showRegisterUser(success, cancel) {
+		Modal.registerUser(success, cancel);
+	}
+
 	getIntegersAndDecimalsOfPrices(number) {
 		let splitNum = number.split(",");
 		return splitNum;
