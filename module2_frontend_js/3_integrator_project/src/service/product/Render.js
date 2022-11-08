@@ -3,11 +3,12 @@ import utils from "../../utils/Utils.js";
 
 const containerProductsAll = document.getElementById("container-products-all");
 const containerProductsOffer = document.getElementById("container-products-offer");
+const body = document.querySelector("body");
 
 const dataProduct = data.getData();
 
 export default new (class Render {
-	#renderProduct(product) {
+	#renderProductAll(product) {
 		let integersAndDecimalsOfCurrentPrice = utils.getIntegersAndDecimalsOfPrices(product.price);
 
 		return `
@@ -37,9 +38,9 @@ export default new (class Render {
 	}
 
 	#renderProductOffer(product) {
-        let integersAndDecimalsOfOldPrice = utils.getIntegersAndDecimalsOfPrices(product.oldPrice);
+		let integersAndDecimalsOfOldPrice = utils.getIntegersAndDecimalsOfPrices(product.oldPrice);
 		let integersAndDecimalsOfCurrentPrice = utils.getIntegersAndDecimalsOfPrices(product.price);
-        
+
 		return `
             <div class="product-offer">
                 <img src=${product.img} alt="Oferta" />
@@ -52,6 +53,7 @@ export default new (class Render {
                 </div>
                 <div>
                     <i 
+                        title="Agregar"
                         class="fa-solid fa-cart-plus btn-add" 
                         data-id="${product.id}"
                         data-name="${product.name}"
@@ -62,7 +64,8 @@ export default new (class Render {
                         data-category="${product.category}"
                         data-offer="${product.offer}">
                     </i>
-                    <i class="fa-solid fa-eye"></i>
+                    
+                    <i title="Información" class="fa-solid fa-circle-info btn-view-more" data-description="${product.description}"></i>
                 </div>
             </div>
         `;
@@ -70,7 +73,7 @@ export default new (class Render {
 
 	renderProductsAll() {
 		let productsAll = dataProduct.filter((product) => !product.offer);
-		containerProductsAll.innerHTML = productsAll.map(this.#renderProduct).join("");
+		containerProductsAll.innerHTML = productsAll.map(this.#renderProductAll).join("");
 	}
 
 	#renderProductsOffer() {
@@ -78,8 +81,29 @@ export default new (class Render {
 		containerProductsOffer.innerHTML = productsOffer.map(this.#renderProductOffer).join("");
 	}
 
+	// Scroll
+	#disableScroll() {
+		body.classList.add("disable-scroll");
+	}
+
+	#clickViewMoreInOffer(e) {
+		if (!e.target.classList.contains("btn-view-more")) return;
+
+		this.#disableScroll();
+		utils.showAlertButtonRight(e.target.dataset.description, "");
+	}
+
+	// Events
+	#eventClickViewMoreInOffer() {
+		containerProductsOffer.addEventListener("click", (e) => {
+			e.preventDefault();
+			this.#clickViewMoreInOffer(e);
+		});
+	}
+
 	init() {
 		this.renderProductsAll();
 		this.#renderProductsOffer();
+		this.#eventClickViewMoreInOffer();
 	}
 })();

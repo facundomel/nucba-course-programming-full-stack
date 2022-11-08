@@ -1,4 +1,4 @@
-import Modal from "../model/Modal.js";
+import Modal from "./Modal.js";
 
 var snackbar = document.getElementById("snackbar");
 var identificationTimeout = "";
@@ -28,6 +28,10 @@ export default new (class Utils {
 
 	showAlert(message, success) {
 		Modal.alert(message, success);
+	}
+
+	showAlertButtonRight(message, success) {
+		Modal.alertButtonRight(message, success);
 	}
 
 	showLoginUser(success, cancel, registerUser) {

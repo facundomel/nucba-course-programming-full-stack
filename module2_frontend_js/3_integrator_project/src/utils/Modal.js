@@ -208,7 +208,27 @@ export default class Modal {
 	}
 
 	static alert(value, success) {
-		let modal = new Modal({ content: `<p style="color: black">${value}</p>`, header: "", footer: '<button class="success">Aceptar</button>' });
+		let modal = new Modal({
+			content: `<p style="color: black">${value}</p>`,
+			header: "",
+			footer: '<button class="success">Aceptar</button>',
+		});
+		modal.footerElement.querySelector(".success").onclick = (event) => {
+			event.preventDefault();
+			if (success) success();
+			modal.close();
+			this.enableScroll();
+		};
+		modal.open();
+	}
+
+	static alertButtonRight(value, success) {
+		let modal = new Modal({
+			content: `<p style="color: black">${value}</p>`,
+			header: "",
+			footer: '<button class="success">Aceptar</button>',
+		});
+		modal.footerElement.classList.add("footer-button-right");
 		modal.footerElement.querySelector(".success").onclick = (event) => {
 			event.preventDefault();
 			if (success) success();
@@ -228,9 +248,11 @@ export default class Modal {
 						<input type="text" class="form-control" id="input-username-login" placeholder="Username" autofocus>
 						<small class="message-error"></small>
 					</div>
-					<div class="form-group">
+					<div class="form-group div-gruop-password-login">
 						<label for="input-password-login">Password</label>
-						<input type="password" class="form-control" id="input-password-login" placeholder="Password">
+						<input type="password" class="form-control prueba" id="input-password-login" placeholder="Password">
+						<i id="btn-show-password" class="fa-solid fa-eye btn-show-password"></i>
+						<i id="btn-hide-password" class="fa-solid fa-eye-slash hide btn-hide-password"></i>
 						<small class="message-error"></small>
 					</div>
 					<p>Si no tiene cuenta registrese haciendo click <a class="register-user">aquí</a></p>
@@ -239,19 +261,33 @@ export default class Modal {
 			header: "",
 			footer: '<button class="success">Aceptar</button>',
 		});
-		
-		modal.footerElement.classList.add("footer-login");
-		
+
+		const btnShowPassword = document.getElementById("btn-show-password");
+		const btnHidePassword = document.getElementById("btn-hide-password");
+		const inputPasswordLogin = document.getElementById("input-password-login");
+
+		btnShowPassword.addEventListener("click", () => {
+			inputPasswordLogin.type = "text";
+			btnShowPassword.classList.add("hide");
+			btnHidePassword.classList.remove("hide");
+		});
+
+		btnHidePassword.addEventListener("click", () => {
+			inputPasswordLogin.type = "password";
+			btnShowPassword.classList.remove("hide");
+			btnHidePassword.classList.add("hide");
+		});
+
+		modal.footerElement.classList.add("footer-button-right");
+
 		modal.footerElement.querySelector(".success").onclick = (event) => {
 			event.preventDefault();
 
 			var isSuccess = false;
 
-			if (success)
-				isSuccess = success();
+			if (success) isSuccess = success();
 
-			if (isSuccess)
-				modal.close();
+			if (isSuccess) modal.close();
 
 			this.enableScroll();
 		};
@@ -314,11 +350,9 @@ export default class Modal {
 
 			var isSuccess = false;
 
-			if (success) 
-				isSuccess = success();
+			if (success) isSuccess = success();
 
-			if (isSuccess)
-				modal.close();
+			if (isSuccess) modal.close();
 
 			this.enableScroll();
 		};

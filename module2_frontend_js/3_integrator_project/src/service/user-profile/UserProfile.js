@@ -9,7 +9,7 @@ const btnLogout = document.getElementById("btn-logout");
 const body = document.querySelector("body");
 const cart = document.getElementById("cart");
 
-export default new (class User {
+export default new (class UserProfile {
 	#keyDataUserLocalStorage = "dataUser";
 	#dataUserLocalStorage = localStorage.get(this.#keyDataUserLocalStorage) || [];
 	#keyUserSessionLocalStorage = "userSession";
@@ -158,7 +158,7 @@ export default new (class User {
 		if (cart.classList.contains("open-cart")) {
 			cart.classList.remove("open-cart");
 			return;
-		}		
+		}
 		overlay.classList.toggle("show-overlay");
 	}
 
