@@ -71,9 +71,13 @@ export default new (class Render {
         `;
 	}
 
-	renderProductsAll() {
+	renderProductsAll(products) {
+		containerProductsAll.innerHTML = products.map(this.#renderProductAll).join("");
+	}
+
+	#renderProductsOnLoadPage() {
 		let productsAll = dataProduct.filter((product) => !product.offer);
-		containerProductsAll.innerHTML = productsAll.map(this.#renderProductAll).join("");
+		this.renderProductsAll(productsAll);
 	}
 
 	#renderProductsOffer() {
@@ -102,7 +106,7 @@ export default new (class Render {
 	}
 
 	init() {
-		this.renderProductsAll();
+        this.#renderProductsOnLoadPage();
 		this.#renderProductsOffer();
 		this.#eventClickViewMoreInOffer();
 	}

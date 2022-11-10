@@ -26,9 +26,8 @@ export default new (class Filter {
 		/* Filtro los productos por la categoria seleccionada */
 		const filteredProducts = dataProduct.filter((product) => product.category === selectedCategory);
 		/* Si el array tiene 0 productos, no hay stock, se renderiza un mensaje */
-		if (filteredProducts.length === 0) {
+		if (filteredProducts.length === 0)
 			return this.#renderError(containerProductsAll, "No hay stock de este producto. Por favor, seleccione otra categoría.");
-		}
 		/*Sino se renderiza el array de los productos filtrados  */
 		render.renderProductsAll(filteredProducts);
 	}
