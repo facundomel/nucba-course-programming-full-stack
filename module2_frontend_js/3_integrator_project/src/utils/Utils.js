@@ -48,19 +48,37 @@ export default new (class Utils {
 	}
 
 	showMessageError(input, message) {
-		input.classList.remove("input-success");
-		input.classList.add("input-error");
-		let formGroup = input.parentElement;
-		let elementForMessage = formGroup.lastElementChild;
-		elementForMessage.innerText = message;
+		const parentInput = input.parentElement;
+		const messageError = parentInput.querySelector("small");
+		parentInput.classList.add("error");
+		parentInput.classList.remove("success");
+		messageError.textContent = message;
+		input.focus();
 	}
 
 	showMessageSuccess(input) {
-		input.classList.remove("input-error");
-		// input.classList.add("input-success");
-		let  formGroup = input.parentElement;
-		let elementForMessage = formGroup.lastElementChild;
-		elementForMessage.innerText = "";
+		const parentInput = input.parentElement;
+		const messageError = parentInput.querySelector("small");
+		parentInput.classList.remove("error");
+		parentInput.classList.add("success");
+		messageError.textContent = null;
+	}
+
+	showInputsError(...inputs) {
+		inputs.forEach((input) => {
+			const parentInput = input.parentElement;
+			parentInput.classList.add("error");
+			parentInput.classList.remove("success");
+		});
+		inputs[0].focus();
+	}
+
+	showMessageSuccess(input) {
+		const parentInput = input.parentElement;
+		const messageError = parentInput.querySelector("small");
+		parentInput.classList.remove("error");
+		parentInput.classList.add("success");
+		messageError.textContent = null;
 	}
 
 	clearMessageErrorAndSuccess(input) {

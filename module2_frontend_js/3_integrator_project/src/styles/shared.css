@@ -908,11 +908,11 @@ footer .fa-whatsapp-square:hover {
 	justify-content: flex-end;
 }
 
-.div-gruop-password-login {
+.div-group-password-login-and-register {
 	position: relative;
 }
 
-.div-gruop-password-login i {
+.div-group-password-login-and-register i {
 	position: absolute;
 	right: 5px;
 	top: 36px;
@@ -921,6 +921,11 @@ footer .fa-whatsapp-square:hover {
 	padding: 2px 10px;
 	color: var(--black-light2);
 	font-size: 24px;
+}
+
+.btn-show-password {
+	color: var(--gray) !important;
+	cursor: not-allowed !important;
 }
 
 /* User */
@@ -1057,12 +1062,12 @@ form p a:hover {
 }
 
 /* Message Error and Success */
-.input-error {
-	border: 3px solid var(--red-weight);
+.form-group.error input {
+  border: 2px solid var(--red);
 }
 
-.input-success {
-	border: 3px solid var(--green-weight);
+.form-group.success input {
+  border: 2px solid var(--green);
 }
 
 .message-error {

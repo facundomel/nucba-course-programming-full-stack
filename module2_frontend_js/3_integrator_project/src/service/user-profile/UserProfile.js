@@ -46,6 +46,7 @@ export default new (class UserProfile {
 
 			if (user.length == 0) {
 				utils.showSnackbar(`Usuario o password incorrecto`, "background-color: var(--red-light)");
+				utils.showInputsError(inputUsername, inputPassword);
 				inputUsername.focus();
 			} else {
 				this.#userSessionLocalStorage = user;
@@ -53,11 +54,12 @@ export default new (class UserProfile {
 				utils.showSnackbar(`¡Bienvenido ${inputUsername.value}!`, "background-color: var(--green-light)");
 				return true;
 			}
-		} else if (inputUsername.value == "") {
-			utils.showMessageError(inputUsername, "Debe completar este campo");
+		} 
+		else if (inputUsername.value == "") {
+			utils.showMessageError(inputUsername, "El username es obligatorio");
 			inputUsername.focus();
 		} else if (inputPassword.value == "") {
-			utils.showMessageError(inputPassword, "Debe completar este campo");
+			utils.showMessageError(inputPassword, "El password es obligatorio");
 			inputPassword.focus();
 		}
 
@@ -106,7 +108,6 @@ export default new (class UserProfile {
 				utils.showSnackbar(`El usuario ya existe`, "background-color: var(--red-light)");
 				inputName.focus();
 			} else {
-				// Ver como hicieron los profes para validar cada uno de los campos. Ademas ver porque puede ser que solo me almacene uno. Sino quizas deberia ponerlo en local o pasarlo como parametro nomas.
 				let newUserId = 1;
 				if (this.#dataUserLocalStorage.length > 0)
 					newUserId = Number(this.#dataUserLocalStorage[this.#dataUserLocalStorage.length - 1].id) + 1;
@@ -117,19 +118,19 @@ export default new (class UserProfile {
 				return true;
 			}
 		} else if (inputName.value == "") {
-			utils.showMessageError(inputName, "Debe completar este campo");
+			utils.showMessageError(inputName, "El nombre es obligatorio");
 			inputName.focus();
 		} else if (inputLastname.value == "") {
-			utils.showMessageError(inputLastname, "Debe completar este campo");
+			utils.showMessageError(inputLastname, "El apellido es obligatorio");
 			inputLastname.focus();
 		} else if (inputEmail.value == "") {
-			utils.showMessageError(inputEmail, "Debe completar este campo");
+			utils.showMessageError(inputEmail, "El email es obligatorio");
 			inputEmail.focus();
 		} else if (inputUsername.value == "") {
-			utils.showMessageError(inputUsername, "Debe completar este campo");
+			utils.showMessageError(inputUsername, "El username es obligatorio");
 			inputUsername.focus();
 		} else if (inputPassword.value == "") {
-			utils.showMessageError(inputPassword, "Debe completar este campo");
+			utils.showMessageError(inputPassword, "El password es obligatorio");
 			inputPassword.focus();
 		}
 

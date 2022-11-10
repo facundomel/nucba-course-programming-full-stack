@@ -1,3 +1,4 @@
+import utils from "./Utils.js";
 export default class Modal {
 	constructor(options) {
 		let defaults = {
@@ -241,16 +242,16 @@ export default class Modal {
 	static loginUser(success, cancel, registerUser) {
 		let modal = new Modal({
 			content: `
-				<form>
+				<form id="form-login">
 					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
 					<div class="form-group">
 						<label for="input-username-login">Username</label>
-						<input type="text" class="form-control" id="input-username-login" placeholder="Username" autofocus>
+						<input type="text" class="form-control" id="input-username-login" placeholder="Username" data-name="username" autofocus>
 						<small class="message-error"></small>
 					</div>
-					<div class="form-group div-gruop-password-login">
+					<div class="form-group div-group-password-login-and-register">
 						<label for="input-password-login">Password</label>
-						<input type="password" class="form-control prueba" id="input-password-login" placeholder="Password">
+						<input type="password" class="form-control prueba" id="input-password-login" name="password" placeholder="Password">
 						<i id="btn-show-password" class="fa-solid fa-eye btn-show-password"></i>
 						<i id="btn-hide-password" class="fa-solid fa-eye-slash hide btn-hide-password"></i>
 						<small class="message-error"></small>
@@ -262,21 +263,13 @@ export default class Modal {
 			footer: '<button class="success">Aceptar</button>',
 		});
 
+		const inputPasswordLogin = document.getElementById("input-password-login");
 		const btnShowPassword = document.getElementById("btn-show-password");
 		const btnHidePassword = document.getElementById("btn-hide-password");
-		const inputPasswordLogin = document.getElementById("input-password-login");
-
-		btnShowPassword.addEventListener("click", () => {
-			inputPasswordLogin.type = "text";
-			btnShowPassword.classList.add("hide");
-			btnHidePassword.classList.remove("hide");
-		});
-
-		btnHidePassword.addEventListener("click", () => {
-			inputPasswordLogin.type = "password";
-			btnShowPassword.classList.remove("hide");
-			btnHidePassword.classList.add("hide");
-		});
+		const form = document.getElementById("form-login");
+		this.#eventsPasswordLoginAndRegister(inputPasswordLogin, btnShowPassword, btnHidePassword);
+		this.#eventInputChange(form, btnShowPassword);
+		this.#eventInputChangeOnlyPassword(form, btnShowPassword);
 
 		modal.footerElement.classList.add("footer-button-right");
 
@@ -312,16 +305,16 @@ export default class Modal {
 	static registerUser(success, cancel) {
 		let modal = new Modal({
 			content: `
-				<form>
+				<form id="form-register">
 					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
           <div class="form-group">
             <label for="input-name">Nombre</label>
-            <input type="text" class="form-control" id="input-name" placeholder="Nombre" autofocus>
+            <input type="text" class="form-control" id="input-name" placeholder="Nombre" data-name="nombre" autofocus>
 						<small class="message-error"></small>
           </div>
           <div class="form-group">
             <label for="input-lastname">Apellido</label>
-            <input type="text" class="form-control" id="input-lastname" placeholder="Apellido">
+            <input type="text" class="form-control" id="input-lastname" placeholder="Apellido" data-name="apellido">
 						<small class="message-error"></small>
           </div>
           <div class="form-group">
@@ -331,12 +324,14 @@ export default class Modal {
           </div>
 					<div class="form-group">
             <label for="input-username-register">Username</label>
-            <input type="text" class="form-control" id="input-username-register" placeholder="Username">
+            <input type="text" class="form-control" id="input-username-register" placeholder="Username" data-name="username">
 						<small class="message-error"></small>
           </div>
-          <div class="form-group">
+          <div class="form-group div-group-password-login-and-register">
             <label for="input-password-register">Password</label>
             <input type="password" class="form-control" id="input-password-register" placeholder="Password">
+						<i id="btn-show-password-register" class="fa-solid fa-eye btn-show-password"></i>
+						<i id="btn-hide-password-register" class="fa-solid fa-eye-slash hide btn-hide-password"></i>
 						<small class="message-error"></small>
           </div>
         </form>
@@ -344,6 +339,14 @@ export default class Modal {
 			header: "",
 			footer: '<button class="cancel">Cancelar</button> <button class="success">Aceptar</button>',
 		});
+
+		const btnShowPassword = document.getElementById("btn-show-password-register");
+		const btnHidePassword = document.getElementById("btn-hide-password-register");
+		const inputPasswordRegister = document.getElementById("input-password-register");
+		const form = document.getElementById("form-register");
+		this.#eventsPasswordLoginAndRegister(inputPasswordRegister, btnShowPassword, btnHidePassword);
+		this.#eventInputChange(form, btnShowPassword);
+		this.#eventInputChangeOnlyPassword(form, btnShowPassword);
 
 		modal.footerElement.querySelector(".success").onclick = (event) => {
 			event.preventDefault();
@@ -385,5 +388,130 @@ export default class Modal {
 	static enableScroll() {
 		const body = document.querySelector("body");
 		body.classList.remove("disable-scroll");
+	}
+
+	static #eventsPasswordLoginAndRegister(input, btnShowPassword, btnHidePassword) {
+		btnShowPassword.addEventListener("click", () => {
+			if (input.value == "") return;
+
+			input.type = "text";
+			btnShowPassword.classList.add("hide");
+			btnHidePassword.classList.remove("hide");
+		});
+
+		btnHidePassword.addEventListener("click", () => {
+			input.type = "password";
+			btnShowPassword.classList.remove("hide");
+			btnHidePassword.classList.add("hide");
+		});
+	}
+
+	static #debounce(callback, timeout = 500) {
+		let timer;
+		return (...args) => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				callback.apply(this, args);
+			}, timeout);
+		};
+	}
+
+	static #eventInputChange(form, btnShowPassword) {
+		form.addEventListener(
+			"input",
+			this.#debounce((e) => {
+				switch (e.target.id) {
+					case "input-email":
+						this.#validEmail(e.target);
+						break;
+					case "input-password-login":
+						this.#validPasswordLogin(e.target, btnShowPassword);
+						break;
+					case "input-password-register":
+						this.#validPasswordRegister(e.target, btnShowPassword);
+						break;
+					default:
+						this.#validInputDefault(e.target);
+						break;
+				}
+			})
+		);
+	}
+
+	static #validEmail(input) {
+		const regex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+		const emailValue = input.value;
+		if (emailValue == "") {
+			utils.showMessageError(input, "El email es obligatorio");
+		} else if (!regex.test(emailValue)) {
+			utils.showMessageError(input, "El email es inválido");
+		} else {
+			utils.showMessageSuccess(input);
+		}
+	}
+
+	static #validPasswordLogin(input, btnShowPassword) {
+		const passwordValue = input.value;
+		if (passwordValue == "") {
+			utils.showMessageError(input, "El password es obligatorio");
+		} else {
+			utils.showMessageSuccess(input);
+		}
+	}
+
+	static #validPasswordRegister(input, btnShowPassword) {
+		const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+		const passwordValue = input.value;
+		if (passwordValue == "") {
+			utils.showMessageError(input, "El password es obligatorio");
+		} else if (!regex.test(passwordValue)) {
+			utils.showMessageError(input, "El password debe contener como mínimo una letra minúscula, una mayúscula y un total de 8 caracteres");
+		} else {
+			utils.showMessageSuccess(input);
+		}
+	}
+
+	static #validInputDefault(input) {
+		const inputValue = input.value;
+		if (inputValue == "") {
+			utils.showMessageError(input, `El ${input.dataset.name} es obligatorio`);
+		} else {
+			utils.showMessageSuccess(input);
+		}
+	}
+
+	static #debounceOnlyPassword(callback, timeout = 0) {
+		let timer;
+		return (...args) => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				callback.apply(this, args);
+			}, timeout);
+		};
+	}
+
+	static #eventInputChangeOnlyPassword(form, btnShowPassword) {
+		form.addEventListener(
+			"input",
+			this.#debounceOnlyPassword((e) => {
+				switch (e.target.id) {
+					case "input-password-login":
+						this.#validButtonsPassword(e.target, btnShowPassword);
+						break;
+					case "input-password-register":
+						this.#validButtonsPassword(e.target, btnShowPassword);
+						break;
+				}
+			})
+		);
+	}
+
+	static #validButtonsPassword(input, btnShowPassword) {
+		const passwordValue = input.value;
+		if (passwordValue == "") {
+			btnShowPassword.classList.add("btn-show-password");
+		} else {
+			btnShowPassword.classList.remove("btn-show-password");
+		}
 	}
 }
