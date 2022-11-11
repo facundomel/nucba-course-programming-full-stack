@@ -64,6 +64,7 @@ export default new (class Filter {
 	}
 
 	init() {
+		this.#renderFilteredProducts("consoles");
 		this.#eventClickFilter();
 	}
 })();

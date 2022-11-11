@@ -72,12 +72,8 @@ export default new (class Render {
 	}
 
 	renderProductsAll(products) {
-		containerProductsAll.innerHTML = products.map(this.#renderProductAll).join("");
-	}
-
-	#renderProductsOnLoadPage() {
-		let productsAll = dataProduct.filter((product) => !product.offer);
-		this.renderProductsAll(productsAll);
+        let productsAll = products.filter((product) => !product.offer);
+		containerProductsAll.innerHTML = productsAll.map(this.#renderProductAll).join("");
 	}
 
 	#renderProductsOffer() {
@@ -106,7 +102,6 @@ export default new (class Render {
 	}
 
 	init() {
-        this.#renderProductsOnLoadPage();
 		this.#renderProductsOffer();
 		this.#eventClickViewMoreInOffer();
 	}
