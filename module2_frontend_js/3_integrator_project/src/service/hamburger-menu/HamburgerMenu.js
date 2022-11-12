@@ -9,6 +9,7 @@ const cart = document.getElementById("cart");
 const linkCloseSession = document.getElementById("link-close-session");
 const linkHome = document.getElementById("link-home");
 const containerUserProfile = document.getElementById("container-user-profile");
+const body = document.querySelector("body");
 
 export default new (class HamburgerMenu {
 	#keyUserSessionLocalStorage = "userSession";
@@ -23,15 +24,34 @@ export default new (class HamburgerMenu {
 
 	#toggleCart() {
 		cart.classList.toggle("open-cart");
+
+		if (cart.classList.contains("open-cart")) {
+			this.#disableScroll();
+		} else {
+			this.#enableScroll();
+		}
+
 		if (hamburgerMenuToggle.checked) {
 			hamburgerMenuToggle.checked = false;
 			return;
 		}
+		
 		if (containerUserProfile.classList.contains("open-user-profile")) {
 			containerUserProfile.classList.remove("open-user-profile");
 			return;
 		}
+
 		overlay.classList.toggle("show-overlay");
+	}
+
+	// Scroll
+	#disableScroll() {
+		body.classList.add("disable-scroll");
+	}
+
+	// Scroll
+	#enableScroll() {
+		body.classList.remove("disable-scroll");
 	}
 
 	#closeMenu() {
@@ -84,18 +104,7 @@ export default new (class HamburgerMenu {
 		});
 	}
 
-	#eventsScroll() {
-		window.addEventListener("scroll", () => {
-			this.#closeMenu();
-		});
-
-		document.addEventListener("scroll", () => {
-			this.#scroll();
-		});
-	}
-
 	init() {
 		this.#eventsClick();
-		this.#eventsScroll();
 	}
 })();

@@ -274,11 +274,16 @@ export default new (class Cart {
 	#closeCartAndOverlay() {
 		cart.classList.remove("open-cart");
 		overlay.classList.remove("show-overlay");
+		this.#enableScroll();
 	}
 
 	// Scroll
 	#disableScroll() {
 		body.classList.add("disable-scroll");
+	}
+
+	#enableScroll() {
+		body.classList.remove("disable-scroll");
 	}
 
 	// Render all and disable buttons
@@ -339,12 +344,7 @@ export default new (class Cart {
 		btnCloseCart.addEventListener("click", () => {
 			cart.classList.remove("open-cart");
 			overlay.classList.remove("show-overlay");
-		});
-	}
-
-	#eventCloseCartOnScroll() {
-		window.addEventListener("scroll", () => {
-			this.#closeCartOnScroll();
+			this.#enableScroll();
 		});
 	}
 
@@ -363,7 +363,6 @@ export default new (class Cart {
 		this.#eventBuyProducts();
 		this.#eventClearCart();
 		this.#eventCloseCart();
-		this.#eventCloseCartOnScroll();
 		this.#eventCloseCartOnOverlayClick();
 		this.#renderDefaultQuantityCart();
 	}
