@@ -36,9 +36,6 @@ export default new (class UserProfile {
 		const inputUsername = document.getElementById("input-username-login");
 		const inputPassword = document.getElementById("input-password-login");
 
-		utils.showMessageSuccess(inputUsername);
-		utils.showMessageSuccess(inputPassword);
-
 		if (inputUsername.value != "" && inputPassword.value != "") {
 			const user = this.#dataUserLocalStorage.filter((user) => {
 				return user.username == inputUsername.value && user.password == inputPassword.value;
@@ -54,8 +51,7 @@ export default new (class UserProfile {
 				utils.showSnackbar(`¡Bienvenido ${inputUsername.value}!`, "background-color: var(--green-light)");
 				return true;
 			}
-		} 
-		else if (inputUsername.value == "") {
+		} else if (inputUsername.value == "") {
 			utils.showMessageError(inputUsername, "El username es obligatorio");
 			inputUsername.focus();
 		} else if (inputPassword.value == "") {
@@ -67,8 +63,6 @@ export default new (class UserProfile {
 	}
 
 	#showRegisterUser() {
-		this.#disableScroll();
-
 		utils.showRegisterUser(
 			() => {
 				if (this.#registerUser()) return true;
@@ -87,12 +81,6 @@ export default new (class UserProfile {
 		const inputUsername = document.getElementById("input-username-register");
 		const inputPassword = document.getElementById("input-password-register");
 
-		utils.showMessageSuccess(inputName);
-		utils.showMessageSuccess(inputLastname);
-		utils.showMessageSuccess(inputEmail);
-		utils.showMessageSuccess(inputUsername);
-		utils.showMessageSuccess(inputPassword);
-
 		if (
 			inputName.value != "" &&
 			inputLastname.value != "" &&
@@ -104,9 +92,25 @@ export default new (class UserProfile {
 				return user.username == inputUsername.value;
 			});
 
-			if (existUsername) {
+			if (!this.#validEmail(inputEmail) && !this.#validPasswordRegister(inputPassword)) {
+				utils.showMessageError(inputEmail, "El email es inválido");
+				utils.showMessageError(
+					inputPassword,
+					"El password debe contener como mínimo una letra minúscula, una mayúscula y un total de 8 caracteres"
+				);
+				inputEmail.focus();
+			} else if (!this.#validEmail(inputEmail)) {
+				utils.showMessageError(inputEmail, "El email es inválido");
+				inputEmail.focus();
+			} else if (!this.#validPasswordRegister(inputPassword)) {
+				utils.showMessageError(
+					inputPassword,
+					"El password debe contener como mínimo una letra minúscula, una mayúscula y un total de 8 caracteres"
+				);
+				inputPassword.focus();
+			} else if (existUsername) {
 				utils.showSnackbar(`El usuario ya existe`, "background-color: var(--red-light)");
-				inputName.focus();
+				inputUsername.focus();
 			} else {
 				let newUserId = 1;
 				if (this.#dataUserLocalStorage.length > 0)
@@ -135,6 +139,26 @@ export default new (class UserProfile {
 		}
 
 		return false;
+	}
+
+	#validEmail(input) {
+		const regex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+		const emailValue = input.value;
+		if (!regex.test(emailValue)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	#validPasswordRegister(input) {
+		const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+		const passwordValue = input.value;
+		if (!regex.test(passwordValue)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	#userLogout() {

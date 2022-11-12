@@ -56,7 +56,11 @@ export default new (class Cart {
           <div class="item-info">
             <h5 class="item-title">${product.name}</h5>
             <div class=prices-product-cart>
-              <span class="item-price-old">${product.offer == "true" ? `<div class="integer-price-old">$ ${integersAndDecimalsOfOldPrice[0]}</div> <sup class=decimal-price-old>${integersAndDecimalsOfOldPrice[1]}</sup>` : ""}</span>
+              <span class="item-price-old">${
+								product.offer == "true"
+									? `<div class="integer-price-old">$ ${integersAndDecimalsOfOldPrice[0]}</div> <sup class=decimal-price-old>${integersAndDecimalsOfOldPrice[1]}</sup>`
+									: ""
+							}</span>
               <span class="item-price">$ ${integersAndDecimalsOfCurrentPrice[0]} <sup>${integersAndDecimalsOfCurrentPrice[1]}</sup></span>
             </div>
           </div>
@@ -177,11 +181,17 @@ export default new (class Cart {
 
 		const prices = this.#getPricesProducts();
 		let integersAndDecimalsOfSubtotalPrice = utils.getIntegersAndDecimalsOfPrices(this.#getNumberWithSemicolon(prices.subTotal.toFixed(2)));
-		let integersAndDecimalsOfShippingPrice = utils.getIntegersAndDecimalsOfPrices(this.#getNumberWithSemicolon(prices.shippingPrice.toFixed(2)));
+		let integersAndDecimalsOfShippingPrice = utils.getIntegersAndDecimalsOfPrices(
+			this.#getNumberWithSemicolon(prices.shippingPrice.toFixed(2))
+		);
 		let integersAndDecimalsOfTotalPrice = utils.getIntegersAndDecimalsOfPrices(this.#getNumberWithSemicolon(prices.total.toFixed(2)));
 
 		subtotal.innerHTML = `$ ${integersAndDecimalsOfSubtotalPrice[0]} <sup>${integersAndDecimalsOfSubtotalPrice[1]}</sup>`;
-		shippingPrice.innerHTML = `${prices.shippingPrice > 0 ? "$ " + integersAndDecimalsOfShippingPrice[0] `<sup>${integersAndDecimalsOfSubtotalPrice[1]}</sup>` : "Gratis"}`;
+		shippingPrice.innerHTML = `${
+			prices.shippingPrice > 0
+				? "$ " + integersAndDecimalsOfShippingPrice[0]`<sup>${integersAndDecimalsOfSubtotalPrice[1]}</sup>`
+				: "Gratis"
+		}`;
 		total.innerHTML = `$ ${integersAndDecimalsOfTotalPrice[0]} <sup>${integersAndDecimalsOfTotalPrice[1]}</sup>`;
 	}
 

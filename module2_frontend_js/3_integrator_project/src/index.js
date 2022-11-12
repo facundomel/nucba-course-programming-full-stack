@@ -6,9 +6,9 @@ import userProfile from "./service/user-profile/UserProfile.js";
 
 function init() {
 	render.init();
+	filter.init();
 	hamburgerMenu.init();
 	cart.init();
-	filter.init();
 	userProfile.init();
 }
 

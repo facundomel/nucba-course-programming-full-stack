@@ -220,13 +220,13 @@
 
 .item-description {
 	height: 100px;
-  overflow: auto;
-  padding: 8px;
+	overflow: auto;
+	padding: 8px;
 	font-weight: 500;
 }
 
 .item-description::-webkit-scrollbar {
-  width: 4px;
+	width: 4px;
 	display: flex;
 }
 

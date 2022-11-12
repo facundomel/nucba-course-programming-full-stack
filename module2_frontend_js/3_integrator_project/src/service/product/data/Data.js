@@ -138,7 +138,7 @@ export default new (class Data {
 				"17.799,00",
 				"./assets/products/smart_watch/xiaomi_redmi_watch_2_lite.png",
 				"smart-watch",
-				false,
+				false
 			),
 
 			new Product(

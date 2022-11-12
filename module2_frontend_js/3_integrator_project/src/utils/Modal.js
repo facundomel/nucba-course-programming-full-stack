@@ -246,12 +246,12 @@ export default class Modal {
 					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
 					<div class="form-group">
 						<label for="input-username-login">Username</label>
-						<input type="text" class="form-control" id="input-username-login" placeholder="Username" data-name="username" autofocus>
+						<input type="text" class="form-control" id="input-username-login" placeholder="Username" data-name="username">
 						<small class="message-error"></small>
 					</div>
 					<div class="form-group div-group-password-login-and-register">
 						<label for="input-password-login">Password</label>
-						<input type="password" class="form-control prueba" id="input-password-login" name="password" placeholder="Password">
+						<input type="password" class="form-control" id="input-password-login" name="password" placeholder="Password" data-name="password">
 						<i id="btn-show-password" class="fa-solid fa-eye btn-show-password"></i>
 						<i id="btn-hide-password" class="fa-solid fa-eye-slash hide btn-hide-password"></i>
 						<small class="message-error"></small>
@@ -268,7 +268,7 @@ export default class Modal {
 		const btnHidePassword = document.getElementById("btn-hide-password");
 		const form = document.getElementById("form-login");
 		this.#eventsPasswordLoginAndRegister(inputPasswordLogin, btnShowPassword, btnHidePassword);
-		this.#eventInputChange(form, btnShowPassword);
+		this.#eventInputChange(form);
 		this.#eventInputChangeOnlyPassword(form, btnShowPassword);
 
 		modal.footerElement.classList.add("footer-button-right");
@@ -296,10 +296,12 @@ export default class Modal {
 			event.preventDefault();
 			if (registerUser) registerUser();
 			modal.close();
-			this.enableScroll();
 		};
 
 		modal.open();
+
+		const inputUserName = document.getElementById("input-username-login");
+		inputUserName.focus();
 	}
 
 	static registerUser(success, cancel) {
@@ -309,7 +311,7 @@ export default class Modal {
 					<img src="./assets/logo/logo.png" alt="Logo" title="Inicio" />
           <div class="form-group">
             <label for="input-name">Nombre</label>
-            <input type="text" class="form-control" id="input-name" placeholder="Nombre" data-name="nombre" autofocus>
+            <input type="text" class="form-control" id="input-name" placeholder="Nombre" data-name="nombre">
 						<small class="message-error"></small>
           </div>
           <div class="form-group">
@@ -329,7 +331,7 @@ export default class Modal {
           </div>
           <div class="form-group div-group-password-login-and-register">
             <label for="input-password-register">Password</label>
-            <input type="password" class="form-control" id="input-password-register" placeholder="Password">
+            <input type="password" class="form-control" id="input-password-register" placeholder="Password" data-name="password">
 						<i id="btn-show-password-register" class="fa-solid fa-eye btn-show-password"></i>
 						<i id="btn-hide-password-register" class="fa-solid fa-eye-slash hide btn-hide-password"></i>
 						<small class="message-error"></small>
@@ -345,7 +347,7 @@ export default class Modal {
 		const inputPasswordRegister = document.getElementById("input-password-register");
 		const form = document.getElementById("form-register");
 		this.#eventsPasswordLoginAndRegister(inputPasswordRegister, btnShowPassword, btnHidePassword);
-		this.#eventInputChange(form, btnShowPassword);
+		this.#eventInputChange(form);
 		this.#eventInputChangeOnlyPassword(form, btnShowPassword);
 
 		modal.footerElement.querySelector(".success").onclick = (event) => {
@@ -364,9 +366,12 @@ export default class Modal {
 			event.preventDefault();
 			if (cancel) cancel();
 			modal.close();
-			this.enableScroll();
 		};
+
 		modal.open();
+
+		const inputName = document.getElementById("input-name");
+		inputName.focus();
 	}
 
 	static prompt(value, def, success, cancel) {
@@ -385,6 +390,7 @@ export default class Modal {
 		modal.open();
 	}
 
+	// Scroll
 	static enableScroll() {
 		const body = document.querySelector("body");
 		body.classList.remove("disable-scroll");
@@ -406,7 +412,7 @@ export default class Modal {
 		});
 	}
 
-	static #debounce(callback, timeout = 500) {
+	static #debounce(callback, timeout = 200) {
 		let timer;
 		return (...args) => {
 			clearTimeout(timer);
@@ -416,7 +422,7 @@ export default class Modal {
 		};
 	}
 
-	static #eventInputChange(form, btnShowPassword) {
+	static #eventInputChange(form) {
 		form.addEventListener(
 			"input",
 			this.#debounce((e) => {
@@ -424,11 +430,8 @@ export default class Modal {
 					case "input-email":
 						this.#validEmail(e.target);
 						break;
-					case "input-password-login":
-						this.#validPasswordLogin(e.target, btnShowPassword);
-						break;
 					case "input-password-register":
-						this.#validPasswordRegister(e.target, btnShowPassword);
+						this.#validPasswordRegister(e.target);
 						break;
 					default:
 						this.#validInputDefault(e.target);
@@ -450,16 +453,7 @@ export default class Modal {
 		}
 	}
 
-	static #validPasswordLogin(input, btnShowPassword) {
-		const passwordValue = input.value;
-		if (passwordValue == "") {
-			utils.showMessageError(input, "El password es obligatorio");
-		} else {
-			utils.showMessageSuccess(input);
-		}
-	}
-
-	static #validPasswordRegister(input, btnShowPassword) {
+	static #validPasswordRegister(input) {
 		const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 		const passwordValue = input.value;
 		if (passwordValue == "") {

@@ -73,12 +73,12 @@ export default new (class Utils {
 		inputs[0].focus();
 	}
 
-	showMessageSuccess(input) {
-		const parentInput = input.parentElement;
-		const messageError = parentInput.querySelector("small");
-		parentInput.classList.remove("error");
-		parentInput.classList.add("success");
-		messageError.textContent = null;
+	clearInputsError(...inputs) {
+		inputs.forEach((input) => {
+			const parentInput = input.parentElement;
+			parentInput.classList.remove("error");
+		});
+		inputs[0].focus();
 	}
 
 	clearMessageErrorAndSuccess(input) {
