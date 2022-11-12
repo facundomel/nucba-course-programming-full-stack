@@ -1,5 +1,10 @@
 /* Media queries */
 @media (max-width: 800px) {
+	/* Carousel */
+	.carousel-item img {
+		max-height: 350px;
+	}
+
 	/* Footer */
 	.footer-section-final {
 		justify-content: center;
@@ -18,6 +23,11 @@
 }
 
 @media (max-width: 500px) {
+		/* Carousel */
+		.carousel-item img {
+			max-height: 250px;
+		}
+
 	/* Cart */
 	.cart-item {
 		justify-content: center;
