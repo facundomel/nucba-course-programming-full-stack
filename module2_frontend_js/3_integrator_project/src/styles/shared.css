@@ -264,7 +264,7 @@ nav a img {
 
 /* Cart */
 .cart {
-	display: flex;
+	display: none;
 	position: absolute;
 	top: 65px;
 	right: 0;
@@ -276,8 +276,8 @@ nav a img {
 	border-bottom-left-radius: 15px;
 	width: 500px;
 	height: 95vh;
-	transform: translate(200%);
-	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+	/* transform: translate(200%);
+	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99); */
 	overflow: auto;
 }
 
@@ -291,8 +291,8 @@ nav a img {
 
 .open-cart {
 	display: flex;
-	transform: translate(0%);
-	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+	/* transform: translate(0%);
+	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99); */
 }
 
 .quantity-products-cart {
