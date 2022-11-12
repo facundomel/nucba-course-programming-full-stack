@@ -15,11 +15,17 @@ export default new (class HamburgerMenu {
 	#keyUserSessionLocalStorage = "userSession";
 
 	#toggleMenu() {
+		if (!hamburgerMenuToggle.checked) {
+			this.#disableScroll();
+		} else {
+			this.#enableScroll();
+		}
+
 		if (cart.classList.contains("open-cart")) {
 			cart.classList.remove("open-cart");
 			return;
 		}
-		
+
 		overlay.classList.toggle("show-overlay");
 	}
 
@@ -59,6 +65,7 @@ export default new (class HamburgerMenu {
 		if (!hamburgerMenuToggle.checked) return;
 		overlay.classList.remove("show-overlay");
 		hamburgerMenuToggle.checked = false;
+		this.#enableScroll();
 	}
 
 	#userLogout() {

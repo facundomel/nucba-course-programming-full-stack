@@ -265,12 +265,6 @@ export default new (class Cart {
 	}
 
 	// Show and close cart
-	#closeCartOnScroll() {
-		if (!cart.classList.contains("open-cart")) return;
-
-		this.#closeCartAndOverlay();
-	}
-
 	#closeCartAndOverlay() {
 		cart.classList.remove("open-cart");
 		overlay.classList.remove("show-overlay");

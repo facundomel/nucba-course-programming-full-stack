@@ -203,7 +203,6 @@ export default class Modal {
 			event.preventDefault();
 			if (cancel) cancel();
 			modal.close();
-			this.enableScroll();
 		};
 		modal.open();
 	}

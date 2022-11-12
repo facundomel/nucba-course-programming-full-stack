@@ -275,7 +275,7 @@ nav a img {
 	z-index: 2;
 	border-bottom-left-radius: 15px;
 	width: 500px;
-	height: 95vh;
+	height: 90vh;
 	transform: translate(200%);
 	transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
 	overflow: auto;
@@ -987,7 +987,7 @@ form div {
 
 form p {
 	font-size: 0.7em;
-	text-align: center; 
+	text-align: center;
 	margin: 0;
 }
 
