@@ -35,7 +35,7 @@ export default new (class HamburgerMenu {
 			hamburgerMenuToggle.checked = false;
 			return;
 		}
-		
+
 		if (containerUserProfile.classList.contains("open-user-profile")) {
 			containerUserProfile.classList.remove("open-user-profile");
 			return;
@@ -58,11 +58,6 @@ export default new (class HamburgerMenu {
 		if (!hamburgerMenuToggle.checked) return;
 		overlay.classList.remove("show-overlay");
 		hamburgerMenuToggle.checked = false;
-	}
-
-	#scroll() {
-		if (!overlay.classList.contains("show-overlay")) return;
-		overlay.classList.remove("show-overlay");
 	}
 
 	#userLogout() {
