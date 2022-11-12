@@ -177,30 +177,35 @@ export default new (class UserProfile {
 	}
 
 	#toggleUserProfile() {
-		// containerUserProfile.classList.toggle("open-user-profile");
-		// overlay.classList.toggle("show-overlay");
 		containerUserProfile.classList.toggle("open-user-profile");
+
+		if (containerUserProfile.classList.contains("open-user-profile")) {
+			this.#disableScroll();
+		} else {
+			this.#enableScroll();
+		}
+
 		if (cart.classList.contains("open-cart")) {
 			cart.classList.remove("open-cart");
 			return;
 		}
+
 		overlay.classList.toggle("show-overlay");
-	}
-
-	#closeUserProfileOnScroll() {
-		if (!containerUserProfile.classList.contains("open-user-profile")) return;
-
-		this.#closeUserProfileAndOverlay();
 	}
 
 	#closeUserProfileAndOverlay() {
 		containerUserProfile.classList.remove("open-user-profile");
 		overlay.classList.remove("show-overlay");
+		this.#enableScroll();
 	}
 
 	// Scroll
 	#disableScroll() {
 		body.classList.add("disable-scroll");
+	}
+
+	#enableScroll() {
+		body.classList.remove("disable-scroll");
 	}
 
 	// Events
@@ -218,16 +223,9 @@ export default new (class UserProfile {
 		});
 	}
 
-	#eventCloseUserprofileOnScroll() {
-		window.addEventListener("scroll", () => {
-			this.#closeUserProfileOnScroll();
-		});
-	}
-
 	// Init
 	init() {
 		this.#showLoginUser();
 		this.#eventsClick();
-		this.#eventCloseUserprofileOnScroll();
 	}
 })();

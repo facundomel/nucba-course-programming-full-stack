@@ -19,6 +19,7 @@ export default new (class HamburgerMenu {
 			cart.classList.remove("open-cart");
 			return;
 		}
+		
 		overlay.classList.toggle("show-overlay");
 	}
 
