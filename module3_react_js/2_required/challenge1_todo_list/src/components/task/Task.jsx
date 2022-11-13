@@ -1,16 +1,17 @@
 import React from "react";
-import "./styles.css";
+import {MdDelete} from 'react-icons/md';
+import "./TaskStyles.css";
 
-export const Task = (props) => {
+export const Task = props => {
 	const {
-		onChange,
-		data: { id, description, done },
+		data: { id, description },
 	} = props;
 
 	return (
 		<>
 			<div className="task">
 				<span>{description}</span>
+				<MdDelete className="btn-delete" />
 			</div>
 		</>
 	);

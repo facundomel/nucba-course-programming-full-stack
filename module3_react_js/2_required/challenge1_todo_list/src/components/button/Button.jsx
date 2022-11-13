@@ -1,11 +1,10 @@
-import React from 'react'
-import './styles.css';
+import React from "react";
+import "./ButtonStyles.css";
 
 export const Button = props => {
-  console.log("Entra")
-  return (
-    <>
-      <button disabled={props.description ? "" : "disabled"} onClick={props.action}>{props.name}</button>
-    </>
-  )
-}
+	return (
+		<button className={`button-component ${props.isDisabled ? "disable-button" : "enable-button"}`} onClick={props.clickHandler}>
+			{props.value}
+		</button>
+	);
+};

@@ -1,8 +1,9 @@
 import React from "react";
+import { Button } from "../button/Button";
 import { Task } from "../task/Task";
-import "./styles.css";
+import "./TaskListStyles.css";
 
-export const TaskList = (props) => {
+export const TaskList = props => {
 	const { list, setList } = props;
 
 	const onChangeStatus = (e) => {
@@ -14,8 +15,7 @@ export const TaskList = (props) => {
 		setList(updateList);
 	};
 
-	const onClickRemoveItem = (e) => {
-		const updateList = list.filter((item) => !item.done);
+	const onClickRemoveItem = () => {
 		setList([]);
 	};
 
@@ -24,11 +24,7 @@ export const TaskList = (props) => {
 	return (
 		<div className="tasks-list">
 			{list.length ? taskList : "No hay tareas"}
-			{list.length ? (
-				<button className="btn-delete-all" onClick={onClickRemoveItem}>
-					Borrar Tareas
-				</button>
-			) : null}
+			{list.length ? <Button value="Borrar Tareas" clickHandler={onClickRemoveItem} /> : null}
 		</div>
 	);
 };

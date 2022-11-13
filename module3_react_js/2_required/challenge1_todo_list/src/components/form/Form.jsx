@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
-import "./styles.css";
+import { Button } from "../button/Button";
+import "./FormStyles.css";
 
 export const Form = props => {
 	const { handleAddItem } = props;
@@ -11,7 +12,6 @@ export const Form = props => {
 		e.preventDefault();
 
 		handleAddItem({
-			done: false,
 			id: (+new Date()).toString(),
 			description,
 		});
@@ -21,16 +21,21 @@ export const Form = props => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
+			<form className="form">
 				<div className="todo-list">
 					<div className="file-input">
 						<div className="input-container">
 							<FcSearch className="icon-search" />
-							<input type="text" className="input-text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Ingresá una tarea" autoFocus />
+							<input
+								type="text"
+								className="input-text"
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+								placeholder="Ingresá una tarea"
+								autoFocus
+							/>
 						</div>
-						<button className="button pink add-btn" disabled={description ? "" : "disabled"}>
-							Agregar
-						</button>
+						<Button value="Agregar" clickHandler={handleSubmit} isDisabled={description ? false : true} />
 					</div>
 				</div>
 			</form>

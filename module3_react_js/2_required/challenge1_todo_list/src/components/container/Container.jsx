@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "../form/Form";
 import { TaskList } from "../task-list/TaskList";
-import './styles.css'
+import "./ContainerStyles.css";
 
 export const Container = () => {
 	const [list, setList] = useState([]);
