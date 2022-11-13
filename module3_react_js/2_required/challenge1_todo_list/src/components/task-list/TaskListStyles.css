@@ -4,5 +4,7 @@
 	align-items: center;
 	flex-direction: column;
 	width: 100%;
+  min-width: 300px;
 	gap: 1.5rem;
+  color: white;
 }

@@ -11,6 +11,7 @@ export const TaskList = (props) => {
 			return item.id != id;
 		});
 		setList(updatedList);
+		props.handleFocusInputTask();
 	};
 
 	const onClickRemoveItem = () => {
@@ -23,7 +24,7 @@ export const TaskList = (props) => {
 	return (
 		<div className="tasks-list">
 			{list.length ? taskList : "No hay tareas"}
-			{list.length ? <Button value="Borrar Tareas" clickHandler={onClickRemoveItem} /> : null}
+			{list.length ? <Button value="Borrar Tareas" width="100%" clickHandler={onClickRemoveItem} /> : null}
 		</div>
 	);
 };

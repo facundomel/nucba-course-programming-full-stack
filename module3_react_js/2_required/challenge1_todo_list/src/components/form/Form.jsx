@@ -29,12 +29,12 @@ export const Form = (props) => {
 						className="input-text"
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
-						placeholder="Ingresá una tarea"
+						placeholder="Tarea"
 						ref={props.refInputTask}
 						autoFocus
 					/>
 				</div>
-				<Button value="Agregar" clickHandler={handleSubmit} isDisabled={description ? false : true} />
+				<Button value="Agregar" clickHandler={handleSubmit} isDisabled={description ? false : true} width="20%" />
 			</form>
 		</>
 	);

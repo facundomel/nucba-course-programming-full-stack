@@ -1,14 +1,14 @@
-import './App.css';
-import { Container } from './components/container/Container';
+import "./App.css";
+import { Container } from "./components/container/Container";
+import GlobalStyles from "./global-styles/GlobalStyles";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Container />
-      </header>
-    </div>
-  );
+	return (
+		<>
+			<Container />
+			<GlobalStyles />
+		</>
+	);
 }
 
 export default App;
