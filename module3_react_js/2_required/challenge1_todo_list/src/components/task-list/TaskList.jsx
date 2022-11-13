@@ -23,7 +23,7 @@ export const TaskList = (props) => {
 
 	return (
 		<div className="tasks-list">
-			{list.length ? taskList : "No hay tareas"}
+			{list.length ? taskList : "No hay ningúna tarea"}
 			{list.length ? <Button value="Borrar Tareas" width="100%" clickHandler={onClickRemoveItem} /> : null}
 		</div>
 	);
