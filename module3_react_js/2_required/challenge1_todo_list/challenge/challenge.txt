@@ -1,0 +1,11 @@
+Desafío:
+
+En este desafío deberemos crear un proyecto nuevo con create react app.
+
+👉 Deberán realizar una mini ToDo List. Que deberá contar, como mínimo, con un input y dos botones.
+Uno de los botones, deberá capturar el valor en el input y renderizarlo debajo del mismo. El otro botón deberá borrar toda la lista previamente renderizada
+
+
+👉 Plus: Quien sea el/la valiente que se anime, podrá realizarlo con el LocalStorage, para mantener la lista al refrescar nuestra página.
+
+No borres este proyecto, vamos a iterarlo mas adelante ;)
