@@ -3,7 +3,7 @@ import { FcSearch } from "react-icons/fc";
 import { Button } from "../button/Button";
 import "./FormStyles.css";
 
-export const Form = props => {
+export const Form = (props) => {
 	const { handleAddItem } = props;
 
 	const [description, setDescription] = useState("");
@@ -22,22 +22,19 @@ export const Form = props => {
 	return (
 		<>
 			<form className="form">
-				<div className="todo-list">
-					<div className="file-input">
-						<div className="input-container">
-							<FcSearch className="icon-search" />
-							<input
-								type="text"
-								className="input-text"
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-								placeholder="Ingresá una tarea"
-								autoFocus
-							/>
-						</div>
-						<Button value="Agregar" clickHandler={handleSubmit} isDisabled={description ? false : true} />
-					</div>
+				<div className="input-container">
+					<FcSearch className="icon-search" />
+					<input
+						type="text"
+						className="input-text"
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
+						placeholder="Ingresá una tarea"
+						ref={props.refInputTask}
+						autoFocus
+					/>
 				</div>
+				<Button value="Agregar" clickHandler={handleSubmit} isDisabled={description ? false : true} />
 			</form>
 		</>
 	);

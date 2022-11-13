@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Form } from "../form/Form";
 import { TaskList } from "../task-list/TaskList";
 import "./ContainerStyles.css";
@@ -10,11 +10,17 @@ export const Container = () => {
 		setList([...list, addItem]);
 	};
 
+	const refInputTask = useRef(null);
+
+	const handleFocusInputTask = () => {
+		refInputTask.current.focus();
+	};
+
 	return (
 		<>
 			<div className="container">
-				<Form handleAddItem={handleAddItem} />
-				<TaskList list={list} setList={setList} />
+				<Form handleAddItem={handleAddItem} refInputTask={refInputTask} />
+				<TaskList list={list} setList={setList} handleFocusInputTask={handleFocusInputTask} />
 			</div>
 		</>
 	);

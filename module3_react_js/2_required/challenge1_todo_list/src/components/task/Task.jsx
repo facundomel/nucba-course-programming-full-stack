@@ -1,8 +1,8 @@
 import React from "react";
-import {MdDelete} from 'react-icons/md';
+import { MdDelete } from "react-icons/md";
 import "./TaskStyles.css";
 
-export const Task = props => {
+export const Task = (props) => {
 	const {
 		data: { id, description },
 	} = props;
@@ -11,7 +11,7 @@ export const Task = props => {
 		<>
 			<div className="task">
 				<span>{description}</span>
-				<MdDelete className="btn-delete" onClick={() => props.clickHandler(id)}/>
+				<MdDelete className="btn-delete" onClick={() => props.clickHandler(id)} />
 			</div>
 		</>
 	);

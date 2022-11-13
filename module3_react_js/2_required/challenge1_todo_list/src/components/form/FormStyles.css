@@ -1,46 +1,36 @@
 .form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.todo-list {
-  width: 100%;
-}
-
-.file-input {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 20px;
 }
 
 .input-container {
-  display: flex;
+	display: flex;
 }
 
 .input-text {
-  display: flex;
-  background-color: #3b3b3b;
-  outline: none;
-  border: none;
-  padding: 15px 10px;
-  border-radius: 0px 8px 8px 0px;
-  width: 250px;
-  color: white;
-  padding-left: 5px;
-  font-size: 0.8rem;
+	display: flex;
+	background-color: #3b3b3b;
+	outline: none;
+	border: none;
+	padding: 15px 10px;
+	border-radius: 0px 8px 8px 0px;
+	width: 250px;
+	color: white;
+	padding-left: 5px;
+	font-size: 0.8rem;
 }
 
 .input-text::placeholder {
-  color: #808080;
+	color: #808080;
 }
 
 .icon-search {
-  width: 34px;
-  background-color: #3b3b3b;
-  border-radius: 8px 0px 0px 8px;
-  padding: 0.8rem;
-  border: none;
+	width: 34px;
+	background-color: #3b3b3b;
+	border-radius: 8px 0px 0px 8px;
+	padding: 0.8rem;
+	border: none;
 }
