@@ -11,7 +11,7 @@ export const Task = props => {
 		<>
 			<div className="task">
 				<span>{description}</span>
-				<MdDelete className="btn-delete" />
+				<MdDelete className="btn-delete" onClick={() => props.clickHandler(id)}/>
 			</div>
 		</>
 	);

@@ -7,6 +7,7 @@ export const TaskList = props => {
 	const { list, setList } = props;
 
 	const onChangeStatus = (e) => {
+		console.log(e.id)
 		const { name, checked } = e.target;
 		const updateList = list.map((item) => ({
 			...item,
@@ -15,11 +16,18 @@ export const TaskList = props => {
 		setList(updateList);
 	};
 
+	const onClickRemoveById = (id) => {
+		const updatedList = list.filter((item) => {
+			return item.id != id;
+		});
+		setList(updatedList);
+	}
+
 	const onClickRemoveItem = () => {
 		setList([]);
 	};
 
-	const taskList = list.map((item) => <Task key={item.id} data={item} onChange={onChangeStatus} />);
+	const taskList = list.map((item) => <Task key={item.id} data={item} clickHandler={onClickRemoveById} />);
 
 	return (
 		<div className="tasks-list">
