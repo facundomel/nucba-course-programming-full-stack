@@ -2,4 +2,4 @@
 
 ## Módulo 3 - React JS: Challenge 1
 
-### Link de Vercel: https://todo-list.vercel.app/
+### Link de Vercel: https://challenge-todo-list-react.vercel.app/
