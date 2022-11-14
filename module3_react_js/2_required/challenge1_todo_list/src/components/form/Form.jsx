@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
+import localStorage from "../../repository/LocalStorage";
 import { Button } from "../button/Button";
 import "./FormStyles.css";
 
 export const Form = (props) => {
-	const { handleAddItem } = props;
+	const { handleAddItem, list } = props;
 
 	const [description, setDescription] = useState("");
+
+	const refInputTask = props.refInputTask;
+
+	const task = {
+		id: (+new Date()).toString(),
+		description,
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		handleAddItem({
-			id: (+new Date()).toString(),
-			description,
-		});
+		handleAddItem(task);
 
+		localStorage.save("tasks", [...list, task]);
 		setDescription("");
+		refInputTask.current.focus();
 	};
 
 	return (
@@ -30,7 +37,7 @@ export const Form = (props) => {
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 						placeholder="Tarea"
-						ref={props.refInputTask}
+						ref={refInputTask}
 						autoFocus
 					/>
 				</div>

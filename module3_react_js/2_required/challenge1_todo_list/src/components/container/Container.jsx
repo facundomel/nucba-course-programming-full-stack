@@ -19,7 +19,7 @@ export const Container = () => {
 	return (
 		<>
 			<div className="container">
-				<Form handleAddItem={handleAddItem} refInputTask={refInputTask} />
+				<Form handleAddItem={handleAddItem} list={list} refInputTask={refInputTask} />
 				<TaskList list={list} setList={setList} handleFocusInputTask={handleFocusInputTask} />
 			</div>
 		</>

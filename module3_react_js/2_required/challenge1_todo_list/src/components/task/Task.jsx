@@ -3,9 +3,7 @@ import { MdDelete } from "react-icons/md";
 import "./TaskStyles.css";
 
 export const Task = (props) => {
-	const {
-		data: { id, description },
-	} = props;
+	const { id, description } = props.data;
 
 	return (
 		<>

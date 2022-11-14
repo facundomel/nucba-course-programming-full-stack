@@ -1,7 +1,7 @@
 .button-component {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: linear-gradient(98.81deg, #4e8bb8 -0.82%, #bbf0ff 101.53%);
 	outline: none;
 	border: 0px solid;

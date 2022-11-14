@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import localStorage from "../../repository/LocalStorage";
 import { Button } from "../button/Button";
 import { Task } from "../task/Task";
 import "./TaskListStyles.css";
 
 export const TaskList = (props) => {
+	const keyLocalStorage = "tasks";
 	const { list, setList } = props;
+
+	useEffect(() => {
+		setList(localStorage.get(keyLocalStorage) || []);
+	}, []);
 
 	const onClickRemoveById = (id) => {
 		const updatedList = list.filter((item) => {
 			return item.id != id;
 		});
 		setList(updatedList);
+		localStorage.save(keyLocalStorage, updatedList);
 		props.handleFocusInputTask();
 	};
 
 	const onClickRemoveItem = () => {
 		setList([]);
+		localStorage.remove(keyLocalStorage);
 		props.handleFocusInputTask();
 	};
 
