@@ -1,0 +1,3 @@
+Desafío:
+
+Deberemos crear un proyecto con Create React App y revisar los componentes que crea y cómo los renderiza para comenzar a acostumbrarnos a esta forma de componer nuestras aplicaciones.

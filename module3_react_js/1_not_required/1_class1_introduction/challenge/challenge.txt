@@ -1,0 +1,3 @@
+Desafío:
+
+¡Bienvenido/a a React! Hoy tuvimos una introducción a lo que va a ser una de las grandes herramientas a manejar. La actividad del día va a ser repasar lo visto en clase. Aprovechá y adelantá actividades que te pudieron haber quedado pendientes!
