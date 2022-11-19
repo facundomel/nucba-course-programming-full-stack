@@ -1,6 +1,5 @@
-import { Main } from "./components/Main";
-import { Menu } from "./components/Menu";
-import GlobalStyles from "./global-styles/GlobalStyles";
+import { Main } from "./components/hamburger-menu/Main";
+import GlobalStyles from "./components/global-styles/GlobalStyles";
 
 function App() {
 	return (

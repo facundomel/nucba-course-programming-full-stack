@@ -1,5 +1,5 @@
-import { Chronometer } from './components/Chronometer.jsx';
-import GlobalStyles from './global-styles/GlobalStyles.js'
+import { Chronometer } from './components/chronometer/Chronometer';
+import GlobalStyles from './components/global-styles/GlobalStyles'
 
 function App() {
   return (

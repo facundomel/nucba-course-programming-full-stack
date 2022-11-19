@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ContainerChronometerStyled } from "./ChronometerStyles";
+import { ChronometerStyled } from "./ChronometerStyles.js";
 
 export const Chronometer = () => {
 	const [counter, setCounter] = useState(0);
@@ -16,7 +16,7 @@ export const Chronometer = () => {
 
 	return (
 		<>
-			<ContainerChronometerStyled>{counter}</ContainerChronometerStyled>
+			<ChronometerStyled>{counter}</ChronometerStyled>
 		</>
 	);
 };

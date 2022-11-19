@@ -1,0 +1,4 @@
+Desafío:
+
+Nuevamente vamos a iterar el ultimo desafio. 
+El resultado deberá ser el mismo, pero en vez de utilizar setState, manejaremos los cambios de estado con useReducer.
