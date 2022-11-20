@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ItemCart } from "../item-cart/ItemCart";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionOpenCart, actionProductsLengthCart } from "../../redux/actions/Actions";
 import {
 	CartContainerStyled,
 	ButtonCartContainerStyled,
@@ -12,20 +13,21 @@ import {
 } from "./CartStyles";
 
 const Cart = () => {
-	const items = useSelector((state) => state.cart);
+	const dispatch = useDispatch();
 
-	const [cartOpen, setCartOpen] = useState(false);
-	const [productsLength, setProductsLength] = useState(0);
+	const items = useSelector((state) => state.cart.itemsCart);
+	const cartOpen = useSelector((state) => state.cart.openCart);
+	const productsLength = useSelector((state) => state.cart.productsLengthCart);
+
+	const total = items.reduce((previous, current) => previous + current.amount * current.price, 0);
 
 	useEffect(() => {
-		setProductsLength(items.items?.reduce((previous, current) => previous + current.amount, 0));
-	}, [items.items]);
-
-	const total = items.items?.reduce((previous, current) => previous + current.amount * current.price, 0);
+		dispatch(actionProductsLengthCart());
+	}, [items]);
 
 	return (
 		<CartContainerStyled>
-			<ButtonCartContainerStyled onClick={() => setCartOpen(!cartOpen)}>
+			<ButtonCartContainerStyled onClick={() => dispatch(actionOpenCart())}>
 				<ButtonCartStyled>
 					{!cartOpen ? (
 						<svg width={"35px"} viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,15 +56,15 @@ const Cart = () => {
 				{!cartOpen && <ProductsNumberStyled>{productsLength}</ProductsNumberStyled>}
 			</ButtonCartContainerStyled>
 
-			{items.items && cartOpen && (
+			{items && cartOpen && (
 				<CartStyled>
 					<h2>Tu carrito</h2>
 
-					{items.items.length === 0 ? (
+					{items.length === 0 ? (
 						<p>Tu carrito esta vacio</p>
 					) : (
 						<ProductsContainerStyled>
-							{items.items.map((item, i) => (
+							{items.map((item, i) => (
 								<ItemCart key={i} item={item} />
 							))}
 						</ProductsContainerStyled>

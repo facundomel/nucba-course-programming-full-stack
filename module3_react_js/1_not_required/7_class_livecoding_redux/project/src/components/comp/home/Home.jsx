@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import { HomeStyled } from "./HomeStyles";
 
 export const Home = () => {
-	const items = useSelector((state) => state.cart);
+	const items = useSelector((state) => state.cart.itemsCart);
 
 	useEffect(() => {
-		localStorage.setItem("cartProducts", JSON.stringify(items.items));
-	}, [items.items]);
+		localStorage.setItem("cartProducts", JSON.stringify(items));
+	}, [items]);
 
 	return (
 		<HomeStyled>

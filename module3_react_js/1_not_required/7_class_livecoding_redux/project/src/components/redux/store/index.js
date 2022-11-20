@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { reducer } from '../reducers/index';
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { configureStore } from "@reduxjs/toolkit";
+import { reducer } from "../reducers/index";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const store = configureStore({
-  reducer,
-  composeWithDevTools,
+	reducer,
+	composeWithDevTools,
 });
 
-store.subscribe(() => console.log('cambio el estado'));
+store.subscribe(() => console.log("cambio el estado"));
 
 export default store;

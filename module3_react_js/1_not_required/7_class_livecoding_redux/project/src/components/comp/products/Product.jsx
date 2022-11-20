@@ -1,7 +1,7 @@
 import { productData } from "../../../data/data";
 import { useDispatch } from "react-redux";
-import { TYPES } from "../../redux/action-type/ActionType";
-import { ProductsContainerStyled, ProductStyled, ButtonStyled, ImgStyled, PStyled } from "./ProductStyles";
+import { actionAddProduct } from "../../redux/actions/Actions";
+import { ProductsContainerStyled, ProductStyled, ButtonStyled, ImgStyled, NameAndPriceStyled } from "./ProductStyles";
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -12,12 +12,12 @@ const Products = () => {
 				<ProductStyled key={i}>
 					<ImgStyled src={product.img} alt={product.name} />
 					<div>
-						<PStyled>
+						<NameAndPriceStyled>
 							{product.name} - ${product.price}
-						</PStyled>
+						</NameAndPriceStyled>
 					</div>
 
-					<ButtonStyled onClick={() => dispatch({ type: TYPES.ADD_PRODUCT, product: product })}>Add to Cart</ButtonStyled>
+					<ButtonStyled onClick={() => dispatch(actionAddProduct(product))}>AGREGAR</ButtonStyled>
 				</ProductStyled>
 			))}
 		</ProductsContainerStyled>

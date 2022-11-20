@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { TYPES } from "../../redux/action-type/ActionType";
-import { CartitemStyled as CartItemStyled, DataContainerStyled, DataContainerLeftStyled, DataContainerRightStyled } from "./ItemCartStyles";
+import { actionAddProduct, actionRemoveProduct } from "../../redux/actions/Actions";
+import { CartItemStyled, DataContainerStyled, DataContainerLeftStyled, DataContainerRightStyled } from "./ItemCartStyles";
 
 export const ItemCart = ({ item }) => {
 	const dispatch = useDispatch();
@@ -13,8 +13,8 @@ export const ItemCart = ({ item }) => {
 				<DataContainerLeftStyled>
 					<p>{item.name}</p>
 					<div>
-						<button onClick={() => dispatch({ type: TYPES.ADD_PRODUCT, product: item })}>AGREGAR</button>
-						<button onClick={() => dispatch({ type: TYPES.REMOVE_PRODUCT, product: item })}>QUITAR</button>
+						<button onClick={() => dispatch(actionAddProduct(item))}>AGREGAR</button>
+						<button onClick={() => dispatch(actionRemoveProduct(item))}>QUITAR</button>
 					</div>
 				</DataContainerLeftStyled>
 				<DataContainerRightStyled>

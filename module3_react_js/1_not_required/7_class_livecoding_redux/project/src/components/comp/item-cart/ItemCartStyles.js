@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartitemStyled = styled.div`
+export const CartItemStyled = styled.div`
 	height: 80px;
 	background-color: #3a3a3a;
 	margin-top: 20px;

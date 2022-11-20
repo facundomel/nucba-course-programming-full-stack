@@ -23,12 +23,13 @@ export const ImgStyled = styled.img`
 	width: 100%;
 `;
 
-export const PStyled = styled.p`
+export const NameAndPriceStyled = styled.p`
 	font-family: Roboto;
 	text-align: center;
 	font-weight: bolder;
 	color: white;
 `;
+
 export const ButtonStyled = styled.button`
 	border: none;
 	border-radius: 3px;
