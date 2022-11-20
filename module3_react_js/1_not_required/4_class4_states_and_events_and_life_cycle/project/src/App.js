@@ -1,13 +1,13 @@
-import { Chronometer } from './components/chronometer/Chronometer';
-import GlobalStyles from './components/global-styles/GlobalStyles'
+import { Chronometer } from "./components/Chronometer";
+import GlobalStyles from "./global-styles/GlobalStyles";
 
 function App() {
-  return (
-    <>
-      <GlobalStyles />
-      <Chronometer />
-    </>
-  );
+	return (
+		<>
+			<GlobalStyles />
+			<Chronometer />
+		</>
+	);
 }
 
 export default App;

@@ -1,0 +1,7 @@
+Desafío:
+
+En este caso, se les presentará el desafío de realizar un Carrito de compras con Redux.
+
+Van a implementar acciones de tipo: Agregar producto, eliminar producto, eliminar todos los productos de una categoría, y por último limpiar todo el carrito. 
+
+El diseño queda a consideración del usuario. Se debe implementar la lógica que nos provee Redux y gestionar el manejo de los estados correctamente.
