@@ -1,5 +1,5 @@
 import { GlobalStyles } from "./global-styles/GlobalStyles";
-import { Home } from "./components/comp/Home/index";
+import { Home } from "./components/comp/home/Home";
 import { Provider } from "react-redux";
 import store from "./components/redux/store";
 

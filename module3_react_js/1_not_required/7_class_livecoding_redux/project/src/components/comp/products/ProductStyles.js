@@ -1,4 +1,6 @@
-.productsContainer {
+import styled from "styled-components";
+
+export const ProductsContainerStyled = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(3, 0fr);
@@ -6,34 +8,34 @@
 	grid-column-gap: 75px;
 	justify-items: center;
 	justify-content: center;
-}
+`;
 
-.product {
+export const ProductStyled = styled.div`
 	width: 200px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
-}
+`;
 
-img {
+export const ImgStyled = styled.img`
 	width: 100%;
-}
+`;
 
-p {
+export const PStyled = styled.p`
 	font-family: Roboto;
 	text-align: center;
 	font-weight: bolder;
-}
-
-button {
+	color: white;
+`;
+export const ButtonStyled = styled.button`
 	border: none;
 	border-radius: 3px;
 	padding: 5px 10px;
 	cursor: pointer;
-}
 
-button:hover {
-	background-color: #cecece;
-}
+	:hover {
+		background-color: #cecece;
+	}
+`;

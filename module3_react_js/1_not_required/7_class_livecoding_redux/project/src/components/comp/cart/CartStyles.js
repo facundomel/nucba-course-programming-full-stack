@@ -1,25 +1,40 @@
-.cartContainer {
+import styled from "styled-components";
+
+export const CartContainerStyled = styled.div`
 	width: 100vw;
 	height: 50px;
 	display: flex;
 	justify-content: flex-end;
 	font-family: Roboto;
-}
 
-.buttonCartContainer {
+	::-webkit-scrollbar {
+		-webkit-appearance: none;
+	}
+
+	::-webkit-scrollbar:vertical {
+		width: 3px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: #797979;
+		border-radius: 20px;
+	}
+`;
+
+export const ButtonCartContainerStyled = styled.div`
 	position: absolute;
 	margin-top: 10px;
 	margin-right: 20px;
 	cursor: pointer;
 	z-index: 2;
-}
 
-.buttonCartContainer svg {
-	height: 25px;
-	margin-right: 2px;
-}
+	&svg {
+		height: 25px;
+		margin-right: 2px;
+	}
+`;
 
-.buttonCart {
+export const ButtonCartStyled = styled.div`
 	background-color: #222222;
 	width: 60px;
 	height: 60px;
@@ -27,8 +42,9 @@
 	align-items: center;
 	justify-content: center;
 	border-radius: 999px;
-}
-.buttonCartContainer .productsNumber {
+`;
+
+export const ProductsNumberStyled = styled.div`
 	height: 20px;
 	width: 20px;
 	border-radius: 999px;
@@ -42,9 +58,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
+`;
 
-.cart {
+export const CartStyled = styled.div`
 	position: absolute;
 	margin-top: 10px;
 	margin-right: 20px;
@@ -52,42 +68,29 @@
 	width: 400px;
 	background-color: #222222;
 	color: white;
-}
 
-.cart h2 {
-	text-align: center;
-	font-weight: bold;
-	margin-top: 35px;
-}
+	h2 {
+		text-align: center;
+		font-weight: bold;
+		margin-top: 35px;
+	}
 
-.cartVacio {
-	text-align: center;
-	margin-top: 5px;
-	font-size: 14px;
-}
+	p {
+		text-align: center;
+		margin-top: 5px;
+		font-size: 14px;
+	}
+`;
 
-.total {
+export const TotalStyled = styled.h2`
 	text-align: center;
 	font-weight: bold;
 	margin-top: 15px;
 	padding-bottom: 35px;
-}
+`;
 
-.productsContainer {
+export const ProductsContainerStyled = styled.div`
 	max-height: 200px;
 	overflow-y: scroll;
 	margin-top: 5px;
-}
-
-::-webkit-scrollbar {
-	-webkit-appearance: none;
-}
-
-::-webkit-scrollbar:vertical {
-	width: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: #797979;
-	border-radius: 20px;
-}
+`;

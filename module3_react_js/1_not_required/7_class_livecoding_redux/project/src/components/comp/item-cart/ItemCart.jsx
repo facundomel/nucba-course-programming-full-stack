@@ -1,27 +1,27 @@
 import React from "react";
-import styles from "./styles.module.css";
 import { useDispatch } from "react-redux";
 import { TYPES } from "../../redux/action-type/ActionType";
+import { CartitemStyled as CartItemStyled, DataContainerStyled, DataContainerLeftStyled, DataContainerRightStyled } from "./ItemCartStyles";
 
 export const ItemCart = ({ item }) => {
 	const dispatch = useDispatch();
 
 	return (
-		<div className={styles.cartItem}>
+		<CartItemStyled>
 			<img src={item.img} alt={item.name} />
-			<div className={styles.dataContainer}>
-				<div className={styles.left}>
+			<DataContainerStyled>
+				<DataContainerLeftStyled>
 					<p>{item.name}</p>
-					<div className={styles.buttons}>
+					<div>
 						<button onClick={() => dispatch({ type: TYPES.ADD_PRODUCT, product: item })}>AGREGAR</button>
 						<button onClick={() => dispatch({ type: TYPES.REMOVE_PRODUCT, product: item })}>QUITAR</button>
 					</div>
-				</div>
-				<div className={styles.right}>
+				</DataContainerLeftStyled>
+				<DataContainerRightStyled>
 					<div>{item.amount}</div>
 					<p>Total: ${item.amount * item.price}</p>
-				</div>
-			</div>
-		</div>
+				</DataContainerRightStyled>
+			</DataContainerStyled>
+		</CartItemStyled>
 	);
 };
