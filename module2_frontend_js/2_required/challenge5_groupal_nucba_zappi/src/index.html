@@ -1,0 +1,198 @@
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+			integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="icon" href="./assets/icons/nucbaZappiLogo.svg" />
+		<link rel="stylesheet" href="./style.css" />
+		<script type="module" src="./index.js" defer></script>
+		<title>NucbaZappi</title>
+	</head>
+	<body>
+		<div id="overlay" class="overlay"></div>
+		<header>
+			<a href="#home"><img src="./assets/icons/nucbaZappiLogo.svg" alt="Logo nucba zappi" class="logo-nucba-zappi" /></a>
+			<nav class="navbar">
+				<ul class="navbar-list">
+					<!-- Home -->
+					<li>
+						<a href="#home"><img src="./assets/icons/home.svg" alt="Inicio" title="Inicio" class="home-btn-navbar" /></a>Home
+					</li>
+					<!-- Cart -->
+					<li id="btn-cart" class="btn-cart">
+						<p id="quantity-products-cart" class="quantity-products-cart"></p>
+						<img src="./assets/icons/carrito.svg" alt="Carrito" title="Carrito" />
+					</li>
+					<!-- Profile -->
+					<li><img src="./assets/icons/iconProfile.svg" alt="Perfil" title="Perfil" id="profile" class="perfil" /></li>
+					<!-- Hamburger menu -->
+					<li><img src="./assets/icons/bars-solid.svg" alt="Menú" title="Menú" class="btn-menu-navbar" /></li>
+				</ul>
+
+				<div class="responsive-menu"></div>
+
+				<!-- CARRITO -->
+				<div id="cart" class="cart">
+					<button id="btn-close-cart" class="btn-close-cart">X</button>
+					<h2>Tus Productos</h2>
+					<div id="cart-container" class="cart-container">
+						<!--card de producto en el carrito-->
+
+						<!-- <div class="cart-item">
+							<img src="${img}" alt="Producto del carrito" />
+							<div class="item-info">
+								<h3 class="item-title">${name}</h3>
+								<p class="item-description">${description}</p>
+								<span class="item-price">${price}</span>
+							</div>
+							<div class="item-handler">
+								<span class="quantity-handler down" data-id="${id}">-</span>
+								<span class="item-quantity">${quantity}</span>
+								<span class="quantity-handler up" data-id="${id}">+</span>
+							</div>
+						</div> -->
+					</div>
+					<div class="cart-subtotal">
+						<p>Subtotal:</p>
+						<span id="subtotal" class="subtotal"></span>
+					</div>
+					<div class="cart-envio">
+						<p>Envío:</p>
+						<span id="shipping-price"></span>
+					</div>
+					<span class="divider"></span>
+					<div class="cart-total">
+						<p>Total:</p>
+						<span id="total" class="total"></span>
+					</div>
+					<div class="div-buttons-cart">
+						<button id="btn-buy" class="btn-buy disabled">Comprar</button>
+						<button id="btn-clear-cart" class="btn-clear-cart disabled">Vaciar carrito</button>
+					</div>
+					<span id="more-products" class="more-products">Ver más productos</span>
+				</div>
+			</nav>
+		</header>
+
+		<section class="home-container">
+			<div id="home" class="home">
+				<h1>Si tenes zappi,</h1>
+				<h2>tenes Nucba.</h2>
+				<h3>Buscá lo que quieras y nucba te quedes sin comida</h3>
+				<button id="btn-more" class="btn-more">Ver más</button>
+			</div>
+			<img class="primer-porcion" src="./assets/icons/porcion1.svg" alt="Porción de pizza" />
+			<img class="segunda-porcion" src="./assets/icons/procion2.svg" alt="Porción de pizza" />
+		</section>
+		<section class="recomendation-container">
+			<h4>Hoy te recomendamos</h4>
+			<div class="recomendation-item">
+				<!--card del producto recomendado-->
+
+				<!-- <div class="recomendation-card">
+					<img src="${}" alt="Producto recomendado" />
+					<div class="item-info">
+						<h3 class="item-title">${name}</h3>
+						<p class="item-description">${description}</p>
+						<span class="item-price">${price}</span>
+					</div>
+					<button class="btn-add">Agregar</button>
+				</div> -->
+			</div>
+		</section>
+		<section class="categories-container">
+			<h5>Categorías</h5>
+			<div class="categories">
+				<button class="category active">
+					<img src="./assets/icons/populares.svg" alt="populares" />
+					<h4>Populares</h4>
+					<span class="divider-categories"></span>
+				</button>
+				<button class="category" data-category="Pizza">
+					<img src="./assets/icons/pizzas.svg" alt="pizzas" />
+					<h4>Pizzas</h4>
+					<span class="divider-categories"></span>
+				</button>
+				<button class="category" data-category="Hamburguesa">
+					<img src="./assets/icons/hamburguesa.svg" alt="hamburguesas" />
+					<h4>Hamburguesas</h4>
+					<span class="divider-categories"></span>
+				</button>
+				<button class="category" data-category="Papas fritas">
+					<img src="./assets/icons/napapuki.svg" alt="papas fritas" />
+					<h4>Napapuki</h4>
+					<span class="divider-categories"></span>
+				</button>
+				<button class="category" data-category="Wrap">
+					<img src="./assets/icons/wrap.svg" alt="wraps" />
+					<h4>Wraps</h4>
+					<span class="divider-categories"></span>
+				</button>
+				<button class="category" data-category="mexican food">
+					<img src="./assets/icons/mexicanFood.svg" alt="mexican food" />
+					<h4>Mexican Food</h4>
+					<span class="divider-categories"></span>
+				</button>
+				<button class="category" data-category="batido">
+					<img src="./assets/icons/batidos.svg" alt="batidos" />
+					<h4>Batidos</h4>
+					<span class="divider-categories"></span>
+				</button>
+			</div>
+		</section>
+		<section class="products-container">
+			<h4>Los más populares</h4>
+
+			<div class="products-container-cards">
+				<!-- <div class="product-card">
+					<img src="./assets/img/pizza/lacharlygarcia.png" alt="Producto recomendado" />
+					<div class="item-info">
+						<h3 class="item-title">${name}</h3>
+						<p class="item-description">${description}</p>
+					</div>
+					<div class="buy-container">
+						<span class="item-price">${price}</span>
+						<button
+							class="btn-add"
+							data-id="1"
+							data-name="Pizza 1"
+							data-description="My description 1"
+							data-price="950"
+							data-img="./"
+							data-category="pizza"
+							data-popular="true"
+						>
+							Agregar
+						</button>
+					</div>
+				</div> -->
+			</div>
+		</section>
+
+		<div class="snackbar-container">
+			<div id="snackbar" class="snackbar"></div>
+		</div>
+
+		<div class="snackbar-container">
+			<div id="snackbar" class="snackbar"></div>
+		</div>
+
+		<footer>
+			<div>
+				<ul class="footer-links">
+					<li class="footer-link">Términos de Uso</li>
+					<li class="footer-link">Trabajá con Nosotros</li>
+					<li class="footer-link">Soporte</li>
+				</ul>
+			</div>
+			<p>Hecho con ❤️ en <span>NUCBAZAPPI</span></p>
+		</footer>
+	</body>
+</html>
