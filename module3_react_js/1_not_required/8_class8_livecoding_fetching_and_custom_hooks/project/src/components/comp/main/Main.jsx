@@ -1,9 +1,9 @@
 import React from "react";
 import { Card } from "../card/Card";
-import { FooterStyled } from "../footer/FooterStyles";
-import { HeaderStyled } from "../header/HeaderStyles";
-import { ThemeButtonStyled, ThemeContainerStyled } from "../theme-switching/ThemeSwitching";
-import { light, dark, blue, green, brown, pink } from "../theme-switching/Themes";
+import { FooterStyled } from "../../styles/FooterStyles";
+import { HeaderStyled } from "../../styles/HeaderStyles";
+import { ThemeButtonStyled, ThemeContainerStyled } from "../../styles/ThemeSwitching";
+import { light, dark, blue, green, brown, pink } from "../../styles/Themes";
 import { MainStyled } from "./MainStyles";
 
 export const Main = (props) => {

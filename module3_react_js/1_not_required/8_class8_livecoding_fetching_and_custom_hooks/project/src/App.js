@@ -1,8 +1,7 @@
-import "./components/theme-switching/GlobalStyles.js";
-import { Main } from "./components/main/Main";
-import { GlobalStyles } from "./components/theme-switching/GlobalStyles";
+import { Main } from "./components/comp/main/Main";
+import { GlobalStyles } from "./components/styles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
-import { light } from "./components/theme-switching/Themes";
+import { light } from "./components/styles/Themes";
 import { useEffect, useState } from "react";
 
 function App() {
