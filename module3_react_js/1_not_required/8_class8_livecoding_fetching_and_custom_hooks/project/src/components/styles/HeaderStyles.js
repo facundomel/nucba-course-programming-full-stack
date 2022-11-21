@@ -8,5 +8,5 @@ export const HeaderStyled = styled.header`
 	padding: 20px;
 	text-align: center;
 	font-weight: bold;
-  width: 100%;
+	width: 100%;
 `;

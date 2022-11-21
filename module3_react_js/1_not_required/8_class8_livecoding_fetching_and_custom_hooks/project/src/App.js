@@ -14,7 +14,7 @@ function App() {
 		localStorage.setItem("current-theme", JSON.stringify(theme));
 	};
 
-	// react hook to get the theme selected by the user that is saved in local storage
+	// React hook to get the theme selected by the user that is saved in local storage
 	useEffect(() => {
 		const currentTheme = JSON.parse(localStorage.getItem("current-theme"));
 		if (currentTheme) {
