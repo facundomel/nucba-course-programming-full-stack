@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuStyled } from "./styles/Styles";
+import { MenuStyled } from "../styles/MenuStyles";
 
 export const Menu = ({ open }) => {
 	return (

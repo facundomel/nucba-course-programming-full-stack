@@ -1,7 +1,7 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import { Button } from "./Button";
 import { Menu } from "./Menu";
-import { reducer } from "./reducer/Reducer";
+import { reducer } from "../reducer/Reducer";
 
 export const Main = () => {
 	const [open, dispatch] = useReducer(reducer, false);

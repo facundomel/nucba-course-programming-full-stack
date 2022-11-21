@@ -1,5 +1,5 @@
-import { Main } from "./components/Main";
-import GlobalStyles from "./global-styles/GlobalStyles";
+import { Main } from "./components/comp/Main";
+import GlobalStyles from "./components/styles/GlobalStyles";
 
 function App() {
 	return (

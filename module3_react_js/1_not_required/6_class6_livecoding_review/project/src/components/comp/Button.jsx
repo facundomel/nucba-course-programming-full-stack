@@ -1,5 +1,5 @@
-import { TYPES } from "./reducer/ActionTypes";
-import { ButtonStyled } from "./styles/Styles";
+import { TYPES } from "../reducer/ActionTypes";
+import { ButtonStyled } from "../styles/MenuStyles";
 
 export const Button = ({ open, dispatch }) => {
 	return (

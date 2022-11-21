@@ -1,4 +1,4 @@
-import { ButtonStyled } from "./styles/Styles";
+import { ButtonStyled } from "../styles/MenuStyles";
 
 export const Button = ({ open, setOpen }) => {
 	return (
