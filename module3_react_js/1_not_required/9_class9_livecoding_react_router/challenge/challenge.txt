@@ -1,0 +1,5 @@
+Desafío:
+
+Hoy debemos crear un nuevo proyecto con Create React App para trabajar con React Router.
+Deberemos crear un Navbar que sea visible desde toda la app y desde donde se acceda a las diferentes páginas.
+Crear tres páginas para navegar entre ellas desde el navbar. ¿El contenido de esas páginas? A gusto y placer del consumidor (No es necesario algo muy complejo).
