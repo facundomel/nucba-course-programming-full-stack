@@ -1,0 +1,7 @@
+Desafío:
+
+En el desafío de hoy, deberán crear un proyecto nuevo con Create React App y realizar una paginación de productos que los muestre de 10 en 10. (La interfaz, es a gusto de cada uno, es importante lograr la funcionalidad) 
+
+En este mismo, deberán utilizar useLocation para obtener los parámetros de consulta y useNavigate para poder cambiar la URL y simular la paginación. 
+
+Es necesario utilizar URLSearchParams que define métodos útiles para trabajar con los parámetros de búsqueda de una URL. 
