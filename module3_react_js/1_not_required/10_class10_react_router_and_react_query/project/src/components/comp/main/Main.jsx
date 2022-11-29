@@ -36,8 +36,10 @@ export const Main = () => {
 			<MainStyled>
 				<BrowserRouter>
 					<Routes>
-						<Route path="/" element={<Navigate to="users" />} />
-						<Route path="users" element={<UserList data={currentRecords} nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />} />
+						<Route exact path="/" element={<Navigate to="users?page=1" />} />
+						<Route path="users"
+							element={<UserList data={currentRecords} nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+						/>
 						<Route path="*" element={<Error404 />} />
 					</Routes>
 				</BrowserRouter>

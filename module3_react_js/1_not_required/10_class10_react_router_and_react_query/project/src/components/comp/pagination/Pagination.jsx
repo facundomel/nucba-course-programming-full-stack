@@ -1,14 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
-	const navigate = useNavigate();
-
 	const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
 
 	const nextPage = () => {
 		if (currentPage !== nPages) setCurrentPage(currentPage + 1);
 	};
+
 	const prevPage = () => {
 		if (currentPage !== 1) setCurrentPage(currentPage - 1);
 	};
@@ -18,21 +17,25 @@ export const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
 			<nav>
 				<ul className="pagination justify-content-center">
 					<li className="page-item">
-						<button className="page-link" onClick={prevPage}>
+						<Link className="page-link" onClick={prevPage} to={currentPage - 1 > 0 ? `?page=${currentPage - 1}` : `?page=1`}>
 							Previous
-						</button>
+						</Link>
 					</li>
 					{pageNumbers.map((pgNumber) => (
 						<li key={pgNumber} className={`page-item ${currentPage == pgNumber ? "active" : ""} `}>
-							<button onClick={() => setCurrentPage(pgNumber)} className="page-link">
+							<Link onClick={() => setCurrentPage(pgNumber)} to={`?page=${pgNumber}`} className="page-link">
 								{pgNumber}
-							</button>
+							</Link>
 						</li>
 					))}
 					<li className="page-item">
-						<button className="page-link" onClick={nextPage}>
+						<Link
+							className="page-link"
+							onClick={nextPage}
+							to={currentPage + 1 < pageNumbers.length ? `?page=${currentPage + 1}` : `?page=${pageNumbers.length}`}
+						>
 							Next
-						</button>
+						</Link>
 					</li>
 				</ul>
 			</nav>

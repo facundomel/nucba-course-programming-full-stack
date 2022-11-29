@@ -5,3 +5,7 @@ En el desafío de hoy, deberán crear un proyecto nuevo con Create React App y r
 En este mismo, deberán utilizar useLocation para obtener los parámetros de consulta y useNavigate para poder cambiar la URL y simular la paginación. 
 
 Es necesario utilizar URLSearchParams que define métodos útiles para trabajar con los parámetros de búsqueda de una URL. 
+
+Solución:
+
+Por falta de tiempo no utilicé todas las cosas que se solicita en la consigna del challenge.
