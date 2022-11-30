@@ -1,4 +1,6 @@
-.container {
+import styled from "styled-components";
+
+export const MainContainerStyled = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -6,11 +8,9 @@
 	width: 500px;
 	gap: 1.5rem;
 	margin: 100px 0;
-}
 
-@media (max-width: 600px) {
-	.container {
+	@media (max-width: 600px) {
 		width: 80vw;
 		min-width: 250px;
 	}
-}
+`;

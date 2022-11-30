@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Form } from "../form/Form";
 import { TaskList } from "../task-list/TaskList";
-import "./ContainerStyles.css";
+import { MainContainerStyled } from "./MainStyles";
 
-export const Container = () => {
+export const Main = () => {
 	const [list, setList] = useState([]);
 
 	const handleAddItem = (addItem) => {
@@ -18,10 +18,10 @@ export const Container = () => {
 
 	return (
 		<>
-			<div className="container">
+			<MainContainerStyled>
 				<Form handleAddItem={handleAddItem} list={list} refInputTask={refInputTask} />
 				<TaskList list={list} setList={setList} handleFocusInputTask={handleFocusInputTask} />
-			</div>
+			</MainContainerStyled>
 		</>
 	);
 };

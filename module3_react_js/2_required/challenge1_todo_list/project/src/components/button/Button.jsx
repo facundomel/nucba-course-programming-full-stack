@@ -1,15 +1,10 @@
 import React from "react";
-import "./ButtonStyles.css";
+import { ButtonStyled } from "./ButtonStyles";
 
 export const Button = (props) => {
 	return (
-		<button
-			style={{ width: props.width }}
-			className={`button-component ${props.isDisabled ? "disable-button" : "enable-button"}`}
-			disabled={props.isDisabled ? "disabled" : null}
-			onClick={props.clickHandler}
-		>
+		<ButtonStyled width={props.width} disabled={props.isDisabled ? true : false} onClick={props.clickHandler}>
 			{props.value}
-		</button>
+		</ButtonStyled>
 	);
 };

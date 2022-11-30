@@ -1,11 +1,11 @@
-import { Container } from "./components/container/Container";
-import GlobalStyles from "./global-styles/GlobalStyles";
+import { Main } from "./components/main/Main";
+import GlobalStyles from "./components/styles/GlobalStyles";
 
 function App() {
 	return (
 		<>
-			<Container />
 			<GlobalStyles />
+			<Main />
 		</>
 	);
 }

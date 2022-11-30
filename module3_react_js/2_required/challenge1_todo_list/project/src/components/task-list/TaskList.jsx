@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import localStorage from "../../repository/LocalStorage";
 import { Button } from "../button/Button";
 import { Task } from "../task/Task";
-import "./TaskListStyles.css";
+import { TasksListContainerStyled } from "./TaskListStyles";
 
 export const TaskList = (props) => {
 	const keyLocalStorage = "tasks";
@@ -30,9 +30,9 @@ export const TaskList = (props) => {
 	const taskList = list.map((item) => <Task key={item.id} data={item} clickHandler={onClickRemoveById} />);
 
 	return (
-		<div className="tasks-list">
+		<TasksListContainerStyled>
 			{list.length ? taskList : "No hay ningúna tarea"}
 			{list.length ? <Button value="Borrar Tareas" width="100%" clickHandler={onClickRemoveItem} /> : null}
-		</div>
+		</TasksListContainerStyled>
 	);
 };

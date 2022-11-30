@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import localStorage from "../../repository/LocalStorage";
 import { Button } from "../button/Button";
-import "./FormStyles.css";
+import { FormStyled, InputContainerStyled } from "./FormStyles";
 
 export const Form = (props) => {
 	const { handleAddItem, list } = props;
@@ -28,8 +28,8 @@ export const Form = (props) => {
 
 	return (
 		<>
-			<form className="form">
-				<div className="input-container">
+			<FormStyled>
+				<InputContainerStyled>
 					<FcSearch className="icon-search" />
 					<input
 						type="text"
@@ -40,9 +40,9 @@ export const Form = (props) => {
 						ref={refInputTask}
 						autoFocus
 					/>
-				</div>
+				</InputContainerStyled>
 				<Button value="Agregar" clickHandler={handleSubmit} isDisabled={description ? false : true} width="20%" />
-			</form>
+			</FormStyled>
 		</>
 	);
 };
