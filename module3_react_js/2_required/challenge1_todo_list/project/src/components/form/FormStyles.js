@@ -9,7 +9,18 @@ export const FormStyled = styled.form`
 	gap: 20px;
 `;
 
-export const InputContainerStyled = styled.div`
+export const InputAndErrorMessageContainerStyled = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	& small {
+		color: red;
+		width: 100%;
+	}
+`
+
+export const InputAndIconContainerStyled = styled.div`
 	display: flex;
 	width: 100%;
 

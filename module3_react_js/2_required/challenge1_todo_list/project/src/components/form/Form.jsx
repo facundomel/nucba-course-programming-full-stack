@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import localStorage from "../../repository/LocalStorage";
 import { Button } from "../button/Button";
-import { FormStyled, InputContainerStyled } from "./FormStyles";
+import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "./FormStyles";
 
 export const Form = (props) => {
 	const { handleAddItem, list } = props;
@@ -16,8 +16,16 @@ export const Form = (props) => {
 		description,
 	};
 
+	const existTask = () => {
+		return list.some((task) => {
+			return task.description == description;
+		});
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		if (existTask()) return;
 
 		handleAddItem(task);
 
@@ -28,21 +36,24 @@ export const Form = (props) => {
 
 	return (
 		<>
-			<FormStyled>
-				<InputContainerStyled>
-					<FcSearch className="icon-search" />
-					<input
-						type="text"
-						className="input-text"
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-						placeholder="Tarea"
-						ref={refInputTask}
-						autoFocus
-					/>
-				</InputContainerStyled>
-				<Button value="Agregar" clickHandler={handleSubmit} isDisabled={description ? false : true} width="20%" />
-			</FormStyled>
+			<InputAndErrorMessageContainerStyled>
+				<FormStyled>
+					<InputAndIconContainerStyled>
+						<FcSearch className="icon-search" />
+						<input
+							type="text"
+							className="input-text"
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+							placeholder="Tarea"
+							ref={refInputTask}
+							autoFocus
+						/>
+					</InputAndIconContainerStyled>
+					<Button value="Agregar" clickHandler={handleSubmit} isDisabled={!description || existTask() ? true : false} width="20%" />
+				</FormStyled>
+				{existTask() && <small>La tarea ya existe</small>}
+			</InputAndErrorMessageContainerStyled>
 		</>
 	);
 };
