@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
-import localStorage from "../../repository/LocalStorage";
+import LocalStorage from "../../../repository/LocalStorage";
 import { Button } from "../button/Button";
 import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "./FormStyles";
 
@@ -29,7 +29,7 @@ export const Form = (props) => {
 
 		handleAddItem(task);
 
-		localStorage.save("tasks", [...list, task]);
+		LocalStorage.save("tasks", [...list, task]);
 		setDescription("");
 		refInputTask.current.focus();
 	};

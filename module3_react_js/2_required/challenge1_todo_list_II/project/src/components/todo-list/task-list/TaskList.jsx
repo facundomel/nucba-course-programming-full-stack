@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import localStorage from "../../repository/LocalStorage";
+import LocalStorage from "../../../repository/LocalStorage";
 import { Button } from "../button/Button";
 import { Task } from "../task/Task";
 import { TasksListContainerStyled } from "./TaskListStyles";
@@ -9,7 +9,7 @@ export const TaskList = (props) => {
 	const { list, setList } = props;
 
 	useEffect(() => {
-		setList(localStorage.get(keyLocalStorage) || []);
+		setList(LocalStorage.get(keyLocalStorage) || []);
 	}, []);
 
 	const onClickRemoveById = (id) => {
