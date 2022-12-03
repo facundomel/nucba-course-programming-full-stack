@@ -7,3 +7,7 @@ Deben realizarlo con API Context para definir el tema global de la aplicación d
 Plus: Pueden usar el localstorage para guardar la referencia del tema y almacenarla al recargar el sitio.
 
 Con que la aplicación solamente tenga un card diseñado, es más que suficiente para cambiar el color del mismo y del background.
+
+Solución:
+
+No lo hice con API Context porque use el componente ThemeProvider que provee la librería de styled components.
