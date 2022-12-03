@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import LocalStorage from "../../../repository/LocalStorage";
 import { Button } from "../../button/Button";
@@ -6,10 +6,11 @@ import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerS
 import pokeApiService from "../../../service/PokeAPIService";
 import Pokemon from "../../../model/Pokemon";
 import { CardPokemon } from "../card/CardPokemon";
+import { PokeAPIContext } from "../../../contexts/PokeAPIContext";
 
-export const Form = (props) => {
-	const { handleAddPokemon, pokemon } = props;
-	const refInputPokemon = props.refInputPokemon;
+export const Form = () => {
+	const { handleAddPokemon, pokemon } = useContext(PokeAPIContext);
+	const refInputPokemon = useRef(null);
 	const [pokemonId, setPokemonId] = useState("");
 	const [messageNotExistPokemon, setMessageNotExistPokemon] = useState("");
 

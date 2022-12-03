@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { TodoListContext } from "../../../contexts/TodoListContext";
 import LocalStorage from "../../../repository/LocalStorage";
 import { Button } from "../../button/Button";
 import { Task } from "../task/Task";
 import { TasksListContainerStyled } from "./TaskListStyles";
 
-export const TaskList = (props) => {
+export const TaskList = () => {
 	const keyLocalStorage = "tasks";
-	const { list, setList } = props;
+	const { list, setList } = useContext(TodoListContext);
 
 	useEffect(() => {
 		setList(LocalStorage.get(keyLocalStorage) || []);

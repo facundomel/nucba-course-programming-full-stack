@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FcSearch } from "react-icons/fc";
+import { TodoListContext } from "../../../contexts/TodoListContext";
 import LocalStorage from "../../../repository/LocalStorage";
 import { Button } from "../../button/Button";
 import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../styles/FormStyles";
 
-export const Form = (props) => {
-	const { handleAddItem, list } = props;
-
+export const Form = () => {
+	const { handleAddItem, list } = useContext(TodoListContext);
 	const [description, setDescription] = useState("");
-
-	const refInputTask = props.refInputTask;
+	const refInputTask = useRef(null);
 
 	const task = {
 		id: (+new Date()).toString(),
