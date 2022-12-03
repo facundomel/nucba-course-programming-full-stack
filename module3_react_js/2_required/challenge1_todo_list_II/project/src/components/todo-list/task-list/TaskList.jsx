@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import LocalStorage from "../../../repository/LocalStorage";
-import { Button } from "../button/Button";
+import { Button } from "../../button/Button";
 import { Task } from "../task/Task";
 import { TasksListContainerStyled } from "./TaskListStyles";
 

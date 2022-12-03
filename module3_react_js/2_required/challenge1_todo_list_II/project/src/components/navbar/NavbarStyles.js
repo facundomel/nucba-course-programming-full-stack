@@ -35,11 +35,12 @@ export const NavbarInnerContainer = styled.div`
 
 export const NavbarLinkContainer = styled.div`
 	display: flex;
+	gap: 20px;
 `;
 
 export const NavbarLink = styled(Link)`
 	color: white;
-	font-size: x-large;
+	font-size: larger;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	margin: 10px;

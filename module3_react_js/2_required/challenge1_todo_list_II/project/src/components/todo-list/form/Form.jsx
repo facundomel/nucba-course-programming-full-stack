@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import LocalStorage from "../../../repository/LocalStorage";
-import { Button } from "../button/Button";
-import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "./FormStyles";
+import { Button } from "../../button/Button";
+import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../styles/FormStyles";
 
 export const Form = (props) => {
 	const { handleAddItem, list } = props;

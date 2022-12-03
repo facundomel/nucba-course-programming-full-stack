@@ -9,7 +9,7 @@ export const MainContainerStyled = styled.div`
 	margin: 100px 0;
 `;
 
-export const FormAndTaskListContainerStyled = styled.div`
+export const FormContainerStyled = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;

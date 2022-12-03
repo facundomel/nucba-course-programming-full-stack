@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
+import { FormContainerStyled, MainContainerStyled } from "../../styles/MainStyles";
 import { Form } from "../form/Form";
 import { TaskList } from "../task-list/TaskList";
-import { FormAndTaskListContainerStyled, MainContainerStyled } from "./MainTodoListStyles";
 
 export const MainTodoList = () => {
 	const [list, setList] = useState([]);
@@ -19,10 +19,10 @@ export const MainTodoList = () => {
 	return (
 		<>
 			<MainContainerStyled>
-				<FormAndTaskListContainerStyled>
+				<FormContainerStyled>
 					<Form handleAddItem={handleAddItem} list={list} refInputTask={refInputTask} />
 					<TaskList list={list} setList={setList} handleFocusInputTask={handleFocusInputTask} />
-				</FormAndTaskListContainerStyled>
+				</FormContainerStyled>
 			</MainContainerStyled>
 		</>
 	);
