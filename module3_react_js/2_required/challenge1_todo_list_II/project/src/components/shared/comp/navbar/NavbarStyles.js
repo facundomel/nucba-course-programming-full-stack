@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const NavbarContainer = styled.nav`
 	width: 100%;
@@ -60,19 +60,23 @@ export const NavbarLink = styled(NavLink)`
 `;
 
 export const ContainerLink = styled.div`
-	background-color: ${(props) => (props.backgroundColor)};
+	background-color: ${(props) => props.backgroundColor};
 `;
 
-export const NavbarLinkExtended = styled(Link)`
+export const NavbarLinkExtended = styled(NavLink)`
 	color: white;
 	font-size: x-large;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	margin: 10px;
+
+	&.active {
+		border: 2px white solid;
+	}
 `;
 
 export const OpenLinksButton = styled.button`
-	width: 70px;
+	/* width: 70px; */
 	height: 50px;
 	background: none;
 	border: none;

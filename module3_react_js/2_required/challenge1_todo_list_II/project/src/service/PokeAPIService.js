@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default new (class PokeApiService {
 	async getPokemonById(pokemonId) {

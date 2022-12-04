@@ -1,11 +1,23 @@
 import styled from "styled-components";
 
+export const FormContainerStyled = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 40%;
+	gap: 1.5rem;
+
+	@media (max-width: 600px) {
+		width: 80vw;
+	}
+`;
+
 export const FormStyled = styled.form`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	min-width: 250px;
 	gap: 20px;
 `;
 
@@ -18,7 +30,7 @@ export const InputAndErrorMessageContainerStyled = styled.div`
 		color: red;
 		width: 100%;
 	}
-`
+`;
 
 export const InputAndIconContainerStyled = styled.div`
 	display: flex;

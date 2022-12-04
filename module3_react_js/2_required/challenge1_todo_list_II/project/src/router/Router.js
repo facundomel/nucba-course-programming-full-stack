@@ -1,10 +1,8 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Error404 } from "../components/error-404/Error404";
 import { MainPokeAPI } from "../components/poke-api/main-poke-api/MainPokeAPI";
+import { Error404 } from "../components/shared/comp/error-404/Error404";
 import { MainTodoList } from "../components/todo-list/main-todo-list/MainTodoList";
-import { PokeAPIProvider } from "../contexts/PokeAPIContext";
-import { TodoListProvider } from "../contexts/TodoListContext";
 
 export const Router = () => {
 	return (

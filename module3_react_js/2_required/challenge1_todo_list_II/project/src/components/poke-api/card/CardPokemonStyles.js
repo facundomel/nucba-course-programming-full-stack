@@ -9,7 +9,7 @@ export const CardContainerStyled = styled.div`
 	padding: 30px 10px;
 	border-radius: 20px;
 	background: #282828;
-  color: white;
+	color: white;
 `;
 
 export const IDAndBtnDeleteContainer = styled.div`
@@ -49,4 +49,9 @@ export const CardTextContentContainerStyled = styled.div`
 		line-height: 22px;
 		margin-top: 3px;
 	}
+`;
+
+export const MessageNotPokemonSavedStyled = styled.span`
+	text-align: center;
+	color: white;
 `;

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { PokeAPIContext } from "../../contexts/PokeAPIContext";
-import { TodoListContext } from "../../contexts/TodoListContext";
+import { PokeAPIContext } from "../../../../contexts/PokeAPIContext";
+import { TodoListContext } from "../../../../contexts/TodoListContext";
 import {
 	ContainerLink,
 	LeftContainer,
@@ -24,14 +24,12 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 
 	//assigning location variable
 	const location = useLocation();
-
 	//destructuring pathname from location
 	const { pathname } = location;
-
 	//Javascript split method to get the name of the path in array
 	const splitLocation = pathname.split("/");
 
-	console.log(splitLocation)
+	console.log(splitLocation);
 
 	return (
 		<>
@@ -40,10 +38,16 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 					<LeftContainer>
 						<NavbarLinkContainer>
 							<ContainerLink backgroundColor={list.length > 0 ? "brown" : "#191919"}>
-								<NavbarLink to="/todo-list" className={splitLocation[1] == "todo-list" ? "active" : ""}> Inicio </NavbarLink>
+								<NavbarLink to="/todo-list" className={splitLocation[1] == "todo-list" ? "active" : ""}>
+									{" "}
+									Inicio{" "}
+								</NavbarLink>
 							</ContainerLink>
 							<ContainerLink backgroundColor={pokemon ? "brown" : "#191919"}>
-								<NavbarLink to="/poke-api"  className={splitLocation[1] == "poke-api" ? "active" : ""}> Poke API </NavbarLink>
+								<NavbarLink to="/poke-api" className={splitLocation[1] == "poke-api" ? "active" : ""}>
+									{" "}
+									Poke API{" "}
+								</NavbarLink>
 							</ContainerLink>
 							<OpenLinksButton
 								onClick={() => {
@@ -58,10 +62,15 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 
 				{extendNavbar && (
 					<NavbarExtendedContainer>
-						<NavbarLinkExtended to="/" onClick={() => setExtendNavbar(false)}>
+						{list.length}
+						<NavbarLinkExtended to="/" onClick={() => setExtendNavbar(false)} className={splitLocation[1] == "todo-list" ? "active" : ""}>
 							Inicio
 						</NavbarLinkExtended>
-						<NavbarLinkExtended to="/poke-api" onClick={() => setExtendNavbar(false)}>
+						<NavbarLinkExtended
+							to="/poke-api"
+							onClick={() => setExtendNavbar(false)}
+							className={splitLocation[1] == "poke-api" ? "active" : ""}
+						>
 							Poke API
 						</NavbarLinkExtended>
 					</NavbarExtendedContainer>

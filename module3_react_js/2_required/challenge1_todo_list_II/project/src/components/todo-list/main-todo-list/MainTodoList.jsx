@@ -1,6 +1,7 @@
 import React from "react";
-import { FormContainerStyled, MainContainerStyled } from "../../shared/styles/MainStyles";
-import { Form } from "../form/Form";
+import { FormContainerStyled } from "../../shared/comp/form/FormStyles";
+import { MainContainerStyled } from "../../shared/styles/MainStyles";
+import { FormTodoList } from "../form-todo-list/FormTodoList";
 import { TaskList } from "../task-list/TaskList";
 
 export const MainTodoList = () => {
@@ -8,7 +9,7 @@ export const MainTodoList = () => {
 		<>
 			<MainContainerStyled>
 				<FormContainerStyled>
-					<Form />
+					<FormTodoList />
 					<TaskList />
 				</FormContainerStyled>
 			</MainContainerStyled>

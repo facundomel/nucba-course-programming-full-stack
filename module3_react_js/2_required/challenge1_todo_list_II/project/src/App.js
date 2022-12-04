@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Navbar } from "./components/navbar/Navbar";
+import { Navbar } from "./components/shared/comp/navbar/Navbar";
 import { PokeAPIProvider } from "./contexts/PokeAPIContext";
 import { TodoListProvider } from "./contexts/TodoListContext";
 import GlobalStyles from "./global-styles/GlobalStyles";

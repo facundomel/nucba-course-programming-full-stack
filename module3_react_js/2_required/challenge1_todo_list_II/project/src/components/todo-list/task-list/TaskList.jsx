@@ -23,12 +23,12 @@ export const TaskList = () => {
 		LocalStorage.remove(keyLocalStorage);
 		handleFocusInputTask();
 	};
-	
+
 	const taskList = list.map((item) => <Task key={item.id} data={item} deleteTaskById={deleteTaskById} />);
 
 	return (
 		<TasksListContainerStyled>
-			{list.length ? taskList : "No hay ningúna tarea"}
+			{list.length ? taskList : <span> No hay ningúna tarea almacenada </span>}
 			{list.length ? <Button value="Borrar Tareas" width="100%" clickHandler={removeAllTasks} /> : null}
 		</TasksListContainerStyled>
 	);
