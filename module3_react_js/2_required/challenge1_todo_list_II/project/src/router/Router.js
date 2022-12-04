@@ -10,20 +10,8 @@ export const Router = () => {
 	return (
 		<Routes>
 			<Route path="/" element={<Navigate to={"todo-list"} />} />
-			<Route
-				path="todo-list"
-				element={
-						<MainTodoList />
-				}
-			/>
-			<Route
-				path="poke-api"
-				element={
-					<PokeAPIProvider>
-						<MainPokeAPI />
-					</PokeAPIProvider>
-				}
-			/>
+			<Route path="todo-list" element={<MainTodoList />} />
+			<Route path="poke-api" element={<MainPokeAPI />} />
 			<Route path="*" element={<Error404 />} />
 		</Routes>
 	);

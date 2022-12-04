@@ -5,9 +5,10 @@ export const ImageContainerStyled = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 150px;
-  height: 150px;
-  background-color: black;
+  width: 160px;
+  height: 160px;
+  background-color: white;
+  border: 5px black solid;
   border-radius: 100px;
 `;
 
@@ -18,28 +19,11 @@ export const ImageBoxStyled = styled.div`
   text-align: center;
 
   & img {
-    width: 162px;
-    height: 162px;
+    width: 150px;
+    height: 150px;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     right: 0;
     left: -10px;
   }
-`;
-
-export const ImageShadowStyled = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 180px;
-  height: 46px;
-
-  background: radial-gradient(
-    51.76% 37.2% at 39.17% 51.96%,
-    rgba(0, 0, 0, 0.24) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-
-  transform: rotate(6.85deg);
 `;

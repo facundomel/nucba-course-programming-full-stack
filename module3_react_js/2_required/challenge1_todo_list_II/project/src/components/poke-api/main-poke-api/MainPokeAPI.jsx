@@ -1,16 +1,20 @@
-import React from 'react';
-import { FormContainerStyled, MainContainerStyled } from '../../styles/MainStyles';
-import { Form } from '../form/Form';
+import React, { useContext } from "react";
+import { PokeAPIContext } from "../../../contexts/PokeAPIContext";
+import { FormContainerStyled, MainContainerStyled } from "../../styles/MainStyles";
+import { CardPokemon } from "../card/CardPokemon";
+import { Form } from "../form/Form";
 
 export const MainPokeAPI = () => {
+	const { pokemon } = useContext(PokeAPIContext);
+
 	return (
 		<>
 			<MainContainerStyled>
 				<FormContainerStyled>
 					<Form />
-					{/* <TaskList list={list} setList={setList} handleFocusInputTask={handleFocusInputTask} /> */}
+					{pokemon && <CardPokemon pokemon={pokemon} />}
 				</FormContainerStyled>
 			</MainContainerStyled>
 		</>
 	);
-}
+};

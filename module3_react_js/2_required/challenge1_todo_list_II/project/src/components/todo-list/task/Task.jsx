@@ -9,7 +9,7 @@ export const Task = (props) => {
 		<>
 			<TaskContainerStyled>
 				<span>{description}</span>
-				<MdDelete className="btn-delete" onClick={() => props.onClickRemoveById(id)} />
+				<MdDelete className="btn-delete" onClick={() => props.removeAllTasks(id)} />
 			</TaskContainerStyled>
 		</>
 	);

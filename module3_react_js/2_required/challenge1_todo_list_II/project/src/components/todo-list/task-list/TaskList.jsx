@@ -9,7 +9,7 @@ export const TaskList = () => {
 	const keyLocalStorage = "tasks";
 	const { list, setList, handleFocusInputTask } = useContext(TodoListContext);
 
-	const onClickRemoveById = (id) => {
+	const deleteTaskById = (id) => {
 		const updatedList = list.filter((item) => {
 			return item.id != id;
 		});
@@ -18,18 +18,18 @@ export const TaskList = () => {
 		handleFocusInputTask();
 	};
 
-	const onClickRemoveItem = () => {
+	const removeAllTasks = () => {
 		setList([]);
 		LocalStorage.remove(keyLocalStorage);
 		handleFocusInputTask();
 	};
 	
-	const taskList = list.map((item) => <Task key={item.id} data={item} onClickRemoveById={onClickRemoveById} />);
+	const taskList = list.map((item) => <Task key={item.id} data={item} deleteTaskById={deleteTaskById} />);
 
 	return (
 		<TasksListContainerStyled>
 			{list.length ? taskList : "No hay ningúna tarea"}
-			{list.length ? <Button value="Borrar Tareas" width="100%" clickHandler={onClickRemoveItem} /> : null}
+			{list.length ? <Button value="Borrar Tareas" width="100%" clickHandler={removeAllTasks} /> : null}
 		</TasksListContainerStyled>
 	);
 };

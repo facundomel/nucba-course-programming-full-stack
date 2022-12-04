@@ -5,8 +5,8 @@ export const TodoListContext = createContext();
 
 export const TodoListProvider = ({ children }) => {
 	const keyLocalStorage = "tasks";
-	const [list, setList] = useState([]);
 	const refInputTask = useRef(null);
+	const [list, setList] = useState([]);
 
 	useEffect(() => {
 		setList(LocalStorage.get(keyLocalStorage) || []);
@@ -20,7 +20,7 @@ export const TodoListProvider = ({ children }) => {
 		refInputTask.current.focus();
 	};
 
-	const data = { list, setList, refInputTask, handleAddItem, handleFocusInputTask };
+	const data = { list, setList, handleAddItem, refInputTask, handleFocusInputTask };
 
 	return <TodoListContext.Provider value={data}>{children}</TodoListContext.Provider>;
 };

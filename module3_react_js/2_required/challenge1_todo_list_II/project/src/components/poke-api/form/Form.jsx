@@ -5,19 +5,17 @@ import { Button } from "../../button/Button";
 import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../styles/FormStyles";
 import pokeApiService from "../../../service/PokeAPIService";
 import Pokemon from "../../../model/Pokemon";
-import { CardPokemon } from "../card/CardPokemon";
 import { PokeAPIContext } from "../../../contexts/PokeAPIContext";
 
 export const Form = () => {
-	const { handleAddPokemon, pokemon } = useContext(PokeAPIContext);
-	const refInputPokemon = useRef(null);
+	const { handleAddPokemon, refInputPokemon, handleFocusInputPokemon } = useContext(PokeAPIContext);
 	const [pokemonId, setPokemonId] = useState("");
-	const [messageNotExistPokemon, setMessageNotExistPokemon] = useState("");
+	const [messageError, setMessageError] = useState("");
 
 	const handleSetMessageNotExistPokemon = () => {
-		if (messageNotExistPokemon == "") return;
+		if (messageError == "") return;
 
-		setMessageNotExistPokemon("");
+		setMessageError("");
 	};
 
 	const getPokemonById = async () => {
@@ -26,25 +24,26 @@ export const Form = () => {
 			const poke = await pokeApiService.getPokemonById(pokemonId);
 			return poke;
 		} catch (error) {
-			if (error.response.status == 404) {
+			if (error.response?.status == 404) {
 				setPokemonId("");
-				setMessageNotExistPokemon("El pokémon no existe");
+				setMessageError("El pokémon no existe");
+			} else {
+				setMessageError(error.message);
 			}
 		}
 	};
 
-	const handleSubmit = async (e) => {
+	const addPokemon = async (e) => {
 		e.preventDefault();
 
-		// if (existPokemon()) return;
 		const poke = await getPokemonById();
 
 		if (poke) {
-			handleAddPokemon(new Pokemon(poke));
-
-			LocalStorage.save("pokemon", pokemon);
+			const newPokemon = new Pokemon(poke);
+			handleAddPokemon(newPokemon);
+			LocalStorage.save("pokemon", newPokemon);
 			setPokemonId("");
-			refInputPokemon.current.focus();
+			handleFocusInputPokemon();
 		}
 	};
 
@@ -64,11 +63,10 @@ export const Form = () => {
 							autoFocus
 						/>
 					</InputAndIconContainerStyled>
-					<Button value="Agregar" clickHandler={handleSubmit} isDisabled={!pokemonId ? true : false} width="20%" />
+					<Button value="Buscar" clickHandler={addPokemon} isDisabled={!pokemonId ? true : false} width="20%" />
 				</FormStyled>
-				{messageNotExistPokemon && <small>El pokemon no existe</small>}
+				{messageError && <small>{messageError}</small>}
 			</InputAndErrorMessageContainerStyled>
-			{pokemon && !messageNotExistPokemon && <CardPokemon pokemon={pokemon} />}
 		</>
 	);
 };

@@ -10,7 +10,6 @@ const PokemonImage = ({ image, alt }) => {
     <ImageContainerStyled>
       <ImageBoxStyled>
         <img src={image} alt={alt} />
-        <ImageShadowStyled />
       </ImageBoxStyled>
     </ImageContainerStyled>
   );

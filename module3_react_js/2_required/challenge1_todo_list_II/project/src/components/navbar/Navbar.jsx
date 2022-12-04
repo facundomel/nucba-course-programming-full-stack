@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { PokeAPIContext } from "../../contexts/PokeAPIContext";
 import { TodoListContext } from "../../contexts/TodoListContext";
 import {
-	ContainerLinkTodoList,
+	ContainerLink,
 	LeftContainer,
 	NavbarContainer,
 	NavbarExtendedContainer,
@@ -18,8 +20,18 @@ export const forceUpdateNavbar = () => {
 
 export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const { list } = useContext(TodoListContext);
+	const { pokemon } = useContext(PokeAPIContext);
 
-	console.log(list)
+	//assigning location variable
+	const location = useLocation();
+
+	//destructuring pathname from location
+	const { pathname } = location;
+
+	//Javascript split method to get the name of the path in array
+	const splitLocation = pathname.split("/");
+
+	console.log(splitLocation)
 
 	return (
 		<>
@@ -27,10 +39,12 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 				<NavbarInnerContainer>
 					<LeftContainer>
 						<NavbarLinkContainer>
-							<ContainerLinkTodoList quantityElementsList={list.length}>
-								<NavbarLink to="/"> Inicio </NavbarLink>
-							</ContainerLinkTodoList>
-							<NavbarLink to="/poke-api"> Poke API </NavbarLink>
+							<ContainerLink backgroundColor={list.length > 0 ? "brown" : "#191919"}>
+								<NavbarLink to="/todo-list" className={splitLocation[1] == "todo-list" ? "active" : ""}> Inicio </NavbarLink>
+							</ContainerLink>
+							<ContainerLink backgroundColor={pokemon ? "brown" : "#191919"}>
+								<NavbarLink to="/poke-api"  className={splitLocation[1] == "poke-api" ? "active" : ""}> Poke API </NavbarLink>
+							</ContainerLink>
 							<OpenLinksButton
 								onClick={() => {
 									setExtendNavbar((curr) => !curr);

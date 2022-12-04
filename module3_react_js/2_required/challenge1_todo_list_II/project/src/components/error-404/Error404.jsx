@@ -1,9 +1,10 @@
 import React from "react";
+import { ContainerError404Styled } from "./Error404Styles";
 
 export const Error404 = () => {
 	return (
 		<>
-			<h2>Status Code 404 Not Found</h2>
+			<ContainerError404Styled> La página no existe </ContainerError404Styled>
 		</>
 	);
 };
