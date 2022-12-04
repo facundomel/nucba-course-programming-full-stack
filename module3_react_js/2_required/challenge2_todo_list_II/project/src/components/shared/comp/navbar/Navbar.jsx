@@ -14,10 +14,6 @@ import {
 	OpenLinksButton,
 } from "./NavbarStyles";
 
-export const forceUpdateNavbar = () => {
-	useForceUpdate();
-};
-
 export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const { list } = useContext(TodoListContext);
 	const { pokemon } = useContext(PokeAPIContext);
