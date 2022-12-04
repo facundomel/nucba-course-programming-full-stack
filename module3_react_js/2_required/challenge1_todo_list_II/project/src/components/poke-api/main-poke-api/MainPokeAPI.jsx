@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { PokeAPIContext } from "../../../contexts/PokeAPIContext";
-import { FormContainerStyled, MainContainerStyled } from "../../styles/MainStyles";
+import { FormContainerStyled, MainContainerStyled } from "../../shared/styles/MainStyles";
 import { CardPokemon } from "../card/CardPokemon";
 import { Form } from "../form/Form";
 

@@ -1,9 +1,9 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import { TodoListContext } from "../../../contexts/TodoListContext";
 import LocalStorage from "../../../repository/LocalStorage";
-import { Button } from "../../button/Button";
-import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../styles/FormStyles";
+import { Button } from "../../shared/comp/button/Button";
+import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../shared/styles/FormStyles";
 
 export const Form = () => {
 	const { handleAddItem, list, refInputTask, handleFocusInputTask } = useContext(TodoListContext);

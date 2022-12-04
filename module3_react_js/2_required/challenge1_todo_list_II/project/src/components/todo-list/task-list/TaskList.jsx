@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { TodoListContext } from "../../../contexts/TodoListContext";
 import LocalStorage from "../../../repository/LocalStorage";
-import { Button } from "../../button/Button";
+import { Button } from "../../shared/comp/button/Button";
 import { Task } from "../task/Task";
 import { TasksListContainerStyled } from "./TaskListStyles";
 

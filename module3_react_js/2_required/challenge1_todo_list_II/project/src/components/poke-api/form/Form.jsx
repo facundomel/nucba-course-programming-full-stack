@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import LocalStorage from "../../../repository/LocalStorage";
-import { Button } from "../../button/Button";
-import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../styles/FormStyles";
+import { Button } from "../../shared/comp/button/Button";
+import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../shared/styles/FormStyles";
 import pokeApiService from "../../../service/PokeAPIService";
 import Pokemon from "../../../model/Pokemon";
 import { PokeAPIContext } from "../../../contexts/PokeAPIContext";

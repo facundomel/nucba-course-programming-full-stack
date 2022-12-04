@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { FormContainerStyled, MainContainerStyled } from "../../styles/MainStyles";
+import React from "react";
+import { FormContainerStyled, MainContainerStyled } from "../../shared/styles/MainStyles";
 import { Form } from "../form/Form";
 import { TaskList } from "../task-list/TaskList";
 
