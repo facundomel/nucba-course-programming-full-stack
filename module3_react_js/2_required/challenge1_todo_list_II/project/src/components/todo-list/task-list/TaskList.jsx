@@ -7,28 +7,24 @@ import { TasksListContainerStyled } from "./TaskListStyles";
 
 export const TaskList = () => {
 	const keyLocalStorage = "tasks";
-	const { list, setList } = useContext(TodoListContext);
-
-	useEffect(() => {
-		setList(LocalStorage.get(keyLocalStorage) || []);
-	}, []);
+	const { list, setList, handleFocusInputTask } = useContext(TodoListContext);
 
 	const onClickRemoveById = (id) => {
 		const updatedList = list.filter((item) => {
 			return item.id != id;
 		});
 		setList(updatedList);
-		localStorage.save(keyLocalStorage, updatedList);
-		props.handleFocusInputTask();
+		LocalStorage.save(keyLocalStorage, updatedList);
+		handleFocusInputTask();
 	};
 
 	const onClickRemoveItem = () => {
 		setList([]);
-		localStorage.remove(keyLocalStorage);
-		props.handleFocusInputTask();
+		LocalStorage.remove(keyLocalStorage);
+		handleFocusInputTask();
 	};
-
-	const taskList = list.map((item) => <Task key={item.id} data={item} clickHandler={onClickRemoveById} />);
+	
+	const taskList = list.map((item) => <Task key={item.id} data={item} onClickRemoveById={onClickRemoveById} />);
 
 	return (
 		<TasksListContainerStyled>

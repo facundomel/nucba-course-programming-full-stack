@@ -13,9 +13,7 @@ export const Router = () => {
 			<Route
 				path="todo-list"
 				element={
-					<TodoListProvider>
 						<MainTodoList />
-					</TodoListProvider>
 				}
 			/>
 			<Route

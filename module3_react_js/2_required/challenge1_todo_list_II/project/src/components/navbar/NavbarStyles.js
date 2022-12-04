@@ -39,15 +39,24 @@ export const NavbarLinkContainer = styled.div`
 `;
 
 export const NavbarLink = styled(Link)`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: white;
 	font-size: larger;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
-	margin: 10px;
+	font-weight: bold;
+	height: 70px;
+	width: 100px;
 
 	@media (max-width: 600px) {
 		display: none;
 	}
+`;
+
+export const ContainerLinkTodoList = styled.div`
+	background-color: ${(props) => (props.quantityElementsList > 0 ? "brown" : "#191919")};
 `;
 
 export const NavbarLinkExtended = styled(Link)`

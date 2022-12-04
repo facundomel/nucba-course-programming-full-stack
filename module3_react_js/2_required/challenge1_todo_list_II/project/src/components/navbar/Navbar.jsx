@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoListContext } from "../../contexts/TodoListContext";
 import {
+	ContainerLinkTodoList,
 	LeftContainer,
 	NavbarContainer,
 	NavbarExtendedContainer,
@@ -10,14 +12,24 @@ import {
 	OpenLinksButton,
 } from "./NavbarStyles";
 
+export const forceUpdateNavbar = () => {
+	useForceUpdate();
+};
+
 export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
+	const { list } = useContext(TodoListContext);
+
+	console.log(list)
+
 	return (
 		<>
 			<NavbarContainer extendNavbar={extendNavbar}>
 				<NavbarInnerContainer>
 					<LeftContainer>
 						<NavbarLinkContainer>
-							<NavbarLink to="/"> Inicio </NavbarLink>
+							<ContainerLinkTodoList quantityElementsList={list.length}>
+								<NavbarLink to="/"> Inicio </NavbarLink>
+							</ContainerLinkTodoList>
 							<NavbarLink to="/poke-api"> Poke API </NavbarLink>
 							<OpenLinksButton
 								onClick={() => {

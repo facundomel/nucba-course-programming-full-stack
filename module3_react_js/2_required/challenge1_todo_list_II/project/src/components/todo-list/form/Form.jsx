@@ -6,9 +6,8 @@ import { Button } from "../../button/Button";
 import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerStyled } from "../../styles/FormStyles";
 
 export const Form = () => {
-	const { handleAddItem, list } = useContext(TodoListContext);
+	const { handleAddItem, list, refInputTask, handleFocusInputTask } = useContext(TodoListContext);
 	const [description, setDescription] = useState("");
-	const refInputTask = useRef(null);
 
 	const task = {
 		id: (+new Date()).toString(),
@@ -26,11 +25,13 @@ export const Form = () => {
 
 		if (existTask()) return;
 
+		console.log(list);
 		handleAddItem(task);
+		console.log(list);
 
 		LocalStorage.save("tasks", [...list, task]);
 		setDescription("");
-		refInputTask.current.focus();
+		handleFocusInputTask();
 	};
 
 	return (
