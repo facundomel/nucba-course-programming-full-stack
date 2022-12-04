@@ -11,7 +11,7 @@ export const FormPokeAPI = () => {
 	const [pokemonId, setPokemonId] = useState("");
 	const [messageError, setMessageError] = useState("");
 
-	const handleSetMessageNotExistPokemon = () => {
+	const handlerSetMessageNotExistPokemon = () => {
 		if (messageError == "") return;
 
 		setMessageError("");
@@ -47,7 +47,8 @@ export const FormPokeAPI = () => {
 	};
 
 	const handlerOnChangeInput = (e) => {
-		setPokemonId(e.target.value), handleSetMessageNotExistPokemon("");
+		setPokemonId(e.target.value);
+		handlerSetMessageNotExistPokemon("");
 	};
 
 	const handlerDisableButton = () => {
