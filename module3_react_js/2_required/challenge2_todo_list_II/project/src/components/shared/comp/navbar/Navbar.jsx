@@ -35,14 +35,12 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 						<NavbarLinkContainer>
 							<ContainerLink backgroundColor={list.length > 0 ? "brown" : "#191919"}>
 								<NavbarLink to="/todo-list" className={splitLocation[1] == "todo-list" ? "active" : ""}>
-									{" "}
-									Inicio{" "}
+									Todo List
 								</NavbarLink>
 							</ContainerLink>
 							<ContainerLink backgroundColor={pokemon ? "brown" : "#191919"}>
 								<NavbarLink to="/poke-api" className={splitLocation[1] == "poke-api" ? "active" : ""}>
-									{" "}
-									Poke API{" "}
+									Poke API
 								</NavbarLink>
 							</ContainerLink>
 							<OpenLinksButton
@@ -60,7 +58,7 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 					<NavbarExtendedContainer>
 						{list.length}
 						<NavbarLinkExtended to="/" onClick={() => setExtendNavbar(false)} className={splitLocation[1] == "todo-list" ? "active" : ""}>
-							Inicio
+							Todo List
 						</NavbarLinkExtended>
 						<NavbarLinkExtended
 							to="/poke-api"
