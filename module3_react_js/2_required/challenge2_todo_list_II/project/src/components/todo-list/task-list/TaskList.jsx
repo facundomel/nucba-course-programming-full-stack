@@ -28,7 +28,7 @@ export const TaskList = () => {
 
 	return (
 		<TasksListContainerStyled>
-			{list.length ? taskList : <span> No hay ningúna tarea almacenada </span>}
+			{list.length ? taskList : <span> No hay ninguna tarea almacenada </span>}
 			{list.length ? <Button value="Borrar Tareas" width="100%" clickHandler={removeAllTasks} /> : null}
 		</TasksListContainerStyled>
 	);
