@@ -54,17 +54,20 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 
 				{extendNavbar && (
 					<NavbarExtendedContainer>
-						{list.length}
-						<NavbarLinkExtended to="/" onClick={() => setExtendNavbar(false)} className={splitLocation[1] == "todo-list" ? "active" : ""}>
-							Todo List
-						</NavbarLinkExtended>
-						<NavbarLinkExtended
-							to="/poke-api"
-							onClick={() => setExtendNavbar(false)}
-							className={splitLocation[1] == "poke-api" ? "active" : ""}
-						>
-							Poke API
-						</NavbarLinkExtended>
+						<ContainerLink backgroundColor={list.length > 0 ? "brown" : "#191919"}>
+							<NavbarLinkExtended to="/" onClick={() => setExtendNavbar(false)} className={splitLocation[1] == "todo-list" ? "active" : ""}>
+								Todo List
+							</NavbarLinkExtended>
+						</ContainerLink>
+						<ContainerLink backgroundColor={pokemon ? "brown" : "#191919"}>
+							<NavbarLinkExtended
+								to="/poke-api"
+								onClick={() => setExtendNavbar(false)}
+								className={splitLocation[1] == "poke-api" ? "active" : ""}
+							>
+								Poke API
+							</NavbarLinkExtended>
+						</ContainerLink>
 					</NavbarExtendedContainer>
 				)}
 			</NavbarContainer>

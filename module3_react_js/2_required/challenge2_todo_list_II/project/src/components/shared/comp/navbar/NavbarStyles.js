@@ -64,11 +64,16 @@ export const ContainerLink = styled.div`
 `;
 
 export const NavbarLinkExtended = styled(NavLink)`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: white;
-	font-size: x-large;
+	font-size: larger;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
-	margin: 10px;
+	font-weight: bold;
+	height: 70px;
+	width: 90vw;
 
 	&.active {
 		border: 2px white solid;
@@ -93,6 +98,8 @@ export const NavbarExtendedContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 20px;
+	gap: 20px;
 
 	@media (min-width: 600px) {
 		display: none;
