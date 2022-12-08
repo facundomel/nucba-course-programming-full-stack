@@ -52,11 +52,16 @@ export const FormPokeAPI = () => {
 	};
 
 	const handlerDisableButton = () => {
-		return !pokemonId ? true : false;
+		return (!pokemonId || isNaN(pokemonId)) ? true : false;
 	};
 
 	const handlerMessageError = () => {
 		return messageError && <small>{messageError}</small>;
+	};
+
+	const handlerMessagePokemonID = () => {
+		if (pokemonId && isNaN(pokemonId))
+			return <small>El Pokemon ID debe ser un número</small>
 	};
 
 	const dataForm = new FormModel(
@@ -67,7 +72,8 @@ export const FormPokeAPI = () => {
 		handlerClickButton,
 		handlerDisableButton,
 		handlerMessageError,
-		"Buscar"
+		"Buscar",
+		handlerMessagePokemonID
 	);
 
 	return (

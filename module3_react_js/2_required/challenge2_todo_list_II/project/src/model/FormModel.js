@@ -1,5 +1,5 @@
 export default class FormModel {
-	constructor(inputValue, placeHolder, refInput, handlerOnChangeInput, handlerClickButton, handlerDisableButton, handlerMessageError, valueButton) {
+	constructor(inputValue, placeHolder, refInput, handlerOnChangeInput, handlerClickButton, handlerDisableButton, handlerMessageError, valueButton, handlerMessagePokemonID) {
 		this.inputValue = inputValue;
 		this.placeHolder = placeHolder;
 		this.refInput = refInput;
@@ -8,5 +8,6 @@ export default class FormModel {
 		this.handlerDisableButton = handlerDisableButton;
 		this.handlerMessageError = handlerMessageError;
 		this.valueButton = valueButton;
+		this.handlerMessagePokemonID = handlerMessagePokemonID;
 	}
 }

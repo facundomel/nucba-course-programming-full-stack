@@ -13,6 +13,7 @@ export const Form = (props) => {
 		handlerDisableButton,
 		handlerMessageError,
 		valueButton,
+		handlerMessagePokemonID,
 	} = props.data;
 
 	return (
@@ -34,6 +35,7 @@ export const Form = (props) => {
 					<Button value={valueButton} clickHandler={handlerClickButton} isDisabled={handlerDisableButton()} width="20%" />
 				</FormStyled>
 				{handlerMessageError()}
+				{handlerMessagePokemonID()}
 			</InputAndErrorMessageContainerStyled>
 		</>
 	);
