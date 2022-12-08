@@ -81,7 +81,6 @@ export const NavbarLinkExtended = styled(NavLink)`
 `;
 
 export const OpenLinksButton = styled.button`
-	/* width: 70px; */
 	height: 50px;
 	background: none;
 	border: none;
