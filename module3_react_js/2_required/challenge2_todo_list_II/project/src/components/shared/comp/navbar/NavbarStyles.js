@@ -35,7 +35,11 @@ export const NavbarInnerContainer = styled.div`
 
 export const NavbarLinkContainer = styled.div`
 	display: flex;
-	gap: 20px;
+	gap: 40px;
+
+	@media (max-width: 600px) {
+		gap: 0px;
+	}
 `;
 
 export const NavbarLink = styled(NavLink)`

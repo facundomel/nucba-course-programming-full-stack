@@ -30,7 +30,7 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 			<NavbarContainer extendNavbar={extendNavbar}>
 				<NavbarInnerContainer>
 					<LeftContainer>
-						<NavbarLinkContainer>
+						<NavbarLinkContainer extendNavbar={extendNavbar}>
 							<ContainerLink backgroundColor={list.length > 0 ? "brown" : "#191919"}>
 								<NavbarLink to="/todo-list" className={splitLocation[1] == "todo-list" ? "active" : ""}>
 									Todo List
