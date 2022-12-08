@@ -66,7 +66,8 @@ export const FormPokeAPI = () => {
 		handlerOnChangeInput,
 		handlerClickButton,
 		handlerDisableButton,
-		handlerMessageError
+		handlerMessageError,
+		"Buscar"
 	);
 
 	return (

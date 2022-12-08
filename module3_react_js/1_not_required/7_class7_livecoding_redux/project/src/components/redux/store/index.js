@@ -7,6 +7,6 @@ const store = configureStore({
 	composeWithDevTools,
 });
 
-store.subscribe(() => console.log("cambio el estado"));
+store.subscribe(() => console.log("Cambió el estado"));
 
 export default store;

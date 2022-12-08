@@ -4,18 +4,23 @@ export const CardContainerStyled = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
-	width: 300px;
+	width: 350px;
 	margin: 0 auto;
-	padding: 30px 10px;
+	padding: 30px 0;
 	border-radius: 20px;
 	background: #282828;
 	color: white;
+
+	@media (max-width: 500px) {
+		width: 100%;
+	}
 `;
 
 export const IDAndBtnDeleteContainer = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
+	text-align: center;
 	width: 100%;
 	font-size: 1.8rem;
 
@@ -30,6 +35,13 @@ export const IDAndBtnDeleteContainer = styled.div`
 	& .btn-delete:hover {
 		cursor: pointer;
 	}
+`;
+
+export const IDAndBtnDelete = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
 `;
 
 export const CardTextContentContainerStyled = styled.div`

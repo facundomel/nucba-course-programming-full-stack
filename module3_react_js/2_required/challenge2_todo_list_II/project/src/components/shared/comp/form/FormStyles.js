@@ -5,7 +5,7 @@ export const FormContainerStyled = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	width: 40%;
+	width: 500px;
 	gap: 1.5rem;
 
 	@media (max-width: 600px) {

@@ -5,6 +5,7 @@ import LocalStorage from "../../../repository/LocalStorage";
 import {
 	CardContainerStyled,
 	CardTextContentContainerStyled,
+	IDAndBtnDelete,
 	IDAndBtnDeleteContainer,
 	MessageNotPokemonSavedStyled,
 } from "./CardPokemonStyles";
@@ -25,8 +26,10 @@ export const CardPokemon = () => {
 			{pokemon ? (
 				<CardContainerStyled>
 					<IDAndBtnDeleteContainer>
+						<IDAndBtnDelete>
 						<span>#{pokemon.id}</span>
 						<MdDelete className="btn-delete" onClick={() => deletePokemon()} />
+						</IDAndBtnDelete>
 					</IDAndBtnDeleteContainer>
 					<PokemonImage image={pokemon.img} alt={pokemon.name} />
 

@@ -25,8 +25,6 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	//Javascript split method to get the name of the path in array
 	const splitLocation = pathname.split("/");
 
-	console.log(splitLocation);
-
 	return (
 		<>
 			<NavbarContainer extendNavbar={extendNavbar}>

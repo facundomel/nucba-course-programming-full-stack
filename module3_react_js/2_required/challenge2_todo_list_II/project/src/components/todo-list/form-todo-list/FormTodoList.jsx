@@ -50,7 +50,8 @@ export const FormTodoList = () => {
 		handlerOnChangeInput,
 		handlerClickButton,
 		handlerDisableButton,
-		handlerMessageError
+		handlerMessageError,
+		"Agregar"
 	);
 
 	return (

@@ -4,8 +4,16 @@ import { FormStyled, InputAndErrorMessageContainerStyled, InputAndIconContainerS
 import { Button } from "../button/Button";
 
 export const Form = (props) => {
-	const { inputValue, placeHolder, handlerOnChangeInput, refInput, handlerClickButton, handlerDisableButton, handlerMessageError } =
-		props.data;
+	const {
+		inputValue,
+		placeHolder,
+		handlerOnChangeInput,
+		refInput,
+		handlerClickButton,
+		handlerDisableButton,
+		handlerMessageError,
+		valueButton,
+	} = props.data;
 
 	return (
 		<>
@@ -23,7 +31,7 @@ export const Form = (props) => {
 							autoFocus
 						/>
 					</InputAndIconContainerStyled>
-					<Button value="Agregar" clickHandler={handlerClickButton} isDisabled={handlerDisableButton()} width="20%" />
+					<Button value={valueButton} clickHandler={handlerClickButton} isDisabled={handlerDisableButton()} width="20%" />
 				</FormStyled>
 				{handlerMessageError()}
 			</InputAndErrorMessageContainerStyled>

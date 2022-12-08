@@ -16,7 +16,7 @@ function App() {
 				<TodoListProvider>
 					<PokeAPIProvider>
 						<Navbar extendNavbar={extendNavbar} setExtendNavbar={setExtendNavbar} />
-						<Router />
+						{!extendNavbar && <Router />}
 					</PokeAPIProvider>
 				</TodoListProvider>
 			</BrowserRouter>
