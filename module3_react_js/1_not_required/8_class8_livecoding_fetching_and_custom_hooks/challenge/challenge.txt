@@ -10,4 +10,5 @@ Con que la aplicación solamente tenga un card diseñado, es más que suficiente
 
 Solución:
 
-No lo hice con API Context porque use el componente ThemeProvider que provee la librería de styled components.
+No lo hice con API Context porque use el componente ThemeProvider que provee la librería de styled components,
+y ese componente basicamente funcionaría como API Context.
