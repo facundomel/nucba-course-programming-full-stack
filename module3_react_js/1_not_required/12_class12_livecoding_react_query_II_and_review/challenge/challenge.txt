@@ -1,0 +1,13 @@
+Desafío:
+
+En el desafío de la clase de hoy, cerrando la sección teórica de ReactJs, los invitamos a investigar sobre Json Server en nuestra sección de Javascript o en los recursos de esta clase. 
+
+En este desafío, deberán crear con esa tecnología una API a gusto y piacere del consumidor. 
+
+Luego, los invitamos a consumir esos datos y mostrarlos en la interfaz. También debemos generar una opción para filtrar por ID.
+
+*Es importante mostrarle al usuario el estado de nuestra petición, ya sea isLoading, isError o isFetching*
+
+Por último, hay que permitir un modo en el que se puedan publicar datos (método: post) mediante mutaciones en nuestra fake API. 
+
+Aclaración: El manejo de estos datos los trabajaran con React Query, mientras que el consumo de la API lo harán con la librearía AXIOS.
