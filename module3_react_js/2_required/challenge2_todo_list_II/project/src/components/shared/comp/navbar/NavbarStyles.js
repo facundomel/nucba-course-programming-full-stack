@@ -102,7 +102,7 @@ export const NavbarExtendedContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	margin-top: 20px;
-	gap: 20px;
+	gap: 10px;
 
 	@media (min-width: 600px) {
 		display: none;

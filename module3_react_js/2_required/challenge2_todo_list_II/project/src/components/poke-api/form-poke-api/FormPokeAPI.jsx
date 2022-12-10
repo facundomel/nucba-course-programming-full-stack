@@ -19,12 +19,10 @@ export const FormPokeAPI = () => {
 
 	const getPokemonById = async () => {
 		try {
-			handleAddPokemon(null);
 			const poke = await pokeApiService.getPokemonById(pokemonId);
 			return poke;
 		} catch (error) {
 			if (error.response?.status == 404) {
-				setPokemonId("");
 				setMessageError("El pokemon no existe");
 			} else {
 				setMessageError(error.message);
