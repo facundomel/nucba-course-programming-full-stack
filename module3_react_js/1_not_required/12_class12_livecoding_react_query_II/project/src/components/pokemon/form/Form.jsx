@@ -1,13 +1,13 @@
-import React, { useContext, useRef, useState } from "react";
-import LocalStorage from "../../../repository/LocalStorage";
-import pokeApiService from "../../../service/PokeAPIService";
+import React, { useContext, useState } from "react";
+import localStoragePokemon from "../../../repository/LocalStoragePokemon";
+import pokeApiService from "../../../service/PokemonService";
 import Pokemon from "../../../model/Pokemon";
-import { PokeAPIContext } from "../../../contexts/PokeAPIContext";
-import FormModel from "../../../model/FormModel";
-import { Form } from "../../shared/comp/form/Form";
+import { PokemonContext } from "../../../contexts/PokemonContext";
+import { Form as FormModel } from "../../../model/Form";
+import { FormGeneric } from "../../shared/comp/form/FormGeneric";
 
-export const FormPokeAPI = () => {
-	const { handleAddPokemon, refInputPokemon, handleFocusInputPokemon } = useContext(PokeAPIContext);
+export const Form = () => {
+	const { handlerAddPokemon, refInputPokemon, handlerFocusInputPokemon } = useContext(PokemonContext);
 	const [pokemonId, setPokemonId] = useState("");
 	const [messageError, setMessageError] = useState("");
 
@@ -19,12 +19,10 @@ export const FormPokeAPI = () => {
 
 	const getPokemonById = async () => {
 		try {
-			handleAddPokemon(null);
 			const poke = await pokeApiService.getPokemonById(pokemonId);
 			return poke;
 		} catch (error) {
 			if (error.response?.status == 404) {
-				setPokemonId("");
 				setMessageError("El pokemon no existe");
 			} else {
 				setMessageError(error.message);
@@ -39,10 +37,10 @@ export const FormPokeAPI = () => {
 
 		if (poke) {
 			const newPokemon = new Pokemon(poke);
-			handleAddPokemon(newPokemon);
-			LocalStorage.save("pokemon", newPokemon);
+			handlerAddPokemon(newPokemon);
+			localStoragePokemon.savePokemon("pokemon", newPokemon);
 			setPokemonId("");
-			handleFocusInputPokemon();
+			handlerFocusInputPokemon();
 		}
 	};
 
@@ -52,7 +50,7 @@ export const FormPokeAPI = () => {
 	};
 
 	const handlerDisableButton = () => {
-		return (!pokemonId || isNaN(pokemonId)) ? true : false;
+		return !pokemonId || isNaN(pokemonId) ? true : false;
 	};
 
 	const handlerMessageError = () => {
@@ -60,8 +58,7 @@ export const FormPokeAPI = () => {
 	};
 
 	const handlerMessagePokemonID = () => {
-		if (pokemonId && isNaN(pokemonId))
-			return <small>El Pokemon ID debe ser un número</small>
+		if (pokemonId && isNaN(pokemonId)) return <small>El Pokemon ID debe ser un número</small>;
 	};
 
 	const dataForm = new FormModel(
@@ -78,7 +75,7 @@ export const FormPokeAPI = () => {
 
 	return (
 		<>
-			<Form data={dataForm} />
+			<FormGeneric data={dataForm} />
 		</>
 	);
 };
