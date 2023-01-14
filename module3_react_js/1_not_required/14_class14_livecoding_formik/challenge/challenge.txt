@@ -1,0 +1,13 @@
+Desafío:
+
+En la clase de hoy, te proponemos el siguiente desafío:
+
+👉 Realizar un formulario con la temática de una solicitud de empleo para ser delivery de una pizzería. Los campos a validar serán:
+
+- Nombre y apellido
+- Número de teléfono
+- Correo electrónico
+- Edad
+- Experiencia manejando motos (checkbox)
+
+🕵 Este formulario, obviamente, debe ser controlado usando Formik, y las validaciones se pueden realizar con JS Vanilla o Yup. Si algún campo no cumple con los requisitos, se le debe indicar visualmente al usuario.
