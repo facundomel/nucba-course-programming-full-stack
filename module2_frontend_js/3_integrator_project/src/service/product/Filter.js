@@ -24,7 +24,7 @@ export default new (class Filter {
 	/* Funcion para renderizar los productos */
 	#renderFilteredProducts(selectedCategory) {
 		/* Filtro los productos por la categoria seleccionada */
-		const filteredProducts = dataProduct.filter((product) => product.category === selectedCategory);
+		const filteredProducts = dataProduct.filter((product) => selectedCategory != "all" ? product.category === selectedCategory : dataProduct);
 		/* Si el array tiene 0 productos, no hay stock, se renderiza un mensaje */
 		if (filteredProducts.length === 0)
 			return this.#renderError(containerProductsAll, "No hay stock de este producto. Por favor, seleccione otra categoría.");
@@ -64,7 +64,7 @@ export default new (class Filter {
 	}
 
 	init() {
-		this.#renderFilteredProducts("consoles");
+		this.#renderFilteredProducts("all");
 		this.#eventClickFilter();
 	}
 })();

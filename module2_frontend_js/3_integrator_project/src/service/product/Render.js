@@ -15,7 +15,7 @@ export default new (class Render {
             <div class="product-card">
                 <img src=${product.img} alt="Producto recomendado" />
                 <div class="item-info">
-                    <h3 class="item-title">${product.name}</h3>
+                    <h5 class="item-title">${product.name}</h5>
                     <p class="item-description">${product.description}</p>
                 </div>
                 <div class="buy-container">
@@ -45,7 +45,7 @@ export default new (class Render {
             <div class="product-offer">
                 <img src=${product.img} alt="Oferta" />
                 <div class="item-info-offer">
-                    <h3 class="item-title">${product.name}</h3>
+                    <h5 class="item-title">${product.name}</h5>
                     <div class="prices-offer">
                         <span class="item-price-old"><div class="integer-price-old">$ ${integersAndDecimalsOfOldPrice[0]}</div> <sup class=decimal-price-old>${integersAndDecimalsOfOldPrice[1]}</sup></span>
                         <span class="item-price">$ ${integersAndDecimalsOfCurrentPrice[0]} <sup>${integersAndDecimalsOfCurrentPrice[1]}</sup></span>

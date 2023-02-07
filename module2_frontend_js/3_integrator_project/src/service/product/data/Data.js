@@ -121,7 +121,7 @@ export default new (class Data {
 
 			// Smart watch
 			new Product(
-				14,
+				12,
 				"Smartwatch Noga NG-SW05",
 				'Smartwatch Noga NG-SW05 1.3" caja de metal plateada, malla negra de tpu',
 				"10.250,00",
@@ -132,7 +132,7 @@ export default new (class Data {
 			),
 
 			new Product(
-				15,
+				13,
 				"Xiaomi Redmi Watch 2 Lite",
 				'Xiaomi Redmi Watch 2 Lite 1.55" caja black, malla black de tpu',
 				"17.799,00",
@@ -142,7 +142,7 @@ export default new (class Data {
 			),
 
 			new Product(
-				16,
+				14,
 				"Samsung Galaxy Watch4",
 				'Samsung Galaxy Watch4 (Bluetooth) 1.4" caja 44mm de aluminio black, malla black de fluoroelastómero SM-R870',
 				"55.990,00",
