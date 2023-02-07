@@ -83,6 +83,11 @@
 		font-size: 1.3rem !important;
 	}
 
+	/* Products filter */
+	.filters-products {
+		width: 200px;
+	}
+
 	/* Footer */
 	.footer-contact {
 		width: 60%;
