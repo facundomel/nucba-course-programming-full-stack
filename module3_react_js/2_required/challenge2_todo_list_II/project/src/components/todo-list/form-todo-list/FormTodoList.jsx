@@ -9,7 +9,7 @@ export const FormTodoList = () => {
 	const [description, setDescription] = useState("");
 
 	const task = {
-		id: (+new Date()).toString(),
+		id: (Date.now()).toString(),
 		description,
 	};
 
@@ -21,6 +21,8 @@ export const FormTodoList = () => {
 
 	const handlerClickButton = (e) => {
 		e.preventDefault();
+
+		console.log(task.id);
 
 		if (existTask()) return;
 
