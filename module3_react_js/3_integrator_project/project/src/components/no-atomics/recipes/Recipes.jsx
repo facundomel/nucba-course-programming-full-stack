@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { CardRecipe } from "./CardRecipe";
-import { RecipesContainer, Test } from "./RecipesStyles";
+import { RecipesContainer } from "./RecipesStyles";
+import localStorage from "../../../repository/LocalStorage";
 
 export const Recipes = () => {
-	const { recipesFiltered } = useSelector((state) => state.recipes);
+	const { recipesAll, recipesFiltered } = useSelector((state) => state.recipes);
+
+	useEffect(() => {
+		localStorage.save("recipesAll", recipesAll);
+	}, [recipesAll]);
 
 	return (
 		<>

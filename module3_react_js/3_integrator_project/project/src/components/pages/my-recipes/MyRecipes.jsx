@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../../no-atomics/hero/Hero";
 import { Recipes } from "../../no-atomics/recipes/Recipes";
 import { MyRecipesContainer } from "./MyRecipesStyles";
-import DataRecipes from "../../../assets/data/DataRecipes";
+import { useDispatch, useSelector } from "react-redux";
+import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
 
 export const MyRecipes = () => {
-	const recipesToFilter = DataRecipes.getData().filter((recipe) => recipe.isFavorite);
+	const { recipesAll } = useSelector((state) => state.recipes);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(recipesActions.setRecipeSection("MyRecipes"));
+	}, []);
 
 	return (
 		<>
 			<MyRecipesContainer>
-				<Hero recipesToFilter={recipesToFilter} />
+				<Hero recipesToFilter={recipesAll.filter((recipe) => recipe.isFavorite)} />
 				<Recipes />
 			</MyRecipesContainer>
 		</>

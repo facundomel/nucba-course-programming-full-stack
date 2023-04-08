@@ -10,6 +10,7 @@ export const HeroContainerStyled = styled.div`
 
 	h1 {
 		margin-bottom: 2rem;
+		text-align: center;
 	}
 `;
 
@@ -17,7 +18,6 @@ export const HeroFormStyled = styled.form`
 	display: flex;
 	gap: 20px;
 	position: relative;
-	z-index: -1;
 `;
 
 export const HeroSearchBarStyled = styled.input`
@@ -36,14 +36,8 @@ export const IconWrapperStyled = styled.div`
 	color: var(--white);
 `;
 
-// export const HeroBtnStyled = styled.input`
-//   padding: 0.8rem 1.5rem;
-//   outline: none;
-//   border: none;
-//   border-radius: 10px;
-//   background: var(--btn-gradient);
-//   color: white;
-//   text-transform: uppercase;
-//   font-weight: 400;
-//   cursor: pointer;
-// `;
+export const MessageNotRecipes = styled.h2`
+	text-align: center;
+	color: var(--gray);
+	font-style: italic;
+`;

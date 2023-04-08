@@ -4,7 +4,6 @@ import { Home } from "../components/pages/home/Home";
 import { NotFound } from "../components/pages/not-found/NotFound";
 import { MyRecipes } from "../components/pages/my-recipes/MyRecipes";
 import { Login } from "../components/pages/login/Login";
-import { ProtectedRoute } from "./ProtectedRoute";
 import { useSelector } from "react-redux";
 
 export const Router = () => {

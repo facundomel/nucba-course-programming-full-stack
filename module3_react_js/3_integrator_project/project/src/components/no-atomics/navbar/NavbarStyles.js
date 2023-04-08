@@ -11,6 +11,7 @@ export const NavbarContainer = styled.nav`
 	background-color: black;
 	position: fixed;
 	top: 0;
+	z-index: 1;
 `;
 
 export const NavbarInnerContainer = styled.div`

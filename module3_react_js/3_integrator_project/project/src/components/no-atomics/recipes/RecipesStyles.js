@@ -2,16 +2,18 @@ import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 export const RecipesContainer = styled.div`
-	display: flex;
+	display: grid;
+	place-items: center;
 	justify-content: center;
-	align-items: center;
+	grid-template-columns: repeat(auto-fit, 300px);
 	width: 100%;
 	height: 100%;
 	flex-wrap: wrap;
-	gap: 20px;
+	gap: 30px;
 `;
 
 export const CardRecipeContainer = styled.div`
+	display: ${(props) => (props.hiddenCard ? "none" : "")};
 	background: var(--white);
 	width: 300px;
 	border-radius: 15px;
@@ -21,6 +23,10 @@ export const CardRecipeContainer = styled.div`
 		width: 100%;
 		border-top-left-radius: 15px;
 		border-top-right-radius: 15px;
+	}
+
+	@media (max-width: 400px) {
+		width: 250px;
 	}
 `;
 
@@ -50,6 +56,12 @@ export const CardInformation = styled.div`
 		width: 4px;
 		display: flex;
 	}
+
+	@media (max-width: 400px) {
+		h2 {
+			height: auto;
+		}
+	}
 `;
 
 export const CardUserAndFavorite = styled.div`
@@ -70,4 +82,13 @@ export const AiOutlineStarCustom = styled(AiOutlineStar)`
 export const AiFillStarCustom = styled(AiFillStar)`
 	cursor: pointer;
 	color: #f7c103;
+`;
+
+export const ButtonFavorite = styled.button`
+	margin: 0;
+	padding: 0;
+	width: 32px;
+	height: 32px;
+	border: none;
+	background-color: transparent;
 `;
