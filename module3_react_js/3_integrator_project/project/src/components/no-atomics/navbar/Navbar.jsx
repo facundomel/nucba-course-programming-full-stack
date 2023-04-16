@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
 	LeftContainer,
 	LoginMenuSessionUser,
@@ -73,7 +73,7 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								</NavbarLinkRight>
 							)}
 							{!currentUser ? (
-								<NavbarLinkRight to={"/login"}>
+								<NavbarLinkRight to={"/registro"}>
 									<FaUserAlt />
 								</NavbarLinkRight>
 							) : (

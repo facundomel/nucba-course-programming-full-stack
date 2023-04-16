@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { CardRecipe } from "./CardRecipe";
 import { RecipesContainer } from "./RecipesStyles";
-import localStorage from "../../../repository/LocalStorage";
+import localStorage, { KEY_RECIPES_ALL } from "../../../repository/LocalStorage";
 
 export const Recipes = () => {
 	const { recipesAll, recipesFiltered } = useSelector((state) => state.recipes);
 
 	useEffect(() => {
-		localStorage.save("recipesAll", recipesAll);
+		localStorage.save(KEY_RECIPES_ALL, recipesAll);
 	}, [recipesAll]);
 
 	return (

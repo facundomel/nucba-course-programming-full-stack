@@ -7,9 +7,11 @@ const GlobalStyles = createGlobalStyle`
       --gray: gray;
       --blue-light: #005EBE;
       --green-light: #3CC24C;
-      --red-light: #E73A2A;
+      --red: #E73A2A;
+      --red-light: #cd3c30;
       --orange-bg: #2f2618;
       --orange: #ff9d01;
+      --orange2: #FD3D2A;
       --magenta: #FF005C;
       --gray-bg: #2b2b2c;
       --btn-gradient: linear-gradient(83deg, #ffa100, #fb103d);

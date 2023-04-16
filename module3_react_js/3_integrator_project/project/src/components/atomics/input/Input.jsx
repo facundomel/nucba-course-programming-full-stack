@@ -1,21 +1,23 @@
-import { ErrorMessage, Field } from "formik";
 import React from "react";
-// import useRedirect from "../../../hooks/useRedirect";
+import { ERROR_EMAIL_OR_PASSWORD } from "../../../model/ErrorCustom";
+import { ErrorContainer, ErrorMessage } from "../../pages/user/UserStyles";
+import { InputContainerStyled, InputStyled } from "./InputStyles";
 
-import { ErrorMessageStyled, InputContainerStyled, LoginInputStyled } from "./InputStyles";
-
-const Input = ({ name, type, placeholder }) => {
-	// useRedirect("/");
-
+const Input = ({ inputRef, name, type, placeholder, handleOnChange, error }) => {
 	return (
-		<Field name={name}>
-			{({ field, form: { errors, touched } }) => (
-				<InputContainerStyled>
-					<LoginInputStyled type={type} placeholder={placeholder} {...field} isError={errors[field.name] && touched[field.name]} />
-					<ErrorMessage name={field.name}>{(message) => <ErrorMessageStyled> {message} </ErrorMessageStyled>}</ErrorMessage>
-				</InputContainerStyled>
-			)}
-		</Field>
+		<ErrorContainer>
+			<InputContainerStyled>
+				<InputStyled
+					ref={inputRef}
+					type={type}
+					placeholder={placeholder}
+					name={name}
+					onChange={(e) => handleOnChange(e)}
+					isError={error && true}
+				/>
+			</InputContainerStyled>
+			{error && error.type != ERROR_EMAIL_OR_PASSWORD && <ErrorMessage textAlign="left">{error.message}</ErrorMessage>}
+		</ErrorContainer>
 	);
 };
 

@@ -6,12 +6,12 @@ export const InputContainerStyled = styled.div`
 	width: 100%;
 `;
 
-export const LoginInputStyled = styled.input`
+export const InputStyled = styled.input`
 	padding: 1rem 2rem;
 	color: white;
 	background-color: var(--gray-bg);
 	border-radius: 15px;
-	border: ${({ isError }) => (isError ? "1px solid #fb103d " : "none")};
+	border: ${({ isError }) => (isError ? "1px solid var(--red)" : "none")};
 	outline: none;
 	caret-color: white;
 
@@ -20,17 +20,10 @@ export const LoginInputStyled = styled.input`
 	}
 
 	-webkit-text-fill-color: white;
-	
+
 	:-webkit-autofill,
 	:-webkit-autofill:hover,
 	:-webkit-autofill:focus {
 		-webkit-box-shadow: 0 0 0px 1000px var(--gray-bg) inset;
 	}
-`;
-
-export const ErrorMessageStyled = styled.p`
-	margin: 0;
-	margin-top: 5px;
-	color: #fb103d;
-	font-size: 14px;
 `;
