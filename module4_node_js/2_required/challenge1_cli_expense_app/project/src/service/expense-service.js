@@ -89,10 +89,16 @@ export const createNewExpense = async () => {
 
 export const deleteExpenseByDescription = async () => {
 	console.log("Eliminación de gasto:");
-	const descriptionExpenseToDelete = await deleteExpensePrompt();
 
 	const filePath = "./src/data/expenses.json";
 	const currentExpenses = await readFile(filePath);
+
+	if (currentExpenses.length == 0) {
+		console.log("No existen gastos");
+		return;
+	}
+
+	const descriptionExpenseToDelete = await deleteExpensePrompt();
 
 	let existExpense = false;
 	currentExpenses.forEach((expense) => {
