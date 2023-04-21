@@ -4,6 +4,7 @@ import { Recipes } from "../../no-atomics/recipes/Recipes";
 import { HomeContainer } from "./HomeStyles";
 import { useDispatch, useSelector } from "react-redux";
 import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
+import Categories from "../../no-atomics/recipes-category/Categories";
 
 export const Home = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);
@@ -17,6 +18,7 @@ export const Home = () => {
 		<>
 			<HomeContainer>
 				<Hero recipesToFilter={recipesAll} />
+				<Categories />
 				<Recipes />
 			</HomeContainer>
 		</>

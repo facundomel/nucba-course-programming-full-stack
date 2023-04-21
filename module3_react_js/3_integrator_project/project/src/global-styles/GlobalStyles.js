@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
     :root {
       --white: white;
       --black: black;
+      --black-light: #131415;
       --gray: gray;
       --blue-light: #005EBE;
       --green-light: #3CC24C;
@@ -18,10 +19,10 @@ const GlobalStyles = createGlobalStyle`
       --btn-gradient-secondary: linear-gradient(140deg, #3B3022, #3B2329);
     }
 
-    html {
+    body {
       margin: 0;
       padding: 0;
-      background-color: var(--white);
+      background-color: var(--black-light);
     }
 
     /* Scrollbar */

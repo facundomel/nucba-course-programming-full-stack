@@ -12,9 +12,19 @@ export const RecipesContainer = styled.div`
 	gap: 30px;
 `;
 
+export const MessageNotExistRecipes = styled.h2`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-style: italic;
+	color: var(--gray);
+	width: 100%;
+`;
+
 export const CardRecipeContainer = styled.div`
 	display: ${(props) => (props.hiddenCard ? "none" : "")};
-	background: var(--white);
+	background: var(--gray-bg);
 	width: 300px;
 	border-radius: 15px;
 	border: 1px solid var(--black);
@@ -38,6 +48,7 @@ export const CardInformation = styled.div`
 		margin: 0;
 		color: var(--black);
 		height: 50px;
+		color: var(--white);
 	}
 
 	p {
@@ -45,6 +56,7 @@ export const CardInformation = styled.div`
 		font-size: 1.2rem;
 		height: 100px;
 		overflow: auto;
+		color: var(--white);
 	}
 
 	p::-webkit-scrollbar {
@@ -69,6 +81,7 @@ export const CardUserAndFavorite = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 1rem;
+	color: var(--white);
 
 	svg {
 		font-size: 32px;
@@ -77,6 +90,7 @@ export const CardUserAndFavorite = styled.div`
 
 export const AiOutlineStarCustom = styled(AiOutlineStar)`
 	cursor: pointer;
+	color: var(--white);
 `;
 
 export const AiFillStarCustom = styled(AiFillStar)`

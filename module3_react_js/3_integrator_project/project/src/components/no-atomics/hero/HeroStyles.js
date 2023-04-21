@@ -11,6 +11,7 @@ export const HeroContainerStyled = styled.div`
 	h1 {
 		margin-bottom: 2rem;
 		text-align: center;
+		color: var(--white);
 	}
 `;
 
@@ -34,10 +35,4 @@ export const IconWrapperStyled = styled.div`
 	padding: 0.4rem 0.5rem;
 	font-size: 1.1rem;
 	color: var(--white);
-`;
-
-export const MessageNotRecipes = styled.h2`
-	text-align: center;
-	color: var(--gray);
-	font-style: italic;
 `;

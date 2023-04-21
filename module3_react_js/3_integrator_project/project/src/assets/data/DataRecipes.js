@@ -10,7 +10,8 @@ export default new (class DataRecipes {
 				"Sin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probarSin dudas el mejor pollo que podrás probar",
 				chiken,
 				"Facundo Melgar",
-				false
+				false,
+				"meats"
 			),
 			new Recipe(
 				2,
