@@ -9,7 +9,7 @@ export const StyledLink = styled(Link)`
 	outline: none;
 	border: none;
 	border-radius: ${({ radius }) => `${radius}px`};
-	background: var(--btn-gradient);
+	background: var(--gradient);
 	text-transform: uppercase;
 	font-weight: 400;
 	cursor: pointer;
@@ -18,7 +18,8 @@ export const StyledLink = styled(Link)`
 	& span {
 		font-weight: 700;
 		font-size: 1rem;
-		background: var(--btn-gradient);
+		background: var(--gradient);
+		background-clip: text;
 		-webkit-background-clip: text;
 		color: white;
 	}

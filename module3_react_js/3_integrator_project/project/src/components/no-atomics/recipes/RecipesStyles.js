@@ -9,7 +9,7 @@ export const RecipesContainer = styled.div`
 	width: 100%;
 	height: 100%;
 	flex-wrap: wrap;
-	gap: 30px;
+	gap: 50px;
 `;
 
 export const MessageNotExistRecipes = styled.h2`
@@ -31,6 +31,7 @@ export const CardRecipeContainer = styled.div`
 
 	img {
 		width: 100%;
+		height: 180px;
 		border-top-left-radius: 15px;
 		border-top-right-radius: 15px;
 	}
@@ -42,21 +43,20 @@ export const CardRecipeContainer = styled.div`
 
 export const CardInformation = styled.div`
 	padding: 0 1rem;
+	color: var(--brown);
 
 	h2 {
-		font-weight: 600;
 		margin: 0;
-		color: var(--black);
 		height: 50px;
+		font-weight: normal;
+		padding-bottom: 5px;
 		color: var(--white);
 	}
 
 	p {
-		color: var(--black);
 		font-size: 1.2rem;
 		height: 100px;
 		overflow: auto;
-		color: var(--white);
 	}
 
 	p::-webkit-scrollbar {
@@ -81,7 +81,11 @@ export const CardUserAndFavorite = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 1rem;
-	color: var(--white);
+	font-style: italic;
+	background: var(--gradient);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 
 	svg {
 		font-size: 32px;

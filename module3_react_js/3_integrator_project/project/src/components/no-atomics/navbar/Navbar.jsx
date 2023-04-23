@@ -14,17 +14,17 @@ import {
 	RightContainer,
 } from "./NavbarStyles";
 import { FaHome, FaUserAlt } from "react-icons/fa";
-import { AiOutlinePoweroff } from "react-icons/ai";
-import { ImBook } from "react-icons/im";
+import { ImBook, ImExit } from "react-icons/im";
 import logo from "../../../assets/images/logo/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../redux/user/UserActions.js";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const { currentUser, isOpenLoginMenuSessionUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const handlerUserCloseSession = () => {
 		dispatch(userActions.removeCurrentUser());
@@ -73,9 +73,15 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								</NavbarLinkRight>
 							)}
 							{!currentUser ? (
-								<NavbarLinkRight to={"/registro"}>
-									<FaUserAlt />
-								</NavbarLinkRight>
+								location.pathname == "/login" || location.pathname == "/recuperar-password" ? (
+									<NavbarLinkRight>
+										<FaUserAlt />
+									</NavbarLinkRight>
+								) : (
+									<NavbarLinkRight to={"/registro"}>
+										<FaUserAlt />
+									</NavbarLinkRight>
+								)
 							) : (
 								<>
 									<LoginMenuSessionUserContainer
@@ -87,8 +93,8 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 										<FaUserAlt>{isOpenLoginMenuSessionUser ? <>&#10005;</> : <> &#8801;</>}</FaUserAlt>
 									</LoginMenuSessionUserContainer>
 									<LoginMenuSessionUser isOpenLoginMenuSessionUser={isOpenLoginMenuSessionUser} onClick={() => handlerUserCloseSession()}>
-										<AiOutlinePoweroff />
 										<span>Cerrar Sesión</span>
+										<ImExit />
 									</LoginMenuSessionUser>
 								</>
 							)}

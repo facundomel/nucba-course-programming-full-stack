@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
     :root {
       --white: white;
+      --brown: #c4ad85;
       --black: black;
       --black-light: #131415;
       --gray: gray;
@@ -12,10 +13,11 @@ const GlobalStyles = createGlobalStyle`
       --red-light: #cd3c30;
       --orange-bg: #2f2618;
       --orange: #ff9d01;
-      --orange2: #FD3D2A;
+      --orange-light: #bfbfbf;
+      --orange2: #ffc575;
       --magenta: #FF005C;
       --gray-bg: #2b2b2c;
-      --btn-gradient: linear-gradient(83deg, #ffa100, #fb103d);
+      --gradient: linear-gradient(83deg, #ffa100, #fb103d);
       --btn-gradient-secondary: linear-gradient(140deg, #3B3022, #3B2329);
     }
 
@@ -23,6 +25,7 @@ const GlobalStyles = createGlobalStyle`
       margin: 0;
       padding: 0;
       background-color: var(--black-light);
+      color: var(--white);
     }
 
     /* Scrollbar */

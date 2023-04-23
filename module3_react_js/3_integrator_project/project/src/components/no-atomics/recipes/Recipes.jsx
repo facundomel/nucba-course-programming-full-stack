@@ -19,7 +19,7 @@ export const Recipes = () => {
 				return recipe.category == selectedCategory;
 			})
 		);
-	}, [selectedCategory]);
+	}, [selectedCategory, recipesAll]);
 
 	return (
 		<>
@@ -33,16 +33,17 @@ export const Recipes = () => {
 						))}
 					</RecipesContainer>
 				)
-			) : selectedCategory && shouldShowRecipesByCategory ? (
-				!recipesFiltered.some((recipe) => recipe.category == selectedCategory) ? (
-					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
-				) : (
+			) : (
+				selectedCategory &&
+				(shouldShowRecipesByCategory ? (
 					<RecipesContainer>
 						{recipesFiltered.map((recipe) => recipe.category == selectedCategory && <CardRecipe key={recipe.id} {...recipe} />)}
 					</RecipesContainer>
-				)
-			) : (
-				<MessageNotExistRecipes>¡Lo sentimos! No existen recetas de esta categoría</MessageNotExistRecipes>
+				) : !shouldShowRecipesByCategory && recipesFiltered.length > 0 ? (
+					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas de esta categoría</MessageNotExistRecipes>
+				) : (
+					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
+				))
 			)}
 		</>
 	);

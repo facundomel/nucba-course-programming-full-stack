@@ -1,38 +1,32 @@
 export const Categories = [
 	{
 		id: 1,
-		// img: 'https://res.cloudinary.com/dcatzxqqf/image/upload/v1656648467/coding/NucbaZappi/Categorias/pizzas_unnxwp.png',
+		img: require("../images/categories/pasta.png"),
 		title: "Pastas",
 		category: "pasta",
 	},
 	{
 		id: 2,
-		// img: 'https://res.cloudinary.com/dcatzxqqf/image/upload/v1656648466/coding/NucbaZappi/Categorias/hamburguesa_faykp7.png',
+		img: require("../images/categories/meat.png"),
 		title: "Carnes",
-		category: "meats",
+		category: "meat",
 	},
 	{
 		id: 3,
-		// img: 'https://res.cloudinary.com/dcatzxqqf/image/upload/v1656648466/coding/NucbaZappi/Categorias/papas-fritas_uw3tat.png',
+		img: require("../images/categories/sandwich.png"),
 		title: "Sándwiches",
-		category: "sandwiches",
+		category: "sandwich",
 	},
 	{
 		id: 4,
-		// img: 'https://res.cloudinary.com/dcatzxqqf/image/upload/v1656648466/coding/NucbaZappi/Categorias/tacos_hdr7i2.png',
+		img: require("../images/categories/garnish.png"),
 		title: "Guarniciones",
-		category: "fittings",
+		category: "garnish",
 	},
 	{
 		id: 5,
-		// img: 'https://res.cloudinary.com/dcatzxqqf/image/upload/v1656656873/coding/NucbaZappi/Categorias/LaPiedra_g5lhgf.png',
-		title: "Masas finas",
-		category: "thin-masses",
-	},
-	{
-		id: 6,
-		// img: "https://res.cloudinary.com/dcatzxqqf/image/upload/v1656648466/coding/NucbaZappi/Categorias/burritos_osec1e.png",
-		title: "Pasteles",
-		category: "cakes",
+		img: require("../images/categories/dessert.png"),
+		title: "Postres",
+		category: "dessert",
 	},
 ];

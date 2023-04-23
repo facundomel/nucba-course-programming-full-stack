@@ -23,24 +23,24 @@ const Hero = ({ recipesToFilter }) => {
 
 	return (
 		<>
-			{(recipeSection == "MyRecipes" && recipesAll.filter((recipe) => recipe.isFavorite).length > 0) ||
-				(recipeSection == "Home" && recipesAll.length > 0 && (
-					<HeroContainerStyled>
-						<h1>¿Qué receta estás buscando?</h1>
-						<HeroFormStyled>
-							<HeroSearchBarStyled
-								value={searchedRecipe}
-								onChange={(event) => setQuery(event.target.value)}
-								type="text"
-								placeholder="Buscá tu receta"
-								autoFocus
-							/>
-							<IconWrapperStyled>
-								<AiOutlineSearch />
-							</IconWrapperStyled>
-						</HeroFormStyled>
-					</HeroContainerStyled>
-				))}
+			{((recipeSection == "MyRecipes" && recipesAll.filter((recipe) => recipe.isFavorite).length > 0) ||
+				(recipeSection == "Home" && recipesAll.length > 0)) && (
+				<HeroContainerStyled>
+					<h1>¿Qué receta estás buscando?</h1>
+					<HeroFormStyled>
+						<HeroSearchBarStyled
+							value={searchedRecipe}
+							onChange={(event) => setQuery(event.target.value)}
+							type="text"
+							placeholder="Buscá tu receta"
+							autoFocus
+						/>
+						<IconWrapperStyled>
+							<AiOutlineSearch />
+						</IconWrapperStyled>
+					</HeroFormStyled>
+				</HeroContainerStyled>
+			)}
 		</>
 	);
 };

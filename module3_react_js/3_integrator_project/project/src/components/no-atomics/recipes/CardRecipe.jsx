@@ -21,50 +21,36 @@ export const CardRecipe = ({ id, name, description, img, user }) => {
 		if (!recipesAll[recipeIndex].isFavorite) {
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
+			if (recipeSection == "MyRecipes") {
+				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
+			}
 		} else {
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
 			if (recipeSection == "MyRecipes") {
 				setHiddenCard(true);
+				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
 		}
 	};
 
 	return (
 		<>
-			{recipeSection == "MyRecipes" ? (
-				<CardRecipeContainer hiddenCard={hiddenCard}>
-					<img src={img} alt={name} />
-					<CardInformation>
-						<h2>{name}</h2>
-						<p>{description}</p>
-					</CardInformation>
-					<CardUserAndFavorite>
-						<p>{user}</p>
-						{currentUser && (
-							<ButtonFavorite onClick={() => handlerOnClickStar()}>
-								{recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
-							</ButtonFavorite>
-						)}
-					</CardUserAndFavorite>
-				</CardRecipeContainer>
-			) : (
-				<CardRecipeContainer>
-					<img src={img} alt={name} />
-					<CardInformation>
-						<h2>{name}</h2>
-						<p>{description}</p>
-					</CardInformation>
-					<CardUserAndFavorite>
-						<p>{user}</p>
-						{currentUser && (
-							<ButtonFavorite onClick={() => handlerOnClickStar()}>
-								{recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
-							</ButtonFavorite>
-						)}
-					</CardUserAndFavorite>
-				</CardRecipeContainer>
-			)}
+			<CardRecipeContainer hiddenCard={recipeSection == "MyRecipes" && hiddenCard}>
+				<img src={img} alt={name} />
+				<CardInformation>
+					<h2>{name}</h2>
+					<p>{description}</p>
+				</CardInformation>
+				<CardUserAndFavorite>
+					<p>{user}</p>
+					{currentUser && (
+						<ButtonFavorite onClick={() => handlerOnClickStar()}>
+							{recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
+						</ButtonFavorite>
+					)}
+				</CardUserAndFavorite>
+			</CardRecipeContainer>
 		</>
 	);
 };

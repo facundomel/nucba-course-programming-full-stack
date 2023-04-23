@@ -1,7 +1,9 @@
 import { SET_RECIPE_FAVORITE, SET_RECIPES_FILTERED, SET_RECIPES_ALL, SET_RECIPE_SECTION } from "./RecipesActions";
+import localStorage, { KEY_RECIPES_ALL } from "../../repository/LocalStorage";
+import DataRecipes from "../../assets/data/DataRecipes";
 
 const INITIAL_STATE = {
-	recipesAll: [],
+	recipesAll: localStorage.get(KEY_RECIPES_ALL) || DataRecipes.getData(),
 	recipesFiltered: [],
 	recipeSection: "Home",
 };
