@@ -1,11 +1,13 @@
 export default class Recipe {
-	constructor(id, name, description, img, user, isFavorite, category) {
+	constructor(id, name, description, img, publisher, isFavorite, category, ingredients, instructions) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.img = img;
-		this.user = user;
+		this.publisher = publisher;
 		this.isFavorite = isFavorite;
 		this.category = category;
+		this.ingredients = ingredients;
+		this.instructions = instructions;
 	}
 }

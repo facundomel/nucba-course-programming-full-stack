@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { GoBook } from "react-icons/go";
 
 export const RecipesContainer = styled.div`
 	display: grid;
@@ -32,6 +33,7 @@ export const CardRecipeContainer = styled.div`
 	img {
 		width: 100%;
 		height: 180px;
+		object-fit: cover;
 		border-top-left-radius: 15px;
 		border-top-right-radius: 15px;
 	}
@@ -81,11 +83,14 @@ export const CardUserAndFavorite = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 1rem;
-	font-style: italic;
-	background: var(--gradient);
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+
+	p {
+		font-style: italic;
+		background: var(--gradient);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 
 	svg {
 		font-size: 32px;
@@ -94,7 +99,11 @@ export const CardUserAndFavorite = styled.div`
 
 export const AiOutlineStarCustom = styled(AiOutlineStar)`
 	cursor: pointer;
-	color: var(--white);
+	color: var(--gray);
+
+	:hover {
+		color: var(--white);
+	}
 `;
 
 export const AiFillStarCustom = styled(AiFillStar)`
@@ -102,11 +111,84 @@ export const AiFillStarCustom = styled(AiFillStar)`
 	color: #f7c103;
 `;
 
-export const ButtonFavorite = styled.button`
+export const GoBookCustom = styled(GoBook)`
+	cursor: pointer;
+	color: var(--gray);
+
+	:hover {
+		color: var(--white);
+	}
+`;
+
+export const ButtonIconCard = styled.button`
 	margin: 0;
 	padding: 0;
 	width: 32px;
 	height: 32px;
 	border: none;
 	background-color: transparent;
+`;
+
+export const IconsCardContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+`;
+
+export const ModalContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+
+	img {
+		width: 100%;
+		height: 300px;
+		object-fit: cover;
+	}
+`;
+
+export const ModalInformationContainer = styled.div`
+	padding: 0 3rem 1rem 1rem;
+	font-style: italic;
+	text-align: justify;
+
+	h2 {
+		display: inline-block;
+		font-weight: normal;
+		background: var(--gradient);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	h3 {
+		margin: 0;
+		font-weight: normal;
+		display: inline-block;
+		background: var(--gradient);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	ol {
+		margin-bottom: 2rem;
+	}
+`;
+
+export const PublisherModalContainer = styled.small`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	p {
+		font-size: 14px;
+		margin-top: 0;
+		background: var(--gradient);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 `;

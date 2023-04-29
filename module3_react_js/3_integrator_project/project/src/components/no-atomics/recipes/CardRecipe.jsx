@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	AiFillStarCustom,
 	AiOutlineStarCustom,
-	ButtonFavorite,
+	ButtonIconCard,
 	CardInformation,
 	CardRecipeContainer,
 	CardUserAndFavorite,
+	GoBookCustom,
+	IconsCardContainer,
+	ModalContainer,
+	ModalInformationContainer,
+	PublisherModalContainer,
 } from "./RecipesStyles";
 import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
+import Modal from "../modal/Modal";
 
-export const CardRecipe = ({ id, name, description, img, user }) => {
+export const CardRecipe = ({ id, name, description, img, publisher, ingredients, instructions }) => {
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const { recipesAll, recipeSection } = useSelector((state) => state.recipes);
 	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id == id);
 	const [hiddenCard, setHiddenCard] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
+
+	useEffect(() => {
+		openModal ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "");
+	}, [openModal]);
 
 	const handlerOnClickStar = () => {
 		if (!recipesAll[recipeIndex].isFavorite) {
@@ -43,14 +54,45 @@ export const CardRecipe = ({ id, name, description, img, user }) => {
 					<p>{description}</p>
 				</CardInformation>
 				<CardUserAndFavorite>
-					<p>{user}</p>
-					{currentUser && (
-						<ButtonFavorite onClick={() => handlerOnClickStar()}>
-							{recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
-						</ButtonFavorite>
-					)}
+					<p>{publisher}</p>
+					<IconsCardContainer>
+						<ButtonIconCard onClick={() => setOpenModal(true)}>
+							<GoBookCustom />
+						</ButtonIconCard>
+						{currentUser && (
+							<ButtonIconCard onClick={() => handlerOnClickStar()}>
+								{recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
+							</ButtonIconCard>
+						)}
+					</IconsCardContainer>
 				</CardUserAndFavorite>
 			</CardRecipeContainer>
+
+			<Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
+				<ModalContainer>
+					<img src={img} alt={name} />
+					<ModalInformationContainer>
+						<div>
+							<h2>{name}</h2>
+						</div>
+						<h3>Ingredientes</h3>
+						<ul>
+							{ingredients?.map((ingredient) => {
+								return <li key={ingredient}>{ingredient}</li>;
+							})}
+						</ul>
+						<h3>Instrucciones</h3>
+						<ol>
+							{instructions?.map((instructions) => {
+								return <li key={instructions}>{instructions}</li>;
+							})}
+						</ol>
+						<PublisherModalContainer>
+							<p>By {publisher}</p>
+						</PublisherModalContainer>
+					</ModalInformationContainer>
+				</ModalContainer>
+			</Modal>
 		</>
 	);
 };

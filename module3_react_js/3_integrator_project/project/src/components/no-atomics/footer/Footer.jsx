@@ -10,13 +10,20 @@ import * as userActions from "../../../redux/user/UserActions.js";
 
 export const Footer = () => {
 	const { isOpenLoginMenuSessionUser } = useSelector((state) => state.user);
+	const { recipeSection } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 
 	return (
 		<>
 			<FooterContainerStyled>
 				<FooterTitleStyled>
-					<NavLink to={"/"} onClick={() => isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser())}>
+					<NavLink
+						to={"/"}
+						onClick={() => {
+							isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser());
+							recipeSection == "Home" && window.scrollTo(0, 0);
+						}}
+					>
 						<img src={logo} alt="Logo" title="Inicio" />
 					</NavLink>
 					<p>Las mejores recetas</p>

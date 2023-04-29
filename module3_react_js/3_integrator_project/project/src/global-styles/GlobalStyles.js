@@ -28,7 +28,12 @@ const GlobalStyles = createGlobalStyle`
       color: var(--white);
     }
 
+    
     /* Scrollbar */
+    html{
+      scroll-behavior: smooth;
+    }
+    
     ::-webkit-scrollbar {
       display: none;
     }

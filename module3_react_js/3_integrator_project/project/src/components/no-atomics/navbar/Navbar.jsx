@@ -22,6 +22,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const { currentUser, isOpenLoginMenuSessionUser } = useSelector((state) => state.user);
+	const { recipeSection } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -38,7 +39,13 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 				<NavbarInnerContainer>
 					<LeftContainer>
 						<NavbarLinkContainer extendNavbar={extendNavbar}>
-							<NavbarLinkLogo to={"/"} onClick={() => isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser())}>
+							<NavbarLinkLogo
+								to={"/"}
+								onClick={() => {
+									isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser());
+									recipeSection == "Home" && window.scrollTo(0, 0);
+								}}
+							>
 								<img src={logo} alt="Logo" className="logo" />
 							</NavbarLinkLogo>
 							<OpenLinksButton
@@ -78,7 +85,7 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 										<FaUserAlt />
 									</NavbarLinkRight>
 								) : (
-									<NavbarLinkRight to={"/registro"}>
+									<NavbarLinkRight to={"/registro"} onClick={() => extendNavbar && setExtendNavbar((curr) => !curr)}>
 										<FaUserAlt />
 									</NavbarLinkRight>
 								)
@@ -105,11 +112,13 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 				{extendNavbar && (
 					<NavbarExtendedContainer>
 						<NavbarLinkExtended to="/" onClick={() => setExtendNavbar(false)}>
-							Inicio
+							<p>Inicio</p>
 						</NavbarLinkExtended>
-						<NavbarLinkExtended to="/mis-recetas" onClick={() => setExtendNavbar(false)}>
-							Mis recetas
-						</NavbarLinkExtended>
+						{currentUser && (
+							<NavbarLinkExtended to={"/mis-recetas"} onClick={() => setExtendNavbar(false)}>
+								<p>Mis recetas</p>
+							</NavbarLinkExtended>
+						)}
 					</NavbarExtendedContainer>
 				)}
 			</NavbarContainer>
