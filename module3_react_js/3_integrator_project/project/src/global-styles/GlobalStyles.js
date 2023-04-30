@@ -17,6 +17,11 @@ const GlobalStyles = createGlobalStyle`
       --orange2: #ffc575;
       --magenta: #FF005C;
       --gray-bg: #2b2b2c;
+      --green-light: rgb(113, 255, 113);
+      --red-light: rgb(255, 113, 113);
+      --yellow-light: rgb(255, 255, 113);
+      --green-dark: #017200;
+      --yellow-dark: #707000;
       --gradient: linear-gradient(83deg, #ffa100, #fb103d);
       --btn-gradient-secondary: linear-gradient(140deg, #3B3022, #3B2329);
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	AiFillStarCustom,
@@ -16,7 +16,7 @@ import {
 import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
 
-export const CardRecipe = ({ id, name, description, img, publisher, ingredients, instructions }) => {
+export const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, publisher, ingredients, instructions }) => {
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const { recipesAll, recipeSection } = useSelector((state) => state.recipes);
@@ -24,18 +24,16 @@ export const CardRecipe = ({ id, name, description, img, publisher, ingredients,
 	const [hiddenCard, setHiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
 
-	useEffect(() => {
-		openModal ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "");
-	}, [openModal]);
-
 	const handlerOnClickStar = () => {
 		if (!recipesAll[recipeIndex].isFavorite) {
+			setOptionsSnackbar({ open: true, severity: "success", message: "Receta agregada a favorito" });
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
 			if (recipeSection == "MyRecipes") {
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
 		} else {
+			setOptionsSnackbar({ open: true, severity: "warning", message: "Receta quitada de favorito" });
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
 			if (recipeSection == "MyRecipes") {

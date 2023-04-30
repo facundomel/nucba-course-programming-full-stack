@@ -7,6 +7,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 
 	useEffect(() => {
 		if (isOpen) {
+			document.body.style.overflow = "hidden";
 			modalBodyRef.current?.scrollTo(0, 0);
 			const close = (e) => {
 				if (e.keyCode === 27) {
@@ -15,6 +16,8 @@ const Modal = ({ isOpen, onClose, children }) => {
 				}
 			};
 			document.addEventListener("keyup", close);
+		} else {
+			document.body.style.overflow = "";
 		}
 	}, [isOpen]);
 

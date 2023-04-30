@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	LeftContainer,
 	LoginMenuSessionUser,
@@ -22,7 +22,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const { currentUser, isOpenLoginMenuSessionUser } = useSelector((state) => state.user);
-	const { recipeSection } = useSelector((state) => state.recipes);
+	const { recipesAll, recipeSection } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();

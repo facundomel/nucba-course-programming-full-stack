@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import { CardRecipe } from "./CardRecipe";
 import { MessageNotExistRecipes, RecipesContainer } from "./RecipesStyles";
 import localStorage, { KEY_RECIPES_ALL } from "../../../repository/LocalStorage";
+import { SnackbarCustom } from "../snackbar/SnackbarCustom";
 
 export const Recipes = () => {
 	const { recipesAll, recipesFiltered } = useSelector((state) => state.recipes);
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(true);
+	const [optionsSnackbar, setOptionsSnackbar] = useState({ open: false, severity: null, message: null });
 
 	useEffect(() => {
 		localStorage.save(KEY_RECIPES_ALL, recipesAll);
@@ -29,7 +31,7 @@ export const Recipes = () => {
 				) : (
 					<RecipesContainer>
 						{recipesFiltered.map((recipe) => (
-							<CardRecipe key={recipe.id} {...recipe} />
+							<CardRecipe setOptionsSnackbar={setOptionsSnackbar} key={recipe.id} {...recipe} />
 						))}
 					</RecipesContainer>
 				)
@@ -45,6 +47,13 @@ export const Recipes = () => {
 					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
 				))
 			)}
+
+			<SnackbarCustom
+				openSnackbar={optionsSnackbar.open}
+				setCloseSnackbar={() => setOptionsSnackbar({ ...optionsSnackbar, open: false })}
+				severity={optionsSnackbar.severity}
+				message={optionsSnackbar.message}
+			/>
 		</>
 	);
 };
