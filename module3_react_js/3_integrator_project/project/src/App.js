@@ -1,10 +1,12 @@
 import GlobalStyles from "./global-styles/GlobalStyles";
-import { Main } from "./main/Main";
+import Main from "./main/Main";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./redux/Store";
 
-function App() {
+import React from "react";
+
+const App = () => {
 	return (
 		<>
 			<Provider store={store}>
@@ -15,6 +17,6 @@ function App() {
 			</Provider>
 		</>
 	);
-}
+};
 
 export default App;

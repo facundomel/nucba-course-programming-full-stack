@@ -9,17 +9,18 @@ import {
 	CardUserAndFavorite,
 	GoBookCustom,
 	IconsCardContainer,
-	ModalContainer,
-	ModalInformationContainer,
-	PublisherModalContainer,
+	ModalBodyCardRecipeContainer,
+	ModalBodyCardRecipeInformation,
+	ModalBodyCardRecipePublisher,
 } from "./RecipesStyles";
 import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
 
-export const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, publisher, ingredients, instructions }) => {
+const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, publisher, ingredients, instructions }) => {
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
-	const { recipesAll, recipeSection } = useSelector((state) => state.recipes);
+	const { recipesAll } = useSelector((state) => state.recipes);
+	const { userSection } = useSelector((state) => state.user);
 	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id == id);
 	const [hiddenCard, setHiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
@@ -29,14 +30,14 @@ export const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, pub
 			setOptionsSnackbar({ open: true, severity: "success", message: "Receta agregada a favorito" });
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
-			if (recipeSection == "MyRecipes") {
+			if (userSection == "MyRecipes") {
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
 		} else {
 			setOptionsSnackbar({ open: true, severity: "warning", message: "Receta quitada de favorito" });
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
-			if (recipeSection == "MyRecipes") {
+			if (userSection == "MyRecipes") {
 				setHiddenCard(true);
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
@@ -45,7 +46,7 @@ export const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, pub
 
 	return (
 		<>
-			<CardRecipeContainer hiddenCard={recipeSection == "MyRecipes" && hiddenCard}>
+			<CardRecipeContainer hiddenCard={userSection == "MyRecipes" && hiddenCard}>
 				<img src={img} alt={name} />
 				<CardInformation>
 					<h2>{name}</h2>
@@ -66,10 +67,10 @@ export const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, pub
 				</CardUserAndFavorite>
 			</CardRecipeContainer>
 
-			<Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
-				<ModalContainer>
+			<Modal isOpen={openModal} onClose={() => setOpenModal(false)} heightBodyModal={"80%"} widthBodyModal={"700px"} pxMediaQuery={"800px"}>
+				<ModalBodyCardRecipeContainer>
 					<img src={img} alt={name} />
-					<ModalInformationContainer>
+					<ModalBodyCardRecipeInformation>
 						<div>
 							<h2>{name}</h2>
 						</div>
@@ -85,12 +86,14 @@ export const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, pub
 								return <li key={instructions}>{instructions}</li>;
 							})}
 						</ol>
-						<PublisherModalContainer>
+						<ModalBodyCardRecipePublisher>
 							<p>By {publisher}</p>
-						</PublisherModalContainer>
-					</ModalInformationContainer>
-				</ModalContainer>
+						</ModalBodyCardRecipePublisher>
+					</ModalBodyCardRecipeInformation>
+				</ModalBodyCardRecipeContainer>
 			</Modal>
 		</>
 	);
 };
+
+export default CardRecipe;

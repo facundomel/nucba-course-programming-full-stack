@@ -8,4 +8,5 @@ const Button = ({ children, onClick, disabled = false, type, width }) => {
 		</ButtonStyled>
 	);
 };
+
 export default Button;

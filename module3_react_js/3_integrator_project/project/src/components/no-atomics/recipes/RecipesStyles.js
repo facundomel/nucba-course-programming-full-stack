@@ -136,7 +136,7 @@ export const IconsCardContainer = styled.div`
 	gap: 10px;
 `;
 
-export const ModalContainer = styled.div`
+export const ModalBodyCardRecipeContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -149,7 +149,7 @@ export const ModalContainer = styled.div`
 	}
 `;
 
-export const ModalInformationContainer = styled.div`
+export const ModalBodyCardRecipeInformation = styled.div`
 	padding: 0 3rem 1rem 1rem;
 	font-style: italic;
 	text-align: justify;
@@ -178,7 +178,7 @@ export const ModalInformationContainer = styled.div`
 	}
 `;
 
-export const PublisherModalContainer = styled.small`
+export const ModalBodyCardRecipePublisher = styled.small`
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;

@@ -1,7 +1,6 @@
 export const SET_RECIPES_ALL = "SET_RECIPES_ALL";
 export const SET_RECIPES_FILTERED = "SET_RECIPES_FILTERED";
 export const SET_RECIPE_FAVORITE = "SET_RECIPE_FAVORITE";
-export const SET_RECIPE_SECTION = "SET_RECIPE_SECTION";
 
 export const setRecipesAll = (recipes) => ({
 	type: SET_RECIPES_ALL,
@@ -16,9 +15,4 @@ export const setRecipesFiltered = (recipes) => ({
 export const setRecipeFavorite = (recipes) => ({
 	type: SET_RECIPE_FAVORITE,
 	payload: recipes,
-});
-
-export const setRecipeSection = (recipeSection) => ({
-	type: SET_RECIPE_SECTION,
-	payload: recipeSection,
 });

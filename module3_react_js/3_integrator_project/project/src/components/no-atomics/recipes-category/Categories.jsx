@@ -6,7 +6,8 @@ import * as categoriesActions from "../../../redux/categories/CategoriesActions.
 
 const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
-	const { recipesAll, recipeSection } = useSelector((state) => state.recipes);
+	const { recipesAll } = useSelector((state) => state.recipes);
+	const { userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -15,8 +16,8 @@ const Categories = () => {
 
 	return (
 		<>
-			{((recipeSection == "MyRecipes" && recipesAll.filter((recipe) => recipe.isFavorite).length > 0) ||
-				(recipeSection == "Home" && recipesAll.length > 0)) && (
+			{((userSection == "MyRecipes" && recipesAll.filter((recipe) => recipe.isFavorite).length > 0) ||
+				(userSection == "Home" && recipesAll.length > 0)) && (
 				<CategoriesGridContainer>
 					{categories.map((category) => (
 						<Category key={category.id} {...category} />

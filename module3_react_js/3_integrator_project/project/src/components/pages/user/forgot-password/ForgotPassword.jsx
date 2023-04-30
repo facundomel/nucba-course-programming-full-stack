@@ -5,16 +5,20 @@ import Button from "../../../atomics/button/Button";
 import { ERROR_EMAIL } from "../../../../model/ErrorCustom";
 import { KEY_USER_SESSION } from "../../../../repository/LocalStorage";
 import localStorage from "../../../../repository/LocalStorage";
-import { isExistEmail, isValidEmail } from "./PasswordValidations";
+import { isExistEmail, isValidEmail } from "./ForgotPasswordValidations";
+import { useDispatch } from "react-redux";
+import * as userActions from "../../../../redux/user/UserActions.js";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
 	const [email, setEmail] = useState("");
 	const [error, setError] = useState(null);
 	const [userPassword, setUserPassword] = useState(null);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		emailRef.current.focus();
+		dispatch(userActions.setUserSection("UserForgotPassword"));
 	}, []);
 
 	useEffect(() => {

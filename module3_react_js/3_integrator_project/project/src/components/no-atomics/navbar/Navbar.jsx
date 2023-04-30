@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	LeftContainer,
+	LoginMenuCloseSessionUserOverlay,
 	LoginMenuSessionUser,
 	LoginMenuSessionUserContainer,
+	ModalBodyCloseSessionButtons,
+	ModalBodyCloseSessionContainer,
 	NavbarContainer,
 	NavbarExtendedContainer,
 	NavbarInnerContainer,
@@ -19,18 +22,36 @@ import logo from "../../../assets/images/logo/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../redux/user/UserActions.js";
 import { useLocation, useNavigate } from "react-router-dom";
+import Modal from "../modal/Modal";
+import Button from "../../atomics/button/Button";
+import { AiOutlineCheck } from "react-icons/ai";
+import { IoMdClose } from "react-icons/io";
 
-export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
-	const { currentUser, isOpenLoginMenuSessionUser } = useSelector((state) => state.user);
-	const { recipesAll, recipeSection } = useSelector((state) => state.recipes);
+const Navbar = ({ extendNavbar, setExtendNavbar }) => {
+	const { currentUser, isOpenMenuSessionUser, userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [openModal, setOpenModal] = useState(false);
 
-	const handlerUserCloseSession = () => {
+	useEffect(() => {
+		if (isOpenMenuSessionUser) {
+			const scroll = () => {
+				dispatch(userActions.openOrCloseMenuSessionUser());
+				window.removeEventListener("scroll", scroll);
+			};
+			window.addEventListener("scroll", scroll);
+		}
+	}, [isOpenMenuSessionUser]);
+
+	const handlerUserAcceptCloseSession = () => {
 		dispatch(userActions.removeCurrentUser());
-		isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser());
+		setOpenModal(false);
 		navigate("/");
+	};
+
+	const handlerUserCancelCloseSession = () => {
+		setOpenModal(false);
 	};
 
 	return (
@@ -42,8 +63,8 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 							<NavbarLinkLogo
 								to={"/"}
 								onClick={() => {
-									isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser());
-									recipeSection == "Home" && window.scrollTo(0, 0);
+									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
+									userSection == "Home" && window.scrollTo(0, 0);
 								}}
 							>
 								<img src={logo} alt="Logo" className="logo" />
@@ -51,7 +72,7 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 							<OpenLinksButton
 								onClick={() => {
 									setExtendNavbar((curr) => !curr);
-									isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser());
+									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
 								}}
 								extendNavbar={extendNavbar}
 							>
@@ -66,7 +87,7 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								to={"/"}
 								hidden={true}
 								className={({ isActive }) => (isActive ? "active" : "")}
-								onClick={() => isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser())}
+								onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 							>
 								<FaHome />
 							</NavbarLinkRight>
@@ -74,7 +95,7 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								<NavbarLinkRight
 									to={"/mis-recetas"}
 									hidden={true}
-									onClick={() => isOpenLoginMenuSessionUser && dispatch(userActions.openLoginMenuSessionUser())}
+									onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 								>
 									<ImBook />
 								</NavbarLinkRight>
@@ -93,16 +114,24 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								<>
 									<LoginMenuSessionUserContainer
 										onClick={() => {
-											dispatch(userActions.openLoginMenuSessionUser());
+											dispatch(userActions.openOrCloseMenuSessionUser());
 											extendNavbar && setExtendNavbar((curr) => !curr);
 										}}
 									>
-										<FaUserAlt>{isOpenLoginMenuSessionUser ? <>&#10005;</> : <> &#8801;</>}</FaUserAlt>
+										<FaUserAlt>{isOpenMenuSessionUser ? <>&#10005;</> : <> &#8801;</>}</FaUserAlt>
 									</LoginMenuSessionUserContainer>
-									<LoginMenuSessionUser isOpenLoginMenuSessionUser={isOpenLoginMenuSessionUser} onClick={() => handlerUserCloseSession()}>
+									<LoginMenuSessionUser
+										isOpenMenuSessionUser={isOpenMenuSessionUser}
+										onClick={() => {
+											setOpenModal(true);
+											isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
+										}}
+									>
 										<span>Cerrar Sesión</span>
 										<ImExit />
 									</LoginMenuSessionUser>
+
+									{isOpenMenuSessionUser && <LoginMenuCloseSessionUserOverlay />}
 								</>
 							)}
 						</NavbarLinkContainer>
@@ -122,6 +151,29 @@ export const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 					</NavbarExtendedContainer>
 				)}
 			</NavbarContainer>
+
+			<Modal isOpen={openModal} onClose={() => setOpenModal(false)} heightBodyModal={"20%"} widthBodyModal={"500px"} pxMediaQuery={"600px"}>
+				<ModalBodyCloseSessionContainer>
+					<h3>¿Está seguro que desea cerrar sessión?</h3>
+
+					<ModalBodyCloseSessionButtons>
+						<Button width={"150px"} onClick={() => handlerUserCancelCloseSession()}>
+							Cancelar
+						</Button>
+						<Button width={"150px"} onClick={() => handlerUserAcceptCloseSession()}>
+							Aceptar
+						</Button>
+						<Button onClick={() => handlerUserCancelCloseSession()}>
+							<IoMdClose />
+						</Button>
+						<Button onClick={() => handlerUserAcceptCloseSession()}>
+							<AiOutlineCheck />
+						</Button>
+					</ModalBodyCloseSessionButtons>
+				</ModalBodyCloseSessionContainer>
+			</Modal>
 		</>
 	);
 };
+
+export default Navbar;

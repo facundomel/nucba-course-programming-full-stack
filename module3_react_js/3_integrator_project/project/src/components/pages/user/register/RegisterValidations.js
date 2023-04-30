@@ -1,5 +1,4 @@
 import ErrorCustom, { ERROR_EMAIL, ERROR_NAME, ERROR_PASSWORD } from "../../../../model/ErrorCustom";
-import { regexEmail, regexPassword } from "./RegexUtils";
 
 export const isValidName = (name, setError, nameRef) => {
 	if (name == "") {
@@ -16,6 +15,9 @@ export const isValidEmail = (email, setError, emailRef) => {
 		emailRef.current.focus();
 		return false;
 	}
+
+	const regexEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+
 	if (!regexEmail.test(email)) {
 		setError(new ErrorCustom(ERROR_EMAIL, "Formato de email incorrecto"));
 		return false;
@@ -29,6 +31,9 @@ export const isValidPassword = (password, setError, passwordRef) => {
 		passwordRef.current.focus();
 		return false;
 	}
+
+	const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+
 	if (!regexPassword.test(password)) {
 		setError(
 			new ErrorCustom(ERROR_PASSWORD, "El password debe contener como mínimo una letra minúscula, una mayúscula y un total de 8 caracteres")

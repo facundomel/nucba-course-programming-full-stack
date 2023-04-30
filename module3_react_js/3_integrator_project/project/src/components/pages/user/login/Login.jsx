@@ -21,6 +21,7 @@ const Login = () => {
 
 	useEffect(() => {
 		emailRef.current.focus();
+		dispatch(userActions.setUserSection("UserLogin"));
 	}, []);
 
 	useEffect(() => {

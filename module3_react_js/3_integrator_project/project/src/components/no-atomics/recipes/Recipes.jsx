@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { CardRecipe } from "./CardRecipe";
+import CardRecipe from "./CardRecipe";
 import { MessageNotExistRecipes, RecipesContainer } from "./RecipesStyles";
 import localStorage, { KEY_RECIPES_ALL } from "../../../repository/LocalStorage";
-import { SnackbarCustom } from "../snackbar/SnackbarCustom";
+import SnackbarCustom from "../snackbar/SnackbarCustom";
 
-export const Recipes = () => {
+const Recipes = () => {
 	const { recipesAll, recipesFiltered } = useSelector((state) => state.recipes);
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(true);
@@ -39,7 +39,10 @@ export const Recipes = () => {
 				selectedCategory &&
 				(shouldShowRecipesByCategory ? (
 					<RecipesContainer>
-						{recipesFiltered.map((recipe) => recipe.category == selectedCategory && <CardRecipe key={recipe.id} {...recipe} />)}
+						{recipesFiltered.map(
+							(recipe) =>
+								recipe.category == selectedCategory && <CardRecipe setOptionsSnackbar={setOptionsSnackbar} key={recipe.id} {...recipe} />
+						)}
 					</RecipesContainer>
 				) : !shouldShowRecipesByCategory && recipesFiltered.length > 0 ? (
 					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas de esta categoría</MessageNotExistRecipes>
@@ -57,3 +60,5 @@ export const Recipes = () => {
 		</>
 	);
 };
+
+export default Recipes;

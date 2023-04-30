@@ -9,19 +9,21 @@ export const ModalContainer = styled.div`
 	left: 0;
 	width: 100%;
 	height: 100vh;
+	z-index: 999;
 `;
 
 export const ModalBodyAndClose = styled.div`
 	margin-top: -80px;
 	background-color: var(--gray-bg);
-	width: 700px;
-	height: 450px;
+	width: ${(props) => props.widthBodyModal};
+	height: ${(props) => props.heightBodyModal};
+	min-height: 200px;
 	border-radius: 1rem;
 	position: relative;
 
-	@media (max-width: 800px) {
+	@media (max-width: ${(props) => props.pxMediaQuery}) {
 		width: 90%;
-		min-width: 100px;
+		min-width: 200px;
 	}
 `;
 
@@ -44,6 +46,6 @@ export const ModalClose = styled.button`
 	padding: 0.5rem;
 	color: var(--white);
 	background-color: var(--black);
-	border-bottom-left-radius: 1rem;
-	border-top-right-radius: 1rem;
+	border-bottom-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
 `;

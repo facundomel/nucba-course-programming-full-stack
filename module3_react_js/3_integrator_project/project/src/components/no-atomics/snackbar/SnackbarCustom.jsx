@@ -2,7 +2,7 @@ import { Slide, Snackbar } from "@mui/material";
 import React from "react";
 import { AlertStyled } from "./SnackbarCustomStyles";
 
-export const SnackbarCustom = ({ openSnackbar, setCloseSnackbar, severity, message }) => {
+const SnackbarCustom = ({ openSnackbar, setCloseSnackbar, severity, message }) => {
 	return (
 		<>
 			<Snackbar
@@ -20,3 +20,5 @@ export const SnackbarCustom = ({ openSnackbar, setCloseSnackbar, severity, messa
 		</>
 	);
 };
+
+export default SnackbarCustom;

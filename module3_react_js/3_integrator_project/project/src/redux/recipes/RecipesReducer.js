@@ -1,11 +1,10 @@
-import { SET_RECIPE_FAVORITE, SET_RECIPES_FILTERED, SET_RECIPES_ALL, SET_RECIPE_SECTION } from "./RecipesActions";
+import { SET_RECIPE_FAVORITE, SET_RECIPES_FILTERED, SET_RECIPES_ALL } from "./RecipesActions";
 import localStorage, { KEY_RECIPES_ALL } from "../../repository/LocalStorage";
 import DataRecipes from "../../assets/data/DataRecipes";
 
 const INITIAL_STATE = {
 	recipesAll: localStorage.get(KEY_RECIPES_ALL) || DataRecipes.getData(),
 	recipesFiltered: [],
-	recipeSection: "Home",
 };
 
 const recipesReducer = (state = INITIAL_STATE, action) => {
@@ -26,12 +25,6 @@ const recipesReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				recipesAll: action.payload.map((recipe) => recipe),
-			};
-
-		case SET_RECIPE_SECTION:
-			return {
-				...state,
-				recipeSection: action.payload,
 			};
 
 		default:

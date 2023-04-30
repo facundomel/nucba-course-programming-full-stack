@@ -1,8 +1,9 @@
-import { SET_CURRENT_USER, REMOVE_CURRENT_USER, OPEN_LOGIN_MENU_SESSION_USER } from "./UserActions";
+import { SET_CURRENT_USER, REMOVE_CURRENT_USER, OPEN_OR_CLOSE_MENU_SESSION_USER, SET_USER_SECTION } from "./UserActions";
 
 const INITIAL_STATE = {
 	currentUser: null,
-	isOpenLoginMenuSessionUser: false,
+	isOpenMenuSessionUser: false,
+	userSection: "Home",
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -19,10 +20,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
 				currentUser: null,
 			};
 
-		case OPEN_LOGIN_MENU_SESSION_USER:
+		case OPEN_OR_CLOSE_MENU_SESSION_USER:
 			return {
 				...state,
-				isOpenLoginMenuSessionUser: !state.isOpenLoginMenuSessionUser,
+				isOpenMenuSessionUser: !state.isOpenMenuSessionUser,
+			};
+
+		case SET_USER_SECTION:
+			return {
+				...state,
+				userSection: action.payload,
 			};
 
 		default:

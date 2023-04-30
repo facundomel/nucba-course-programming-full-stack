@@ -2,7 +2,7 @@ import React from "react";
 import notFound from "../../../assets/images/page-not-found/page-not-found.png";
 import { PageNotFoundContainer } from "./PageNotFoundStyles";
 
-export const PageNotFound = () => {
+const PageNotFound = () => {
 	return (
 		<>
 			<PageNotFoundContainer>
@@ -11,3 +11,5 @@ export const PageNotFound = () => {
 		</>
 	);
 };
+
+export default PageNotFound;

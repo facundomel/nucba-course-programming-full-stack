@@ -175,6 +175,15 @@ export const LoginMenuSessionUserContainer = styled(NavLink)`
 	}
 `;
 
+export const LoginMenuCloseSessionUserOverlay = styled.div`
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 80px;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+`;
+
 export const LoginMenuSessionUser = styled.nav`
 	display: flex;
 	justify-content: center;
@@ -192,9 +201,9 @@ export const LoginMenuSessionUser = styled.nav`
 	z-index: 2;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
-	transform: ${(props) => (!props.isOpenLoginMenuSessionUser ? "translate(200%)" : "translate(0%)")};
+	transform: ${(props) => (!props.isOpenMenuSessionUser ? "translate(200%)" : "translate(0%)")};
 	transition: ${(props) =>
-		!props.isOpenLoginMenuSessionUser ? "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)" : "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)"};
+		!props.isOpenMenuSessionUser ? "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)" : "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)"};
 	overflow: auto;
 	cursor: pointer;
 
@@ -205,5 +214,64 @@ export const LoginMenuSessionUser = styled.nav`
 	:hover {
 		color: black;
 		background-color: white;
+	}
+`;
+
+export const ModalBodyCloseSessionContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	padding: 0 3rem;
+
+	h3 {
+		text-align: center;
+	}
+`;
+
+export const ModalBodyCloseSessionButtons = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding-bottom: 1rem;
+	gap: 10px;
+
+	button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	button:nth-child(3) {
+		display: none;
+	}
+
+	button:nth-child(4) {
+		display: none;
+	}
+
+	@media (max-width: 400px) {
+		button {
+			font-size: 26px;
+			padding: 10px;
+		}
+
+		button:nth-child(1) {
+			display: none;
+		}
+
+		button:nth-child(2) {
+			display: none;
+		}
+
+		button:nth-child(3) {
+			display: flex;
+		}
+
+		button:nth-child(4) {
+			display: flex;
+		}
 	}
 `;

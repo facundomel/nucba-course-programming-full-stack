@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../components/pages/home/Home";
-import { MyRecipes } from "../components/pages/my-recipes/MyRecipes";
+import Home from "../components/pages/home/Home";
+import MyRecipes from "../components/pages/my-recipes/MyRecipes";
 import Login from "../components/pages/user/login/Login";
 import { useSelector } from "react-redux";
 import Register from "../components/pages/user/register/Register";
 import ForgotPassword from "../components/pages/user/forgot-password/ForgotPassword";
-import { PageNotFound } from "../components/pages/page-not-found/PageNotFound";
+import PageNotFound from "../components/pages/page-not-found/PageNotFound";
 
-export const Router = () => {
+const Router = () => {
 	const { currentUser } = useSelector((state) => state.user);
 
 	return (
@@ -22,3 +22,5 @@ export const Router = () => {
 		</Routes>
 	);
 };
+
+export default Router;

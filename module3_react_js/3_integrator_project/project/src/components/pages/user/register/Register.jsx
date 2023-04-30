@@ -21,6 +21,7 @@ const Register = () => {
 
 	useEffect(() => {
 		nameRef.current.focus();
+		dispatch(userActions.setUserSection("UserRegister"));
 	}, []);
 
 	useEffect(() => {
