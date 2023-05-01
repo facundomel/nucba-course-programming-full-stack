@@ -7,7 +7,7 @@ export const InputContainerStyled = styled.div`
 `;
 
 export const InputStyled = styled.input`
-	padding: 1rem 2rem;
+	padding: 1rem ${(props) => (props.paddingRight ? props.paddingRight : "2rem")} 1rem 2rem;
 	color: white;
 	background-color: var(--gray-bg);
 	border-radius: 15px;

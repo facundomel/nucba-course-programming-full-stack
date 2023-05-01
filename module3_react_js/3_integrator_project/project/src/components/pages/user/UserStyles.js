@@ -56,17 +56,56 @@ export const ErrorMessage = styled.small`
 	font-style: italic;
 `;
 
-export const ShowPassword = styled.div`
+export const InformationPasswordForgotPasswordContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	gap: 10px;
 	font-style: italic;
+`;
+
+export const PasswordForgotPasswordContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	font-style: italic;
+	width: 100%;
 
 	p {
 		padding: 0;
 		margin: 0;
 		font-weight: bold;
 	}
+
+	input {
+		width: 100%;
+		background: transparent;
+		border: none;
+		text-align: end;
+		color: var(--white);
+	}
+`;
+
+export const InputPasswordAndIconShowAndHideContainer = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	position: relative;
+	width: 100%;
+`;
+
+export const IconShowAndHidePasswordContainer = styled.button`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	position: ${(props) => (props.position == "absolute" ? "absolute" : "")};
+	right: 0.8rem;
+	font-size: 1.3rem;
+	color: var(--white);
+	cursor: ${(props) => (props.valuePassword ? "pointer" : "not-allowed")};
+	background-color: transparent;
+	border: none;
+	padding: 0;
 `;

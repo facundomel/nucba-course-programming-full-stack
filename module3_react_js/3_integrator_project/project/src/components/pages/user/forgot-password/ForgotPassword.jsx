@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ErrorContainer, ShowPassword, UserContainer, UserForm, UserLink } from "../UserStyles";
+import {
+	ErrorContainer,
+	IconShowAndHidePasswordContainer,
+	InformationPasswordForgotPasswordContainer,
+	PasswordForgotPasswordContainer,
+	UserContainer,
+	UserForm,
+	UserLink,
+} from "../UserStyles";
 import Input from "../../../atomics/input/Input";
 import Button from "../../../atomics/button/Button";
 import { ERROR_EMAIL } from "../../../../model/ErrorCustom";
@@ -8,12 +16,15 @@ import localStorage from "../../../../repository/LocalStorage";
 import { isExistEmail, isValidEmail } from "./ForgotPasswordValidations";
 import { useDispatch } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
+	const passwordRef = useRef();
 	const [email, setEmail] = useState("");
 	const [error, setError] = useState(null);
 	const [userPassword, setUserPassword] = useState(null);
+	const [typeInputPassword, setTypeInputPassword] = useState("password");
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -44,6 +55,18 @@ const ForgotPassword = () => {
 		emailRef.current.focus();
 	};
 
+	const showPassword = (e) => {
+		e.preventDefault();
+		passwordRef.current.type = "text";
+		setTypeInputPassword(passwordRef.current.type);
+	};
+
+	const hidePassword = (e) => {
+		e.preventDefault();
+		passwordRef.current.type = "password";
+		setTypeInputPassword(passwordRef.current.type);
+	};
+
 	return (
 		<UserContainer>
 			<h1>Recuperá tu contraseña</h1>
@@ -59,14 +82,28 @@ const ForgotPassword = () => {
 					/>
 				</ErrorContainer>
 				{userPassword && (
-					<ShowPassword>
-						<p>Contraseña: {userPassword} </p>
+					<InformationPasswordForgotPasswordContainer>
+						<PasswordForgotPasswordContainer>
+							<p>Contraseña: </p>
+							<input name="password" type="password" value={userPassword} ref={passwordRef} disabled={true} />
+
+							<IconShowAndHidePasswordContainer
+								onClick={(e) => {
+									typeInputPassword == "password" ? showPassword(e) : hidePassword(e);
+								}}
+								valuePassword={userPassword}
+							>
+								{typeInputPassword == "password" ? <AiFillEyeInvisible /> : <AiFillEye />}
+							</IconShowAndHidePasswordContainer>
+						</PasswordForgotPasswordContainer>
+
 						<small>Aclaración: Se la muestra por este medio solo para fines prácticos</small>
 						<UserLink to="/login">
 							<small>Ingresá a tu cuenta</small>
 						</UserLink>
-					</ShowPassword>
+					</InformationPasswordForgotPasswordContainer>
 				)}
+
 				<Button type="submit" width="100%">
 					Recuperar
 				</Button>

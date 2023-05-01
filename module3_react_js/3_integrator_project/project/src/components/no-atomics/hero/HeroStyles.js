@@ -19,6 +19,7 @@ export const HeroFormStyled = styled.form`
 	display: flex;
 	gap: 20px;
 	position: relative;
+	align-items: center;
 `;
 
 export const HeroSearchBarStyled = styled.input`

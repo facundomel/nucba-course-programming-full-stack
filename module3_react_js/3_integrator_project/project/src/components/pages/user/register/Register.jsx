@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Input from "../../../atomics/input/Input";
-import { UserForm, UserContainer, UserLink } from "../UserStyles";
+import {
+	UserForm,
+	UserContainer,
+	UserLink,
+	InputPasswordAndIconShowAndHideContainer,
+	IconShowAndHidePasswordContainer,
+} from "../UserStyles";
 import Button from "../../../atomics/button/Button";
 import ErrorCustom, { ERROR_EMAIL, ERROR_NAME, ERROR_PASSWORD } from "../../../../model/ErrorCustom";
 import localStorage, { KEY_USER_SESSION } from "../../../../repository/LocalStorage.js";
@@ -10,10 +16,12 @@ import { useDispatch } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 const Register = () => {
 	const [error, setError] = useState(null);
 	const [valueInputs, setValueInputs] = useState({ name: "", email: "", password: "" });
+	const [typeInputPassword, setTypeInputPassword] = useState("password");
 	let nameRef = useRef();
 	let emailRef = useRef();
 	let passwordRef = useRef();
@@ -35,6 +43,11 @@ const Register = () => {
 		const target = e.target;
 		const value = target.value;
 		const name = target.name;
+
+		if (name == "password" && value == "" && passwordRef.current.type == "text") {
+			passwordRef.current.type = "password";
+			setTypeInputPassword(passwordRef.current.type);
+		}
 
 		setValueInputs({ ...valueInputs, [name]: value });
 	};
@@ -67,6 +80,18 @@ const Register = () => {
 		);
 	};
 
+	const showPassword = (e) => {
+		e.preventDefault();
+		passwordRef.current.type = "text";
+		setTypeInputPassword(passwordRef.current.type);
+	};
+
+	const hidePassword = (e) => {
+		e.preventDefault();
+		passwordRef.current.type = "password";
+		setTypeInputPassword(passwordRef.current.type);
+	};
+
 	return (
 		<UserContainer>
 			<h1>Creá tu cuenta</h1>
@@ -87,14 +112,28 @@ const Register = () => {
 					handleOnChange={handleChangeInputs}
 					error={error && error.type == ERROR_EMAIL && error}
 				/>
-				<Input
-					name="password"
-					type="password"
-					placeholder="Password"
-					inputRef={passwordRef}
-					handleOnChange={handleChangeInputs}
-					error={error && error.type == ERROR_PASSWORD && error}
-				/>
+				<InputPasswordAndIconShowAndHideContainer>
+					<Input
+						name="password"
+						type="password"
+						placeholder="Password"
+						paddingRight="3rem"
+						inputRef={passwordRef}
+						handleOnChange={handleChangeInputs}
+						error={error && error.type == ERROR_PASSWORD && error}
+					/>
+
+					<IconShowAndHidePasswordContainer
+						onClick={(e) => {
+							typeInputPassword == "password" ? showPassword(e) : hidePassword(e);
+						}}
+						valuePassword={valueInputs.password}
+						disabled={valueInputs.password ? false : true}
+						position="absolute"
+					>
+						{typeInputPassword == "password" || !valueInputs.password ? <AiFillEyeInvisible /> : <AiFillEye />}
+					</IconShowAndHidePasswordContainer>
+				</InputPasswordAndIconShowAndHideContainer>
 				<Button type="submit" width="100%">
 					Registrar
 				</Button>
