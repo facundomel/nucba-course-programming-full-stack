@@ -83,8 +83,9 @@ export const PasswordForgotPasswordContainer = styled.div`
 		width: 100%;
 		background: transparent;
 		border: none;
-		text-align: end;
+		margin-left: 10px;
 		color: var(--white);
+		border-bottom: 1px var(--white) solid;
 	}
 `;
 
@@ -108,4 +109,5 @@ export const IconShowAndHidePasswordContainer = styled.button`
 	background-color: transparent;
 	border: none;
 	padding: 0;
+	opacity: ${(props) => (!props.valuePassword ? "40%" : "")};;
 `;

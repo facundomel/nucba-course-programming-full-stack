@@ -16,7 +16,7 @@ export const InputStyled = styled.input`
 	caret-color: white;
 
 	::placeholder {
-		opacity: 80%;
+		opacity: 40%;
 	}
 
 	-webkit-text-fill-color: white;
