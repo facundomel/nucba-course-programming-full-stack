@@ -1,6 +1,8 @@
 import { deleteExpensePrompt, getConfirmationExpensePrompt, getNewExpensePrompt } from "../utils/expense-prompt-utils.js";
 import { readFile, writeFile } from "../utils/files-utils.js";
 
+const FILE_PATH = "./src/data/expenses.json";
+
 export const getAllExpenses = async () => {
 	try {
 		const expenses = await readFile("./src/data/expenses.json");
@@ -31,8 +33,7 @@ export const createNewExpense = async () => {
 		newExpense = await getNewExpensePrompt();
 	}
 
-	const filePath = "./src/data/expenses.json";
-	const currentExpenses = await readFile(filePath);
+	const currentExpenses = await readFile(FILE_PATH);
 
 	console.log("¿Desea confirmar el nuevo gasto? si/s - no/n");
 	let response = await getConfirmationExpensePrompt();
@@ -72,14 +73,14 @@ export const createNewExpense = async () => {
 					amount: currentExpenses[indexExpense].amount + newExpense.amount,
 				};
 
-				await writeFile(filePath, currentExpenses);
+				await writeFile(FILE_PATH, currentExpenses);
 				console.log("Gasto almacenado correctamente");
 			} else {
 				console.log("Almacenamiento de gasto cancelado");
 			}
 		} else {
 			currentExpenses.push(newExpense);
-			await writeFile(filePath, currentExpenses);
+			await writeFile(FILE_PATH, currentExpenses);
 			console.log("Gasto almacenado correctamente");
 		}
 	} else {
@@ -90,8 +91,7 @@ export const createNewExpense = async () => {
 export const deleteExpenseByDescription = async () => {
 	console.log("Eliminación de gasto:");
 
-	const filePath = "./src/data/expenses.json";
-	const currentExpenses = await readFile(filePath);
+	const currentExpenses = await readFile(FILE_PATH);
 
 	if (currentExpenses.length == 0) {
 		console.log("No existen gastos");
@@ -125,7 +125,7 @@ export const deleteExpenseByDescription = async () => {
 
 	if (confirmationExpense == "si" || confirmationExpense == "s") {
 		const expensesFilteres = currentExpenses.filter((expense) => expense.description != descriptionExpenseToDelete.description);
-		await writeFile(filePath, expensesFilteres);
+		await writeFile(FILE_PATH, expensesFilteres);
 		console.log("Gasto eliminado correctamente");
 	} else {
 		console.log("Eliminación de gasto cancelado");
