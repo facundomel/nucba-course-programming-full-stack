@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import categoriesReducer from "./categories/CategoriesReducer";
 import recipesReducer from "./recipes/RecipesReducer";
 import userReducer from "./user/UserReducer";
+import snackbarReducer from "./snackbar/SnackbarReducer";
 
 const persistConfig = {
 	key: "root",
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
 	user: userReducer,
 	recipes: recipesReducer,
 	categories: categoriesReducer,
+	snackbar: snackbarReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

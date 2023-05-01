@@ -20,8 +20,11 @@ const GlobalStyles = createGlobalStyle`
       --green-light: rgb(113, 255, 113);
       --red-light: rgb(255, 113, 113);
       --yellow-light: rgb(255, 255, 113);
+      --blue-light: rgb(112, 147, 255);
       --green-dark: #017200;
       --yellow-dark: #707000;
+      --blue-dark: #001c8c;
+      --red-dark: #8c0000;
       --gradient: linear-gradient(83deg, #ffa100, #fb103d);
       --btn-gradient-secondary: linear-gradient(140deg, #3B3022, #3B2329);
     }

@@ -9,6 +9,7 @@ import { isValidEmail, isValidName, isValidPassword } from "./RegisterValidation
 import { useDispatch } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import UserSession from "../../../../model/UserSession";
+import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 
 const Register = () => {
 	const [error, setError] = useState(null);
@@ -47,7 +48,7 @@ const Register = () => {
 
 		const user = localStorage.get(KEY_USER_SESSION) || null;
 
-		if ((user != null) & (user.email == valueInputs.email)) {
+		if (user != null && user.email == valueInputs.email) {
 			setError(new ErrorCustom(ERROR_EMAIL, "El email ya se encuentra en uso"));
 			emailRef.current.focus();
 			return;
@@ -56,6 +57,14 @@ const Register = () => {
 		localStorage.save(KEY_USER_SESSION, valueInputs);
 		dispatch(userActions.setCurrentUser(new UserSession(valueInputs)));
 		navigate("/");
+		dispatch(
+			snackbarActions.setOptionsSnackbar({
+				open: true,
+				severity: "success",
+				message: `¡Felicitaciones ${valueInputs.name}! Se ha registrado correctamente`,
+				autoHideDuration: 2500,
+			})
+		);
 	};
 
 	return (

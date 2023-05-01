@@ -15,8 +15,9 @@ import {
 } from "./RecipesStyles";
 import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
+import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 
-const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, publisher, ingredients, instructions }) => {
+const CardRecipe = ({ id, name, description, img, publisher, ingredients, instructions }) => {
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const { recipesAll } = useSelector((state) => state.recipes);
@@ -27,14 +28,26 @@ const CardRecipe = ({ setOptionsSnackbar, id, name, description, img, publisher,
 
 	const handlerOnClickStar = () => {
 		if (!recipesAll[recipeIndex].isFavorite) {
-			setOptionsSnackbar({ open: true, severity: "success", message: "Receta agregada a favorito" });
+			dispatch(
+				snackbarActions.setOptionsSnackbar({
+					open: true,
+					severity: "success",
+					message: `Receta agregada a favorito`,
+				})
+			);
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
 			if (userSection == "MyRecipes") {
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
 		} else {
-			setOptionsSnackbar({ open: true, severity: "warning", message: "Receta quitada de favorito" });
+			dispatch(
+				snackbarActions.setOptionsSnackbar({
+					open: true,
+					severity: "warning",
+					message: `Receta quitada de favorito`,
+				})
+			);
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
 			if (userSection == "MyRecipes") {

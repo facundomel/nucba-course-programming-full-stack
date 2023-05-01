@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CardRecipe from "./CardRecipe";
 import { MessageNotExistRecipes, RecipesContainer } from "./RecipesStyles";
 import localStorage, { KEY_RECIPES_ALL } from "../../../repository/LocalStorage";
 import SnackbarCustom from "../snackbar/SnackbarCustom";
+import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 
 const Recipes = () => {
 	const { recipesAll, recipesFiltered } = useSelector((state) => state.recipes);
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(true);
-	const [optionsSnackbar, setOptionsSnackbar] = useState({ open: false, severity: null, message: null });
+	const { optionsSnackbar } = useSelector((state) => state.snackbar);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		localStorage.save(KEY_RECIPES_ALL, recipesAll);
@@ -31,7 +33,7 @@ const Recipes = () => {
 				) : (
 					<RecipesContainer>
 						{recipesFiltered.map((recipe) => (
-							<CardRecipe setOptionsSnackbar={setOptionsSnackbar} key={recipe.id} {...recipe} />
+							<CardRecipe key={recipe.id} {...recipe} />
 						))}
 					</RecipesContainer>
 				)
@@ -39,10 +41,7 @@ const Recipes = () => {
 				selectedCategory &&
 				(shouldShowRecipesByCategory ? (
 					<RecipesContainer>
-						{recipesFiltered.map(
-							(recipe) =>
-								recipe.category == selectedCategory && <CardRecipe setOptionsSnackbar={setOptionsSnackbar} key={recipe.id} {...recipe} />
-						)}
+						{recipesFiltered.map((recipe) => recipe.category == selectedCategory && <CardRecipe key={recipe.id} {...recipe} />)}
 					</RecipesContainer>
 				) : !shouldShowRecipesByCategory && recipesFiltered.length > 0 ? (
 					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas de esta categoría</MessageNotExistRecipes>
@@ -52,10 +51,11 @@ const Recipes = () => {
 			)}
 
 			<SnackbarCustom
-				openSnackbar={optionsSnackbar.open}
-				setCloseSnackbar={() => setOptionsSnackbar({ ...optionsSnackbar, open: false })}
+				open={optionsSnackbar.open}
+				onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
 				severity={optionsSnackbar.severity}
 				message={optionsSnackbar.message}
+				autoHideDuration={optionsSnackbar.autoHideDuration}
 			/>
 		</>
 	);

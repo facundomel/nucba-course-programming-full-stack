@@ -10,6 +10,7 @@ import { KEY_USER_SESSION } from "../../../../repository/LocalStorage";
 import localStorage from "../../../../repository/LocalStorage";
 import { isValidEmail, isValidEmailAndPassword, isValidPassword } from "./LoginValidations";
 import UserSession from "../../../../model/UserSession";
+import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 
 const Login = () => {
 	const [error, setError] = useState(null);
@@ -50,6 +51,7 @@ const Login = () => {
 
 		dispatch(userActions.setCurrentUser(new UserSession(valueInputs)));
 		navigate("/");
+		dispatch(snackbarActions.setOptionsSnackbar({ open: true, severity: "info", message: `¡Bienvenido nuevamente ${user.name}!` }));
 	};
 
 	return (

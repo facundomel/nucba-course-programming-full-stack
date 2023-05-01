@@ -19,7 +19,7 @@ export const isValidPassword = (password, setError, passwordRef) => {
 };
 
 export const isValidEmailAndPassword = (user, email, password, setError, emailRef) => {
-	if (user.email != email || user.password != password) {
+	if (user == null || user.email != email || user.password != password) {
 		setError(new ErrorCustom(ERROR_EMAIL_OR_PASSWORD, "Email o password incorrecto"));
 		emailRef.current.focus();
 		return false;
