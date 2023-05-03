@@ -1,5 +1,5 @@
 import http from "http";
-import { Router } from "./router/Router";
+import { Router } from "./Router";
 
 const app = http.createServer(Router.init);
 
