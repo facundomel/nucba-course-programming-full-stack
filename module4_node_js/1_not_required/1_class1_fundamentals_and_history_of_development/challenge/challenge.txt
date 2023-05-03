@@ -1,0 +1,12 @@
+Desafío:
+
+A partir del ejercicio visto en clase, agregar a Jugador los siguientes métodos: 
+
+getFullName(): String. 
+addLogros(String): void. 
+countClubes(): 
+getClubesNames(): String []. // Retorna un array con los nombres del array de Clubes del Jugador. 
+
+Es decir, se deberá crear una clase "Jugador" con algunas propiedades y los métodos mencionados anteriormente.
+
+Compartí un screen y tu experiencia con la comunidad en Discord. 

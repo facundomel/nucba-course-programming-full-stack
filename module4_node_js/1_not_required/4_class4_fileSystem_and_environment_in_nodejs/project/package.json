@@ -1,0 +1,20 @@
+{
+	"name": "cli-expense-app",
+	"version": "1.0.0",
+	"description": "CLI - Expense App",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon ./src/index.js",
+		"start": "node ./src/index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Facundo Melgar",
+	"license": "ISC",
+	"dependencies": {
+		"inquirer": "^9.1.5"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.22"
+	}
+}

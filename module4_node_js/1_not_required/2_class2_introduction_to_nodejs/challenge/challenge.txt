@@ -1,0 +1,7 @@
+Desafío:
+
+Instalá NodeJS, NPM y repasá todo lo visto en la clase. 
+
+- Te invitamos a armar un resumen sobre Node JS y NPM y lo puedas publicar en Medium.
+
+Si lo hiciste, compartilo en el canal de Discord. 

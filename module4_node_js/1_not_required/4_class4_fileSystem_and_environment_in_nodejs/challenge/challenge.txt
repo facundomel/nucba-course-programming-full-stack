@@ -1,0 +1,4 @@
+Desafío:
+
+Creá tu propio CLI diferente al caso práctico que realizó el mentor/a en clase. 
+Una vez hecho, podés compartir tu experiencia en el servidor de Discord. 
