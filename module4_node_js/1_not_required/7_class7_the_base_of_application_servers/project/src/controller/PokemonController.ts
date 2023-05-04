@@ -8,7 +8,7 @@ export default class PokemonController {
 			const urlParts = req.url?.split("/");
 
 			if (urlParts) {
-				const result = await PokemonService.getPokemonById(Number(urlParts[2]));
+				const result = await PokemonService.getPokemonById(Number(urlParts[3]));
 
 				res.setHeader("content-type", "application/json");
 				res.statusCode = HttpStatusCode.Ok;

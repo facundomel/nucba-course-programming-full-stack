@@ -2,15 +2,22 @@ import http from "http";
 import PokemonController from "../controller/PokemonController";
 import { HttpStatusCode } from "axios";
 
-export class Router {
+export default class Router {
 	static init = async (req: http.IncomingMessage, res: http.ServerResponse): Promise<void> => {
 		const urlParts = req.url?.split("/");
 
-		if (urlParts !== undefined && req.method === "GET" && urlParts[1] === "pokemon" && urlParts[2] !== undefined && urlParts[2] != "") {
+		if (
+			req.method === "GET" &&
+			urlParts !== undefined &&
+			urlParts[1] === "api" &&
+			urlParts[2] === "pokemon" &&
+			urlParts[3] !== undefined &&
+			urlParts[3] != ""
+		) {
 			return PokemonController.getPokemonById(req, res);
 		} else {
 			res.statusCode = HttpStatusCode.NotFound;
-			res.end("URL NOT FOUND");
+			res.end("URL Not Found");
 			return;
 		}
 	};
