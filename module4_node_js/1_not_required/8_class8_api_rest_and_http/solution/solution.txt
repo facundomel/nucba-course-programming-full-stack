@@ -1,0 +1,4 @@
+Solución:
+
+En el challenge 7 hice algo similar a lo que se hizo en esta clase y en la clase anterior, con la diferencia de que yo consumí la API de Pokemon.
+Por otro lado, consideré que no fue necesario tomar nota.

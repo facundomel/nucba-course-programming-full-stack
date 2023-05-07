@@ -1,0 +1,3 @@
+Desafío:
+
+Te invitamos a que puedas replicar exactamente lo que se hizo en la clase y tomes notas de cada una de las funcionalidades de los métodos https, objetos y manejo de errores para asentar los conocimientos.
