@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import ExpenseService from "./service/ExpenseService.js";
 
 class Main {
-	static main = async () => {
+	static init = async () => {
 		let run = true;
 		while (run) {
 			const action = await inquirer.prompt([
@@ -42,4 +42,4 @@ class Main {
 	};
 }
 
-Main.main();
+Main.init();
