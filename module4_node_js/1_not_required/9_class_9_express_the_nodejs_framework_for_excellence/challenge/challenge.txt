@@ -5,12 +5,12 @@ Realizar un proyecto de servidor con express y que tenga los siguientes endpoint
 -Ruta get '/products' que devuelva un array con todos los productos disponibles en el servidor. 
 -Ruta get '/productRandom' que devuelva un producto elegido al azar entre todos los productos disponibles. 
 
-Incluir un archivo de texto 'productos.json' y utilizar clases para acceder a los datos persistidos del servidor. 
+Incluir un archivo de texto 'products.json' y utilizar clases para acceder a los datos persistidos del servidor. 
 
 Aclaración: 
 
 Para este challenge creé 3 endpoints: 
 
-a) Un GET para obtener todos los productos del file.
+a) Un GET para obtener todos los productos.
 b) Un GET para obtener un producto por ID.
 c) Un POST para crear un nuevo producto.

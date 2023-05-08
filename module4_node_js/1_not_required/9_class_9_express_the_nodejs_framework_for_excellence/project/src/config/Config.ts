@@ -1,5 +1,5 @@
 export default class Config {
 	static getPort = () => {
-		return process.env.PORT || 3002;
+		return process.env.PORT || 3000;
 	};
 }
