@@ -3,14 +3,14 @@ import fs from "fs";
 import Product from "../model/Product";
 
 export default class FilesUtils {
-	private static pathFileDB = "../data/products.json";
+	private static readonly filePathDB = "../data/products.json";
 
 	static readFileDB = async () => {
-		return this.readFile(path.resolve(__dirname, this.pathFileDB));
+		return this.readFile(path.resolve(__dirname, this.filePathDB));
 	};
 
 	static writeFileDB = async (products: Product[]) => {
-		return this.writeFile(path.resolve(__dirname, this.pathFileDB), products);
+		return this.writeFile(path.resolve(__dirname, this.filePathDB), products);
 	};
 
 	private static readFile = (filePath: string): Promise<object> => {

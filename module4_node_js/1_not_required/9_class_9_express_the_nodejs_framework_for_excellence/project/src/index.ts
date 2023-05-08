@@ -6,6 +6,7 @@ import Config from "./config/Config";
 
 class Main {
 	static init = () => {
+		const port = Config.getPort();
 		const app = express();
 
 		app.use(express.json());
@@ -13,8 +14,8 @@ class Main {
 		app.all("*", (req, res) => {
 			res.status(StatusCodes.NOT_FOUND).json(new Exception("URL Not Found", StatusCodes.NOT_FOUND));
 		});
-		app.listen(Config.getPort(), () => {
-			console.log("🗲 Server running on port 3002 🗲");
+		app.listen(port, () => {
+			console.log(`🗲 Server running on port ${port} 🗲`);
 		});
 	};
 }
