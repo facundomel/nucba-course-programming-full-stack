@@ -1,6 +1,6 @@
 export default class Exception {
-	statusCode: number;
 	message: string;
+	statusCode: number;
 
 	constructor(message: string, statusCode: number) {
 		this.message = message;

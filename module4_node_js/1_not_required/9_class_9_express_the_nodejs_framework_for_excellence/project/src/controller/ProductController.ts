@@ -28,11 +28,6 @@ export default class ProductController {
 
 	static saveProduct = async (req: Request, res: Response): Promise<void> => {
 		try {
-			if (!req.body.name || !req.body.description) {
-				res.status(StatusCodes.BAD_REQUEST).json(new Exception("Bad Request", StatusCodes.BAD_REQUEST));
-				return;
-			}
-
 			const product: Product = await ProductService.saveProduct(req.body as Product);
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(product));
 		} catch (error: any) {
