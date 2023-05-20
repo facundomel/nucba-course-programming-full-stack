@@ -1,0 +1,4 @@
+Desafío:
+
+Crea tu primera base de datos tomando como base clases diferentes a las dadas por el mentor/a. 
+- Es decir, si el mentor armó una BD de productos para un ecommerce. Vos deberías hacer una BD diferente. Ej: Deportistas olímpicos // Turnos médicos. 
