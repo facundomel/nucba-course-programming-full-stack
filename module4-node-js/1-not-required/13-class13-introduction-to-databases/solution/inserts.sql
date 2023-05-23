@@ -3,7 +3,7 @@ INSERT INTO doctors (name, last_name, created_date) VALUES ("Pedro", "Aguilar", 
 INSERT INTO doctors (name, last_name, created_date) VALUES ("Carla", "Suárez", now());
 
 INSERT INTO specialities (name) VALUES ("Oftalmología");
-INSERT INTO specialities (name) VALUES ("Ornitorrinolaringología");
+INSERT INTO specialities (name) VALUES ("Otorrinolaringología");
 
 INSERT INTO doctors_specialities (doctor_id, speciality_id) VALUES (1, 1);
 INSERT INTO doctors_specialities (doctor_id, speciality_id) VALUES (1, 2);
