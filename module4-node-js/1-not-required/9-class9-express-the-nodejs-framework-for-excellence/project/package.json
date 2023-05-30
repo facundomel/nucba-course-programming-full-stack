@@ -2,7 +2,7 @@
 	"name": "project",
 	"version": "1.0.0",
 	"description": "",
-	"main": "src/index.ts",
+	"main": "build/index.js",
 	"scripts": {
 		"start": "ts-node-dev src/index.ts",
 		"dev": "ts-node src/index.ts",
