@@ -1,0 +1,3 @@
+TRUNCATE TABLE users;
+
+TRUNCATE TABLE expenses;
