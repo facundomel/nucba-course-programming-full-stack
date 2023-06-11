@@ -12,7 +12,7 @@
 
 - DB_HOST="aws.connect.psdb.cloud"
 - DB_PORT="3306"
-- DB_USERNAME="wxvbcfqdxyv6tpxypidf"
-- DB_PASSWORD="pscale_pw_MWm7hqup7geF59Pj0qf5ngu9RE1E9WKbGk1HnM5Fep2"
+- DB_USERNAME="isxeqwl61va0d5xiudbn"
+- DB_PASSWORD="pscale_pw_JpVcJxIYx8wYG8Whrcae8KiXapuqdshYms2mG9Lx8Z6"
 - DB_NAME="expenses_nucba_challenge_required_2_module_4"
 
