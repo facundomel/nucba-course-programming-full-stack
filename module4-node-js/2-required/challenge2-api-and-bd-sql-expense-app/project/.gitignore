@@ -1,6 +1,17 @@
+# Code editor
 .idea/
 .vscode/
+
+# Dependencies directory
 node_modules/
+
+# Dotenv environment variables file
+.env
+.env.test
+
+# Build directory
 build/
+
+# Temp
 tmp/
 temp/
