@@ -1,0 +1,18 @@
+Desafío:
+
+Siguiendo con el desafío anterior, vamos a crear la BD SQL de nuestra app de gastos y migrar todo para darle más performance a nuestro proyecto.
+
+🚨 No borres este proyecto, vamos a iterarlo mas adelante ;) 
+
+| Forma de entrega:
+Los ejercicios deberán ser entregados por medio de esta plataforma.
+Deberán subir su trabajo a un repositorio de Github, deployarlo en Vercel, y entregar ambos links.
+No se aceptarán archivos sueltos, comprimidos ni subidos a drive.
+
+| Tiempos de entrega y resolución:
+Dispondrán exactamente de 1 SEMANA para realizar la entrega desde su habilitación.
+Una vez que hayan realizado la entrega, el equipo de mentoría se encargará de la corrección del mismo. Está corrección tardará aproximadamente 10 días.
+
+Cualquier consulta que tengan sobre la entrega podrán realizarla por el canal de discord de la camada.
+
+#happyCoding 🤖

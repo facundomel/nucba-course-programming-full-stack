@@ -6,7 +6,7 @@ import "dotenv/config";
 
 class Main {
 	static init = () => {
-		const port = process.env.APP_PORT;
+		const port = Number(process.env.APP_PORT);
 		const app = express();
 
 		app.use(express.json());
