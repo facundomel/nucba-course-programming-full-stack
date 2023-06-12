@@ -5,12 +5,12 @@
 # Dependencies directory
 node_modules/
 
+# Build directory
+build/
+
 # Dotenv environment variables file
 .env
 .env.test
-
-# Build directory
-build/
 
 # Temp
 tmp/
