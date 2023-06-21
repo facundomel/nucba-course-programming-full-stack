@@ -21,7 +21,3 @@ VALUES ("Otra Campera", "Campera nueva", 6500, 2);
 
 INSERT INTO expenses (name, description, amount, user_id)
 VALUES ("Otra Campera", "Campera nueva", 6500, 3);
-
--- UPDATE users
--- SET deleted_date = null
--- WHERE id = 2;

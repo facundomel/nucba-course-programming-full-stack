@@ -22,7 +22,6 @@ export default class ExpenseRepository {
 				.select("expenses")
 				.withDeleted()
 				.from(Expense, "expenses")
-				.leftJoinAndSelect("expenses.user", "user")
 				.getMany()) as unknown as Expense[];
 			return expenses;
 		} catch (error: any) {
@@ -37,7 +36,6 @@ export default class ExpenseRepository {
 				.select("expenses")
 				.withDeleted()
 				.from(Expense, "expenses")
-				.leftJoinAndSelect("expenses.user", "user")
 				.where("expenses.id = :id", { id: expenseId })
 				.getOne()) as Expense;
 			return expense;
@@ -58,14 +56,6 @@ export default class ExpenseRepository {
 	static deleteExpenseById = async (expenseId: number): Promise<void> => {
 		try {
 			await this.expenseRepository.softDelete({ id: expenseId });
-		} catch (error: any) {
-			throw error;
-		}
-	};
-
-	static deleteExpenseByUserId = async (userId: number): Promise<void> => {
-		try {
-			await this.expenseRepository.softDelete({ userId: userId });
 		} catch (error: any) {
 			throw error;
 		}

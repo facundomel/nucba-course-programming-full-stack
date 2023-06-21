@@ -1,8 +1,8 @@
 import { StatusCodes } from "http-status-codes";
 import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
-import Exception from "../model/Exception";
-import ResponseUtils from "../utils/ResponseUtils";
+import Exception from "../../model/Exception";
+import ResponseUtils from "../../utils/ResponseUtils";
 
 export default class HandlerValidationErrors {
 	static executeValidation = (req: Request, res: Response, next: NextFunction) => {

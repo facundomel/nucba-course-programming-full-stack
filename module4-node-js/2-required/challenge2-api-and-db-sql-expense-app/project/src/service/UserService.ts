@@ -47,7 +47,7 @@ export default class UserService {
 	static deleteUserById = async (userId: number): Promise<User> => {
 		try {
 			let user: User = (await this.getUserById(userId)) as User;
-			if (user.deletedDate != null) throw new Exception("User is already deleted", StatusCodes.NOT_FOUND);
+			if (user.deletedDate != null) throw new Exception("User is already deleted", StatusCodes.CONFLICT);
 			await UserRepository.deleteUserById(userId);
 			user = (await this.getUserById(userId)) as User;
 			return user;
@@ -59,7 +59,7 @@ export default class UserService {
 	static deleteExpensesByUserId = async (userId: number): Promise<User> => {
 		try {
 			let user: User = (await this.getExpensesByUserId(userId)) as User;
-			if (user.expenses.length == 0) throw new Exception("User has not expenses", StatusCodes.INTERNAL_SERVER_ERROR);
+			if (user.expenses.length == 0) throw new Exception("User has not expenses", StatusCodes.CONFLICT);
 			await UserRepository.deleteExpensesByUserId(userId);
 			user = (await this.getExpensesByUserId(userId)) as User;
 			return user;

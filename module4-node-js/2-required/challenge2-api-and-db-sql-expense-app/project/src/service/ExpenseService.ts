@@ -35,7 +35,7 @@ export default class ExpenseService {
 	static deleteExpenseById = async (expenseId: number): Promise<Expense> => {
 		try {
 			let expense: Expense = (await this.getExpenseById(expenseId)) as Expense;
-			if (expense.deletedDate != null) throw new Exception("User is already deleted", StatusCodes.NOT_FOUND);
+			if (expense.deletedDate != null) throw new Exception("Expense is already deleted", StatusCodes.CONFLICT);
 			await ExpenseRepository.deleteExpenseById(expenseId);
 			expense = (await this.getExpenseById(expenseId)) as Expense;
 			return expense;
