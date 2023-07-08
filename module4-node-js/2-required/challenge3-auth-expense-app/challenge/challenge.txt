@@ -1,0 +1,20 @@
+Desafío:
+
+🏆 Tercera y última parte de nuestro desafío de App de Gastos, en esta instancia vamos a sumarle un módulo de Auth para que podamos loguearnos y según por cuenta, mostrar la información correspondiente.
+
+👉 Aplicaremos todo lo aprendido en clase para crear instancias, tablas y la vinculación correspondiente para completar nuestro proyecto.
+
+🚀 Como usuario final, tengo que poder crear mi cuenta/loguearme y poder cargar toda mi información de Gastos.
+
+| Forma de entrega:
+Los ejercicios deberán ser entregados por medio de esta plataforma.
+Deberán subir su trabajo a un repositorio de Github, deployarlo en Vercel, y entregar ambos links.
+No se aceptarán archivos sueltos, comprimidos ni subidos a drive.
+
+| Tiempos de entrega y resolución:
+Dispondrán exactamente de 1 SEMANA para realizar la entrega desde su habilitación.
+Una vez que hayan realizado la entrega, el equipo de mentoría se encargará de la corrección del mismo. Está corrección tardará aproximadamente 10 días.
+
+Cualquier consulta que tengan sobre la entrega podrán realizarla por el canal de discord de la camada.
+
+#happyCoding 🤖
