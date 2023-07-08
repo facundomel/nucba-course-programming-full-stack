@@ -29,7 +29,7 @@ export default class ExpenseController {
 	static createExpense = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const expense: Expense = await ExpenseService.saveExpense(ResponseUtils.convertFromSnakeToCamel(req.body) as Expense);
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(expense));
+			res.status(StatusCodes.CREATED).json(ResponseUtils.convertFromCamelToSnake(expense));
 		} catch (error: any) {
 			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
 			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
