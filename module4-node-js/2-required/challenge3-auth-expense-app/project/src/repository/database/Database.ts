@@ -1,8 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import "dotenv/config";
 import "reflect-metadata";
-import "dotenv/config";
 import { AppDataSource } from "./DataSource";
 
 export default class Database {

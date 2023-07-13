@@ -6,10 +6,11 @@ import UserService from "./UserService";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import AuthToken from "../model/AuthToken";
+import Config from "../config/Config";
 
 export default class AuthService {
-	static readonly accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
-	static readonly refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET || "";
+	static readonly accessTokenSecret: string = Config.getInstance().accessTokenSecret;
+	static readonly refreshTokenSecret: string = Config.getInstance().refreshTokenSecret;
 
 	static login = async (loginData: Login): Promise<any> => {
 		try {

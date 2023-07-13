@@ -15,7 +15,7 @@ export default class AuthRouter {
 			AuthController.login
 		);
 
-		router.get("/refresh-token", AuthController.refreshToken);
+		router.post("/refresh-token", AuthController.refreshToken);
 
 		return router;
 	};

@@ -4,11 +4,12 @@ import ResponseUtils from "../../utils/ResponseUtils";
 import Exception from "../../model/Exception";
 import jwt from "jsonwebtoken";
 import UserRole from "../../model/enum/RoleUser";
+import Config from "../../config/Config";
 
 export default class HandlerAuth {
 	//AUTENTICACION
 	static authenticate = async (req: Request, res: Response, next: NextFunction) => {
-		const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
+		const accessTokenSecret = Config.getInstance().accessTokenSecret;
 		const headerAuthorization = req.headers.authorization;
 		if (!headerAuthorization) {
 			res
