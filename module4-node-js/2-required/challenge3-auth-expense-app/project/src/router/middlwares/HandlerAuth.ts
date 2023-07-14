@@ -5,6 +5,7 @@ import Exception from "../../model/Exception";
 import jwt from "jsonwebtoken";
 import UserRole from "../../model/enum/RoleUser";
 import Config from "../../config/Config";
+import CurrentUser from "../../model/CurrentUser";
 
 export default class HandlerAuth {
 	//AUTENTICACION
@@ -22,9 +23,7 @@ export default class HandlerAuth {
 		try {
 			const result: any = jwt.verify(authorizationToken, accessTokenSecret);
 			if (result) {
-				res.locals.userId = result.userId;
-				res.locals.email = result.email;
-				res.locals.role = result.role;
+				res.locals.currentUser = new CurrentUser(result);
 
 				next();
 				return;
@@ -44,7 +43,8 @@ export default class HandlerAuth {
 
 	//AUTORIZACION
 	static authorizeAdminRole = async (req: Request, res: Response, next: NextFunction) => {
-		if (res.locals.role && res.locals.role != UserRole.ADMIN) {
+		const currentUser: CurrentUser = res.locals.currentUser;
+		if (currentUser.role && currentUser.role != UserRole.ADMIN) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
 				.json(ResponseUtils.convertFromCamelToSnake(new Exception("Not authorized: Need admin role", StatusCodes.UNAUTHORIZED)));
@@ -60,7 +60,8 @@ export default class HandlerAuth {
 			? ResponseUtils.convertFromSnakeToCamel(req.body).userId
 			: null;
 
-		if (res.locals.role && res.locals.role == UserRole.USER && userId != res.locals.userId) {
+		const currentUser: CurrentUser = res.locals.currentUser;
+		if (currentUser.role && currentUser.role == UserRole.USER && currentUser.userId != userId) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
 				.json(ResponseUtils.convertFromCamelToSnake(new Exception("User not authorized", StatusCodes.UNAUTHORIZED)));
@@ -76,9 +77,10 @@ export default class HandlerAuth {
 			? ResponseUtils.convertFromSnakeToCamel(req.body).userId
 			: null;
 
+		const currentUser: CurrentUser = res.locals.currentUser;
 		if (
-			(res.locals.role && res.locals.role == UserRole.ADMIN) ||
-			(res.locals.role && res.locals.role == UserRole.USER && userId == res.locals.userId)
+			(currentUser.role && currentUser.role == UserRole.ADMIN) ||
+			(currentUser.role && currentUser.role == UserRole.USER && currentUser.userId == userId)
 		) {
 			next();
 			return;

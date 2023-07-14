@@ -3,13 +3,13 @@ import { StatusCodes } from "http-status-codes";
 import Exception from "../model/Exception";
 import ResponseUtils from "../utils/ResponseUtils";
 import User from "../model/entity/User";
-import Login from "../model/Login";
+import UserLogin from "../model/UserLogin";
 import AuthService from "../service/AuthService";
 
 export default class AuthController {
 	static login = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const user: User = await AuthService.login(ResponseUtils.convertFromSnakeToCamel(req.body) as Login);
+			const user: User = await AuthService.login(ResponseUtils.convertFromSnakeToCamel(req.body) as UserLogin);
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
 			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;

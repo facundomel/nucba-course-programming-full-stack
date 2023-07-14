@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import Exception from "../model/Exception";
 import User from "../model/entity/User";
-import Login from "../model/Login";
+import UserLogin from "../model/UserLogin";
 import UserService from "./UserService";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -12,7 +12,7 @@ export default class AuthService {
 	static readonly accessTokenSecret: string = Config.getInstance().accessTokenSecret;
 	static readonly refreshTokenSecret: string = Config.getInstance().refreshTokenSecret;
 
-	static login = async (loginData: Login): Promise<any> => {
+	static login = async (loginData: UserLogin): Promise<any> => {
 		try {
 			let user: User = (await UserService.getUserByEmail(loginData.email)) as User;
 			const result = await bcrypt.compare(loginData.password, user.password);
