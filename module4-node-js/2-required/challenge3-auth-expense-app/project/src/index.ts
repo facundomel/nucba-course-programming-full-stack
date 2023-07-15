@@ -1,7 +1,7 @@
 import express from "express";
 import UsersRouter from "./router/UsersRouter";
 import { StatusCodes } from "http-status-codes";
-import Exception from "./model/Exception";
+import CustomException from "./model/CustomException";
 import ExpensesRouter from "./router/ExpensesRouter";
 import ResponseUtils from "./utils/ResponseUtils";
 import AuthRouter from "./router/AuthRouter";
@@ -20,7 +20,9 @@ class Main {
 		app.use("/api", UsersRouter.init());
 		app.use("/api", ExpensesRouter.init());
 		app.all("*", (req, res) => {
-			res.status(StatusCodes.NOT_FOUND).json(ResponseUtils.convertFromCamelToSnake(new Exception("URL not found", StatusCodes.NOT_FOUND)));
+			res
+				.status(StatusCodes.NOT_FOUND)
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("URL not found", StatusCodes.NOT_FOUND)));
 		});
 
 		app.listen(port, () => {

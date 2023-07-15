@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import Exception from "../model/Exception";
+import CustomException from "../model/CustomException";
 import ResponseUtils from "../utils/ResponseUtils";
 import User from "../model/entity/User";
 import UserLogin from "../model/UserLogin";
@@ -12,8 +12,7 @@ export default class AuthController {
 			const user: User = await AuthService.login(ResponseUtils.convertFromSnakeToCamel(req.body) as UserLogin);
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 
@@ -22,7 +21,7 @@ export default class AuthController {
 		if (!headerAuthorization) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new Exception("Not authorized: Token is not present", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token is not present", StatusCodes.UNAUTHORIZED)));
 			return;
 		}
 		const authorizationToken = headerAuthorization.split(" ")[1];
@@ -30,8 +29,7 @@ export default class AuthController {
 			const result = await AuthService.refreshToken(authorizationToken);
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(result));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 }

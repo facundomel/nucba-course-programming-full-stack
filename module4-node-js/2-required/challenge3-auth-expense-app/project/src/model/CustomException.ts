@@ -1,4 +1,4 @@
-export default class Exception {
+export default class CustomException {
 	message: string;
 	statusCode: number;
 

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import Exception from "../model/Exception";
 import ResponseUtils from "../utils/ResponseUtils";
 import UserService from "../service/UserService";
 import User from "../model/entity/User";
@@ -11,8 +10,7 @@ export default class UserController {
 			const users: User[] = (await UserService.getUsers()) as User[];
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(users));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 
@@ -21,8 +19,7 @@ export default class UserController {
 			const user: User = (await UserService.getUserById(Number(req.params.id))) as User;
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 
@@ -31,8 +28,7 @@ export default class UserController {
 			const user: User = (await UserService.getExpensesByUserId(Number(req.params.id))) as User;
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 
@@ -41,8 +37,7 @@ export default class UserController {
 			const user: User = await UserService.registerUser(ResponseUtils.convertFromSnakeToCamel(req.body) as User);
 			res.status(StatusCodes.CREATED).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 
@@ -51,8 +46,7 @@ export default class UserController {
 			const user: User = (await UserService.deleteUserById(Number(req.params.id))) as User;
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 
@@ -61,8 +55,7 @@ export default class UserController {
 			const user: User = (await UserService.deleteExpensesByUserId(Number(req.params.id))) as User;
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
-			const statusCode = error.statusCode ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-			res.status(statusCode).json(ResponseUtils.convertFromCamelToSnake(new Exception(error.message, statusCode)));
+			ResponseUtils.getException(res, error);
 		}
 	};
 }

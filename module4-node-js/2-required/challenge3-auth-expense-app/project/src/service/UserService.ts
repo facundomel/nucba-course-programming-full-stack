@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import Exception from "../model/Exception";
+import CustomException from "../model/CustomException";
 import User from "../model/entity/User";
 import UserRepository from "../repository/UserRepository";
 import bcrypt from "bcrypt";
@@ -17,7 +17,7 @@ export default class UserService {
 	static getUserById = async (userId: number): Promise<User> => {
 		try {
 			const user: User = (await UserRepository.getUserById(userId)) as User;
-			if (user == null) throw new Exception("User not found", StatusCodes.NOT_FOUND);
+			if (user == null) throw new CustomException("User not found", StatusCodes.NOT_FOUND);
 			return user;
 		} catch (error: any) {
 			throw error;
@@ -27,7 +27,7 @@ export default class UserService {
 	static getUserByEmail = async (userEmail: string): Promise<User> => {
 		try {
 			const user: User = (await UserRepository.getUserByEmail(userEmail)) as User;
-			if (user == null) throw new Exception("User not found", StatusCodes.NOT_FOUND);
+			if (user == null) throw new CustomException("User not found", StatusCodes.NOT_FOUND);
 			return user;
 		} catch (error: any) {
 			throw error;
@@ -37,7 +37,7 @@ export default class UserService {
 	static getExpensesByUserId = async (userId: number): Promise<User> => {
 		try {
 			const user: User = (await UserRepository.getExpensesByUserId(userId)) as User;
-			if (user == null) throw new Exception("User not found", StatusCodes.NOT_FOUND);
+			if (user == null) throw new CustomException("User not found", StatusCodes.NOT_FOUND);
 			return user;
 		} catch (error: any) {
 			throw error;
@@ -47,7 +47,7 @@ export default class UserService {
 	static registerUser = async (newUser: User): Promise<any> => {
 		try {
 			let user: User = (await UserRepository.getUserByEmail(newUser.email)) as User;
-			if (user != null) throw new Exception("User already exist", StatusCodes.CONFLICT);
+			if (user != null) throw new CustomException("User already exist", StatusCodes.CONFLICT);
 			newUser.password = await bcrypt.hash(newUser.password, 10);
 			user = (await UserRepository.registerUser(newUser)) as User;
 			user.password = "*****";
@@ -60,7 +60,7 @@ export default class UserService {
 	static deleteUserById = async (userId: number): Promise<User> => {
 		try {
 			let user: User = (await this.getUserById(userId)) as User;
-			if (user.deletedDate != null) throw new Exception("User is already deleted", StatusCodes.CONFLICT);
+			if (user.deletedDate != null) throw new CustomException("User is already deleted", StatusCodes.CONFLICT);
 			await UserRepository.deleteUserById(userId);
 			user = (await this.getUserById(userId)) as User;
 			return user;
@@ -72,7 +72,7 @@ export default class UserService {
 	static deleteExpensesByUserId = async (userId: number): Promise<User> => {
 		try {
 			let user: User = (await this.getExpensesByUserId(userId)) as User;
-			if (user.expenses.length == 0) throw new Exception("User has not expenses", StatusCodes.CONFLICT);
+			if (user.expenses.length == 0) throw new CustomException("User has not expenses", StatusCodes.CONFLICT);
 			await UserRepository.deleteExpensesByUserId(userId);
 			user = (await this.getExpensesByUserId(userId)) as User;
 			return user;

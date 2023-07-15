@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import ResponseUtils from "../../utils/ResponseUtils";
-import Exception from "../../model/Exception";
+import CustomException from "../../model/CustomException";
 import jwt from "jsonwebtoken";
 import UserRole from "../../model/enum/RoleUser";
 import Config from "../../config/Config";
@@ -15,7 +15,7 @@ export default class HandlerAuth {
 		if (!headerAuthorization) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new Exception("Not authorized: Token is not present", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token is not present", StatusCodes.UNAUTHORIZED)));
 			return;
 		}
 
@@ -32,12 +32,12 @@ export default class HandlerAuth {
 			if (err.name == "TokenExpiredError") {
 				res
 					.status(StatusCodes.UNAUTHORIZED)
-					.json(ResponseUtils.convertFromCamelToSnake(new Exception("Not authorized: Token expired", StatusCodes.UNAUTHORIZED)));
+					.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token expired", StatusCodes.UNAUTHORIZED)));
 				return;
 			}
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new Exception("Not authorized: Token is not valid", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token is not valid", StatusCodes.UNAUTHORIZED)));
 		}
 	};
 
@@ -47,7 +47,7 @@ export default class HandlerAuth {
 		if (currentUser.role && currentUser.role != UserRole.ADMIN) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new Exception("Not authorized: Need admin role", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Need admin role", StatusCodes.UNAUTHORIZED)));
 			return;
 		}
 		next();
@@ -64,7 +64,7 @@ export default class HandlerAuth {
 		if (currentUser.role && currentUser.role == UserRole.USER && currentUser.userId != userId) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new Exception("User not authorized", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("User not authorized", StatusCodes.UNAUTHORIZED)));
 			return;
 		}
 		next();
@@ -88,6 +88,6 @@ export default class HandlerAuth {
 
 		res
 			.status(StatusCodes.UNAUTHORIZED)
-			.json(ResponseUtils.convertFromCamelToSnake(new Exception("User not authorized", StatusCodes.UNAUTHORIZED)));
+			.json(ResponseUtils.convertFromCamelToSnake(new CustomException("User not authorized", StatusCodes.UNAUTHORIZED)));
 	};
 }
