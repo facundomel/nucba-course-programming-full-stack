@@ -6,7 +6,7 @@
 node_modules/
 
 # Build directory
-build/
+#build/
 
 # Dotenv environment variables file
 .env

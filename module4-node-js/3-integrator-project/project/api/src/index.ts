@@ -1,10 +1,7 @@
 import express from "express";
-import UsersRouter from "./router/UsersRouter";
 import { StatusCodes } from "http-status-codes";
 import CustomException from "./model/CustomException";
-import ExpensesRouter from "./router/ExpensesRouter";
 import ResponseUtils from "./utils/ResponseUtils";
-import AuthRouter from "./router/AuthRouter";
 import Config from "./config/Config";
 
 class Main {
