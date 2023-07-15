@@ -9,7 +9,9 @@ export default class Database {
 			.then(async () => {
 				console.log("Connection initialized with database...");
 			})
-			.catch((error) => console.log(error));
+			.catch((error: any) => {
+				console.log(error);
+			});
 	}
 
 	static getConnection = (delay = 3000): Promise<DataSource> => {
