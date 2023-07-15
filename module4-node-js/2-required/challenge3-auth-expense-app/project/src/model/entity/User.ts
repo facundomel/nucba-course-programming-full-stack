@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, Unique } from "typeorm";
 import Expense from "./Expense";
 import UserRole from "../enum/RoleUser";
 
@@ -14,6 +14,7 @@ export default class User {
 	lastName!: string;
 
 	@Column({ type: "varchar", length: 50, nullable: false })
+	@Unique("UQ_users_email", ["email"])
 	email!: string;
 
 	@Column({ type: "varchar", length: 100, nullable: false })

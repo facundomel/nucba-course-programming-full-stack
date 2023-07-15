@@ -3,6 +3,7 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import User from "../../model/entity/User";
 import Expense from "../../model/entity/Expense";
 import "dotenv/config";
+import { EmailUnique1689389603912 } from "./migrations/1689389603912-EmailUnique";
 
 export const AppDataSource = new DataSource({
 	type: "mysql",
@@ -12,8 +13,8 @@ export const AppDataSource = new DataSource({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
 	entities: [User, Expense],
-	migrations: [],
-	migrationsRun: false,
+	migrations: [EmailUnique1689389603912],
+	// migrationsRun: true,
 	logging: false,
 	logger: "simple-console",
 	subscribers: [],
@@ -25,5 +26,5 @@ export const AppDataSource = new DataSource({
 	synchronize: false,
 	// url: process.env.DATABASE_URL,
 	// entities: ["src/model/entity/**/*.ts"],
-	// migrations: ["src/repository/database/migrations/**/*{.ts}"],
+	// migrations: ["src/repository/database/migrations/**/*{.ts}"]
 });

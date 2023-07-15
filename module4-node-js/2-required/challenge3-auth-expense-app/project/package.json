@@ -9,8 +9,8 @@
 		"build": "tsc",
 		"prod": "tsc && node build/index.js",
 		"migration:create": "typeorm-ts-node-commonjs migration:create",
-		"migration:run": "typeorm-ts-node-commonjs migration:run -d src/repository/database/data-source.ts",
-		"migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/repository/database/data-source.ts",
+		"migration:run": "typeorm-ts-node-commonjs migration:run -d src/repository/database/DataSource.ts",
+		"migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/repository/database/DataSource.ts",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
