@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "build/index.js",
 	"scripts": {
-		"start": "ts-node-dev src/index.ts",
-		"dev": "ts-node src/index.ts",
+		"start": "node build/index.js",
+		"dev": "ts-node-dev src/index.ts",
 		"build": "tsc",
 		"prod": "tsc && node build/index.js",
 		"migration:create": "typeorm-ts-node-commonjs migration:create",
