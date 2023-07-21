@@ -34,7 +34,6 @@ export default class UsersRouter {
 			body("last_name").notEmpty().withMessage("Last name is empty").isString().withMessage("Last name is not string"),
 			body("email").notEmpty().withMessage("Email is empty").isEmail().withMessage("Email is not valid"),
 			body("password").notEmpty().withMessage("Password is empty").isStrongPassword().withMessage("Password is not strong"),
-			body("role_id").notEmpty().withMessage("Role ID is empty").isNumeric().withMessage("Role ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
 			UserController.registerUser
 		);
