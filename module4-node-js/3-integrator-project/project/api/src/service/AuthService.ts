@@ -28,7 +28,10 @@ export default class AuthService {
 			const refreshToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.refreshTokenSecret, {
 				expiresIn: "1d",
 			});
-			return new AuthToken(accessToken, refreshToken);
+			return {
+				user: { firstName: user.firstName, lastName: user.lastName, email: user.email },
+				authToken: new AuthToken(accessToken, refreshToken),
+			};
 		} catch (error: any) {
 			throw error;
 		}

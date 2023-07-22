@@ -2,15 +2,15 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import CustomException from "../model/CustomException";
 import ResponseUtils from "../utils/ResponseUtils";
-import User from "../model/entity/User";
 import UserLogin from "../model/LoginUser";
 import AuthService from "../service/AuthService";
+import AuthToken from "../model/AuthToken";
 
 export default class AuthController {
 	static login = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const user: User = await AuthService.login(ResponseUtils.convertFromSnakeToCamel(req.body) as UserLogin);
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
+			const userAndAuthToken: any = await AuthService.login(ResponseUtils.convertFromSnakeToCamel(req.body) as UserLogin);
+			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(userAndAuthToken));
 		} catch (error: any) {
 			ResponseUtils.getException(res, error);
 		}

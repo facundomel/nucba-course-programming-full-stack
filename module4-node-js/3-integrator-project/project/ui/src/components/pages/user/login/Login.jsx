@@ -20,6 +20,7 @@ import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { ErrorType } from "../../../../model/ErrorCustom";
+import AuthService from "../../../../service/AuthService";
 
 const Login = () => {
 	const [error, setError] = useState(null);
@@ -54,19 +55,28 @@ const Login = () => {
 		setValueInputs({ ...valueInputs, [name]: value });
 	};
 
-	const onSubmitLoginUser = (e) => {
+	const onSubmitLoginUser = async (e) => {
 		e.preventDefault();
 
 		if (!isValidEmail(valueInputs.email, setError, emailRef)) return;
 		if (!isValidPassword(valueInputs.password, setError, passwordRef)) return;
 
-		const user = localStorage.get(KEY_USER_SESSION) || null;
+		try {
+			const response = await AuthService.loginUser(valueInputs);
 
-		if (!isValidEmailAndPassword(user, valueInputs.email, valueInputs.password, setError, emailRef)) return;
-
-		dispatch(userActions.setCurrentUser(new UserSession(valueInputs)));
-		navigate("/");
-		dispatch(snackbarActions.setOptionsSnackbar({ open: true, severity: "info", message: `¡Bienvenido nuevamente ${user.name}!` }));
+			dispatch(userActions.setCurrentUser(new UserSession(response.user)));
+			navigate("/");
+			dispatch(
+				snackbarActions.setOptionsSnackbar({
+					open: true,
+					severity: "info",
+					message: `¡Bienvenido nuevamente ${response.user.firstName}!`,
+					autoHideDuration: 2500,
+				})
+			);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const showPassword = (e) => {
