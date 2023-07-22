@@ -9,9 +9,11 @@ import {
 	Unique,
 	OneToOne,
 	JoinColumn,
+	ManyToOne,
 } from "typeorm";
 import UserRole from "./UserRole";
 import Recipe from "./Recipe";
+import { UserRoleNumberEnum } from "../enum/UserRoleEnum";
 
 @Entity({ name: "users" })
 export default class User {
@@ -46,10 +48,10 @@ export default class User {
 	@DeleteDateColumn({ type: "timestamp", precision: 0, nullable: true })
 	deletedDate!: Date;
 
-	@Column({ type: "integer", nullable: false })
+	@Column({ type: "integer", enum: UserRoleNumberEnum, default: UserRoleNumberEnum.USER, nullable: false })
 	roleId!: number;
 
-	@OneToOne(() => UserRole, (userRole) => userRole.user)
+	@ManyToOne(() => UserRole, (userRole) => userRole.user)
 	@JoinColumn({ name: "role_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_users_role_id" })
 	userRole!: UserRole;
 

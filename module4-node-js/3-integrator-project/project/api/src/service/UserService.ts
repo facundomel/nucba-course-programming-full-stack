@@ -50,7 +50,6 @@ export default class UserService {
 		try {
 			let user: User = (await UserRepository.getUserByEmail(newUser.email)) as User;
 			if (user != null) throw new CustomException("User already exist", StatusCodes.CONFLICT);
-			await UserRoleService.getUserRoleById(newUser.roleId)
 			newUser.password = await bcrypt.hash(newUser.password, 10);
 			user = (await UserRepository.registerUser(newUser)) as User;
 			user.password = "*****";

@@ -1,5 +1,10 @@
-enum UserRoleEnum {
-	ADMIN = "admin",
+enum UserRoleStringEnum {
 	USER = "user",
+	ADMIN = "admin",
 }
-export default UserRoleEnum;
+export default UserRoleStringEnum;
+
+export enum UserRoleNumberEnum {
+	USER = 1,
+	ADMIN = 2,
+}

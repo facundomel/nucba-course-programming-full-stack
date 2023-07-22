@@ -5,6 +5,7 @@ import CustomException from "./model/CustomException";
 import ResponseUtils from "./utils/ResponseUtils";
 import AuthRouter from "./router/AuthRouter";
 import Config from "./config/Config";
+import cors from "cors";
 
 class Main {
 	static init = () => {
@@ -14,6 +15,7 @@ class Main {
 		const app = express();
 
 		app.use(express.json());
+		app.use(cors());
 
 		app.use("/api", AuthRouter.init());
 		app.use("/api", UsersRouter.init());

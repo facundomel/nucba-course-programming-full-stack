@@ -10,7 +10,7 @@ import {
 	OneToOne,
 	JoinColumn,
 } from "typeorm";
-import UserRoleEnum from "../enum/UserRoleEnum";
+import UserRoleStringEnum from "../enum/UserRoleEnum";
 import User from "./User";
 
 @Entity({ name: "user_roles" })
@@ -18,7 +18,7 @@ export default class UserRole {
 	@PrimaryGeneratedColumn({ type: "integer" })
 	id!: number;
 
-	@Column({ type: "varchar", length: 50, default: UserRoleEnum.USER, nullable: false })
+	@Column({ type: "varchar", length: 50, default: UserRoleStringEnum.USER, nullable: false })
 	@Unique("UQ_users_role", ["role"])
 	role!: string;
 
