@@ -11,7 +11,7 @@ const AllRecipe = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection("Home"));
+		dispatch(userActions.setUserSection("AllRecipe"));
 	}, []);
 
 	return (

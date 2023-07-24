@@ -24,8 +24,8 @@ const Hero = ({ recipesToFilter }) => {
 
 	return (
 		<>
-			{((userSection == "MyRecipes" && recipesAll.filter((recipe) => recipe.isFavorite).length > 0) ||
-				(userSection == "Home" && recipesAll.length > 0)) && (
+			{((userSection === "RecipeFavorite" && recipesAll.filter((recipe) => recipe.isFavorite).length > 0) ||
+				(userSection === "AllRecipe" && recipesAll.length > 0)) && (
 				<HeroContainerStyled>
 					<h1>¿Qué receta estás buscando?</h1>
 					<HeroFormStyled>

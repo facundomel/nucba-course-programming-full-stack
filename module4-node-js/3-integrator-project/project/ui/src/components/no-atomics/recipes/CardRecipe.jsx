@@ -37,7 +37,7 @@ const CardRecipe = ({ id, name, description, img, publisher, ingredients, instru
 			);
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
-			if (userSection == "MyRecipes") {
+			if (userSection === "RecipeFavorite") {
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
 		} else {
@@ -50,7 +50,7 @@ const CardRecipe = ({ id, name, description, img, publisher, ingredients, instru
 			);
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
 			dispatch(recipeActions.setRecipeFavorite(recipesAll));
-			if (userSection == "MyRecipes") {
+			if (userSection === "RecipeFavorite") {
 				setHiddenCard(true);
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
@@ -59,7 +59,7 @@ const CardRecipe = ({ id, name, description, img, publisher, ingredients, instru
 
 	return (
 		<>
-			<CardRecipeContainer hiddenCard={userSection == "MyRecipes" && hiddenCard}>
+			<CardRecipeContainer hiddenCard={userSection === "RecipeFavorite" && hiddenCard}>
 				<img src={img} alt={name} />
 				<CardInformation>
 					<h2>{name}</h2>

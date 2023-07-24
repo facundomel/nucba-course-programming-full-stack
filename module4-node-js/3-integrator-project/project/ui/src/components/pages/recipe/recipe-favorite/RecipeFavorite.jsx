@@ -11,7 +11,7 @@ const RecipeFavorite = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection("MyRecipes"));
+		dispatch(userActions.setUserSection("RecipeFavorite"));
 	}, []);
 
 	return (

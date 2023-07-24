@@ -64,7 +64,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								to={"/"}
 								onClick={() => {
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-									userSection == "Home" && window.scrollTo(0, 0);
+									userSection === "AllRecipe" && window.scrollTo(0, 0);
 								}}
 							>
 								<img src={logo} alt="Logo" className="logo" />
