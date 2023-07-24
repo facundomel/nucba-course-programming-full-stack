@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CategoriesGridContainer } from "./CategoriesStyles";
 import Category from "./Category";
 import * as categoriesActions from "../../../redux/categories/CategoriesActions.js";
+import RecipeCategoryService from "../../../service/RecipeCategoryService";
 
 const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
@@ -11,8 +12,14 @@ const Categories = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		handlerSetCategories();
 		dispatch(categoriesActions.selectCategory(null));
 	}, []);
+
+	const handlerSetCategories = async () => {
+		const categories = await RecipeCategoryService.getRecipesCategory();
+		dispatch(categoriesActions.setCategories(categories));
+	};
 
 	return (
 		<>

@@ -8,7 +8,7 @@ export default class RecipeCategoryRouter {
 	static init = (): routerExpress => {
 		const router = routerExpress();
 
-		router.get("/recipes/categories", HandlerAuth.authenticate, RecipeCategoryController.getRecipesCategory);
+		router.get("/recipes/categories", RecipeCategoryController.getRecipesCategory);
 
 		// router.get(
 		// 	"/recipes-category/:id",

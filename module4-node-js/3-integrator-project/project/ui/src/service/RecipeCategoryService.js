@@ -8,13 +8,8 @@ export default class RecipeCategoryService {
 
 	static getRecipesCategory = async (accessToken) => {
 		try {
-			const headers = {
-				...this.utils.getHeadersDefault(),
-				authorization: `Bearer ${accessToken}`,
-			};
-
 			const response = await axios.get(`${this.baseUrl}/api/recipes/categories`, {
-				headers: headers,
+				headers: this.utils.getHeadersDefault(),
 			});
 			return this.utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {

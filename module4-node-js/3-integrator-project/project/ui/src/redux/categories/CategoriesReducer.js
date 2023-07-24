@@ -1,13 +1,17 @@
-import { Categories } from "../../assets/data/DataCategories";
-import { SELECT_CATEGORY } from "./CategoriesActions";
+import { CATEGORIES, SELECT_CATEGORY } from "./CategoriesActions";
 
 const INITIAL_STATE = {
-	categories: Categories,
+	categories: [],
 	selectedCategory: null,
 };
 
 const categoriesReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
+		case CATEGORIES:
+			return {
+				...state,
+				categories: action.payload,
+			};
 		case SELECT_CATEGORY:
 			return {
 				...state,
