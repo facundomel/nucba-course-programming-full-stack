@@ -1,7 +1,7 @@
 import React from "react";
-import { ErrorType } from "../../../model/ErrorCustom";
 import { ErrorContainer, ErrorMessage } from "../../pages/user/UserStyles";
 import { InputContainerStyled, InputStyled } from "./InputStyles";
+import { UserErrorType } from "../../../model/enum/ErrorType";
 
 const Input = ({ inputRef, name, type, placeholder, handleOnChange, error, paddingRight }) => {
 	return (
@@ -17,7 +17,7 @@ const Input = ({ inputRef, name, type, placeholder, handleOnChange, error, paddi
 					isError={error && true}
 				/>
 			</InputContainerStyled>
-			{error && error.type !== ErrorType.ERROR_EMAIL_OR_PASSWORD && <ErrorMessage textAlign="left">{error.message}</ErrorMessage>}
+			{error && error.type !== UserErrorType.ERROR_EMAIL_OR_PASSWORD && <ErrorMessage textAlign="left">{error.message}</ErrorMessage>}
 		</ErrorContainer>
 	);
 };

@@ -9,7 +9,7 @@ export default class AuthService {
 	static loginUser = async (userLogin) => {
 		try {
 			const response = await axios.post(`${this.baseUrl}/api/login`, this.utils.convertFromCamelToSnake(userLogin), {
-				headers: this.utils.getHeaders()
+				headers: this.utils.getHeadersDefault(),
 			});
 			return this.utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {

@@ -1,7 +1,7 @@
 import humps from "humps";
 
 export default class Utils {
-	getHeaders() {
+	getHeadersDefault() {
 		return { Accept: "application/json, text/plain, */*", "Content-Type": "application/json" };
 	}
 

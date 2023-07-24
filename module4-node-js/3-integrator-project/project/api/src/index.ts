@@ -6,6 +6,8 @@ import ResponseUtils from "./utils/ResponseUtils";
 import AuthRouter from "./router/AuthRouter";
 import Config from "./config/Config";
 import cors from "cors";
+import RecipeRouter from "./router/RecipeRouter";
+import RecipeCategoryRouter from "./router/RecipeCategoryRouter";
 
 class Main {
 	static init = () => {
@@ -19,7 +21,8 @@ class Main {
 
 		app.use("/api", AuthRouter.init());
 		app.use("/api", UsersRouter.init());
-		// app.use("/api", ExpensesRouter.init());
+		app.use("/api", RecipeCategoryRouter.init());
+		app.use("/api", RecipeRouter.init());
 		app.all("*", (req, res) => {
 			res
 				.status(StatusCodes.NOT_FOUND)

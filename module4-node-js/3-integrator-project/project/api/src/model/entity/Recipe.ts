@@ -17,7 +17,7 @@ export default class Recipe {
 	id!: number;
 
 	@Column({ type: "varchar", length: 100, nullable: false })
-	tilte!: string;
+	title!: string;
 
 	@Column({ type: "varchar", nullable: true })
 	description!: string;

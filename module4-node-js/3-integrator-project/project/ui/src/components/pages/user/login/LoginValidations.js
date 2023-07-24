@@ -1,8 +1,9 @@
-import ErrorCustom, { ErrorType } from "../../../../model/ErrorCustom";
+import CustomError from "../../../../model/CustomError";
+import { UserErrorType } from "../../../../model/enum/ErrorType";
 
 export const isValidEmail = (email, setError, emailRef) => {
 	if (email === "") {
-		setError(new ErrorCustom(ErrorType.ERROR_EMAIL, "Campo requerido"));
+		setError(new CustomError(UserErrorType.ERROR_EMAIL, "Campo requerido"));
 		emailRef.current.focus();
 		return false;
 	}
@@ -11,7 +12,7 @@ export const isValidEmail = (email, setError, emailRef) => {
 
 export const isValidPassword = (password, setError, passwordRef) => {
 	if (password === "") {
-		setError(new ErrorCustom(ErrorType.ERROR_PASSWORD, "Campo requerido"));
+		setError(new CustomError(UserErrorType.ERROR_PASSWORD, "Campo requerido"));
 		passwordRef.current.focus();
 		return false;
 	}
@@ -20,7 +21,7 @@ export const isValidPassword = (password, setError, passwordRef) => {
 
 export const isValidEmailAndPassword = (user, email, password, setError, emailRef) => {
 	if (user == null || user.email !== email || user.password !== password) {
-		setError(new ErrorCustom(ErrorType.ERROR_EMAIL_OR_PASSWORD, "Email o password incorrecto"));
+		setError(new CustomError(UserErrorType.ERROR_EMAIL_OR_PASSWORD, "Email o password incorrecto"));
 		emailRef.current.focus();
 		return false;
 	}

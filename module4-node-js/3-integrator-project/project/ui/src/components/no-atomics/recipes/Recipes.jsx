@@ -5,6 +5,11 @@ import { MessageNotExistRecipes, RecipesContainer } from "./RecipesStyles";
 import localStorage, { KEY_RECIPES_ALL } from "../../../repository/LocalStorage";
 import SnackbarCustom from "../snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
+import FloatingButton from "../../atomics/button/FloatingButton";
+import { Box, Fab } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { FloatinButtonStyled } from "../../atomics/button/FloatingButtonStyles";
+import { useNavigate } from "react-router-dom";
 
 const Recipes = () => {
 	const { recipesAll, recipesFiltered } = useSelector((state) => state.recipes);
@@ -12,6 +17,8 @@ const Recipes = () => {
 	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(true);
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const { currentUser } = useSelector((state) => state.user);
 
 	useEffect(() => {
 		localStorage.save(KEY_RECIPES_ALL, recipesAll);
@@ -20,7 +27,7 @@ const Recipes = () => {
 	useEffect(() => {
 		setShouldShowRecipesByCategory(
 			recipesFiltered.some((recipe) => {
-				return recipe.category == selectedCategory;
+				return recipe.category === selectedCategory;
 			})
 		);
 	}, [selectedCategory, recipesAll]);
@@ -28,7 +35,7 @@ const Recipes = () => {
 	return (
 		<>
 			{!selectedCategory ? (
-				recipesFiltered.length == 0 ? (
+				recipesFiltered.length === 0 ? (
 					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
 				) : (
 					<RecipesContainer>
@@ -41,13 +48,21 @@ const Recipes = () => {
 				selectedCategory &&
 				(shouldShowRecipesByCategory ? (
 					<RecipesContainer>
-						{recipesFiltered.map((recipe) => recipe.category == selectedCategory && <CardRecipe key={recipe.id} {...recipe} />)}
+						{recipesFiltered.map((recipe) => recipe.category === selectedCategory && <CardRecipe key={recipe.id} {...recipe} />)}
 					</RecipesContainer>
 				) : !shouldShowRecipesByCategory && recipesFiltered.length > 0 ? (
 					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas de esta categoría</MessageNotExistRecipes>
 				) : (
 					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
 				))
+			)}
+
+			{currentUser && (
+				<FloatingButton
+					onClick={() => {
+						navigate("/crear-receta");
+					}}
+				/>
 			)}
 
 			<SnackbarCustom

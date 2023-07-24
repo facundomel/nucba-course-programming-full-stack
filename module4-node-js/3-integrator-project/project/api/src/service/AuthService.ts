@@ -29,7 +29,7 @@ export default class AuthService {
 				expiresIn: "1d",
 			});
 			return {
-				user: { firstName: user.firstName, lastName: user.lastName, email: user.email },
+				user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email },
 				authToken: new AuthToken(accessToken, refreshToken),
 			};
 		} catch (error: any) {

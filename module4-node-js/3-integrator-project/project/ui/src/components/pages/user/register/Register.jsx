@@ -18,8 +18,10 @@ import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js"
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import UserService from "../../../../service/UserService";
 import User from "../../../../model/User";
-import { ErrorType } from "../../../../model/ErrorCustom";
 import { HttpStatusCode } from "axios";
+import { UserErrorType } from "../../../../model/enum/ErrorType";
+import AuthService from "../../../../service/AuthService";
+import UserLogin from "../../../../model/UserLogin";
 
 const Register = () => {
 	const [error, setError] = useState(null);
@@ -64,7 +66,8 @@ const Register = () => {
 		if (!isValidPassword(valueInputs.password, setError, passwordRef)) return;
 
 		try {
-			const response = await UserService.registerUser(valueInputs);
+			let response = await UserService.registerUser(valueInputs);
+			response = await AuthService.loginUser(new UserLogin(valueInputs.email, valueInputs.password));
 
 			dispatch(userActions.setCurrentUser(new UserSession(response)));
 			navigate("/");
@@ -72,7 +75,7 @@ const Register = () => {
 				snackbarActions.setOptionsSnackbar({
 					open: true,
 					severity: "success",
-					message: `¡Felicitaciones ${response.firstName}! Se ha registrado correctamente`,
+					message: `¡Felicitaciones ${response.user.firstName}! Se ha registrado correctamente`,
 					autoHideDuration: 2500,
 				})
 			);
@@ -113,7 +116,7 @@ const Register = () => {
 					placeholder="Nombre"
 					inputRef={firstNameRef}
 					handleOnChange={handleChangeInputs}
-					error={error && error.type === ErrorType.ERROR_FIRST_NAME && error}
+					error={error && error.type === UserErrorType.ERROR_FIRST_NAME && error}
 				/>
 				<Input
 					name="lastName"
@@ -121,7 +124,7 @@ const Register = () => {
 					placeholder="Apellido"
 					inputRef={lastNameRef}
 					handleOnChange={handleChangeInputs}
-					error={error && error.type === ErrorType.ERROR_LAST_NAME && error}
+					error={error && error.type === UserErrorType.ERROR_LAST_NAME && error}
 				/>
 				<Input
 					name="email"
@@ -129,7 +132,7 @@ const Register = () => {
 					placeholder="Email"
 					inputRef={emailRef}
 					handleOnChange={handleChangeInputs}
-					error={error && error.type === ErrorType.ERROR_EMAIL && error}
+					error={error && error.type === UserErrorType.ERROR_EMAIL && error}
 				/>
 				<InputPasswordAndIconShowAndHideContainer>
 					<Input
@@ -139,7 +142,7 @@ const Register = () => {
 						paddingRight="3rem"
 						inputRef={passwordRef}
 						handleOnChange={handleChangeInputs}
-						error={error && error.type === ErrorType.ERROR_PASSWORD && error}
+						error={error && error.type === UserErrorType.ERROR_PASSWORD && error}
 					/>
 
 					<IconShowAndHidePasswordContainer

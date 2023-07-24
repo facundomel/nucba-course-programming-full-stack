@@ -12,6 +12,7 @@ export default class HandlerAuth {
 	static authenticate = async (req: Request, res: Response, next: NextFunction) => {
 		const accessTokenSecret = Config.getInstance().accessTokenSecret;
 		const headerAuthorization = req.headers.authorization;
+
 		if (!headerAuthorization) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
@@ -78,7 +79,6 @@ export default class HandlerAuth {
 			: null;
 
 		const currentUser: CurrentUser = res.locals.currentUser;
-		console.log(currentUser);
 		if (
 			(currentUser.role && currentUser.role == UserRole.ADMIN) ||
 			(currentUser.role && currentUser.role == UserRole.USER && currentUser.userId == userId)

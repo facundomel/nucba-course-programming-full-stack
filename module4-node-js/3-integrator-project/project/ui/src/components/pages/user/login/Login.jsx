@@ -19,12 +19,13 @@ import { isValidEmail, isValidEmailAndPassword, isValidPassword } from "./LoginV
 import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { ErrorType } from "../../../../model/ErrorCustom";
 import AuthService from "../../../../service/AuthService";
+import { UserErrorType } from "../../../../model/enum/ErrorType";
+import UserLogin from "../../../../model/UserLogin";
 
 const Login = () => {
 	const [error, setError] = useState(null);
-	const [valueInputs, setValueInputs] = useState({ email: "", password: "" });
+	const [valueInputs, setValueInputs] = useState(new UserLogin());
 	const [typeInputPassword, setTypeInputPassword] = useState("password");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -64,7 +65,7 @@ const Login = () => {
 		try {
 			const response = await AuthService.loginUser(valueInputs);
 
-			dispatch(userActions.setCurrentUser(new UserSession(response.user)));
+			dispatch(userActions.setCurrentUser(new UserSession(response)));
 			navigate("/");
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
@@ -102,7 +103,7 @@ const Login = () => {
 						placeholder="Email"
 						inputRef={emailRef}
 						handleOnChange={handleChangeInputs}
-						error={error && (error.type === ErrorType.ERROR_EMAIL || error.type === ErrorType.ERROR_EMAIL_OR_PASSWORD) && error}
+						error={error && (error.type === UserErrorType.ERROR_EMAIL || error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) && error}
 					/>
 					<InputPasswordAndIconShowAndHideContainer>
 						<Input
@@ -112,7 +113,7 @@ const Login = () => {
 							paddingRight="3rem"
 							inputRef={passwordRef}
 							handleOnChange={handleChangeInputs}
-							error={error && (error.type === ErrorType.ERROR_PASSWORD || error.type === ErrorType.ERROR_EMAIL_OR_PASSWORD) && error}
+							error={error && (error.type === UserErrorType.ERROR_PASSWORD || error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) && error}
 						/>
 
 						<IconShowAndHidePasswordContainer
@@ -127,7 +128,7 @@ const Login = () => {
 						</IconShowAndHidePasswordContainer>
 					</InputPasswordAndIconShowAndHideContainer>
 					<ErrorContainer isGap={true}>
-						{error && error.type === ErrorType.ERROR_EMAIL_OR_PASSWORD && <ErrorMessage textAlign="center">{error.message}</ErrorMessage>}
+						{error && error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD && <ErrorMessage textAlign="center">{error.message}</ErrorMessage>}
 						<Button type="submit" width="100%">
 							Ingresar
 						</Button>

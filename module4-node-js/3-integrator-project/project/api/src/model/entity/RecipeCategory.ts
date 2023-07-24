@@ -16,8 +16,15 @@ export default class RecipeCategory {
 	id!: number;
 
 	@Column({ type: "varchar", length: 50, nullable: false })
-  @Unique("UQ_recipes_category_name", ["name"])
-	name!: string;
+  @Unique("UQ_recipes_category_name", ["category"])
+	category!: string;
+
+	@Column({ type: "varchar", length: 50, nullable: false })
+  @Unique("UQ_recipes_title", ["title"])
+	title!: string;
+
+	@Column({ type: "varchar", nullable: false })
+	urlImage!: string;
 
 	@CreateDateColumn({ type: "timestamp", precision: 0, default: () => "CURRENT_TIMESTAMP()", nullable: false })
 	createdDate!: Date;

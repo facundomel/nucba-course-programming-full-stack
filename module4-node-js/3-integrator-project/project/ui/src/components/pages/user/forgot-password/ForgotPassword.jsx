@@ -16,7 +16,7 @@ import { isExistEmail, isValidEmail } from "./ForgotPasswordValidations";
 import { useDispatch } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { ErrorType } from "../../../../model/ErrorCustom";
+import { UserErrorType } from "../../../../model/enum/ErrorType";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
@@ -71,7 +71,7 @@ const ForgotPassword = () => {
 		<UserContainer>
 			<h1>Recuperá tu contraseña</h1>
 			<UserForm onSubmit={onSubmitForgotPassword}>
-				<ErrorContainer isBorder={error && error.type === ErrorType.ERROR_EMAIL ? true : false}>
+				<ErrorContainer isBorder={error && error.type === UserErrorType.ERROR_EMAIL ? true : false}>
 					<Input
 						name="email"
 						type="text"
