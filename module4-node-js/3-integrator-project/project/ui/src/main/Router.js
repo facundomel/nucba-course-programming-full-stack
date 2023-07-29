@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import AllRecipe from "../components/pages/recipe/all-recipe/AllRecipe";
 import Login from "../components/pages/user/login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import Register from "../components/pages/user/register/Register";
@@ -8,13 +7,14 @@ import ForgotPassword from "../components/pages/user/forgot-password/ForgotPassw
 import PageNotFound from "../components/pages/page-not-found/PageNotFound";
 import RecipeFavorite from "../components/pages/recipe/recipe-favorite/RecipeFavorite";
 import CreateRecipe from "../components/pages/recipe/create-recipe/CreateRecipe";
+import RecipeAll from "../components/pages/recipe/recipe-all/RecipeAll";
 
 const Router = () => {
 	const { currentUser } = useSelector((state) => state.user);
 
 	return (
 		<Routes>
-			<Route path="/" element={<AllRecipe />} />
+			<Route path="/" element={<RecipeAll />} />
 			{currentUser && <Route path="recetas-favoritas" element={<RecipeFavorite />} />}
 			<Route path="registro" element={<Register />} />
 			<Route path="login" element={<Login />} />

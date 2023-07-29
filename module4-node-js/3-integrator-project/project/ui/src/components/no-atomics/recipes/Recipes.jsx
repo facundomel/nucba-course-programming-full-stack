@@ -12,7 +12,7 @@ import { FloatinButtonStyled } from "../../atomics/button/FloatingButtonStyles";
 import { useNavigate } from "react-router-dom";
 import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
 import RecipeService from "../../../service/RecipeService";
-import AllRecipe from "../../pages/recipe/all-recipe/AllRecipe";
+import RecipeAll from "../../pages/recipe/recipe-all/RecipeAll";
 
 const Recipes = () => {
 	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
@@ -56,7 +56,7 @@ const Recipes = () => {
 		let recipes = [];
 
 		if (userSection === "AllRecipe") {
-			// recipes = await RecipeService.getRecipes(); 
+			// recipes = await RecipeService.getRecipes();
 			// dispatch(recipesActions.setRecipesAll(recipes));
 			dispatch(recipesActions.setRecipesFiltered(recipesAll));
 		} else if (userSection === "RecipeFavorite") {

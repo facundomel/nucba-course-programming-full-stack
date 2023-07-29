@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import Hero from "../../../no-atomics/hero/Hero";
 import Recipes from "../../../no-atomics/recipes/Recipes";
-import { AllRecipeContainer } from "./AllRecipeStyles";
+import { RecipeAllContainer } from "./RecipeAllStyles";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
 import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 
-const AllRecipe = () => {
+const RecipeAll = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 
@@ -26,13 +26,13 @@ const AllRecipe = () => {
 
 	return (
 		<>
-			<AllRecipeContainer>
+			<RecipeAllContainer>
 				<Hero />
 				<Categories />
 				<Recipes />
-			</AllRecipeContainer>
+			</RecipeAllContainer>
 		</>
 	);
 };
 
-export default AllRecipe;
+export default RecipeAll;

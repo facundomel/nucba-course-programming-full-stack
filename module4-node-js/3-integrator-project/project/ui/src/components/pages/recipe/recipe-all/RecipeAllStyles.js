@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AllRecipeContainer = styled.div`
+export const RecipeAllContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
