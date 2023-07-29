@@ -50,7 +50,7 @@ const Recipes = () => {
 				return recipe.recipeCategory.category === selectedCategory;
 			})
 		);
-	}, [selectedCategory, recipesAll, recipesFavorite]);
+	}, [selectedCategory]);
 
 	const handlerSetRecipes = async () => {
 		let recipes = [];
