@@ -41,8 +41,14 @@ const Recipes = () => {
 	useEffect(() => {
 		// console.log(userSection);
 		// console.log(currentUser);
-		handlerSetRecipes();
-	}, [recipesAll, recipesFavorite]);
+		// handlerSetRecipes();
+
+		if (userSection === "RecipeAll") {
+			dispatch(recipesActions.setRecipesFiltered(recipesAll));
+		} else if (userSection === "RecipeFavorite") {
+			dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
+		}
+	}, [userSection, recipesAll, recipesFavorite]);
 
 	useEffect(() => {
 		setShouldShowRecipesByCategory(
@@ -52,19 +58,19 @@ const Recipes = () => {
 		);
 	}, [selectedCategory]);
 
-	const handlerSetRecipes = async () => {
-		let recipes = [];
+	// const handlerSetRecipes = async () => {
+	// 	let recipes = [];
 
-		if (userSection === "AllRecipe") {
-			// recipes = await RecipeService.getRecipes();
-			// dispatch(recipesActions.setRecipesAll(recipes));
-			dispatch(recipesActions.setRecipesFiltered(recipesAll));
-		} else if (userSection === "RecipeFavorite") {
-			// recipes = await RecipeService.getRecipesFavoriteByUserId(currentUser);
-			// dispatch(recipesActions.setRecipesFavorite(recipes));
-			dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
-		}
-	};
+	// 	if (userSection === "RecipeAll") {
+	// 		// recipes = await RecipeService.getRecipes();
+	// 		// dispatch(recipesActions.setRecipesAll(recipes));
+	// 		dispatch(recipesActions.setRecipesFiltered(recipesAll));
+	// 	} else if (userSection === "RecipeFavorite") {
+	// 		// recipes = await RecipeService.getRecipesFavoriteByUserId(currentUser);
+	// 		// dispatch(recipesActions.setRecipesFavorite(recipes));
+	// 		dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
+	// 	}
+	// };
 
 	return (
 		<>

@@ -14,7 +14,7 @@ const Hero = () => {
 	useEffect(() => {
 		let filteredRecipes = [];
 
-		if (userSection === "AllRecipe") {
+		if (userSection === "RecipeAll") {
 			if (searchedRecipe === "") {
 				filteredRecipes = recipesAll;
 			} else {
@@ -41,7 +41,7 @@ const Hero = () => {
 
 	return (
 		<>
-			{((userSection === "RecipeFavorite" && recipesFavorite.length > 0) || (userSection === "AllRecipe" && recipesAll.length > 0)) && (
+			{((userSection === "RecipeFavorite" && recipesFavorite.length > 0) || (userSection === "RecipeAll" && recipesAll.length > 0)) && (
 				<HeroContainerStyled>
 					<h1>¿Qué receta estás buscando?</h1>
 					<HeroFormStyled>

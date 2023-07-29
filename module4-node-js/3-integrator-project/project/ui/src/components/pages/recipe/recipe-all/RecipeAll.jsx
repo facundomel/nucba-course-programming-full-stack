@@ -13,7 +13,7 @@ const RecipeAll = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection("AllRecipe"));
+		dispatch(userActions.setUserSection("RecipeAll"));
 		handlerSetRecipesAll();
 	}, []);
 

@@ -84,11 +84,11 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 						<ButtonIconCard onClick={() => handlerOpenModel(true)}>
 							<GoBookCustom />
 						</ButtonIconCard>
-						{/* {currentUser && (
+						{currentUser && (
 							<ButtonIconCard onClick={() => handlerOnClickStar()}>
-								{recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
+								{userSection === "RecipeFavorite" ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
 							</ButtonIconCard>
-						)} */}
+						)}
 					</IconsCardContainer>
 				</CardUserAndFavorite>
 			</CardRecipeContainer>

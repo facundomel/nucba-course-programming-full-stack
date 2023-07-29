@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const RecipeFavorite = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);
-	const { currentUser } = useSelector((state) => state.user);
+	const { currentUser, userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 

@@ -25,7 +25,7 @@ const Categories = () => {
 
 	return (
 		<>
-			{((userSection === "RecipeFavorite" && recipesFavorite.length > 0) || (userSection === "AllRecipe" && recipesAll.length > 0)) && (
+			{((userSection === "RecipeFavorite" && recipesFavorite.length > 0) || (userSection === "RecipeAll" && recipesAll.length > 0)) && (
 				<CategoriesGridContainer>
 					{categories.map((category) => (
 						<Category key={category.id} {...category} />
