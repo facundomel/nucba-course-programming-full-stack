@@ -1,8 +1,9 @@
 import { StatusCodes } from "http-status-codes";
 import CustomException from "../model/CustomException";
 import Recipe from "../model/entity/Recipe";
-import UserRoleStringEnum from "../model/enum/UserRoleEnum";
+import {UserRoleStringEnum} from "../model/enum/UserRoleEnum";
 import RecipeRepository from "../repository/RecipeRepository";
+import RecipeFavorite from "../model/entity/RecipesFavorite";
 
 export default class RecipeService {
 	static getRecipes = async (): Promise<Recipe[]> => {

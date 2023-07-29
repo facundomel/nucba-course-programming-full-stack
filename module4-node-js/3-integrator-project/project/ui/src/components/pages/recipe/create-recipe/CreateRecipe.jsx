@@ -7,7 +7,7 @@ import * as userActions from "../../../../redux/user/UserActions.js";
 import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import User from "../../../../model/User";
-import { CreateRecipeContainer, CreateRecipeForm } from "./CreateRecipeStyles";
+import { CreateRecipeContainer, CreateRecipeForm, TextAreaAndSmall } from "./CreateRecipeStyles";
 import TextArea from "../../../atomics/text-area/TextArea";
 import Recipe from "../../../../model/Recipe";
 import { RecipeErrorType } from "../../../../model/enum/ErrorType";
@@ -21,8 +21,8 @@ import RecipeService from "../../../../service/RecipeService";
 const CreateRecipe = () => {
 	const [error, setError] = useState(null);
 	const [valueInputs, setValueInputs] = useState(new Recipe());
-	const [recipesCategories, setRecipesCategories] = useState([new RecipeCategory()])
-	const [selectedOptionRecipeCategory, setSelectedOptionRecipeCategory] = useState({value: -1, label: "default"});
+	// const [recipesCategories, setRecipesCategories] = useState([new RecipeCategory()]);
+	const [selectedOptionRecipeCategory, setSelectedOptionRecipeCategory] = useState({ value: -1, label: "default" });
 	const titleRef = useRef();
 	const descriptionRef = useRef();
 	const urlImageRef = useRef();
@@ -32,6 +32,7 @@ const CreateRecipe = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { currentUser } = useSelector((state) => state.user);
+	const { categories } = useSelector((state) => state.categories);
 
 	useEffect(() => {
 		titleRef.current.focus();
@@ -44,18 +45,18 @@ const CreateRecipe = () => {
 		setError(null);
 	}, [valueInputs]);
 
-	useEffect(() => {
-		handlerSetRecipesCategories();
-	}, []);
+	// useEffect(() => {
+	// 	handlerSetRecipesCategories();
+	// }, []);
 
-	const handlerSetRecipesCategories = async () => {
-		try {
-			const recipesCategories = await RecipeCategoryService.getRecipesCategory(currentUser.accessToken);
-			setRecipesCategories(recipesCategories);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	// const handlerSetRecipesCategories = async () => {
+	// 	try {
+	// 		const recipesCategories = await RecipeCategoryService.getRecipesCategory();
+	// 		setRecipesCategories(recipesCategories);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
 	const handleChangeInputs = (e) => {
 		const target = e.target;
@@ -103,7 +104,7 @@ const CreateRecipe = () => {
 				})
 			);
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 
 		// const user = localStorage.get(KEY_USER_SESSION) || null;
@@ -149,7 +150,7 @@ const CreateRecipe = () => {
 					name={"recipesCategory"}
 					placeholder="Categoría"
 					selectRef={recipesCategoryRef}
-					options={recipesCategories.map((recipeCategory) => ({ value: recipeCategory.id, label: recipeCategory.title }))}
+					options={categories.map((recipeCategory) => ({ value: recipeCategory.id, label: recipeCategory.title }))}
 					handleOnChange={handleChangeSelectRecipeCategory}
 					error={error && error.type === RecipeErrorType.ERROR_CATEGORIES && error}
 				/>
@@ -170,24 +171,30 @@ const CreateRecipe = () => {
 					error={error && error.type === RecipeErrorType.ERROR_DESCRIPTION && error}
 					rows={5}
 				/>
-				<TextArea
-					name="ingredients"
-					type="text"
-					placeholder="Ingredientes"
-					textAreaRef={ingredientsRef}
-					handleOnChange={handleChangeInputs}
-					error={error && error.type === RecipeErrorType.ERROR_INGREDIENTS && error}
-					rows={10}
-				/>
-				<TextArea
-					name="instructions"
-					type="text"
-					placeholder="Instrucciones"
-					textAreaRef={instructionsRef}
-					handleOnChange={handleChangeInputs}
-					error={error && error.type === RecipeErrorType.ERROR_INSTRUCTIONS && error}
-					rows={10}
-				/>
+				<TextAreaAndSmall>
+					<TextArea
+						name="ingredients"
+						type="text"
+						placeholder="Ingredientes"
+						textAreaRef={ingredientsRef}
+						handleOnChange={handleChangeInputs}
+						error={error && error.type === RecipeErrorType.ERROR_INGREDIENTS && error}
+						rows={10}
+					/>
+					<small>Al final de cada ingrediente debe presionar enter</small>
+				</TextAreaAndSmall>
+				<TextAreaAndSmall>
+					<TextArea
+						name="instructions"
+						type="text"
+						placeholder="Instrucciones"
+						textAreaRef={instructionsRef}
+						handleOnChange={handleChangeInputs}
+						error={error && error.type === RecipeErrorType.ERROR_INSTRUCTIONS && error}
+						rows={10}
+					/>
+					<small>Al final de cada paso debe presionar enter</small>
+				</TextAreaAndSmall>
 				<Button type="submit" width="100%">
 					Crear Receta
 				</Button>

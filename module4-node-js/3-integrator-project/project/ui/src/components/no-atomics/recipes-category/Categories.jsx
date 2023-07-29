@@ -7,7 +7,7 @@ import RecipeCategoryService from "../../../service/RecipeCategoryService";
 
 const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
-	const { recipesAll } = useSelector((state) => state.recipes);
+	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const { userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
@@ -17,14 +17,15 @@ const Categories = () => {
 	}, []);
 
 	const handlerSetCategories = async () => {
-		const categories = await RecipeCategoryService.getRecipesCategory();
-		dispatch(categoriesActions.setCategories(categories));
+		try {
+			const categories = await RecipeCategoryService.getRecipesCategory();
+			dispatch(categoriesActions.setCategories(categories));
+		} catch (err) {}
 	};
 
 	return (
 		<>
-			{((userSection === "RecipeFavorite" && recipesAll.filter((recipe) => recipe.isFavorite).length > 0) ||
-				(userSection === "AllRecipe" && recipesAll.length > 0)) && (
+			{((userSection === "RecipeFavorite" && recipesFavorite.length > 0) || (userSection === "AllRecipe" && recipesAll.length > 0)) && (
 				<CategoriesGridContainer>
 					{categories.map((category) => (
 						<Category key={category.id} {...category} />

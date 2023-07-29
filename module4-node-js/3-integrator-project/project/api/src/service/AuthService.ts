@@ -43,19 +43,22 @@ export default class AuthService {
 			if (data) {
 				let user: User = (await UserService.getUserByEmail(data.email)) as User;
 				const userRole: UserRole = await UserRoleService.getUserRoleById(user.roleId);
-				const accessToken = jwt.sign({ userId: user.id, email: user.email, role: userRole }, this.accessTokenSecret, {
+				const accessToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.accessTokenSecret, {
 					expiresIn: "12h",
 				});
-				const refreshToken = jwt.sign({ userId: user.id, email: user.email, role: userRole }, this.refreshTokenSecret, {
+				const refreshToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.refreshTokenSecret, {
 					expiresIn: "1d",
 				});
-				return new AuthToken(accessToken, refreshToken);
+				return {
+					user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email },
+					authToken: new AuthToken(accessToken, refreshToken),
+				};
 			}
 		} catch (error: any) {
 			if (error.name == "TokenExpiredError") {
-				throw new CustomException("Not authorized: Token expired", StatusCodes.UNAUTHORIZED);
+				throw new CustomException("Not authorized: Refresh token expired", StatusCodes.UNAUTHORIZED);
 			}
-			throw new CustomException("Not authorized: Token is not valid", StatusCodes.UNAUTHORIZED);
+			throw new CustomException("Not authorized: Refresh token is not valid", StatusCodes.UNAUTHORIZED);
 		}
 	};
 }

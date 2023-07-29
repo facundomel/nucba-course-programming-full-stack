@@ -11,22 +11,22 @@ export default class UsersRouter {
 		router.get("/users", HandlerAuth.authenticate, HandlerAuth.authorizeAdminRole, UserController.getUsers);
 
 		router.get(
-			"/users/:id",
-			param("id").isNumeric().withMessage("ID is not numeric"),
+			"/users/:userId",
+			param("userId").isNumeric().withMessage("ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
 			HandlerAuth.authorizeAdminOrUserRole,
 			UserController.getUserById
 		);
 
-		router.get(
-			"/users/:id/expenses",
-			param("id").isNumeric().withMessage("ID is not numeric"),
-			HandlerValidationErrors.executeValidation,
-			HandlerAuth.authenticate,
-			HandlerAuth.authorizeAdminOrUserRole,
-			UserController.getExpensesByUserId
-		);
+		// router.get(
+		// 	"/users/:userId/expenses",
+		// 	param("id").isNumeric().withMessage("ID is not numeric"),
+		// 	HandlerValidationErrors.executeValidation,
+		// 	HandlerAuth.authenticate,
+		// 	HandlerAuth.authorizeAdminOrUserRole,
+		// 	UserController.getExpensesByUserId
+		// );
 
 		router.post(
 			"/users",

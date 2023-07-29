@@ -3,7 +3,8 @@ import localStorage, { KEY_RECIPES_ALL } from "../../repository/LocalStorage";
 import DataRecipes from "../../assets/data/DataRecipes";
 
 const INITIAL_STATE = {
-	recipesAll: localStorage.get(KEY_RECIPES_ALL) || DataRecipes.getData(),
+	recipesAll: [],
+	recipesFavorite: [],
 	recipesFiltered: [],
 };
 
@@ -24,7 +25,7 @@ const recipesReducer = (state = INITIAL_STATE, action) => {
 		case SET_RECIPE_FAVORITE:
 			return {
 				...state,
-				recipesAll: action.payload.map((recipe) => recipe),
+				recipesFavorite: action.payload,
 			};
 
 		default:

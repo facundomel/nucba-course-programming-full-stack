@@ -4,7 +4,6 @@ import CustomException from "../model/CustomException";
 import ResponseUtils from "../utils/ResponseUtils";
 import UserLogin from "../model/LoginUser";
 import AuthService from "../service/AuthService";
-import AuthToken from "../model/AuthToken";
 
 export default class AuthController {
 	static login = async (req: Request, res: Response): Promise<void> => {
@@ -21,13 +20,13 @@ export default class AuthController {
 		if (!headerAuthorization) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token is not present", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Refresh token is not present", StatusCodes.UNAUTHORIZED)));
 			return;
 		}
 		const authorizationToken = headerAuthorization.split(" ")[1];
 		try {
-			const result = await AuthService.refreshToken(authorizationToken);
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(result));
+			const userAndAuthToken = await AuthService.refreshToken(authorizationToken);
+			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(userAndAuthToken));
 		} catch (error: any) {
 			ResponseUtils.getException(res, error);
 		}

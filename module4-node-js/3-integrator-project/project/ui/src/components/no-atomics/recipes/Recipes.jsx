@@ -10,27 +10,61 @@ import { Box, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { FloatinButtonStyled } from "../../atomics/button/FloatingButtonStyles";
 import { useNavigate } from "react-router-dom";
+import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
+import RecipeService from "../../../service/RecipeService";
+import AllRecipe from "../../pages/recipe/all-recipe/AllRecipe";
 
 const Recipes = () => {
-	const { recipesAll, recipesFiltered } = useSelector((state) => state.recipes);
+	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(true);
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { currentUser } = useSelector((state) => state.user);
+	const { currentUser, userSection } = useSelector((state) => state.user);
+	const [isOpenModal, setIsOpenModal] = useState(false);
+
+	// useEffect(() => {
+	// 	// localStorage.save(KEY_RECIPES_ALL, recipesAll);
+	// 	handlerSetRecipesAll();
+	// }, [recipesAll]);
+
+	// const handlerSetRecipesAll = async () => {
+	// 	const recipes = await RecipeService.getRecipes();
+	// 	dispatch(recipesActions.setRecipesAll(recipes));
+	// };
+
+	// useEffect(() => {
+	// 	console.log(recipesAll);
+	// }, [recipesAll])
 
 	useEffect(() => {
-		localStorage.save(KEY_RECIPES_ALL, recipesAll);
-	}, [recipesAll]);
+		// console.log(userSection);
+		// console.log(currentUser);
+		handlerSetRecipes();
+	}, [recipesAll, recipesFavorite]);
 
 	useEffect(() => {
 		setShouldShowRecipesByCategory(
 			recipesFiltered.some((recipe) => {
-				return recipe.category === selectedCategory;
+				return recipe.recipeCategory.category === selectedCategory;
 			})
 		);
-	}, [selectedCategory, recipesAll]);
+	}, [selectedCategory, recipesAll, recipesFavorite]);
+
+	const handlerSetRecipes = async () => {
+		let recipes = [];
+
+		if (userSection === "AllRecipe") {
+			// recipes = await RecipeService.getRecipes(); 
+			// dispatch(recipesActions.setRecipesAll(recipes));
+			dispatch(recipesActions.setRecipesFiltered(recipesAll));
+		} else if (userSection === "RecipeFavorite") {
+			// recipes = await RecipeService.getRecipesFavoriteByUserId(currentUser);
+			// dispatch(recipesActions.setRecipesFavorite(recipes));
+			dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
+		}
+	};
 
 	return (
 		<>
@@ -40,7 +74,7 @@ const Recipes = () => {
 				) : (
 					<RecipesContainer>
 						{recipesFiltered.map((recipe) => (
-							<CardRecipe key={recipe.id} {...recipe} />
+							<CardRecipe key={recipe.id} recipe={recipe} setIsOpenModal={setIsOpenModal} />
 						))}
 					</RecipesContainer>
 				)
@@ -48,7 +82,12 @@ const Recipes = () => {
 				selectedCategory &&
 				(shouldShowRecipesByCategory ? (
 					<RecipesContainer>
-						{recipesFiltered.map((recipe) => recipe.category === selectedCategory && <CardRecipe key={recipe.id} {...recipe} />)}
+						{recipesFiltered.map(
+							(recipe) =>
+								recipe.recipeCategory.category === selectedCategory && (
+									<CardRecipe key={recipe.id} recipe={recipe} setIsOpenModal={setIsOpenModal} />
+								)
+						)}
 					</RecipesContainer>
 				) : !shouldShowRecipesByCategory && recipesFiltered.length > 0 ? (
 					<MessageNotExistRecipes>¡Lo sentimos! No existen recetas de esta categoría</MessageNotExistRecipes>
@@ -57,7 +96,7 @@ const Recipes = () => {
 				))
 			)}
 
-			{currentUser && (
+			{currentUser && !isOpenModal && (
 				<FloatingButton
 					onClick={() => {
 						navigate("/crear-receta");

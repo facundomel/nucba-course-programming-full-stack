@@ -80,7 +80,7 @@ const Register = () => {
 				})
 			);
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 
 		// const user = localStorage.get(KEY_USER_SESSION) || null;

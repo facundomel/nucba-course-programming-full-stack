@@ -8,16 +8,16 @@ export default class RecipeRouter {
 	static init = (): routerExpress => {
 		const router = routerExpress();
 
-    router.get("/recipes", HandlerAuth.authenticate, HandlerAuth.authorizeAdminRole, RecipeController.getRecipes);
+    router.get("/recipes", RecipeController.getRecipes); 
 
 		router.get(
-			"/recipes/:id",
-			param("id").isNumeric().withMessage("ID is not numeric"),
+			"/recipes/:recipeId",
+			param("recipeId").isNumeric().withMessage("ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
 			RecipeController.getRecipeById
 		);
-
+		
 		router.post(
 			"/recipes",
 			body("title").notEmpty().withMessage("Title is empty").isString().withMessage("Title is not string"),
@@ -34,8 +34,8 @@ export default class RecipeRouter {
 		);
 
 		router.delete(
-			"/recipes/:id",
-			param("id").isNumeric().withMessage("ID is not numeric"),
+			"/recipes/:recipeId",
+			param("recipeId").isNumeric().withMessage("ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
 			RecipeController.deleteRecipeById

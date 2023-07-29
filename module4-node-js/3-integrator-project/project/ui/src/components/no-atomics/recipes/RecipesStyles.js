@@ -30,14 +30,6 @@ export const CardRecipeContainer = styled.div`
 	border-radius: 15px;
 	border: 1px solid var(--black);
 
-	img {
-		width: 100%;
-		height: 180px;
-		object-fit: cover;
-		border-top-left-radius: 15px;
-		border-top-right-radius: 15px;
-	}
-
 	@media (max-width: 400px) {
 		width: 250px;
 	}
@@ -153,6 +145,7 @@ export const ModalBodyCardRecipeInformation = styled.div`
 	padding: 0 3rem 1rem 1rem;
 	font-style: italic;
 	text-align: justify;
+	width: 85%;
 
 	h2 {
 		display: inline-block;
@@ -176,6 +169,10 @@ export const ModalBodyCardRecipeInformation = styled.div`
 	ol {
 		margin-bottom: 2rem;
 	}
+
+	@media (max-width: 400px) {
+		width: 80%;
+	}
 `;
 
 export const ModalBodyCardRecipePublisher = styled.small`
@@ -190,5 +187,17 @@ export const ModalBodyCardRecipePublisher = styled.small`
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+	}
+`;
+
+export const ImageDiv = styled.div`
+	height: 180px;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
 	}
 `;

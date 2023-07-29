@@ -10,7 +10,7 @@ import {
 	OneToOne,
 	JoinColumn,
 } from "typeorm";
-import UserRoleStringEnum from "../enum/UserRoleEnum";
+import {UserRoleStringEnum} from "../enum/UserRoleEnum";
 import User from "./User";
 
 @Entity({ name: "user_roles" })

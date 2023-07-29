@@ -8,6 +8,7 @@ import Config from "./config/Config";
 import cors from "cors";
 import RecipeRouter from "./router/RecipeRouter";
 import RecipeCategoryRouter from "./router/RecipeCategoryRouter";
+import RecipeFavoriteRouter from "./router/RecipeFavoriteRouter";
 
 class Main {
 	static init = () => {
@@ -16,12 +17,13 @@ class Main {
 		const port = Config.getInstance().appPort;
 		const app = express();
 
-		app.use(express.json());
+		app.use(express.json({ strict: false }));
 		app.use(cors());
 
 		app.use("/api", AuthRouter.init());
 		app.use("/api", UsersRouter.init());
 		app.use("/api", RecipeCategoryRouter.init());
+		app.use("/api", RecipeFavoriteRouter.init());
 		app.use("/api", RecipeRouter.init());
 		app.all("*", (req, res) => {
 			res

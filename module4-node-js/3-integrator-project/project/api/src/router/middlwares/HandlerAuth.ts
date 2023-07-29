@@ -3,9 +3,10 @@ import { StatusCodes } from "http-status-codes";
 import ResponseUtils from "../../utils/ResponseUtils";
 import CustomException from "../../model/CustomException";
 import jwt from "jsonwebtoken";
-import UserRole from "../../model/enum/UserRoleEnum";
 import Config from "../../config/Config";
 import CurrentUser from "../../model/CurrentUser";
+import { UserRoleStringEnum } from "../../model/enum/UserRoleEnum";
+import AuthService from "../../service/AuthService";
 
 export default class HandlerAuth {
 	//AUTENTICACION
@@ -16,7 +17,7 @@ export default class HandlerAuth {
 		if (!headerAuthorization) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token is not present", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Access token is not present", StatusCodes.UNAUTHORIZED)));
 			return;
 		}
 
@@ -33,19 +34,19 @@ export default class HandlerAuth {
 			if (err.name == "TokenExpiredError") {
 				res
 					.status(StatusCodes.UNAUTHORIZED)
-					.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token expired", StatusCodes.UNAUTHORIZED)));
+					.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Access token expired", StatusCodes.UNAUTHORIZED)));
 				return;
 			}
 			res
 				.status(StatusCodes.UNAUTHORIZED)
-				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Token is not valid", StatusCodes.UNAUTHORIZED)));
+				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Access token is not valid", StatusCodes.UNAUTHORIZED)));
 		}
 	};
 
 	//AUTORIZACION
 	static authorizeAdminRole = async (req: Request, res: Response, next: NextFunction) => {
 		const currentUser: CurrentUser = res.locals.currentUser;
-		if (currentUser.role && currentUser.role != UserRole.ADMIN) {
+		if (currentUser.role && currentUser.role != UserRoleStringEnum.ADMIN) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
 				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("Not authorized: Need admin role", StatusCodes.UNAUTHORIZED)));
@@ -62,7 +63,7 @@ export default class HandlerAuth {
 			: null;
 
 		const currentUser: CurrentUser = res.locals.currentUser;
-		if (currentUser.role && currentUser.role == UserRole.USER && currentUser.userId != userId) {
+		if (currentUser.role && currentUser.role == UserRoleStringEnum.USER && currentUser.userId != userId) {
 			res
 				.status(StatusCodes.UNAUTHORIZED)
 				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("User not authorized", StatusCodes.UNAUTHORIZED)));
@@ -72,16 +73,17 @@ export default class HandlerAuth {
 	};
 
 	static authorizeAdminOrUserRole = async (req: Request, res: Response, next: NextFunction) => {
-		const userId = req.params.id
-			? req.params.id
+		const userId = req.params.userId
+			? req.params.userId
 			: ResponseUtils.convertFromSnakeToCamel(req.body).userId
 			? ResponseUtils.convertFromSnakeToCamel(req.body).userId
 			: null;
 
 		const currentUser: CurrentUser = res.locals.currentUser;
+		
 		if (
-			(currentUser.role && currentUser.role == UserRole.ADMIN) ||
-			(currentUser.role && currentUser.role == UserRole.USER && currentUser.userId == userId)
+			(currentUser.role && currentUser.role == UserRoleStringEnum.ADMIN) ||
+			(currentUser.role && currentUser.role == UserRoleStringEnum.USER && currentUser.userId == Number(userId))
 		) {
 			next();
 			return;

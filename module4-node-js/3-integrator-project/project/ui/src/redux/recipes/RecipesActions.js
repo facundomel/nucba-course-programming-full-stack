@@ -12,7 +12,7 @@ export const setRecipesFiltered = (recipes) => ({
 	payload: recipes,
 });
 
-export const setRecipeFavorite = (recipes) => ({
+export const setRecipesFavorite = (recipes) => ({
 	type: SET_RECIPE_FAVORITE,
 	payload: recipes,
 });

@@ -19,8 +19,22 @@ export default class RecipeRepository {
 		try {
 			const recipes: Recipe[] = (await this.recipeRepository
 				.createQueryBuilder()
-				.select("recipes")
+				.select([
+					"recipes",
+					"recipe_category.id",
+					"recipe_category.category",
+					"recipe_category.title",
+					"recipe_category.urlImage",
+					"users.id",
+					"users.firstName",
+					"users.lastName",
+					"users.email",
+				])
 				.from(Recipe, "recipes")
+				.leftJoin("recipes.recipeCategory", "recipe_category")
+				.where("recipes.categoryId = recipe_category.id")
+				.leftJoin("recipes.user", "users")
+				.where("recipes.userId = users.id")
 				.getMany()) as unknown as Recipe[];
 			return recipes;
 		} catch (error: any) {
@@ -32,7 +46,17 @@ export default class RecipeRepository {
 		try {
 			const recipe: Recipe = (await this.recipeRepository
 				.createQueryBuilder()
-				.select("recipes")
+				.select([
+					"recipes",
+					"recipe_category.id",
+					"recipe_category.category",
+					"recipe_category.title",
+					"recipe_category.urlImage",
+					"users.id",
+					"users.firstName",
+					"users.lastName",
+					"users.email",
+				])
 				.from(Recipe, "recipes")
 				.where("recipes.id = :id", { id: recipeId })
 				.getOne()) as Recipe;

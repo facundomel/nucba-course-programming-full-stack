@@ -1,13 +1,13 @@
-import UserRole from "./enum/UserRoleEnum";
+import { UserRoleStringEnum } from "./enum/UserRoleEnum";
 
 export default class CurrentUser {
 	userId!: number;
 	email!: string;
-	role!: UserRole;
+	role!: UserRoleStringEnum;
 
-	constructor(result: CurrentUser) {
-		this.userId = result.userId;
-		this.email = result.email;
-		this.role = result.role;
+	constructor(currentUser: CurrentUser) {
+		this.userId = currentUser.userId;
+		this.email = currentUser.email;
+		this.role = currentUser.role;
 	}
 }

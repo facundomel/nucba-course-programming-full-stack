@@ -5,6 +5,8 @@ import { AllRecipeContainer } from "./AllRecipeStyles";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
+import RecipeService from "../../../../service/RecipeService";
+import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 
 const AllRecipe = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);
@@ -12,12 +14,20 @@ const AllRecipe = () => {
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection("AllRecipe"));
+		handlerSetRecipesAll();
 	}, []);
+
+	const handlerSetRecipesAll = async () => {
+		try {
+			const recipes = await RecipeService.getRecipes();
+			dispatch(recipesActions.setRecipesAll(recipes));
+		} catch (err) {}
+	};
 
 	return (
 		<>
 			<AllRecipeContainer>
-				<Hero recipesToFilter={recipesAll} />
+				<Hero />
 				<Categories />
 				<Recipes />
 			</AllRecipeContainer>

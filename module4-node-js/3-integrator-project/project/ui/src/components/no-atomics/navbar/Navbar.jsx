@@ -21,6 +21,7 @@ import { ImBook, ImExit } from "react-icons/im";
 import logo from "../../../assets/images/logo/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../redux/user/UserActions.js";
+import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "../modal/Modal";
 import Button from "../../atomics/button/Button";
@@ -48,6 +49,14 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 		dispatch(userActions.removeCurrentUser());
 		setOpenModal(false);
 		navigate("/");
+		dispatch(
+			snackbarActions.setOptionsSnackbar({
+				open: true,
+				severity: "info",
+				message: `¡Vuelva pronto!`,
+				autoHideDuration: 2500,
+			})
+		);
 	};
 
 	const handlerUserCancelCloseSession = () => {
@@ -93,7 +102,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 							</NavbarLinkRight>
 							{currentUser && (
 								<NavbarLinkRight
-									to={"/mis-recetas"}
+									to={"/recetas-favoritas"}
 									hidden={true}
 									onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 								>
@@ -144,7 +153,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 							<p>Inicio</p>
 						</NavbarLinkExtended>
 						{currentUser && (
-							<NavbarLinkExtended to={"/mis-recetas"} onClick={() => setExtendNavbar(false)}>
+							<NavbarLinkExtended to={"/recetas-favoritas"} onClick={() => setExtendNavbar(false)}>
 								<p>Mis recetas</p>
 							</NavbarLinkExtended>
 						)}

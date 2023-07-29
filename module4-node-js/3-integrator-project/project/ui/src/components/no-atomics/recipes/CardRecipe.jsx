@@ -9,20 +9,24 @@ import {
 	CardUserAndFavorite,
 	GoBookCustom,
 	IconsCardContainer,
+	ImageDiv,
 	ModalBodyCardRecipeContainer,
 	ModalBodyCardRecipeInformation,
 	ModalBodyCardRecipePublisher,
+	TitleCard,
 } from "./RecipesStyles";
 import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
+import { useEffect } from "react";
 
-const CardRecipe = ({ id, name, description, img, publisher, ingredients, instructions }) => {
+const CardRecipe = ({ recipe, setIsOpenModal }) => {
+	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const { recipesAll } = useSelector((state) => state.recipes);
 	const { userSection } = useSelector((state) => state.user);
-	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id == id);
+	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id === id);
 	const [hiddenCard, setHiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
 
@@ -36,7 +40,7 @@ const CardRecipe = ({ id, name, description, img, publisher, ingredients, instru
 				})
 			);
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
-			dispatch(recipeActions.setRecipeFavorite(recipesAll));
+			dispatch(recipeActions.setRecipesFavorite(recipesAll));
 			if (userSection === "RecipeFavorite") {
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			}
@@ -49,7 +53,7 @@ const CardRecipe = ({ id, name, description, img, publisher, ingredients, instru
 				})
 			);
 			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
-			dispatch(recipeActions.setRecipeFavorite(recipesAll));
+			dispatch(recipeActions.setRecipesFavorite(recipesAll));
 			if (userSection === "RecipeFavorite") {
 				setHiddenCard(true);
 				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
@@ -57,50 +61,69 @@ const CardRecipe = ({ id, name, description, img, publisher, ingredients, instru
 		}
 	};
 
+	const handlerOpenModel = (status) => {
+		setOpenModal(status);
+		setIsOpenModal(status);
+	};
+
 	return (
 		<>
 			<CardRecipeContainer hiddenCard={userSection === "RecipeFavorite" && hiddenCard}>
-				<img src={img} alt={name} />
+				<ImageDiv>
+					<img src={urlImage} alt={title} />
+				</ImageDiv>
 				<CardInformation>
-					<h2>{name}</h2>
+					<h2>{title}</h2>
 					<p>{description}</p>
 				</CardInformation>
 				<CardUserAndFavorite>
-					<p>{publisher}</p>
+					<p>
+						{user.firstName} {user.lastName}
+					</p>
 					<IconsCardContainer>
-						<ButtonIconCard onClick={() => setOpenModal(true)}>
+						<ButtonIconCard onClick={() => handlerOpenModel(true)}>
 							<GoBookCustom />
 						</ButtonIconCard>
-						{currentUser && (
+						{/* {currentUser && (
 							<ButtonIconCard onClick={() => handlerOnClickStar()}>
 								{recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
 							</ButtonIconCard>
-						)}
+						)} */}
 					</IconsCardContainer>
 				</CardUserAndFavorite>
 			</CardRecipeContainer>
 
-			<Modal isOpen={openModal} onClose={() => setOpenModal(false)} heightBodyModal={"80%"} widthBodyModal={"700px"} pxMediaQuery={"800px"}>
+			<Modal
+				isOpen={openModal}
+				onClose={() => handlerOpenModel(false)}
+				heightBodyModal={"80%"}
+				widthBodyModal={"700px"}
+				pxMediaQuery={"800px"}
+			>
 				<ModalBodyCardRecipeContainer>
-					<img src={img} alt={name} />
+					<img src={urlImage} alt={title} />
 					<ModalBodyCardRecipeInformation>
 						<div>
-							<h2>{name}</h2>
+							<h2>{title}</h2>
 						</div>
+
 						<h3>Ingredientes</h3>
 						<ul>
-							{ingredients?.map((ingredient) => {
+							{ingredients?.split("\n").map((ingredient) => {
 								return <li key={ingredient}>{ingredient}</li>;
 							})}
 						</ul>
+
 						<h3>Instrucciones</h3>
 						<ol>
-							{instructions?.map((instructions) => {
+							{instructions?.split("\n").map((instructions) => {
 								return <li key={instructions}>{instructions}</li>;
 							})}
 						</ol>
 						<ModalBodyCardRecipePublisher>
-							<p>By {publisher}</p>
+							<p>
+								By {user.firstName} {user.lastName}
+							</p>
 						</ModalBodyCardRecipePublisher>
 					</ModalBodyCardRecipeInformation>
 				</ModalBodyCardRecipeContainer>

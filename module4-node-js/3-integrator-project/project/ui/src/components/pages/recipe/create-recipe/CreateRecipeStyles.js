@@ -110,5 +110,18 @@ export const IconShowAndHidePasswordContainer = styled.button`
 	background-color: transparent;
 	border: none;
 	padding: 0;
-	opacity: ${(props) => (!props.valuePassword ? "40%" : "")};;
+	opacity: ${(props) => (!props.valuePassword ? "40%" : "")};
+`;
+
+export const TextAreaAndSmall = styled.div`
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+
+	& small {
+		color: var(--red);
+		font-size: 12px;
+	}
 `;

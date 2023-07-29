@@ -6,7 +6,7 @@ export default class RecipeCategoryService {
 	static utils = new Utils();
 	static baseUrl = new Configs().baseUrlLocal;
 
-	static getRecipesCategory = async (accessToken) => {
+	static getRecipesCategory = async () => {
 		try {
 			const response = await axios.get(`${this.baseUrl}/api/recipes/categories`, {
 				headers: this.utils.getHeadersDefault(),

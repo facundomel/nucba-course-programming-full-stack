@@ -4,7 +4,7 @@ import AppDataSource from "./database/Database";
 import Database from "./database/Database";
 
 export default class UserRepository {
-	static readonly fieldUserToGet = [
+	static readonly fieldsUserToGet = [
 		"users.id",
 		"users.firstName",
 		"users.lastName",
@@ -32,7 +32,7 @@ export default class UserRepository {
 		try {
 			const users: User[] = (await this.userRepository
 				.createQueryBuilder()
-				.select(this.fieldUserToGet)
+				.select(this.fieldsUserToGet)
 				.from(User, "users")
 				.getMany()) as User[];
 			return users;
@@ -45,7 +45,7 @@ export default class UserRepository {
 		try {
 			const user: User = (await this.userRepository
 				.createQueryBuilder()
-				.select(this.fieldUserToGet)
+				.select(this.fieldsUserToGet)
 				.from(User, "users")
 				.where("users.id = :id", { id: userId })
 				.getOne()) as User;
@@ -73,7 +73,7 @@ export default class UserRepository {
 		try {
 			const user: User = (await this.userRepository
 				.createQueryBuilder()
-				.select(this.fieldUserToGet)
+				.select(this.fieldsUserToGet)
 				.from(User, "users")
 				.leftJoinAndSelect("users.expenses", "expense")
 				.where("users.id = :id", { id: userId })
