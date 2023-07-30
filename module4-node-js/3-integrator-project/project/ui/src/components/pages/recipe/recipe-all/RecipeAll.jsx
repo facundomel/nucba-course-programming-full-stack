@@ -23,16 +23,16 @@ const RecipeAll = () => {
 
 	const handlerSetRecipesAll = async () => {
 		try {
-			if (!recipesAll) {
+			if (recipesAll.length === 0) {
 				const recipes = await RecipeService.getRecipes();
 				dispatch(recipesActions.setRecipesAll(recipes));
 			}
 
-			if (!recipesFavorite) {
+			if (recipesFavorite.length === 0) {
 				const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
 				dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
 			}
-			
+
 			setLoading(false);
 		} catch (err) {
 			setLoading(false);
