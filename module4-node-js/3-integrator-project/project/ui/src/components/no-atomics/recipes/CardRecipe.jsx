@@ -24,11 +24,23 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
-	const { recipesAll } = useSelector((state) => state.recipes);
+	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
 	const { userSection } = useSelector((state) => state.user);
 	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id === id);
 	const [hiddenCard, setHiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
+	// const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false)
+	const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false)
+
+	// useEffect(() => {
+  //   if (userSection === "RecipeFavorite") {
+  //     setIsFavoriteRecipe(true);
+  //   } else if (currentUser && isRecipeFavorite(id)) {
+  //     setIsFavoriteRecipe(true);
+  //   } else {
+  //     setIsFavoriteRecipe(false);
+  //   }
+  // }, [userSection, currentUser, recipesAll, recipesFavorite]);
 
 	const handlerOnClickStar = () => {
 		if (!recipesAll[recipeIndex].isFavorite) {
@@ -66,6 +78,16 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 		setIsOpenModal(status);
 	};
 
+	// const isRecipeFavorite = (recipeId) => {
+	// 	return recipesFavorite.some((favorite) => favorite.id === recipeId);
+	// };
+
+	// const isFavoriteRecipe = userSection === "RecipeFavorite" || (currentUser && isRecipeFavorite(id));
+
+	useEffect(() => {
+		setIsFavoriteRecipe(recipesFavorite.some((favorite) => favorite.id === id))
+	}, [recipesFavorite, id]);
+
 	return (
 		<>
 			<CardRecipeContainer hiddenCard={userSection === "RecipeFavorite" && hiddenCard}>
@@ -86,7 +108,8 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 						</ButtonIconCard>
 						{currentUser && (
 							<ButtonIconCard onClick={() => handlerOnClickStar()}>
-								{userSection === "RecipeFavorite" ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
+								{/* {recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />} */}
+								{isFavoriteRecipe ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
 							</ButtonIconCard>
 						)}
 					</IconsCardContainer>

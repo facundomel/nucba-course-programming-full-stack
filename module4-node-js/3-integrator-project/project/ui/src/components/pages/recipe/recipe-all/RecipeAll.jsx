@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "../../../no-atomics/hero/Hero";
 import Recipes from "../../../no-atomics/recipes/Recipes";
 import { RecipeAllContainer } from "./RecipeAllStyles";
@@ -7,10 +7,14 @@ import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
 import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
+import { useNavigate } from "react-router-dom";
 
 const RecipeAll = () => {
-	const { recipesAll } = useSelector((state) => state.recipes);
+	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
+	const [loading, setLoading] = useState(true);
+	const { currentUser } = useSelector((state) => state.user);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection("RecipeAll"));
@@ -19,17 +23,34 @@ const RecipeAll = () => {
 
 	const handlerSetRecipesAll = async () => {
 		try {
-			const recipes = await RecipeService.getRecipes();
-			dispatch(recipesActions.setRecipesAll(recipes));
-		} catch (err) {}
+			if (!recipesAll) {
+				const recipes = await RecipeService.getRecipes();
+				dispatch(recipesActions.setRecipesAll(recipes));
+			}
+
+			if (!recipesFavorite) {
+				const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
+				dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
+			}
+			
+			setLoading(false);
+		} catch (err) {
+			setLoading(false);
+		}
 	};
 
 	return (
 		<>
 			<RecipeAllContainer>
-				<Hero />
-				<Categories />
-				<Recipes />
+				{loading ? (
+					<p>Cargando recetas...</p>
+				) : (
+					<>
+						<Hero />
+						<Categories />
+						<Recipes />
+					</>
+				)}
 			</RecipeAllContainer>
 		</>
 	);
