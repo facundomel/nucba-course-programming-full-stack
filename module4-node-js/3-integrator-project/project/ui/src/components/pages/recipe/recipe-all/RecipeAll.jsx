@@ -9,7 +9,7 @@ import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 
-const RecipeAll = ({loadingRecipeAll}) => {
+const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(true);
@@ -17,39 +17,32 @@ const RecipeAll = ({loadingRecipeAll}) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection("RecipeAll"));
-		// handlerSetRecipesAll();
-	}, []);
+    dispatch(userActions.setUserSection("RecipeAll"));
+    handlerSetRecipesAll();
+  }, []);
 
-	// useEffect(() => {
-	// 	// dispatch(userActions.setUserSection("RecipeAll"));
-	// 	// handlerSetRecipesAll();
-	// }, [recipesAll]);
+  const handlerSetRecipesAll = async () => {
+    try {
+      if (!recipesAll.length) {
+        const recipes = await RecipeService.getRecipes();
+        dispatch(recipesActions.setRecipesAll(recipes));
+      }
 
-	// const handlerSetRecipesAll = async () => {
-	// 	try {
-	// 		// console.log(recipesAll);
-	// 		// if (recipesAll.length === 0) {
-	// 		// 	console.log("object");
-	// 			const recipes = await RecipeService.getRecipes();
-	// 			dispatch(recipesActions.setRecipesAll(recipes));
-	// 		// }
+      if (currentUser && !recipesFavorite.length) {
+        const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
+        dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
+      }
 
-	// 		// if (recipesFavorite.length === 0) {
-	// 			const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
-	// 			dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
-	// 		// }
-
-	// 		setLoading(false);
-	// 	} catch (err) {
-	// 		setLoading(false);
-	// 	}
-	// };
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
 
 	return (
 		<>
 			<RecipeAllContainer>
-				{loadingRecipeAll ? (
+				{loading ? (
 					<p>Cargando todas las recetas...</p>
 				) : (
 					<>

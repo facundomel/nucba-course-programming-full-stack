@@ -12,6 +12,7 @@ import {
 import Button from "../../../atomics/button/Button";
 import { useDispatch } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions";
+import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 import { KEY_USER_SESSION } from "../../../../repository/LocalStorage";
 import localStorage from "../../../../repository/LocalStorage";
@@ -22,6 +23,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import AuthService from "../../../../service/AuthService";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 import UserLogin from "../../../../model/UserLogin";
+import RecipeService from "../../../../service/RecipeService";
 
 const Login = () => {
 	const [error, setError] = useState(null);
@@ -64,8 +66,8 @@ const Login = () => {
 
 		try {
 			const response = await AuthService.loginUser(valueInputs);
-
-			dispatch(userActions.setCurrentUser(new UserSession(response)));
+			const currentUser = new UserSession(response);
+			dispatch(userActions.setCurrentUser(currentUser));
 			navigate("/");
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
@@ -76,7 +78,6 @@ const Login = () => {
 				})
 			);
 		} catch (error) {
-			// console.log(error);
 		}
 	};
 

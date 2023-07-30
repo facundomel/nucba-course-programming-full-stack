@@ -9,7 +9,7 @@ import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 
-const RecipeFavorite = ({loadingRecipeFavorite}) => {
+const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const { currentUser, userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
@@ -18,31 +18,14 @@ const RecipeFavorite = ({loadingRecipeFavorite}) => {
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection("RecipeFavorite"));
-		// handlerSetRecipesFavorite();
 	}, []);
-
-	// const handlerSetRecipesFavorite = async () => {
-	// 	try {
-	// 		const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
-	// 		dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
-	// 		setLoading(false);
-	// 	} catch (err) {
-	// 		setLoading(false);
-	// 	}
-	// };
 
 	return (
 		<>
 			<RecipeFavoriteContainer>
-				{loadingRecipeFavorite ? (
-					<p>Cargando recetas favoritas...</p>
-				) : (
-					<>
-						<Hero />
-						<Categories />
-						<Recipes />
-					</>
-				)}
+				<Hero />
+				<Categories />
+				<Recipes />
 			</RecipeFavoriteContainer>
 		</>
 	);

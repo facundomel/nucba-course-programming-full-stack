@@ -36,13 +36,16 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const [openModal, setOpenModal] = useState(false);
 
 	useEffect(() => {
+		const scroll = () => {
+			dispatch(userActions.openOrCloseMenuSessionUser());
+			window.removeEventListener("scroll", scroll);
+		};
 		if (isOpenMenuSessionUser) {
-			const scroll = () => {
-				dispatch(userActions.openOrCloseMenuSessionUser());
-				window.removeEventListener("scroll", scroll);
-			};
 			window.addEventListener("scroll", scroll);
 		}
+		return () => {
+			window.removeEventListener("scroll", scroll);
+		};
 	}, [isOpenMenuSessionUser]);
 
 	const handlerUserAcceptCloseSession = () => {

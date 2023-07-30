@@ -23,7 +23,7 @@ export default class AuthService {
 			}
 			const userRole: UserRole = await UserRoleService.getUserRoleById(user.roleId);
 			const accessToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.accessTokenSecret, {
-				expiresIn: "10s",
+				expiresIn: "12h",
 			});
 			const refreshToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.refreshTokenSecret, {
 				expiresIn: "1d",

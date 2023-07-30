@@ -18,38 +18,20 @@ import { v4 as uuid } from "uuid";
 const Recipes = () => {
 	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
-	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(true);
+	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(false);
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { currentUser, userSection } = useSelector((state) => state.user);
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
-	// useEffect(() => {
-	// 	// localStorage.save(KEY_RECIPES_ALL, recipesAll);
-	// 	handlerSetRecipesAll();
-	// }, [recipesAll]);
-
-	// const handlerSetRecipesAll = async () => {
-	// 	const recipes = await RecipeService.getRecipes();
-	// 	dispatch(recipesActions.setRecipesAll(recipes));
-	// };
-
-	// useEffect(() => {
-	// 	console.log(recipesAll);
-	// }, [recipesAll])
-
 	useEffect(() => {
-		// console.log(userSection);
-		// console.log(currentUser);
-		// handlerSetRecipes();
-
 		if (userSection === "RecipeAll") {
 			dispatch(recipesActions.setRecipesFiltered(recipesAll));
 		} else if (userSection === "RecipeFavorite") {
 			dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
 		}
-	}, [userSection, recipesAll, recipesFavorite, dispatch]);
+	}, [userSection, recipesAll, recipesFavorite]);
 
 	useEffect(() => {
 		setShouldShowRecipesByCategory(
@@ -57,21 +39,7 @@ const Recipes = () => {
 				return recipe.recipeCategory.category === selectedCategory;
 			})
 		);
-	}, [selectedCategory, recipesFiltered]);
-
-	// const handlerSetRecipes = async () => {
-	// 	let recipes = [];
-
-	// 	if (userSection === "RecipeAll") {
-	// 		// recipes = await RecipeService.getRecipes();
-	// 		// dispatch(recipesActions.setRecipesAll(recipes));
-	// 		dispatch(recipesActions.setRecipesFiltered(recipesAll));
-	// 	} else if (userSection === "RecipeFavorite") {
-	// 		// recipes = await RecipeService.getRecipesFavoriteByUserId(currentUser);
-	// 		// dispatch(recipesActions.setRecipesFavorite(recipes));
-	// 		dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
-	// 	}
-	// };
+	}, [selectedCategory]);
 
 	return (
 		<>

@@ -30,18 +30,7 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id === id);
 	const [hiddenCard, setHiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
-	// const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false)
 	const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false)
-
-	// useEffect(() => {
-  //   if (userSection === "RecipeFavorite") {
-  //     setIsFavoriteRecipe(true);
-  //   } else if (currentUser && isRecipeFavorite(id)) {
-  //     setIsFavoriteRecipe(true);
-  //   } else {
-  //     setIsFavoriteRecipe(false);
-  //   }
-  // }, [userSection, currentUser, recipesAll, recipesFavorite]);
 
 	const handlerOnClickStar = () => {
 		if (!isFavoriteRecipe) {
@@ -78,12 +67,6 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 		setOpenModal(status);
 		setIsOpenModal(status);
 	};
-
-	// const isRecipeFavorite = (recipeId) => {
-	// 	return recipesFavorite.some((favorite) => favorite.id === recipeId);
-	// };
-
-	// const isFavoriteRecipe = userSection === "RecipeFavorite" || (currentUser && isRecipeFavorite(id));
 
 	useEffect(() => {
 		setIsFavoriteRecipe(recipesFavorite.some((favorite) => favorite.id === id))
