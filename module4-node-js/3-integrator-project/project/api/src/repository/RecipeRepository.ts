@@ -58,7 +58,11 @@ export default class RecipeRepository {
 					"users.email",
 				])
 				.from(Recipe, "recipes")
-				.where("recipes.id = :id", { id: recipeId })
+				.leftJoin("recipes.recipeCategory", "recipe_category")
+				.where("recipes.categoryId = recipe_category.id")
+				.leftJoin("recipes.user", "users")
+				.where("recipes.userId = users.id")
+				.andWhere("recipes.id = :id", { id: recipeId })
 				.getOne()) as Recipe;
 			return recipe;
 		} catch (error: any) {

@@ -16,7 +16,7 @@ export default class UserController {
 
 	static getUserById = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const user: User = (await UserService.getUserById(Number(req.params.id))) as User;
+			const user: User = (await UserService.getUserById(Number(req.params.userId))) as User;
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(user));
 		} catch (error: any) {
 			ResponseUtils.getException(res, error);

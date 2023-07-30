@@ -33,13 +33,13 @@ export default class RecipeRouter {
 			RecipeController.createRecipe
 		);
 
-		router.delete(
-			"/recipes/:recipeId",
-			param("recipeId").isNumeric().withMessage("ID is not numeric"),
-			HandlerValidationErrors.executeValidation,
-			HandlerAuth.authenticate,
-			RecipeController.deleteRecipeById
-		);
+		// router.delete(
+		// 	"/recipes/:recipeId",
+		// 	param("recipeId").isNumeric().withMessage("ID is not numeric"),
+		// 	HandlerValidationErrors.executeValidation,
+		// 	HandlerAuth.authenticate,
+		// 	RecipeController.deleteRecipeById
+		// );
 
 		return router;
 	};

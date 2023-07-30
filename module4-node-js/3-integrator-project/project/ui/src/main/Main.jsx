@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import Footer from "../components/no-atomics/footer/Footer";
 import Navbar from "../components/no-atomics/navbar/Navbar";
 import { MainContainerStyled } from "./MainStyles";
@@ -13,14 +13,40 @@ const Main = () => {
 	const [extendNavbar, setExtendNavbar] = useState(false);
 	const { userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
+	// const { currentUser } = useSelector((state) => state.user);
+	// const navigate = useNavigate();
+
+	// // useEffect(() => {
+	// // 	handlerSetRecipesAll();
+	// // }, []);
+
+	// // const handlerSetRecipesAll = async () => {
+	// // 	const recipes = await RecipeService.getRecipes();
+	// // 	dispatch(recipesActions.setRecipesAll(recipes));
+	// // };
 
 	// useEffect(() => {
 	// 	handlerSetRecipesAll();
 	// }, []);
 
 	// const handlerSetRecipesAll = async () => {
-	// 	const recipes = await RecipeService.getRecipes();
-	// 	dispatch(recipesActions.setRecipesAll(recipes));
+	// 	try {
+	// 		// console.log(recipesAll);
+	// 		// if (recipesAll.length === 0) {
+	// 		// 	console.log("object");
+	// 		const recipes = await RecipeService.getRecipes();
+	// 		dispatch(recipesActions.setRecipesAll(recipes));
+	// 		// }
+
+	// 		// if (recipesFavorite.length === 0) {
+	// 		const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
+	// 		dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
+	// 		// }
+
+	// 		// setLoading(false);
+	// 	} catch (err) {
+	// 		// setLoading(false);
+	// 	}
 	// };
 
 	useEffect(() => {

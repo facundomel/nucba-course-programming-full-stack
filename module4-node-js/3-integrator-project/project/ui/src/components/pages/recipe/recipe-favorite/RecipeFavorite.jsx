@@ -9,7 +9,7 @@ import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 
-const RecipeFavorite = () => {
+const RecipeFavorite = ({loadingRecipeFavorite}) => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const { currentUser, userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
@@ -34,9 +34,15 @@ const RecipeFavorite = () => {
 	return (
 		<>
 			<RecipeFavoriteContainer>
-				<Hero />
-				<Categories />
-				<Recipes />
+				{loadingRecipeFavorite ? (
+					<p>Cargando recetas favoritas...</p>
+				) : (
+					<>
+						<Hero />
+						<Categories />
+						<Recipes />
+					</>
+				)}
 			</RecipeFavoriteContainer>
 		</>
 	);

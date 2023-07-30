@@ -17,8 +17,7 @@ export default class RecipeController {
 
 	static getRecipeById = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const currentUser: CurrentUser = res.locals.currentUser;
-			const recipe: Recipe = (await RecipeService.getRecipeById(Number(req.params.id), currentUser.role, currentUser.userId)) as Recipe;
+			const recipe: Recipe = (await RecipeService.getRecipeById(Number(req.params.recipeId))) as Recipe;
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipe));
 		} catch (error: any) {
 			ResponseUtils.getException(res, error);
@@ -34,13 +33,13 @@ export default class RecipeController {
 		}
 	};
 
-	static deleteRecipeById = async (req: Request, res: Response): Promise<void> => {
-		try {
-			const currentUser: CurrentUser = res.locals.currentUser;
-			const recipe: Recipe = (await RecipeService.deleteRecipeById(Number(req.params.id), currentUser.role, currentUser.userId)) as Recipe;
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipe));
-		} catch (error: any) {
-			ResponseUtils.getException(res, error);
-		}
-	};
+	// static deleteRecipeById = async (req: Request, res: Response): Promise<void> => {
+	// 	try {
+	// 		const currentUser: CurrentUser = res.locals.currentUser;
+	// 		const recipe: Recipe = (await RecipeService.deleteRecipeById(Number(req.params.id), currentUser.role, currentUser.userId)) as Recipe;
+	// 		res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipe));
+	// 	} catch (error: any) {
+	// 		ResponseUtils.getException(res, error);
+	// 	}
+	// };
 }

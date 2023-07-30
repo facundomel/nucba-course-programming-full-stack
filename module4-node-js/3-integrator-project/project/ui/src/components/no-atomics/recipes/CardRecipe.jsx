@@ -19,6 +19,7 @@ import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import { useEffect } from "react";
+import { v4 as uuid } from "uuid";
 
 const CardRecipe = ({ recipe, setIsOpenModal }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
@@ -43,7 +44,7 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
   // }, [userSection, currentUser, recipesAll, recipesFavorite]);
 
 	const handlerOnClickStar = () => {
-		if (!recipesAll[recipeIndex].isFavorite) {
+		if (!isFavoriteRecipe) {
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
 					open: true,
@@ -51,11 +52,11 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 					message: `Receta agregada a favorito`,
 				})
 			);
-			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
-			dispatch(recipeActions.setRecipesFavorite(recipesAll));
-			if (userSection === "RecipeFavorite") {
-				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
-			}
+			// recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
+			// dispatch(recipeActions.setRecipesFavorite(recipesAll));
+			// if (userSection === "RecipeFavorite") {
+			// 	dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
+			// }
 		} else {
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
@@ -133,14 +134,14 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 						<h3>Ingredientes</h3>
 						<ul>
 							{ingredients?.split("\n").map((ingredient) => {
-								return <li key={ingredient}>{ingredient}</li>;
+								return <li key={uuid()}>{ingredient}</li>;
 							})}
 						</ul>
 
 						<h3>Instrucciones</h3>
 						<ol>
 							{instructions?.split("\n").map((instructions) => {
-								return <li key={instructions}>{instructions}</li>;
+								return <li key={uuid()}>{instructions}</li>;
 							})}
 						</ol>
 						<ModalBodyCardRecipePublisher>

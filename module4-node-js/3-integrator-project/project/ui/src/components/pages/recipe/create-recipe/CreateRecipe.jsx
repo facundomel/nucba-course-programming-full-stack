@@ -17,6 +17,8 @@ import { SelectOptionStyled } from "../../../atomics/select/SelectStyles";
 import SelectCustom from "../../../atomics/select/Select";
 import { isValidSelectedRecipeCategory, isValidVariusFields } from "./CreateRecipeValidations";
 import RecipeService from "../../../../service/RecipeService";
+import * as categoriesActions from "../../../../redux/categories/CategoriesActions.js";
+import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 
 const CreateRecipe = () => {
 	const [error, setError] = useState(null);
@@ -33,10 +35,14 @@ const CreateRecipe = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useSelector((state) => state.user);
 	const { categories } = useSelector((state) => state.categories);
+	const { recipesAll } = useSelector((state) => state.recipes);
 
 	useEffect(() => {
 		titleRef.current.focus();
 		dispatch(userActions.setUserSection("CreateRecipe"));
+		if (categories.length === 0) {
+			handlerSetRecipesCategories();
+		}
 	}, []);
 
 	useEffect(() => {
@@ -45,18 +51,14 @@ const CreateRecipe = () => {
 		setError(null);
 	}, [valueInputs]);
 
-	// useEffect(() => {
-	// 	handlerSetRecipesCategories();
-	// }, []);
-
-	// const handlerSetRecipesCategories = async () => {
-	// 	try {
-	// 		const recipesCategories = await RecipeCategoryService.getRecipesCategory();
-	// 		setRecipesCategories(recipesCategories);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
+	const handlerSetRecipesCategories = async () => {
+		try {
+			const recipesCategories = await RecipeCategoryService.getRecipesCategory();
+			dispatch(categoriesActions.setCategories(recipesCategories));
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const handleChangeInputs = (e) => {
 		const target = e.target;
@@ -91,15 +93,17 @@ const CreateRecipe = () => {
 			return;
 
 		try {
-			valueInputs.userId = currentUser.id;
+			valueInputs.userId = currentUser.user.id;
 			valueInputs.categoryId = selectedOptionRecipeCategory.value;
-			const response = await RecipeService.createRecipe(valueInputs, currentUser.accessToken);
+			let recipeCreated = await RecipeService.createRecipe(valueInputs, currentUser.authToken, navigate, dispatch);
+			recipeCreated = await RecipeService.getRecipeById(recipeCreated.id, currentUser.authToken, navigate, dispatch);
+			dispatch(recipesActions.setRecipesAll([...recipesAll, recipeCreated]));
 			navigate("/");
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
 					open: true,
 					severity: "success",
-					message: `¡Receta ${response.title} creada correctamente!`,
+					message: `¡Receta ${recipeCreated.title} creada correctamente!`,
 					autoHideDuration: 2500,
 				})
 			);

@@ -22,6 +22,37 @@ export default class RecipeService {
 		}
 	};
 
+	static getRecipeById = async (recipeId, authToken, navigate, dispatch) => {
+		try {
+			const headers = {
+				...this.utils.getHeadersDefault(),
+				authorization: `Bearer ${authToken.accessToken}`,
+			};
+			const response = await axios.get(`${this.baseUrl}/api/recipes/${recipeId}`, {
+				headers: headers,
+			});
+			return this.utils.convertFromSnakeToCamel(response.data);
+		} catch (err) {
+			const errResponseData = err.response?.data && this.utils.convertFromSnakeToCamel(err.response.data);
+			if (
+				errResponseData &&
+				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
+				errResponseData.message === "Not authorized: Access token expired"
+			) {
+				try {
+					let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
+					response = await this.getRecipeById(recipeId, new UserSession(response).authToken, navigate, dispatch);
+					return response;
+				} catch (err) {
+					console.log(err);
+					throw err;
+				}
+			}
+			console.log(err);
+			throw err;
+		}
+	};
+
 	static getRecipesFavoriteByUserId = async (currentUser, navigate, dispatch) => {
 		try {
 			const headers = {
@@ -51,11 +82,11 @@ export default class RecipeService {
 		}
 	};
 
-	static createRecipe = async (recipe, accessToken) => {
+	static createRecipe = async (recipe, authToken, navigate, dispatch) => {
 		try {
 			const headers = {
 				...this.utils.getHeadersDefault(),
-				authorization: `Bearer ${accessToken}`,
+				authorization: `Bearer ${authToken.accessToken}`,
 			};
 
 			const response = await axios.post(`${this.baseUrl}/api/recipes`, this.utils.convertFromCamelToSnake(recipe), {
@@ -63,7 +94,39 @@ export default class RecipeService {
 			});
 			return this.utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
+			const errResponseData = err.response?.data && this.utils.convertFromSnakeToCamel(err.response.data);
+			if (
+				errResponseData &&
+				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
+				errResponseData.message === "Not authorized: Access token expired"
+			) {
+				try {
+					let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
+					response = await this.createRecipe(recipe, new UserSession(response).authToken, navigate, dispatch);
+					return response;
+				} catch (err) {
+					console.log(err);
+					throw err;
+				}
+			}
+			console.log(err);
 			throw err;
 		}
 	};
+
+	// static createRecipeFavorite = async (userId, recipeId, accessToken) => {
+	// 	try {
+	// 		const headers = {
+	// 			...this.utils.getHeadersDefault(),
+	// 			authorization: `Bearer ${accessToken}`,
+	// 		};
+
+	// 		const response = await axios.post(`${this.baseUrl}/api/recipes`, this.utils.convertFromCamelToSnake(recipe), {
+	// 			headers: headers,
+	// 		});
+	// 		return this.utils.convertFromSnakeToCamel(response.data);
+	// 	} catch (err) {
+	// 		throw err;
+	// 	}
+	// };
 }

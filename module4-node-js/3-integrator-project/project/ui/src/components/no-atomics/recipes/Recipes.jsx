@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
 import RecipeService from "../../../service/RecipeService";
 import RecipeAll from "../../pages/recipe/recipe-all/RecipeAll";
+import { v4 as uuid } from "uuid";
 
 const Recipes = () => {
 	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
@@ -48,7 +49,7 @@ const Recipes = () => {
 		} else if (userSection === "RecipeFavorite") {
 			dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
 		}
-	}, [userSection, recipesAll, recipesFavorite]);
+	}, [userSection, recipesAll, recipesFavorite, dispatch]);
 
 	useEffect(() => {
 		setShouldShowRecipesByCategory(
@@ -56,7 +57,7 @@ const Recipes = () => {
 				return recipe.recipeCategory.category === selectedCategory;
 			})
 		);
-	}, [selectedCategory]);
+	}, [selectedCategory, recipesFiltered]);
 
 	// const handlerSetRecipes = async () => {
 	// 	let recipes = [];
@@ -80,7 +81,7 @@ const Recipes = () => {
 				) : (
 					<RecipesContainer>
 						{recipesFiltered.map((recipe) => (
-							<CardRecipe key={recipe.id} recipe={recipe} setIsOpenModal={setIsOpenModal} />
+							<CardRecipe key={uuid()} recipe={recipe} setIsOpenModal={setIsOpenModal} />
 						))}
 					</RecipesContainer>
 				)
@@ -91,7 +92,7 @@ const Recipes = () => {
 						{recipesFiltered.map(
 							(recipe) =>
 								recipe.recipeCategory.category === selectedCategory && (
-									<CardRecipe key={recipe.id} recipe={recipe} setIsOpenModal={setIsOpenModal} />
+									<CardRecipe key={uuid()} recipe={recipe} setIsOpenModal={setIsOpenModal} />
 								)
 						)}
 					</RecipesContainer>

@@ -9,7 +9,7 @@ import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 
-const RecipeAll = () => {
+const RecipeAll = ({loadingRecipeAll}) => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(true);
@@ -18,32 +18,39 @@ const RecipeAll = () => {
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection("RecipeAll"));
-		handlerSetRecipesAll();
+		// handlerSetRecipesAll();
 	}, []);
 
-	const handlerSetRecipesAll = async () => {
-		try {
-			if (recipesAll.length === 0) {
-				const recipes = await RecipeService.getRecipes();
-				dispatch(recipesActions.setRecipesAll(recipes));
-			}
+	// useEffect(() => {
+	// 	// dispatch(userActions.setUserSection("RecipeAll"));
+	// 	// handlerSetRecipesAll();
+	// }, [recipesAll]);
 
-			if (recipesFavorite.length === 0) {
-				const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
-				dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
-			}
+	// const handlerSetRecipesAll = async () => {
+	// 	try {
+	// 		// console.log(recipesAll);
+	// 		// if (recipesAll.length === 0) {
+	// 		// 	console.log("object");
+	// 			const recipes = await RecipeService.getRecipes();
+	// 			dispatch(recipesActions.setRecipesAll(recipes));
+	// 		// }
 
-			setLoading(false);
-		} catch (err) {
-			setLoading(false);
-		}
-	};
+	// 		// if (recipesFavorite.length === 0) {
+	// 			const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
+	// 			dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
+	// 		// }
+
+	// 		setLoading(false);
+	// 	} catch (err) {
+	// 		setLoading(false);
+	// 	}
+	// };
 
 	return (
 		<>
 			<RecipeAllContainer>
-				{loading ? (
-					<p>Cargando recetas...</p>
+				{loadingRecipeAll ? (
+					<p>Cargando todas las recetas...</p>
 				) : (
 					<>
 						<Hero />
