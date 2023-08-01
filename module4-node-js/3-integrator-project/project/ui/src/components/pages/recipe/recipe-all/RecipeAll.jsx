@@ -28,7 +28,7 @@ const RecipeAll = () => {
 				dispatch(recipesActions.setRecipesAll(recipes));
 			}
 
-			if (currentUser && !recipesFavorite.length) {
+			if (currentUser) {
 				const recipesFavorite = await RecipeService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
 				dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
 			}
