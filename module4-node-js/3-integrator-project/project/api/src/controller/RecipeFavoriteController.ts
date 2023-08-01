@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import ResponseUtils from "../utils/ResponseUtils";
 import RecipeFavorite from "../model/entity/RecipesFavorite";
 import RecipeFavoriteService from "../service/RecipeFavoriteService";
+import Recipe from "../model/entity/Recipe";
 
 export default class RecipeFavoriteController {
 	static getRecipesFavoriteByUserId = async (req: Request, res: Response): Promise<void> => {
@@ -18,11 +19,34 @@ export default class RecipeFavoriteController {
 
 	static getRecipeFavoriteByUserIdAndRecipeId = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const recipeFavorite: RecipeFavorite = await RecipeFavoriteService.getRecipeFavoriteByUserIdAndRecipeId(
+			const recipeFavorite: RecipeFavorite = (await RecipeFavoriteService.getRecipeFavoriteByUserIdAndRecipeId(
 				Number(req.params.userId),
 				Number(req.params.recipeId)
-			) as RecipeFavorite;
+			)) as RecipeFavorite;
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipeFavorite));
+		} catch (error: any) {
+			ResponseUtils.getException(res, error);
+		}
+	};
+
+	static getRecipesFavoriteWithDetailsByUserId = async (req: Request, res: Response): Promise<void> => {
+		try {
+			const recipesFavoriteWothDetails: Recipe[] = (await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(
+				Number(req.params.userId)
+			)) as Recipe[];
+			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipesFavoriteWothDetails));
+		} catch (error: any) {
+			ResponseUtils.getException(res, error);
+		}
+	};
+
+	static getRecipeFavoriteWithDetailsByUserIdAndRecipeId = async (req: Request, res: Response): Promise<void> => {
+		try {
+			const recipeFavoriteWithDetails: Recipe = (await RecipeFavoriteService.getRecipeFavoriteWithDetailsByUserIdAndRecipeId(
+				Number(req.params.userId),
+				Number(req.params.recipeId)
+			)) as Recipe;
+			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipeFavoriteWithDetails));
 		} catch (error: any) {
 			ResponseUtils.getException(res, error);
 		}
@@ -34,6 +58,18 @@ export default class RecipeFavoriteController {
 				ResponseUtils.convertFromSnakeToCamel(req.body) as RecipeFavorite
 			);
 			res.status(StatusCodes.CREATED).json(ResponseUtils.convertFromCamelToSnake(recipeFavorite));
+		} catch (error: any) {
+			ResponseUtils.getException(res, error);
+		}
+	};
+
+	static deleteRecipeFavoriteByUserIdAndRecipeId = async (req: Request, res: Response): Promise<void> => {
+		try {
+			const recipeFavoriteWithDetails: any = await RecipeFavoriteService.deleteRecipeFavoriteByUserIdAndRecipeId(
+				Number(req.params.userId),
+				Number(req.params.recipeId)
+			);
+			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipeFavoriteWithDetails));
 		} catch (error: any) {
 			ResponseUtils.getException(res, error);
 		}

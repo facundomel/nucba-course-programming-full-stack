@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	AiFillStarCustom,
@@ -20,8 +20,10 @@ import Modal from "../modal/Modal";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import RecipeService from "../../../service/RecipeService";
+import { useNavigate } from "react-router-dom";
 
-const CardRecipe = ({ recipe, setIsOpenModal }) => {
+const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
@@ -30,46 +32,92 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id === id);
 	const [hiddenCard, setHiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
-	const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false)
+	const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false);
+	const navigate = useNavigate();
+	const buttonIconGoBookRef = useRef();
 
-	const handlerOnClickStar = () => {
+	const handlerOnClickStar = async () => {
 		if (!isFavoriteRecipe) {
-			dispatch(
-				snackbarActions.setOptionsSnackbar({
-					open: true,
-					severity: "success",
-					message: `Receta agregada a favorito`,
-				})
-			);
 			// recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
 			// dispatch(recipeActions.setRecipesFavorite(recipesAll));
 			// if (userSection === "RecipeFavorite") {
 			// 	dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
 			// }
-		} else {
-			dispatch(
-				snackbarActions.setOptionsSnackbar({
-					open: true,
-					severity: "warning",
-					message: `Receta quitada de favorito`,
-				})
-			);
-			recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
-			dispatch(recipeActions.setRecipesFavorite(recipesAll));
-			if (userSection === "RecipeFavorite") {
-				setHiddenCard(true);
-				dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
+			// setIsFavoriteRecipe(true);
+
+			try {
+				let recipeFavoriteCreated = await RecipeService.createRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
+				if (recipeFavoriteCreated != null) {
+					recipeFavoriteCreated = await RecipeService.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(
+						currentUser,
+						recipe.id,
+						navigate,
+						dispatch
+					);
+					dispatch(recipeActions.setRecipesFavorite([...recipesFavorite, recipeFavoriteCreated]));
+					dispatch(
+						snackbarActions.setOptionsSnackbar({
+							open: true,
+							severity: "success",
+							message: `Receta agregada a favorito`,
+						})
+					);
+				}
+				// setIsFavoriteRecipe(true);
+			} catch (error) {
+				console.log(error);
 			}
+		} else {
+			try {
+				const recipeFavoriteDeleted = await RecipeService.deleteRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
+				// recipeFavoriteDeleted = await RecipeService.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(
+				// 	currentUser,
+				// 	recipe.id,
+				// 	navigate,
+				// 	dispatch
+				// );
+				if (recipeFavoriteDeleted != null) {
+					dispatch(
+						recipeActions.setRecipesFavorite(recipesFavorite.filter((recipeFavorite) => recipeFavorite.id !== recipeFavoriteDeleted.id))
+					);
+					dispatch(
+						snackbarActions.setOptionsSnackbar({
+							open: true,
+							severity: "warning",
+							message: `Receta quitada de favorito`,
+						})
+					);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+			// dispatch(
+			// 	snackbarActions.setOptionsSnackbar({
+			// 		open: true,
+			// 		severity: "warning",
+			// 		message: `Receta quitada de favorito`,
+			// 	})
+			// );
+			// recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
+			// dispatch(recipeActions.setRecipesFavorite(recipesAll));
+			// if (userSection === "RecipeFavorite") {
+			// 	setHiddenCard(true);
+			// 	dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
+			// }
 		}
 	};
 
-	const handlerOpenModel = (status) => {
+	// useEffect(() => {
+	// 	setIsOpenModal(openModal)
+	// }, [openModal]);
+
+	const handlerOpenModal = (status) => {
 		setOpenModal(status);
-		setIsOpenModal(status);
+		if (!openModal) buttonIconGoBookRef.current?.blur();
 	};
 
 	useEffect(() => {
-		setIsFavoriteRecipe(recipesFavorite.some((favorite) => favorite.id === id))
+		setIsFavoriteRecipe(recipesFavorite.some((favorite) => favorite.id === id));
 	}, [recipesFavorite, id]);
 
 	return (
@@ -87,7 +135,7 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 						{user.firstName} {user.lastName}
 					</p>
 					<IconsCardContainer>
-						<ButtonIconCard onClick={() => handlerOpenModel(true)}>
+						<ButtonIconCard onClick={() => handlerOpenModal(true)} ref={buttonIconGoBookRef}>
 							<GoBookCustom />
 						</ButtonIconCard>
 						{currentUser && (
@@ -102,7 +150,7 @@ const CardRecipe = ({ recipe, setIsOpenModal }) => {
 
 			<Modal
 				isOpen={openModal}
-				onClose={() => handlerOpenModel(false)}
+				onClose={() => handlerOpenModal(false)}
 				heightBodyModal={"80%"}
 				widthBodyModal={"700px"}
 				pxMediaQuery={"800px"}

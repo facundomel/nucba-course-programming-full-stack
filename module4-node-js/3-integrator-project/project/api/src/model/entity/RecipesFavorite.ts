@@ -7,12 +7,16 @@ import {
 	JoinColumn,
   ManyToOne,
   PrimaryColumn,
+	PrimaryGeneratedColumn,
 } from "typeorm";
 import Recipe from "./Recipe";
 import User from "./User";
 
 @Entity({ name: "recipes_favorite" })
 export default class RecipeFavorite {
+	@PrimaryGeneratedColumn({ type: "integer" })
+	id!: number;
+
   @PrimaryColumn({ type: "integer", nullable: false })
 	userId!: number;
 

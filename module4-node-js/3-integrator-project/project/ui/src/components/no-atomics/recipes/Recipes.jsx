@@ -23,7 +23,6 @@ const Recipes = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { currentUser, userSection } = useSelector((state) => state.user);
-	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	useEffect(() => {
 		if (userSection === "RecipeAll") {
@@ -49,7 +48,10 @@ const Recipes = () => {
 				) : (
 					<RecipesContainer>
 						{recipesFiltered.map((recipe) => (
-							<CardRecipe key={uuid()} recipe={recipe} setIsOpenModal={setIsOpenModal} />
+							<CardRecipe
+								key={uuid()}
+								recipe={recipe}
+							/>
 						))}
 					</RecipesContainer>
 				)
@@ -60,7 +62,10 @@ const Recipes = () => {
 						{recipesFiltered.map(
 							(recipe) =>
 								recipe.recipeCategory.category === selectedCategory && (
-									<CardRecipe key={uuid()} recipe={recipe} setIsOpenModal={setIsOpenModal} />
+									<CardRecipe
+										key={uuid()}
+										recipe={recipe}
+									/>
 								)
 						)}
 					</RecipesContainer>
@@ -71,7 +76,7 @@ const Recipes = () => {
 				))
 			)}
 
-			{currentUser && !isOpenModal && (
+			{currentUser && (
 				<FloatingButton
 					onClick={() => {
 						navigate("/crear-receta");

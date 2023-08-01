@@ -21,7 +21,7 @@ export default class RecipeCategoryRepository {
 				.createQueryBuilder()
 				.select("recipes_category")
 				.from(RecipeCategory, "recipes_category")
-				.getMany()) as unknown as RecipeCategory[];
+				.getMany()) as RecipeCategory[];
 			return recipesCategory;
 		} catch (error: any) {
 			throw error;

@@ -9,6 +9,25 @@ export default class RecipeFavoriteRouter {
 		const router = routerExpress();
 
 		router.get(
+			"/recipes/favorite/:userId/details",
+			param("userId").isNumeric().withMessage("User ID is not numeric"),
+			HandlerValidationErrors.executeValidation,
+			HandlerAuth.authenticate,
+			HandlerAuth.authorizeAdminOrUserRole,
+			RecipeFavoriteController.getRecipesFavoriteWithDetailsByUserId
+		);
+
+		router.get(
+			"/recipes/favorite/:recipeId/:userId/details",
+			param("recipeId").isNumeric().withMessage("Recipe ID is not numeric"),
+			param("userId").isNumeric().withMessage("User ID is not numeric"),
+			HandlerValidationErrors.executeValidation,
+			HandlerAuth.authenticate,
+			HandlerAuth.authorizeAdminOrUserRole,
+			RecipeFavoriteController.getRecipeFavoriteWithDetailsByUserIdAndRecipeId
+		);
+
+		router.get(
 			"/recipes/favorite/:userId",
 			param("userId").isNumeric().withMessage("User ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
@@ -35,6 +54,16 @@ export default class RecipeFavoriteRouter {
 			HandlerAuth.authenticate,
 			HandlerAuth.authorizeAdminOrUserRole,
 			RecipeFavoriteController.createRecipeFavorite
+		);
+
+		router.delete(
+			"/recipes/favorite/:recipeId/:userId",
+			param("recipeId").isNumeric().withMessage("Recipe ID is not numeric"),
+			param("userId").isNumeric().withMessage("User ID is not numeric"),
+			HandlerValidationErrors.executeValidation,
+			HandlerAuth.authenticate,
+			HandlerAuth.authorizeAdminOrUserRole,
+			RecipeFavoriteController.deleteRecipeFavoriteByUserIdAndRecipeId
 		);
 
 		return router;

@@ -17,27 +17,27 @@ const RecipeAll = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-    dispatch(userActions.setUserSection("RecipeAll"));
-    handlerSetRecipesAll();
-  }, []);
+		dispatch(userActions.setUserSection("RecipeAll"));
+		handlerSetRecipesAll();
+	}, []);
 
-  const handlerSetRecipesAll = async () => {
-    try {
-      if (!recipesAll.length) {
-        const recipes = await RecipeService.getRecipes();
-        dispatch(recipesActions.setRecipesAll(recipes));
-      }
+	const handlerSetRecipesAll = async () => {
+		try {
+			if (!recipesAll.length) {
+				const recipes = await RecipeService.getRecipes();
+				dispatch(recipesActions.setRecipesAll(recipes));
+			}
 
-      if (currentUser && !recipesFavorite.length) {
-        const recipesFavorite = await RecipeService.getRecipesFavoriteByUserId(currentUser, navigate, dispatch);
-        dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
-      }
+			if (currentUser && !recipesFavorite.length) {
+				const recipesFavorite = await RecipeService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
+				dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
+			}
 
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
+			setLoading(false);
+		} catch (error) {
+			setLoading(false);
+		}
+	};
 
 	return (
 		<>

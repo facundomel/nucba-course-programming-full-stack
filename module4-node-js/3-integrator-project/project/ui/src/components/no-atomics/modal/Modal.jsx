@@ -9,21 +9,22 @@ const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxM
 		if (isOpen) {
 			document.body.style.overflow = "hidden";
 			modalBodyRef.current?.scrollTo(0, 0);
-			const close = (e) => {
-				if (e.keyCode === 27) {
-					onClose();
-					document.removeEventListener("keyup", close);
-				}
-			};
-			document.addEventListener("keyup", close);
+			document.addEventListener("keyup", closeModalWithKeyScape);
 		} else {
 			document.body.style.overflow = "";
 		}
 	}, [isOpen]);
 
+	const closeModalWithKeyScape = (e) => {
+		if (e.keyCode === 27) {
+			onClose();
+			document.removeEventListener("keyup", closeModalWithKeyScape);
+		}
+	};
+
 	return (
-		<ModalContainer isOpen={isOpen}>
-			<ModalBodyAndClose heightBodyModal={heightBodyModal} widthBodyModal={widthBodyModal} pxMediaQuery={pxMediaQuery}>
+		<ModalContainer isOpen={isOpen} >
+			<ModalBodyAndClose heightBodyModal={heightBodyModal} widthBodyModal={widthBodyModal} pxMediaQuery={pxMediaQuery} >
 				<ModalClose onClick={onClose}>
 					<AiOutlineClose />
 				</ModalClose>

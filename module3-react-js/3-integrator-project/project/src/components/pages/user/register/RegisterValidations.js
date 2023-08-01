@@ -32,7 +32,7 @@ export const isValidPassword = (password, setError, passwordRef) => {
 		return false;
 	}
 
-	const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+	const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
 
 	if (!regexPassword.test(password)) {
 		setError(
