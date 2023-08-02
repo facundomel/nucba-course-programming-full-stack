@@ -8,7 +8,6 @@ export default class RecipeFavoriteRepository {
 	static recipeRepository: Repository<Recipe>;
 	static readonly fieldRecipeFavoriteToGet = [
 		"recipes",
-		"recipes_favorite",
 		"recipe_category.id",
 		"recipe_category.category",
 		"recipe_category.title",
@@ -23,6 +22,7 @@ export default class RecipeFavoriteRepository {
 		Database.getConnection()
 			.then((dataSource) => {
 				this.recipeFavoriteRepository = dataSource.getRepository(RecipeFavorite);
+				this.recipeRepository = dataSource.getRepository(Recipe);
 			})
 			.catch((error: any) => {
 				throw error;
@@ -60,22 +60,43 @@ export default class RecipeFavoriteRepository {
 		}
 	};
 
+	// static getRecipesFavoriteWithDetailsByUserId = async (userId: number): Promise<Recipe[]> => {
+	// 	try {
+	// 		const recipeFavorite: Recipe[] = (await this.recipeFavoriteRepository
+	// 			.createQueryBuilder("recipes_favorite")
+	// 			.select(this.fieldRecipeFavoriteToGet)
+	// 			.from(Recipe, "recipes")
+	// 			.where("recipes.userId = :userId", { userId: userId })
+	// 			.leftJoin("recipes.user", "users")
+	// 			.where("recipes.userId = users.id")
+	// 			.leftJoin("recipes.recipeCategory", "recipe_category")
+	// 			.where("recipes.categoryId = recipe_category.id")
+	// 			.innerJoin("recipes", "recipe_favorite.recipe")
+	// 			.where("recipes.id = recipes_favorite.recipe_id")
+	// 			.andWhere("recipes.userId = recipes_favorite.user_id")
+	// 			.andWhere("recipes_favorite.userId = :userId", { userId: userId })
+	// 			.andWhere("recipes_favorite.deleted_date is null")
+	// 			.getMany()) as Recipe[];
+	// 		return recipeFavorite;
+	// 	} catch (error: any) {
+	// 		throw error;
+	// 	}
+	// };
+
 	static getRecipesFavoriteWithDetailsByUserId = async (userId: number): Promise<Recipe[]> => {
 		try {
-			const recipeFavorite: Recipe[] = (await this.recipeFavoriteRepository
-				.createQueryBuilder("recipes_favorite")
+			const recipeFavorite: Recipe[] = (await this.recipeRepository
+				.createQueryBuilder()
 				.select(this.fieldRecipeFavoriteToGet)
 				.from(Recipe, "recipes")
-				.where("recipes.userId = :userId", { userId: userId })
-				.leftJoin("recipes.user", "users")
-				.where("recipes.userId = users.id")
 				.leftJoin("recipes.recipeCategory", "recipe_category")
-				.where("recipes.categoryId = recipe_category.id")
-				.innerJoin("recipes", "recipe_favorite.recipe")
-				.where("recipes.id = recipes_favorite.recipe_id")
-				.andWhere("recipes.userId = recipes_favorite.user_id")
-				.andWhere("recipes_favorite.userId = :userId", { userId: userId })
-				.andWhere("recipes_favorite.deleted_date is null")
+				.innerJoin(
+					RecipeFavorite,
+					"recipeFavorite",
+					"recipes.id = recipeFavorite.recipeId " + "AND recipeFavorite.deletedDate is null " + "AND recipeFavorite.userId = :userId",
+					{ userId: userId }
+				)
+				.leftJoin("recipes.user", "users")
 				.getMany()) as Recipe[];
 			return recipeFavorite;
 		} catch (error: any) {
@@ -83,23 +104,48 @@ export default class RecipeFavoriteRepository {
 		}
 	};
 
+	// static getRecipeFavoriteWithDetailsByUserIdAndRecipeId = async (userId: number, recipeId: number): Promise<Recipe> => {
+	// 	try {
+	// 		const recipeFavorite: Recipe = (await this.recipeFavoriteRepository
+	// 			.createQueryBuilder("recipes_favorite")
+	// 			.select(this.fieldRecipeFavoriteToGet)
+	// 			.from(Recipe, "recipes")
+	// 			.where("recipes.userId = :userId", { userId: userId })
+	// 			.andWhere("recipes.id = :recipeId", { recipeId: recipeId })
+	// 			.leftJoin("recipes.user", "users")
+	// 			.where("recipes.userId = users.id")
+	// 			.leftJoin("recipes.recipeCategory", "recipe_category")
+	// 			.where("recipes.categoryId = recipe_category.id")
+	// 			.innerJoin("recipes", "recipe_favorite.recipe")
+	// 			.where("recipes.id = recipes_favorite.recipeId")
+	// 			.andWhere("recipes.userId = recipes_favorite.user_id")
+	// 			.andWhere("recipes_favorite.userId = :userId", { userId: userId })
+	// 			.andWhere("recipes_favorite.recipeId = :recipeId", { recipeId: recipeId })
+	// 			.andWhere("recipes_favorite.deleted_date is null")
+	// 			.getOne()) as Recipe;
+	// 		return recipeFavorite;
+	// 	} catch (error: any) {
+	// 		throw error;
+	// 	}
+	// };
+
 	static getRecipeFavoriteWithDetailsByUserIdAndRecipeId = async (userId: number, recipeId: number): Promise<Recipe> => {
 		try {
-			const recipeFavorite: Recipe = (await this.recipeFavoriteRepository
-				.createQueryBuilder("recipes_favorite")
+			const recipeFavorite: Recipe = (await this.recipeRepository
+				.createQueryBuilder()
 				.select(this.fieldRecipeFavoriteToGet)
 				.from(Recipe, "recipes")
-				.where("recipes.userId = :userId", { userId: userId })
-				.leftJoin("recipes.user", "users")
-				.where("recipes.userId = users.id")
 				.leftJoin("recipes.recipeCategory", "recipe_category")
-				.where("recipes.categoryId = recipe_category.id")
-				.innerJoin("recipes", "recipe_favorite.recipe")
-				.where("recipes.id = recipes_favorite.recipeId")
-				.andWhere("recipes.userId = recipes_favorite.user_id")
-				.andWhere("recipes_favorite.userId = :userId", { userId: userId })
-				.andWhere("recipes_favorite.recipeId = :recipeId", { recipeId: recipeId })
-				.andWhere("recipes_favorite.deleted_date is null")
+				.innerJoin(
+					RecipeFavorite,
+					"recipeFavorite",
+					"recipes.id = recipeFavorite.recipeId " +
+						"AND recipeFavorite.deletedDate is null " +
+						"AND recipeFavorite.userId = :userId " +
+						"AND recipeFavorite.recipeId = :recipeId",
+					{ userId: userId, recipeId: recipeId }
+				)
+				.leftJoin("recipes.user", "users")
 				.getOne()) as Recipe;
 			return recipeFavorite;
 		} catch (error: any) {

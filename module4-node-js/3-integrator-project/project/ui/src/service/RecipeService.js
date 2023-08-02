@@ -84,6 +84,8 @@ export default class RecipeService {
 
 	static getRecipesFavoriteWithDetailsByUserIdAndRecipeId = async (currentUser, recipeId, navigate, dispatch) => {
 		try {
+			console.log(currentUser);
+			console.log(recipeId);
 			const headers = {
 				...this.utils.getHeadersDefault(),
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,

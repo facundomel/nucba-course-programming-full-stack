@@ -50,7 +50,7 @@ const CardRecipe = ({ recipe }) => {
 				if (recipeFavoriteCreated != null) {
 					recipeFavoriteCreated = await RecipeService.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(
 						currentUser,
-						recipe.id,
+						recipeFavoriteCreated.recipeId,
 						navigate,
 						dispatch
 					);
