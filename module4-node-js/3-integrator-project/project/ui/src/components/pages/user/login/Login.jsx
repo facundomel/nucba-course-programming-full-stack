@@ -68,7 +68,7 @@ const Login = () => {
 			const response = await AuthService.loginUser(valueInputs);
 			const currentUser = new UserSession(response);
 			dispatch(userActions.setCurrentUser(currentUser));
-			navigate("/");
+			navigate("/recetas/1");
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
 					open: true,

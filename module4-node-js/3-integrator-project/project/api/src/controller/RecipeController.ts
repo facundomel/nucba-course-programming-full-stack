@@ -8,7 +8,10 @@ import RecipeService from "../service/RecipeService";
 export default class RecipeController {
 	static getRecipes = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const recipes: Recipe[] = (await RecipeService.getRecipes()) as Recipe[];
+			const offset = Number(req.query.offset) || 0;
+			const limit = Number(req.query.limit) || 6;
+
+			const recipes: any = await RecipeService.getRecipes(offset, limit);
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipes));
 		} catch (error: any) {
 			ResponseUtils.getException(res, error);

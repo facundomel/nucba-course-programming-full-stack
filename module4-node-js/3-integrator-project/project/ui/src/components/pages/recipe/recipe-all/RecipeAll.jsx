@@ -7,7 +7,8 @@ import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
 import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -15,18 +16,28 @@ const RecipeAll = () => {
 	const [loading, setLoading] = useState(true);
 	const { currentUser } = useSelector((state) => state.user);
 	const navigate = useNavigate();
+	const { page } = useParams();
+	const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+	const [totalPages, setTotalPages] = useState(1);
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection("RecipeAll"));
-		handlerSetRecipesAll();
 	}, []);
+
+	useEffect(() => {
+		handlerSetRecipesAll();
+	}, [currentPage]);
 
 	const handlerSetRecipesAll = async () => {
 		try {
-			if (!recipesAll.length) {
-				const recipes = await RecipeService.getRecipes();
-				dispatch(recipesActions.setRecipesAll(recipes));
-			}
+			const limit = 6;
+			const offset = (currentPage - 1) * limit;
+
+			// if (!recipesAll.length) {
+			const { recipes, paging } = await RecipeService.getRecipes(offset, limit);
+			dispatch(recipesActions.setRecipesAll(recipes));
+			setTotalPages(Math.ceil(paging.total / limit));
+			// }
 
 			if (currentUser) {
 				const recipesFavorite = await RecipeService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
@@ -52,6 +63,7 @@ const RecipeAll = () => {
 					</>
 				)}
 			</RecipeAllContainer>
+			{recipesAll.length > 0 && <PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />}
 		</>
 	);
 };

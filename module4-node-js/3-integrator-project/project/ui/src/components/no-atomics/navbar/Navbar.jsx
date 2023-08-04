@@ -51,7 +51,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const handlerUserAcceptCloseSession = () => {
 		dispatch(userActions.removeCurrentUser());
 		setOpenModal(false);
-		navigate("/");
+		navigate("/recetas/1");
 		dispatch(
 			snackbarActions.setOptionsSnackbar({
 				open: true,
@@ -73,7 +73,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 					<LeftContainer>
 						<NavbarLinkContainer extendNavbar={extendNavbar}>
 							<NavbarLinkLogo
-								to={"/"}
+								to={"/recetas/1"}
 								onClick={() => {
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
 									userSection === "RecipeAll" && window.scrollTo(0, 0);
@@ -96,7 +96,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 					<RightContainer>
 						<NavbarLinkContainer extendNavbar={extendNavbar}>
 							<NavbarLinkRight
-								to={"/"}
+								to={"/recetas/1"}
 								hidden={true}
 								className={({ isActive }) => (isActive ? "active" : "")}
 								onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
@@ -152,7 +152,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 
 				{extendNavbar && (
 					<NavbarExtendedContainer>
-						<NavbarLinkExtended to="/" onClick={() => setExtendNavbar(false)}>
+						<NavbarLinkExtended to="/recetas/1" onClick={() => setExtendNavbar(false)}>
 							<p>Inicio</p>
 						</NavbarLinkExtended>
 						{currentUser && (

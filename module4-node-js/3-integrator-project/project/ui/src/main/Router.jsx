@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Login from "../components/pages/user/login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import Register from "../components/pages/user/register/Register";
@@ -17,14 +17,16 @@ const Router = () => {
 	return (
 		<Routes>
 			<Route path="*" element={<PageNotFound />} />
-			<Route path="/" element={<RecipeAll />} />
-			<Route path="registro" element={<Register />} />
-			<Route path="login" element={<Login />} />
-			<Route path="recuperar-password" element={<ForgotPassword />} />
+			<Route path="/" element={<Navigate to="/recetas/1" />} />
+			{/* <Route path="/recetas" element={<RecipeAll />} /> */}
+			<Route path="/recetas/:page" element={<RecipeAll />} />
+			<Route path="/registro" element={<Register />} />
+			<Route path="/login" element={<Login />} />
+			<Route path="/recuperar-password" element={<ForgotPassword />} />
 			{currentUser && (
 				<>
-					<Route path="recetas-favoritas" element={<RecipeFavorite />} />
-					<Route path="crear-receta" element={<CreateRecipe />} />
+					<Route path="/recetas-favoritas" element={<RecipeFavorite />} />
+					<Route path="/crear-receta" element={<CreateRecipe />} />
 				</>
 			)}
 		</Routes>

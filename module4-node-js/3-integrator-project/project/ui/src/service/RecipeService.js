@@ -11,9 +11,9 @@ export default class RecipeService {
 	static baseUrl = new Configs().baseUrlLocal;
 	// static dispatch = useDispatch();
 
-	static getRecipes = async () => {
+	static getRecipes = async (offset, limit) => {
 		try {
-			const response = await axios.get(`${this.baseUrl}/api/recipes`, {
+			const response = await axios.get(`${this.baseUrl}/api/recipes?offset=${offset}&limit=${limit}`, {
 				headers: this.utils.getHeadersDefault(),
 			});
 			return this.utils.convertFromSnakeToCamel(response.data);

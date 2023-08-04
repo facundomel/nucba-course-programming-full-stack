@@ -14,6 +14,7 @@ import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
 import RecipeService from "../../../service/RecipeService";
 import RecipeAll from "../../pages/recipe/recipe-all/RecipeAll";
 import { v4 as uuid } from "uuid";
+import PaginationCustom from "../pagination/PaginationCustom";
 
 const Recipes = () => {
 	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
@@ -48,10 +49,7 @@ const Recipes = () => {
 				) : (
 					<RecipesContainer>
 						{recipesFiltered.map((recipe) => (
-							<CardRecipe
-								key={uuid()}
-								recipe={recipe}
-							/>
+							<CardRecipe key={uuid()} recipe={recipe} />
 						))}
 					</RecipesContainer>
 				)
@@ -60,13 +58,7 @@ const Recipes = () => {
 				(shouldShowRecipesByCategory ? (
 					<RecipesContainer>
 						{recipesFiltered.map(
-							(recipe) =>
-								recipe.recipeCategory.category === selectedCategory && (
-									<CardRecipe
-										key={uuid()}
-										recipe={recipe}
-									/>
-								)
+							(recipe) => recipe.recipeCategory.category === selectedCategory && <CardRecipe key={uuid()} recipe={recipe} />
 						)}
 					</RecipesContainer>
 				) : !shouldShowRecipesByCategory && recipesFiltered.length > 0 ? (

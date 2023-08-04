@@ -70,7 +70,7 @@ const Register = () => {
 			response = await AuthService.loginUser(new UserLogin(valueInputs.email, valueInputs.password));
 
 			dispatch(userActions.setCurrentUser(new UserSession(response)));
-			navigate("/");
+			navigate("/recetas/1");
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
 					open: true,

@@ -15,10 +15,10 @@ export default class RecipeRepository {
 			});
 	}
 
-	static getRecipes = async (): Promise<Recipe[]> => {
+	static getRecipes = async (offset: number, limit: number): Promise<any> => {
 		try {
-			const recipes: Recipe[] = (await this.recipeRepository
-				.createQueryBuilder()
+			const [recipes, totalRecipes] = await this.recipeRepository
+				.createQueryBuilder("recipes")
 				.select([
 					"recipes",
 					"recipe_category.id",
@@ -30,13 +30,15 @@ export default class RecipeRepository {
 					"users.lastName",
 					"users.email",
 				])
-				.from(Recipe, "recipes")
+				.offset(offset)
+				.limit(limit)
 				.leftJoin("recipes.recipeCategory", "recipe_category")
 				.where("recipes.categoryId = recipe_category.id")
 				.leftJoin("recipes.user", "users")
 				.where("recipes.userId = users.id")
-				.getMany()) as unknown as Recipe[];
-			return recipes;
+				.getManyAndCount();
+
+			return { recipes, totalRecipes };
 		} catch (error: any) {
 			throw error;
 		}

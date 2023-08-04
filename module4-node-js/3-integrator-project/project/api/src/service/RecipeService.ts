@@ -6,10 +6,10 @@ import RecipeRepository from "../repository/RecipeRepository";
 import RecipeFavorite from "../model/entity/RecipesFavorite";
 
 export default class RecipeService {
-	static getRecipes = async (): Promise<Recipe[]> => {
+	static getRecipes = async (offset: number, limit: number): Promise<any> => {
 		try {
-			const recipes: Recipe[] = (await RecipeRepository.getRecipes()) as Recipe[];
-			return recipes;
+			const results: any = await RecipeRepository.getRecipes(offset, limit);
+			return { recipes: results.recipes, paging: { offset: offset, limit: limit, total: results.totalRecipes } };
 		} catch (error: any) {
 			throw error;
 		}

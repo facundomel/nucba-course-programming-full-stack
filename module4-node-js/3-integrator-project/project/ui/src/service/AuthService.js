@@ -41,7 +41,7 @@ export default class AuthService {
 				errResponseData.message === "Not authorized: Refresh token expired"
 			) {
 				dispatch(userActions.removeCurrentUser());
-				navigate("/");
+				navigate("/recetas/1");
 				dispatch(
 					snackbarActions.setOptionsSnackbar({
 						open: true,

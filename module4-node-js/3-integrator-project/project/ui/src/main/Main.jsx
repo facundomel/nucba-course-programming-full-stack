@@ -8,6 +8,7 @@ import Router from "./Router";
 import { useDispatch, useSelector } from "react-redux";
 import RecipeService from "../service/RecipeService";
 import * as recipesActions from "../redux/recipes/RecipesActions.js";
+import PaginationCustom from "../components/no-atomics/pagination/PaginationCustom";
 
 const Main = () => {
 	const [extendNavbar, setExtendNavbar] = useState(false);

@@ -98,7 +98,7 @@ const CreateRecipe = () => {
 			let recipeCreated = await RecipeService.createRecipe(valueInputs, currentUser.authToken, navigate, dispatch);
 			recipeCreated = await RecipeService.getRecipeById(recipeCreated.id, currentUser.authToken, navigate, dispatch);
 			dispatch(recipesActions.setRecipesAll([...recipesAll, recipeCreated]));
-			navigate("/");
+			navigate("/recetas/1");
 			dispatch(
 				snackbarActions.setOptionsSnackbar({
 					open: true,
