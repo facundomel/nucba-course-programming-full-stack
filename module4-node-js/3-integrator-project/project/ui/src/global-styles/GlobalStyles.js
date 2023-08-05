@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
       --orange: #ff9d01;
       --orange-light: #bfbfbf;
       --orange2: #ffc575;
+      --orange3: #ffa100;
       --magenta: #FF005C;
       --gray-bg: #2b2b2c;
       --green-light: rgb(113, 255, 113);

@@ -9,8 +9,8 @@ export const FloatinButtonStyled = styled(motion(Fab))`
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
-	background-color: var(--blue-light);
-	color: var(--blue-dark);
+	background-color: var(--white);
+	color: var(--black);
 	font-size: 24px;
 	display: flex;
 	align-items: center;
