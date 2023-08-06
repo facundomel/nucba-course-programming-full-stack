@@ -17,7 +17,7 @@ const RecipeAll = () => {
 	const { currentUser } = useSelector((state) => state.user);
 	const navigate = useNavigate();
 	const { page } = useParams();
-	const [currentPage, setCurrentPage] = useState(Number(page));
+	const [currentPage, setCurrentPage] = useState(Number(page) || 1);
 	const [totalPages, setTotalPages] = useState(1);
 	const limitRecipes = 6;
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
