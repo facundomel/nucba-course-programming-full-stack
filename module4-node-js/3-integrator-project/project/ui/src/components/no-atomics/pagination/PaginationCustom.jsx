@@ -19,7 +19,7 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 	const [currentPageParam, setCurrentPageParam] = useState(page);
 	const [isMounted, setIsMounted] = useState(false);
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-	const isMobile = windowWidth <= 400;
+	const isWindowWidthLessThan400 = windowWidth <= 400;
 	const pageText = `${currentPageParam} de ${totalPages}`;
 	const pagesNumberToShow = 4;
 
@@ -36,8 +36,7 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 	}, []);
 
 	useEffect(() => {
-		setCurrentPageParam(Number(page));
-		onPageChange(Number(page));
+		setCurrentPageParam(page);
 	}, [page]);
 
 	useEffect(() => {
@@ -85,16 +84,16 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 			return <></>;
 		}
 
-		if (item.type === "previous" && isMobile) {
+		if (item.type === "previous" && isWindowWidthLessThan400) {
 			return (
 				<>
 					<PaginationItem {...item} onClick={(event) => handlePageChange(event, item.page)} icon={<ChevronLeftIcon />} />
-					{isMobile && <PaginationText>{pageText}</PaginationText>}
+					{isWindowWidthLessThan400 && <PaginationText>{pageText}</PaginationText>}
 				</>
 			);
 		}
 
-		if (item.type === "next" && isMobile) {
+		if (item.type === "next" && isWindowWidthLessThan400) {
 			return (
 				<>
 					<PaginationItem {...item} onClick={(event) => handlePageChange(event, item.page)} icon={<ChevronRightIcon />} />
@@ -102,7 +101,7 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 			);
 		}
 
-		if (isMobile) {
+		if (isWindowWidthLessThan400) {
 			return null; // Para ocultar los números de página en móviles
 		}
 
