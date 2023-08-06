@@ -17,8 +17,10 @@ const RecipeAll = () => {
 	const { currentUser } = useSelector((state) => state.user);
 	const navigate = useNavigate();
 	const { page } = useParams();
-	const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+	const [currentPage, setCurrentPage] = useState(Number(page));
 	const [totalPages, setTotalPages] = useState(1);
+	const limitRecipes = 6;
+	const offsetRecipes = (currentPage - 1) * limitRecipes;
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection("RecipeAll"));
@@ -30,13 +32,10 @@ const RecipeAll = () => {
 
 	const handlerSetRecipesAll = async () => {
 		try {
-			const limit = 6;
-			const offset = (currentPage - 1) * limit;
-
 			// if (!recipesAll.length) {
-			const { recipes, paging } = await RecipeService.getRecipes(offset, limit);
+			const { recipes, paging } = await RecipeService.getRecipes(offsetRecipes, limitRecipes);
 			dispatch(recipesActions.setRecipesAll(recipes));
-			setTotalPages(Math.ceil(paging.total / limit));
+			setTotalPages(Math.ceil(paging.total / limitRecipes));
 			// }
 
 			if (currentUser) {

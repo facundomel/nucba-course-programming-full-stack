@@ -17,7 +17,7 @@ const Footer = () => {
 			<FooterContainerStyled>
 				<FooterTitleStyled>
 					<NavLink
-						to={"/"}
+						to={"/recetas/1"}
 						onClick={() => {
 							isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
 							userSection === "RecipeAll" && window.scrollTo(0, 0);
