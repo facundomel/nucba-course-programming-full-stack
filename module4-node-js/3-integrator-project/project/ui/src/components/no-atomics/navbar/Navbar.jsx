@@ -66,6 +66,9 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 		setOpenModal(false);
 	};
 
+	// Función para verificar si la ubicación actual coincide con "/recetas"
+  const isRecipesPage = () => location.pathname.startsWith("/recetas");
+
 	return (
 		<>
 			<NavbarContainer extendNavbar={extendNavbar}>
@@ -98,7 +101,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 							<NavbarLinkRight
 								to={"/recetas/1"}
 								hidden={true}
-								className={({ isActive }) => (isActive ? "active" : "")}
+								className={isRecipesPage() ? "active" : ""}
 								onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 							>
 								<FaHome />

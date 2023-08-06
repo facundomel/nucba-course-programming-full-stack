@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
 	ArrowIcon,
 	CustomArrow,
@@ -34,6 +34,11 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
+
+	useEffect(() => {
+		setCurrentPageParam(Number(page));
+		onPageChange(Number(page));
+	}, [page]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -81,29 +86,21 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 		}
 
 		if (item.type === "previous" && isMobile) {
-      return (
-        <>
-          <PaginationItem
-            {...item}
-            onClick={(event) => handlePageChange(event, item.page)}
-            icon={<ChevronLeftIcon />}
-          />
-          {isMobile && <PaginationText>{pageText}</PaginationText>}
-        </>
-      );
-    }
+			return (
+				<>
+					<PaginationItem {...item} onClick={(event) => handlePageChange(event, item.page)} icon={<ChevronLeftIcon />} />
+					{isMobile && <PaginationText>{pageText}</PaginationText>}
+				</>
+			);
+		}
 
-    if (item.type === "next" && isMobile) {
-      return (
-        <>
-          <PaginationItem
-            {...item}
-            onClick={(event) => handlePageChange(event, item.page)}
-            icon={<ChevronRightIcon />}
-          />
-        </>
-      );
-    }
+		if (item.type === "next" && isMobile) {
+			return (
+				<>
+					<PaginationItem {...item} onClick={(event) => handlePageChange(event, item.page)} icon={<ChevronRightIcon />} />
+				</>
+			);
+		}
 
 		if (isMobile) {
 			return null; // Para ocultar los números de página en móviles

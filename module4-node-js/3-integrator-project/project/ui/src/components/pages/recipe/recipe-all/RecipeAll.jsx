@@ -62,7 +62,7 @@ const RecipeAll = () => {
 						<Recipes />
 					</>
 				)}
-				{<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />}
+				<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
 			</RecipeAllContainer>
 		</>
 	);
