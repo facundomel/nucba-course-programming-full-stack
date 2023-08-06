@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { PaginationCustomStyled } from "./PaginationCustomStyles";
-import { ThemeProvider } from "styled-components";
-import { PaginationItem } from "@mui/material";
+import {
+	ArrowIcon,
+	CustomArrow,
+	CustomPaginationItem,
+	PaginationContainer,
+	PaginationCustomStyled,
+	PaginationText,
+	PaginationTextContainer,
+} from "./PaginationCustomStyles";
+import { IconButton, Pagination, PaginationItem, ThemeProvider } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 	const navigate = useNavigate();
@@ -10,6 +19,9 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 	const [currentPageParam, setCurrentPageParam] = useState(page);
 	const [isMounted, setIsMounted] = useState(false);
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const isMobile = windowWidth <= 400;
+	const pageText = `${currentPageParam} de ${totalPages}`;
+	const pagesNumberToShow = 4;
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -30,6 +42,8 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 				setCurrentPageParam(Number(currentPageParam));
 				onPageChange(Number(currentPageParam));
 			} else {
+				setCurrentPageParam(1);
+				onPageChange(1);
 				navigate(`/recetas/1`);
 			}
 		} else {
@@ -46,48 +60,76 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 		}
 	};
 
-	return (
-		// <PaginationMaterial
-		//   color="primary"
-		//   shape="rounded"
-		//   variant="outlined"
-		//   size="large"
-		//   count={totalPages}
-		//   page={currentPage}
-		//   onChange={handlePageChange}
-		//   renderItem={(item) => (
-		//     <PaginationItem
-		//       {...item}
-		//       sx={{
-		//         backgroundColor: "blue", // Cambia aquí el color de fondo deseado
-		//         "&.Mui-selected": {
-		//           backgroundColor: "red", // Cambia aquí el color de fondo cuando el botón esté seleccionado
-		//         },
-		//       }}
-		//     />
-		//   )}
-		// />
-			<PaginationCustomStyled
-				color="primary"
-				shape="rounded"
-				variant="outlined"
-				size="large"
-				count={totalPages}
-				page={currentPage}
-				onChange={handlePageChange}
-				renderItem={(item) => {
-					// Ocultar los botones numéricos si el ancho de la pantalla es menor o igual a 400px
-					if (windowWidth <= 400 && item.type === "page") {
-						return <></>;
-					}
-					return (
-						<PaginationItem
-							{...item}
-							onClick={item.type === "previous" || item.type === "next" ? item.onClick : (event) => handlePageChange(event, item.page)}
-						/>
-					);
-				}}
+	const getPageNumbers = () => {
+		const halfNumbersToShow = Math.floor(pagesNumberToShow / 2);
+		const initialPosition = Math.min(Math.max(currentPageParam - halfNumbersToShow, 1), totalPages - pagesNumberToShow + 1);
+
+		return Array.from({ length: pagesNumberToShow }, (_, index) => initialPosition + index);
+	};
+
+	const renderPaginationItem = (item) => {
+		const pageNumbers = getPageNumbers();
+
+		// Mostrar solo los 4 botones de página que deben estar visibles
+		if (item.type === "page" && !pageNumbers.includes(item.page)) {
+			return <></>;
+		}
+
+		// Oculto los puntos supensivos cuando las paginas son muchas
+		if (item.type === "start-ellipsis" || item.type === "end-ellipsis") {
+			return <></>;
+		}
+
+		if (item.type === "previous" && isMobile) {
+      return (
+        <>
+          <PaginationItem
+            {...item}
+            onClick={(event) => handlePageChange(event, item.page)}
+            icon={<ChevronLeftIcon />}
+          />
+          {isMobile && <PaginationText>{pageText}</PaginationText>}
+        </>
+      );
+    }
+
+    if (item.type === "next" && isMobile) {
+      return (
+        <>
+          <PaginationItem
+            {...item}
+            onClick={(event) => handlePageChange(event, item.page)}
+            icon={<ChevronRightIcon />}
+          />
+        </>
+      );
+    }
+
+		if (isMobile) {
+			return null; // Para ocultar los números de página en móviles
+		}
+
+		return (
+			<PaginationItem
+				{...item}
+				onClick={item.type === "previous" || item.type === "next" ? item.onClick : (event) => handlePageChange(event, item.page)}
 			/>
+		);
+	};
+
+	return (
+		<PaginationCustomStyled
+			color="primary"
+			shape="rounded"
+			variant="outlined"
+			size="large"
+			count={totalPages}
+			page={currentPage}
+			boundaryCount={0}
+			siblingCount={Math.floor(pagesNumberToShow)}
+			onChange={handlePageChange}
+			renderItem={renderPaginationItem}
+		/>
 	);
 };
 
