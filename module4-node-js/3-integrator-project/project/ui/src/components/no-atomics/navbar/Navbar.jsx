@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
 	LeftContainer,
 	LoginMenuCloseSessionUserOverlay,
-	LoginMenuSessionUser,
-	LoginMenuSessionUserContainer,
+	MenuSessionUser,
+	IconUserContainer,
 	ModalBodyCloseSessionButtons,
 	ModalBodyCloseSessionContainer,
 	NavbarContainer,
@@ -15,6 +15,10 @@ import {
 	NavbarLinkRight,
 	OpenLinksButton,
 	RightContainer,
+	MenuSessionUserContainer,
+	MenuSessionUserCloseSession,
+	MenuSessionUserName,
+	MenuSessionUserDivisor,
 } from "./NavbarStyles";
 import { FaHome, FaUserAlt } from "react-icons/fa";
 import { ImBook, ImExit } from "react-icons/im";
@@ -131,24 +135,46 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								)
 							) : (
 								<>
-									<LoginMenuSessionUserContainer
+									<IconUserContainer
 										onClick={() => {
 											dispatch(userActions.openOrCloseMenuSessionUser());
 											extendNavbar && setExtendNavbar((curr) => !curr);
 										}}
 									>
-										<FaUserAlt>{isOpenMenuSessionUser ? <>&#10005;</> : <> &#8801;</>}</FaUserAlt>
-									</LoginMenuSessionUserContainer>
-									<LoginMenuSessionUser
+										<FaUserAlt />
+									</IconUserContainer>
+									{/* <LoginMenuSessionUser
 										isOpenMenuSessionUser={isOpenMenuSessionUser}
 										onClick={() => {
 											setOpenModal(true);
 											isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
 										}}
 									>
+										<span>
+											{currentUser.user.firstName} {currentUser.user.lastName}
+										</span>
+										<span></span>
 										<span>Cerrar Sesión</span>
 										<ImExit />
-									</LoginMenuSessionUser>
+									</LoginMenuSessionUser> */}
+									<MenuSessionUserContainer isOpenMenuSessionUser={isOpenMenuSessionUser}>
+										<MenuSessionUserName>
+											<span>
+												{currentUser.user.firstName} {currentUser.user.lastName}
+											</span>
+											<MenuSessionUserDivisor />
+										</MenuSessionUserName>
+
+										<MenuSessionUserCloseSession
+											onClick={() => {
+												setOpenModal(true);
+												isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
+											}}
+										>
+											<span>Cerrar Sesión</span>
+											<ImExit />
+										</MenuSessionUserCloseSession>
+									</MenuSessionUserContainer>
 
 									{isOpenMenuSessionUser && <LoginMenuCloseSessionUserOverlay />}
 								</>

@@ -19,5 +19,4 @@ export const FloatinButtonStyled = styled(motion(Fab))`
 	cursor: pointer;
 	padding: 0;
 	margin: 0;
-	z-index: -1;
 `;

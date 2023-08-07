@@ -159,7 +159,7 @@ export const NavbarExtendedContainer = styled.div`
 	}
 `;
 
-export const LoginMenuSessionUserContainer = styled(NavLink)`
+export const IconUserContainer = styled(NavLink)`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -184,10 +184,12 @@ export const LoginMenuCloseSessionUserOverlay = styled.div`
 	height: 100vh;
 `;
 
-export const LoginMenuSessionUser = styled.nav`
+export const MenuSessionUserContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+	width: 250px;
 	gap: 10px;
 	position: absolute;
 	top: 80px;
@@ -196,7 +198,7 @@ export const LoginMenuSessionUser = styled.nav`
 	font-size: 20px;
 	font-weight: bold;
 	border: 2px solid var(--black);
-	background: var(--black);
+	background-color: var(--gray-bg);
 	color: var(--white);
 	z-index: 2;
 	border-bottom-left-radius: 15px;
@@ -205,6 +207,59 @@ export const LoginMenuSessionUser = styled.nav`
 	transition: ${(props) =>
 		!props.isOpenMenuSessionUser ? "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)" : "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)"};
 	overflow: auto;
+
+	@media (max-width: 400px) {
+		width: 100%;
+		border: none;
+		padding: 50px 0;
+		border-radius: 0;
+	}
+`;
+
+export const MenuSessionUserName = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+`;
+
+export const MenuSessionUserDivisor = styled.span`
+	width: 100%;
+	margin: 2%;
+	border: 1px solid var(--gray);
+`;
+
+export const MenuSessionUserCloseSession = styled.div`
+	/* display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 250px;
+	gap: 10px;
+	position: absolute;
+	top: 80px;
+	right: 0;
+	padding: 40px;
+	font-size: 20px;
+	font-weight: bold;
+	border: 2px solid var(--black);
+	background-color: var(--gray-bg);
+	color: var(--white);
+	z-index: 2;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	transform: ${(props) => (!props.isOpenMenuSessionUser ? "translate(200%)" : "translate(0%)")};
+	transition: ${(props) =>
+		!props.isOpenMenuSessionUser ? "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)" : "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)"};
+	overflow: auto;
+	cursor: pointer; */
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 300px;
+	height: 60px;
 	cursor: pointer;
 
 	svg {

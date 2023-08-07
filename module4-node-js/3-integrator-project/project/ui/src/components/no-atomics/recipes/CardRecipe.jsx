@@ -1,20 +1,5 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	AiFillStarCustom,
-	AiOutlineStarCustom,
-	ButtonIconCard,
-	CardInformation,
-	CardRecipeContainer,
-	CardUserAndFavorite,
-	GoBookCustom,
-	IconsCardContainer,
-	ImageDiv,
-	ModalBodyCardRecipeContainer,
-	ModalBodyCardRecipeInformation,
-	ModalBodyCardRecipePublisher,
-	TitleCard,
-} from "./RecipesStyles";
 import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
@@ -22,6 +7,7 @@ import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import RecipeService from "../../../service/RecipeService";
 import { useNavigate } from "react-router-dom";
+import { AiFillStarCustom, AiOutlineStarCustom, ButtonIconCard, CardInformation, CardRecipeContainer, CardUserAndFavorite, GoBookCustom, IconsCardContainer, ImageDiv, ModalBodyCardRecipeContainer, ModalBodyCardRecipeInformation, ModalBodyCardRecipePublisher } from "./CardRecipeStyles.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
