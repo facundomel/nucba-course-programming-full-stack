@@ -61,7 +61,9 @@ const RecipeFavorite = () => {
 					<p>Cargando todas las recetas...</p>
 				) : (
 					<>
-						<h1>Mis recetas favoritas <FcRating /></h1>
+						<h1>
+							Mis recetas favoritas <FcRating />
+						</h1>
 						<Hero />
 						<Categories />
 						<Recipes />

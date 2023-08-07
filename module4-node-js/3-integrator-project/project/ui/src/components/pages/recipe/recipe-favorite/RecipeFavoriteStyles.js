@@ -8,6 +8,7 @@ export const RecipeFavoriteContainer = styled.div`
 	width: 90%;
 
 	h1 {
+		text-align: center;
 		margin-bottom: 2rem;
 		text-align: center;
 		color: var(--white);

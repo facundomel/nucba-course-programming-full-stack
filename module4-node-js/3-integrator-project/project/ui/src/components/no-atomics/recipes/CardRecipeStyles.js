@@ -6,7 +6,7 @@ export const CardRecipeContainer = styled.div`
 	display: ${(props) => (props.hiddenCard ? "none" : "")};
 	background: var(--gray-bg);
 	width: 300px;
-	border-radius: 15px;
+	border-radius: 10px;
 	border: ${(props) =>
 		props.userSection === "RecipeAll"
 			? "1px solid var(--black)"
@@ -181,7 +181,7 @@ export const ImageDiv = styled.div`
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-top-left-radius: 15px;
-		border-top-right-radius: 15px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
 `;
