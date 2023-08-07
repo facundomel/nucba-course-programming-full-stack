@@ -67,7 +67,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	};
 
 	// Función para verificar si la ubicación actual coincide con "/recetas"
-  const isRecipesPage = () => location.pathname.startsWith("/recetas");
+  const isRecipesPage = () => location.pathname.startsWith("/recetas/");
 
 	return (
 		<>
