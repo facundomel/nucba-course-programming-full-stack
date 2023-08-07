@@ -83,12 +83,11 @@ export default class RecipeFavoriteRepository {
 	// 	}
 	// };
 
-	static getRecipesFavoriteWithDetailsByUserId = async (userId: number): Promise<Recipe[]> => {
+	static getRecipesFavoriteWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
 		try {
-			const recipeFavorite: Recipe[] = (await this.recipeRepository
-				.createQueryBuilder()
+			let query = this.recipeRepository
+				.createQueryBuilder("recipes")
 				.select(this.fieldRecipeFavoriteToGet)
-				.from(Recipe, "recipes")
 				.leftJoin("recipes.recipeCategory", "recipe_category")
 				.innerJoin(
 					RecipeFavorite,
@@ -96,9 +95,19 @@ export default class RecipeFavoriteRepository {
 					"recipes.id = recipeFavorite.recipeId " + "AND recipeFavorite.deletedDate is null " + "AND recipeFavorite.userId = :userId",
 					{ userId: userId }
 				)
-				.leftJoin("recipes.user", "users")
-				.getMany()) as Recipe[];
-			return recipeFavorite;
+				.leftJoin("recipes.user", "users");
+
+			if (offset !== null) {
+				query = query.offset(offset);
+			}
+
+			if (limit !== null) {
+				query = query.limit(limit);
+			}
+
+			const [recipes, totalRecipes] = await query.getManyAndCount();
+
+			return { recipes, totalRecipes };
 		} catch (error: any) {
 			throw error;
 		}

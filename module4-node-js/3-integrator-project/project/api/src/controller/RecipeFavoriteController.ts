@@ -31,11 +31,29 @@ export default class RecipeFavoriteController {
 
 	static getRecipesFavoriteWithDetailsByUserId = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const recipesFavoriteWothDetails: Recipe[] = (await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(
-				Number(req.params.userId)
-			)) as Recipe[];
+			let offset: any = req.query.offset;
+			let limit: any = req.query.limit;
+
+			if (!isNaN(offset)) {
+				offset = Number(offset);
+			} else {
+				offset = null;
+			}
+
+			if (!isNaN(limit)) {
+				limit = Number(limit);
+			} else {
+				limit = null;
+			}
+
+			const recipesFavoriteWothDetails: any = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(
+				Number(req.params.userId),
+				offset,
+				limit
+			);
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipesFavoriteWothDetails));
 		} catch (error: any) {
+			console.log(error);
 			ResponseUtils.getException(res, error);
 		}
 	};

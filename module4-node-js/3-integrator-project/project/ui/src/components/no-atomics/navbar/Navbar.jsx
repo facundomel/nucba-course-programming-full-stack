@@ -66,8 +66,11 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 		setOpenModal(false);
 	};
 
-	// Función para verificar si la ubicación actual coincide con "/recetas"
-  const isRecipesPage = () => location.pathname.startsWith("/recetas/");
+	// Función para verificar si la ubicación actual coincide con "/recetas/"
+	const isRecipesAllPage = () => location.pathname.startsWith("/recetas/");
+
+	// Función para verificar si la ubicación actual coincide con "/recetas-favoritas/"
+	const isRecipesFavoritePage = () => location.pathname.startsWith("/recetas-favoritas/");
 
 	return (
 		<>
@@ -101,22 +104,23 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 							<NavbarLinkRight
 								to={"/recetas/1"}
 								hidden={true}
-								className={isRecipesPage() ? "active" : ""}
+								className={isRecipesAllPage() ? "active" : ""}
 								onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 							>
 								<FaHome />
 							</NavbarLinkRight>
 							{currentUser && (
 								<NavbarLinkRight
-									to={"/recetas-favoritas"}
+									to={"/recetas-favoritas/1"}
 									hidden={true}
+									className={isRecipesFavoritePage() ? "active" : ""}
 									onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 								>
 									<ImBook />
 								</NavbarLinkRight>
 							)}
 							{!currentUser ? (
-								location.pathname == "/login" || location.pathname == "/recuperar-password" ? (
+								location.pathname === "/login" || location.pathname === "/recuperar-password" ? (
 									<NavbarLinkRight>
 										<FaUserAlt />
 									</NavbarLinkRight>
@@ -159,7 +163,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 							<p>Inicio</p>
 						</NavbarLinkExtended>
 						{currentUser && (
-							<NavbarLinkExtended to={"/recetas-favoritas"} onClick={() => setExtendNavbar(false)}>
+							<NavbarLinkExtended to={"/recetas-favoritas/1"} onClick={() => setExtendNavbar(false)}>
 								<p>Mis recetas</p>
 							</NavbarLinkExtended>
 						)}

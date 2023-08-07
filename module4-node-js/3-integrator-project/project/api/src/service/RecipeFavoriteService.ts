@@ -30,12 +30,10 @@ export default class RecipeFavoriteService {
 		}
 	};
 
-	static getRecipesFavoriteWithDetailsByUserId = async (userId: number): Promise<Recipe[]> => {
+	static getRecipesFavoriteWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
 		try {
-			const recipesFavoriteWithDetails: Recipe[] = (await RecipeFavoriteRepository.getRecipesFavoriteWithDetailsByUserId(
-				userId
-			)) as Recipe[];
-			return recipesFavoriteWithDetails;
+			const results: any = await RecipeFavoriteRepository.getRecipesFavoriteWithDetailsByUserId(userId, offset, limit);
+			return { recipes: results.recipes, paging: { offset: offset, limit: limit, total: results.totalRecipes } };
 		} catch (error: any) {
 			throw error;
 		}

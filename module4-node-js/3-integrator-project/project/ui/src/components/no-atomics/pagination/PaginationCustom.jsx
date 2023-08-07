@@ -13,7 +13,7 @@ import { IconButton, Pagination, PaginationItem, ThemeProvider } from "@mui/mate
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
+const PaginationCustom = ({ currentPage, totalPages, onPageChange, pathNavigate }) => {
 	const navigate = useNavigate();
 	const { page } = useParams();
 	const [currentPageParam, setCurrentPageParam] = useState(page);
@@ -48,7 +48,7 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 			} else {
 				setCurrentPageParam(1);
 				onPageChange(1);
-				navigate(`/recetas/1`);
+				navigate(`${pathNavigate}/1`);
 			}
 		} else {
 			setIsMounted(true);
@@ -58,7 +58,7 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange }) => {
 	const handlePageChange = (event, newPage) => {
 		// Si el nuevo número de página es válido, actualizamos la URL y el estado local de currentPage
 		if (!isNaN(newPage) && newPage >= 1 && newPage <= totalPages) {
-			navigate(`/recetas/${newPage}`);
+			navigate(`${pathNavigate}/${newPage}`);
 			setCurrentPageParam(newPage);
 			onPageChange(newPage);
 		}

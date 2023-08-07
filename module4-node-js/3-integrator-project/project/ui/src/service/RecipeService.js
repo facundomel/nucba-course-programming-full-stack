@@ -53,15 +53,18 @@ export default class RecipeService {
 		}
 	};
 
-	static getRecipesFavoriteWithDetailsByUserId = async (currentUser, navigate, dispatch) => {
+	static getRecipesFavoriteWithDetailsByUserId = async (currentUser, navigate, dispatch, offset, limit) => {
 		try {
 			const headers = {
 				...this.utils.getHeadersDefault(),
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
-			const response = await axios.get(`${this.baseUrl}/api/recipes/favorite/${currentUser.user.id}/details`, {
-				headers: headers,
-			});
+			const response = await axios.get(
+				`${this.baseUrl}/api/recipes/favorite/${currentUser.user.id}/details?offset=${offset}&limit=${limit}`,
+				{
+					headers: headers,
+				}
+			);
 			return this.utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errResponseData = err.response?.data && this.utils.convertFromSnakeToCamel(err.response.data);

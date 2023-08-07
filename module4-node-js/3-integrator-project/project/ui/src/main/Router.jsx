@@ -25,7 +25,7 @@ const Router = () => {
 			<Route path="/recuperar-password" element={<ForgotPassword />} />
 			{currentUser && (
 				<>
-					<Route path="/recetas-favoritas" element={<RecipeFavorite />} />
+					<Route path="/recetas-favoritas/:page" element={<RecipeFavorite />} />
 					<Route path="/crear-receta" element={<CreateRecipe />} />
 				</>
 			)}

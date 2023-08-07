@@ -9,6 +9,8 @@ import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
+import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
+import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -21,6 +23,7 @@ const RecipeAll = () => {
 	const [totalPages, setTotalPages] = useState(1);
 	const limitRecipes = 12;
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
+	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection("RecipeAll"));
@@ -28,21 +31,35 @@ const RecipeAll = () => {
 
 	useEffect(() => {
 		handlerSetRecipesAll();
+		handlerSetRecipesFavorite();
 	}, [currentPage]);
 
 	const handlerSetRecipesAll = async () => {
 		try {
 			// if (!recipesAll.length) {
+			if (currentPage > totalPages) {
+				setCurrentPage(1);
+			}
+
 			const { recipes, paging } = await RecipeService.getRecipes(offsetRecipes, limitRecipes);
 			dispatch(recipesActions.setRecipesAll(recipes));
 			setTotalPages(Math.ceil(paging.total / limitRecipes));
+
 			// }
 
-			if (currentUser) {
-				const recipesFavorite = await RecipeService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
-				dispatch(recipesActions.setRecipesFavorite(recipesFavorite));
-			}
+			setLoading(false);
+		} catch (error) {
+			setLoading(false);
+		}
+	};
 
+	const handlerSetRecipesFavorite = async () => {
+		try {
+			if (currentUser) {
+				const { recipes } = await RecipeService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
+				dispatch(recipesActions.setRecipesFavorite(recipes));
+				// setTotalPages(Math.ceil(paging.total / limitRecipes));
+			}
 			setLoading(false);
 		} catch (error) {
 			setLoading(false);
@@ -61,7 +78,9 @@ const RecipeAll = () => {
 						<Recipes />
 					</>
 				)}
-				<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+				{recipesAll.length > 0 && totalPages > 1 && (
+					<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />
+				)}
 			</RecipeAllContainer>
 		</>
 	);

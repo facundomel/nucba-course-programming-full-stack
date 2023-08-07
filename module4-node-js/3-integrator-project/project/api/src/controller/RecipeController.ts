@@ -9,7 +9,7 @@ export default class RecipeController {
 	static getRecipes = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const offset = Number(req.query.offset) || 0;
-			const limit = Number(req.query.limit) || 6;
+			const limit = Number(req.query.limit) || 12;
 
 			const recipes: any = await RecipeService.getRecipes(offset, limit);
 			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipes));
