@@ -19,7 +19,7 @@ const RecipeAll = () => {
 	const { page } = useParams();
 	const [currentPage, setCurrentPage] = useState(Number(page) || 1);
 	const [totalPages, setTotalPages] = useState(1);
-	const limitRecipes = 6;
+	const limitRecipes = 12;
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
 
 	useEffect(() => {
