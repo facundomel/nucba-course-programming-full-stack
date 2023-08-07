@@ -40,7 +40,7 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange, pathNavigate 
 	}, [page]);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
+		// window.scrollTo(0, 0);
 		if (isMounted) {
 			if (!isNaN(currentPageParam) && currentPageParam >= 1 && currentPageParam <= totalPages) {
 				setCurrentPageParam(Number(currentPageParam));

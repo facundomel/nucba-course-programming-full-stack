@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../../../no-atomics/hero/Hero";
 import Recipes from "../../../no-atomics/recipes/Recipes";
-import { RecipeAllContainer, RecipeAllTitle } from "./RecipeAllStyles";
+import { CircularProgressCustom, RecipeAllContainer, RecipeAllTitle } from "./RecipeAllStyles";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
@@ -12,6 +12,8 @@ import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import { FcReading } from "react-icons/fc";
+import { CircularProgress, LinearProgress } from "@mui/material";
+import { CircularProgressContainer } from "../../../atomics/spinner/SpinnerStyles";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -37,6 +39,7 @@ const RecipeAll = () => {
 
 	const handlerSetRecipesAll = async () => {
 		try {
+			setLoading(true);
 			// if (!recipesAll.length) {
 			if (currentPage > totalPages) {
 				setCurrentPage(1);
@@ -46,9 +49,12 @@ const RecipeAll = () => {
 			dispatch(recipesActions.setRecipesAll(recipes));
 			setTotalPages(Math.ceil(paging.total / limitRecipes));
 
-			// }
+			window.scrollTo(0, 0);
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
 
-			setLoading(false);
+			// }
 		} catch (error) {
 			setLoading(false);
 		}
@@ -61,32 +67,33 @@ const RecipeAll = () => {
 				dispatch(recipesActions.setRecipesFavorite(recipes));
 				// setTotalPages(Math.ceil(paging.total / limitRecipes));
 			}
-			setLoading(false);
+			// setLoading(false);
 		} catch (error) {
 			setLoading(false);
 		}
 	};
 
 	return (
-		<>
-			<RecipeAllContainer>
-				{loading ? (
-					<p>Cargando todas las recetas...</p>
-				) : (
-					<>
-						<h1>
-							Encontrá las mejores recetas aquí <FcReading />
-						</h1>
-						<Hero />
-						<Categories />
-						<Recipes />
-					</>
-				)}
-				{recipesAll.length > 0 && totalPages > 1 && (
-					<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />
-				)}
-			</RecipeAllContainer>
-		</>
+		<RecipeAllContainer>
+			{loading ? (
+				<CircularProgressContainer>
+					<CircularProgress />
+					<span>Cargando recetas...</span>
+				</CircularProgressContainer>
+			) : (
+				<>
+					<h1>
+						Encontrá las mejores recetas aquí <FcReading />
+					</h1>
+					<Hero />
+					<Categories />
+					<Recipes />
+					{recipesAll.length > 0 && totalPages > 1 && (
+						<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />
+					)}
+				</>
+			)}
+		</RecipeAllContainer>
 	);
 };
 
