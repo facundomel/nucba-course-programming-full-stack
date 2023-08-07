@@ -7,7 +7,12 @@ export const CardRecipeContainer = styled.div`
 	background: var(--gray-bg);
 	width: 300px;
 	border-radius: 15px;
-	border: 1px solid var(--black);
+	border: ${(props) =>
+		props.userSection === "RecipeAll"
+			? "1px solid var(--black)"
+			: props.userSection === "RecipeFavorite"
+			? "1px solid var(--yellow-light2)"
+			: ""};
 
 	@media (max-width: 400px) {
 		width: 250px;

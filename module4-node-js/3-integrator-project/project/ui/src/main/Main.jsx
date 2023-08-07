@@ -56,7 +56,7 @@ const Main = () => {
 
 	return (
 		<>
-			<MainContainerStyled>
+			<MainContainerStyled userSection={userSection}>
 				<BrowserRouter>
 					<Navbar extendNavbar={extendNavbar} setExtendNavbar={setExtendNavbar} />
 					{!extendNavbar && <Router />}

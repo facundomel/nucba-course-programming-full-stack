@@ -7,7 +7,20 @@ import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import RecipeService from "../../../service/RecipeService";
 import { useNavigate } from "react-router-dom";
-import { AiFillStarCustom, AiOutlineStarCustom, ButtonIconCard, CardInformation, CardRecipeContainer, CardUserAndFavorite, GoBookCustom, IconsCardContainer, ImageDiv, ModalBodyCardRecipeContainer, ModalBodyCardRecipeInformation, ModalBodyCardRecipePublisher } from "./CardRecipeStyles.js";
+import {
+	AiFillStarCustom,
+	AiOutlineStarCustom,
+	ButtonIconCard,
+	CardInformation,
+	CardRecipeContainer,
+	CardUserAndFavorite,
+	GoBookCustom,
+	IconsCardContainer,
+	ImageDiv,
+	ModalBodyCardRecipeContainer,
+	ModalBodyCardRecipeInformation,
+	ModalBodyCardRecipePublisher,
+} from "./CardRecipeStyles.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
@@ -108,7 +121,7 @@ const CardRecipe = ({ recipe }) => {
 
 	return (
 		<>
-			<CardRecipeContainer hiddenCard={userSection === "RecipeFavorite" && hiddenCard}>
+			<CardRecipeContainer hiddenCard={userSection === "RecipeFavorite" && hiddenCard} userSection={userSection}>
 				<ImageDiv>
 					<img src={urlImage} alt={title} />
 				</ImageDiv>
