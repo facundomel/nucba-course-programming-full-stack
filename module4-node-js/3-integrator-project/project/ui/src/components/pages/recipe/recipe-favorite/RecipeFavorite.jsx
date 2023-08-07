@@ -9,6 +9,7 @@ import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
+import { FcRating } from "react-icons/fc";
 
 const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -60,6 +61,7 @@ const RecipeFavorite = () => {
 					<p>Cargando todas las recetas...</p>
 				) : (
 					<>
+						<h1>Mis recetas <FcRating /></h1>
 						<Hero />
 						<Categories />
 						<Recipes />

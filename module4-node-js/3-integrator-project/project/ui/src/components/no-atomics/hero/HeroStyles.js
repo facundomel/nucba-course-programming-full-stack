@@ -7,12 +7,6 @@ export const HeroContainerStyled = styled.div`
 	flex-direction: column;
 	width: 100%;
 	margin-bottom: 40px;
-
-	h1 {
-		margin-bottom: 2rem;
-		text-align: center;
-		color: var(--white);
-	}
 `;
 
 export const HeroFormStyled = styled.form`

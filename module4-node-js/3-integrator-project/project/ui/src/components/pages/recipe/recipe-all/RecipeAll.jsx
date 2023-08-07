@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../../../no-atomics/hero/Hero";
 import Recipes from "../../../no-atomics/recipes/Recipes";
-import { RecipeAllContainer } from "./RecipeAllStyles";
+import { RecipeAllContainer, RecipeAllTitle } from "./RecipeAllStyles";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
+import { FcReading } from "react-icons/fc";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -73,6 +74,9 @@ const RecipeAll = () => {
 					<p>Cargando todas las recetas...</p>
 				) : (
 					<>
+						<h1>
+							Encontrá las mejores recetas aquí <FcReading />
+						</h1>
 						<Hero />
 						<Categories />
 						<Recipes />

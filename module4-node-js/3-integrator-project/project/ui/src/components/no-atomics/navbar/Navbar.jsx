@@ -19,9 +19,10 @@ import {
 	MenuSessionUserCloseSession,
 	MenuSessionUserName,
 	MenuSessionUserDivisor,
+	AiFillStarCustom,
 } from "./NavbarStyles";
 import { FaHome, FaUserAlt } from "react-icons/fa";
-import { ImBook, ImExit } from "react-icons/im";
+import { ImExit } from "react-icons/im";
 import logo from "../../../assets/images/logo/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../redux/user/UserActions.js";
@@ -29,7 +30,7 @@ import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "../modal/Modal";
 import Button from "../../atomics/button/Button";
-import { AiOutlineCheck } from "react-icons/ai";
+import { AiFillStar, AiOutlineCheck } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 
 const Navbar = ({ extendNavbar, setExtendNavbar }) => {
@@ -120,7 +121,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 									className={isRecipesFavoritePage() ? "active" : ""}
 									onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 								>
-									<ImBook />
+									<AiFillStar />
 								</NavbarLinkRight>
 							)}
 							{!currentUser ? (
