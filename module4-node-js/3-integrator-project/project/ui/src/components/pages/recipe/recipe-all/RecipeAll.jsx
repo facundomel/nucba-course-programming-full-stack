@@ -14,6 +14,7 @@ import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import { FcReading } from "react-icons/fc";
 import { CircularProgress, LinearProgress } from "@mui/material";
 import { CircularProgressContainer } from "../../../atomics/spinner/SpinnerStyles";
+import { Spinner } from "../../../atomics/spinner/Spinner";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -41,6 +42,7 @@ const RecipeAll = () => {
 		try {
 			setLoading(true);
 			// if (!recipesAll.length) {
+
 			if (currentPage > totalPages) {
 				setCurrentPage(1);
 			}
@@ -76,10 +78,7 @@ const RecipeAll = () => {
 	return (
 		<RecipeAllContainer>
 			{loading ? (
-				<CircularProgressContainer>
-					<CircularProgress />
-					<span>Cargando recetas...</span>
-				</CircularProgressContainer>
+				<Spinner message={"Cargando recetas..."} />
 			) : (
 				<>
 					<h1>
