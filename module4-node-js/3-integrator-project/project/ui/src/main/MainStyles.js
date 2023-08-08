@@ -6,7 +6,7 @@ export const MainContainerStyled = styled.div`
 	align-items: center;
 	flex-direction: column;
 	width: 100%;
-	/* height: 100vh; */
+	height: 100vh;
 	margin-top: 80px;
 	background-color: ${(props) =>
 		props.userSection === "RecipeAll"

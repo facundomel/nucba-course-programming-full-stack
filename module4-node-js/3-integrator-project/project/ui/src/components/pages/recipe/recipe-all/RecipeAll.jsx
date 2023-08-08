@@ -19,7 +19,7 @@ import { Spinner } from "../../../atomics/spinner/Spinner";
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const { currentUser } = useSelector((state) => state.user);
 	const navigate = useNavigate();
 	const { page } = useParams();
@@ -34,31 +34,29 @@ const RecipeAll = () => {
 	}, []);
 
 	useEffect(() => {
+		setLoading(true);
 		handlerSetRecipesAll();
 		handlerSetRecipesFavorite();
+		setTimeout(() => {
+			setLoading(false);
+			window.scrollTo(0, 0);
+		}, 500);
 	}, [currentPage]);
 
 	const handlerSetRecipesAll = async () => {
 		try {
-			setLoading(true);
-			// if (!recipesAll.length) {
-
-			if (currentPage > totalPages) {
-				setCurrentPage(1);
-			}
-
 			const { recipes, paging } = await RecipeService.getRecipes(offsetRecipes, limitRecipes);
 			dispatch(recipesActions.setRecipesAll(recipes));
-			setTotalPages(Math.ceil(paging.total / limitRecipes));
+			const totalPagesTemp = Math.ceil(paging.total / limitRecipes);
+			setTotalPages(totalPagesTemp);
 
-			window.scrollTo(0, 0);
+			if (currentPage > totalPagesTemp) {
+				setCurrentPage(1);
+			}
+		} catch (error) {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
-
-			// }
-		} catch (error) {
-			setLoading(false);
 		}
 	};
 
@@ -67,11 +65,11 @@ const RecipeAll = () => {
 			if (currentUser) {
 				const { recipes } = await RecipeService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
 				dispatch(recipesActions.setRecipesFavorite(recipes));
-				// setTotalPages(Math.ceil(paging.total / limitRecipes));
 			}
-			// setLoading(false);
 		} catch (error) {
-			setLoading(false);
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
 		}
 	};
 
@@ -81,9 +79,11 @@ const RecipeAll = () => {
 				<Spinner message={"Cargando recetas..."} />
 			) : (
 				<>
-					<h1>
-						Encontrá las mejores recetas aquí <FcReading />
-					</h1>
+					{recipesAll.length > 0 && (
+						<h1>
+							Encontrá las mejores recetas aquí <FcReading />
+						</h1>
+					)}
 					<Hero />
 					<Categories />
 					<Recipes />
