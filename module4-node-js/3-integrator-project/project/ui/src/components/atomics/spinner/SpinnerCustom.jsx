@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import { CircularProgressContainer } from "./SpinnerStyles";
+import { SpinnerCustomContainer } from "./SpinnerCustomStyles";
 import { CircularProgress } from "@mui/material";
 
-export const Spinner = ({ message }) => {
+export const SpinnerCustom = ({ message }) => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
 	return (
-		<CircularProgressContainer>
+		<SpinnerCustomContainer>
 			<CircularProgress />
 			<span>{message}</span>
-		</CircularProgressContainer>
+		</SpinnerCustomContainer>
 	);
 };

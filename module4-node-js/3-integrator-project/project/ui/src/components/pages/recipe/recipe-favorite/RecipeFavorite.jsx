@@ -10,13 +10,14 @@ import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 import { FcRating } from "react-icons/fc";
+import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 
 const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const { currentUser, userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const { page } = useParams();
 	const [currentPage, setCurrentPage] = useState(Number(page) || 1);
 	const [totalPages, setTotalPages] = useState(1);
@@ -28,16 +29,17 @@ const RecipeFavorite = () => {
 	}, []);
 
 	useEffect(() => {
+		setLoading(true);
 		handlerSetRecipesFavorite();
+		setTimeout(() => {
+			setLoading(false);
+			window.scrollTo(0, 0);
+		}, 500);
 	}, [currentPage]);
 
 	const handlerSetRecipesFavorite = async () => {
 		try {
 			if (currentUser) {
-				if (currentPage > totalPages) {
-					setCurrentPage(1);
-				}
-
 				const { recipes, paging } = await RecipeService.getRecipesFavoriteWithDetailsByUserId(
 					currentUser,
 					navigate,
@@ -45,12 +47,18 @@ const RecipeFavorite = () => {
 					offsetRecipes,
 					limitRecipes
 				);
+				const totalPagesTemp = Math.ceil(paging.total / limitRecipes);
 				dispatch(recipesActions.setRecipesFavorite(recipes));
-				setTotalPages(Math.ceil(paging.total / limitRecipes));
+				setTotalPages(totalPagesTemp);
+
+				if (currentPage > totalPagesTemp) {
+					setCurrentPage(1);
+				}
 			}
-			setLoading(false);
 		} catch (error) {
-			setLoading(false);
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
 		}
 	};
 
@@ -58,24 +66,26 @@ const RecipeFavorite = () => {
 		<>
 			<RecipeFavoriteContainer>
 				{loading ? (
-					<p>Cargando todas las recetas...</p>
+					<SpinnerCustom message={"Cargando favoritos..."} />
 				) : (
 					<>
-						<h1>
-							Mis recetas favoritas <FcRating />
-						</h1>
+						{recipesFavorite.length > 0 && (
+							<h1>
+								Mis recetas favoritas <FcRating />
+							</h1>
+						)}
 						<Hero />
 						<Categories />
 						<Recipes />
+						{recipesFavorite.length > 0 && totalPages > 1 && (
+							<PaginationCustom
+								currentPage={currentPage}
+								totalPages={totalPages}
+								onPageChange={setCurrentPage}
+								pathNavigate={"/recetas-favoritas"}
+							/>
+						)}
 					</>
-				)}
-				{recipesFavorite.length > 0 && totalPages > 1 && (
-					<PaginationCustom
-						currentPage={currentPage}
-						totalPages={totalPages}
-						onPageChange={setCurrentPage}
-						pathNavigate={"/recetas-favoritas"}
-					/>
 				)}
 			</RecipeFavoriteContainer>
 		</>

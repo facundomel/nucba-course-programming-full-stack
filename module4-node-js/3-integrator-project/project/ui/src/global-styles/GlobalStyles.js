@@ -31,13 +31,15 @@ const GlobalStyles = createGlobalStyle`
       --btn-gradient-secondary: linear-gradient(140deg, #3B3022, #3B2329);
       --bg-recipe-all: hsl(220, 25%, 10%); /* Un color oscuro para el tema general */
       --bg-recipe-favorite: hsl(220, 25%, 10%); /* Un color oscuro para la sección de recetas favoritas */
+      --bg-body: hsl(220, 25%, 10%);
     }
 
     body {
       margin: 0;
       padding: 0;
-      background-color: var(--black-light);
+      background-color: var(--bg-body);
       color: var(--white);
+      height: 100vh;
     }
 
     

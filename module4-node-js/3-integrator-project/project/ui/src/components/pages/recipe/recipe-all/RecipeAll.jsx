@@ -13,8 +13,8 @@ import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js"
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import { FcReading } from "react-icons/fc";
 import { CircularProgress, LinearProgress } from "@mui/material";
-import { CircularProgressContainer } from "../../../atomics/spinner/SpinnerStyles";
-import { Spinner } from "../../../atomics/spinner/Spinner";
+import { SpinnerCustomContainer } from "../../../atomics/spinner/SpinnerCustomStyles";
+import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -46,8 +46,8 @@ const RecipeAll = () => {
 	const handlerSetRecipesAll = async () => {
 		try {
 			const { recipes, paging } = await RecipeService.getRecipes(offsetRecipes, limitRecipes);
-			dispatch(recipesActions.setRecipesAll(recipes));
 			const totalPagesTemp = Math.ceil(paging.total / limitRecipes);
+			dispatch(recipesActions.setRecipesAll(recipes));
 			setTotalPages(totalPagesTemp);
 
 			if (currentPage > totalPagesTemp) {
@@ -76,7 +76,7 @@ const RecipeAll = () => {
 	return (
 		<RecipeAllContainer>
 			{loading ? (
-				<Spinner message={"Cargando recetas..."} />
+				<SpinnerCustom message={"Cargando recetas..."} />
 			) : (
 				<>
 					{recipesAll.length > 0 && (
