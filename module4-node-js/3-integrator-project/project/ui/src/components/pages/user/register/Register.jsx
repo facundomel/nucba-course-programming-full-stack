@@ -23,6 +23,7 @@ import { UserErrorType } from "../../../../model/enum/ErrorType";
 import AuthService from "../../../../service/AuthService";
 import UserLogin from "../../../../model/UserLogin";
 import Utils from "../../../../utils/Utils";
+import CustomException from "../../../../model/CustomException";
 
 const Register = () => {
 	const [error, setError] = useState(null);
@@ -81,7 +82,12 @@ const Register = () => {
 				})
 			);
 		} catch (error) {
-			Utils.setSnackbarError(error, dispatch);
+			if (error instanceof CustomException) {
+				setError(error);
+				if (error.type === UserErrorType.ERROR_EMAIL) {
+					emailRef.current.focus();
+				}
+			}
 		}
 
 		// const user = localStorage.get(KEY_USER_SESSION) || null;
