@@ -15,6 +15,9 @@ import { FcReading } from "react-icons/fc";
 import { CircularProgress, LinearProgress } from "@mui/material";
 import { SpinnerCustomContainer } from "../../../atomics/spinner/SpinnerCustomStyles";
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
+import CustomException from "../../../../model/CustomException";
+import { HttpStatusCode } from "axios";
+import Utils, { setSnackbarError } from "../../../../utils/Utils";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -57,6 +60,7 @@ const RecipeAll = () => {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
+			Utils.setSnackbarError(error, dispatch);
 		}
 	};
 
@@ -70,6 +74,7 @@ const RecipeAll = () => {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
+			Utils.setSnackbarError(error, dispatch);
 		}
 	};
 

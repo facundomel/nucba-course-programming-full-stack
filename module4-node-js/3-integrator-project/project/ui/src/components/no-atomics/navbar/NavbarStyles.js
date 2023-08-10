@@ -195,7 +195,7 @@ export const MenuSessionUserContainer = styled.div`
 	position: absolute;
 	top: 80px;
 	right: 0;
-	padding: 40px;
+	padding: 30px 40px;
 	font-size: 20px;
 	font-weight: bold;
 	border: 2px solid var(--black);
@@ -260,7 +260,7 @@ export const MenuSessionUserCloseSession = styled.div`
 	justify-content: space-around;
 	align-items: center;
 	width: 300px;
-	height: 60px;
+	height: 70px;
 	cursor: pointer;
 
 	svg {

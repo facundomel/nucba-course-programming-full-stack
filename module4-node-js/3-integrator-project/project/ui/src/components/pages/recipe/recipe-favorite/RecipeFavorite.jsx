@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 import { FcRating } from "react-icons/fc";
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
+import Utils from "../../../../utils/Utils";
 
 const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -59,6 +60,7 @@ const RecipeFavorite = () => {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
+			Utils.setSnackbarError(error, dispatch);
 		}
 	};
 

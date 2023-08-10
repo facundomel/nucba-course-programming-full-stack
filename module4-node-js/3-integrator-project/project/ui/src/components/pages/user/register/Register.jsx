@@ -22,6 +22,7 @@ import { HttpStatusCode } from "axios";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 import AuthService from "../../../../service/AuthService";
 import UserLogin from "../../../../model/UserLogin";
+import Utils from "../../../../utils/Utils";
 
 const Register = () => {
 	const [error, setError] = useState(null);
@@ -80,7 +81,7 @@ const Register = () => {
 				})
 			);
 		} catch (error) {
-			// console.log(error);
+			Utils.setSnackbarError(error, dispatch);
 		}
 
 		// const user = localStorage.get(KEY_USER_SESSION) || null;

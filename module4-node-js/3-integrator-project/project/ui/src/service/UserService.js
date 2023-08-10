@@ -1,19 +1,20 @@
-import Configs from "../configs/Configs";
+import Config from "../config/Config";
+import CustomException from "../model/CustomException";
 import Utils from "../utils/Utils";
-import axios from "axios";
+import axios, { HttpStatusCode } from "axios";
 
 export default class UserService {
-	static utils = new Utils();
-	static baseUrl = new Configs().baseUrlLocal;
+	static headersDefault = Config.HEADERS_DEFAULT;
+	static baseUrl = Config.BASE_URL;
 
 	static registerUser = async (user) => {
 		try {
-			const response = await axios.post(`${this.baseUrl}/api/users`, this.utils.convertFromCamelToSnake(user), {
-				headers: this.utils.getHeadersDefault()
+			const response = await axios.post(`${this.baseUrl}/api/users`, Utils.convertFromCamelToSnake(user), {
+				headers: this.headersDefault,
 			});
-			return this.utils.convertFromSnakeToCamel(response.data);
+			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			throw err;
+			throw new CustomException("", "Error al registrarse", HttpStatusCode.InternalServerError);
 		}
 	};
 }

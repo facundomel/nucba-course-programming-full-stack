@@ -4,6 +4,7 @@ import { CategoriesGridContainer } from "./CategoriesStyles";
 import Category from "./Category";
 import * as categoriesActions from "../../../redux/categories/CategoriesActions.js";
 import RecipeCategoryService from "../../../service/RecipeCategoryService";
+import Utils from "../../../utils/Utils";
 
 const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
@@ -20,7 +21,9 @@ const Categories = () => {
 		try {
 			const categories = await RecipeCategoryService.getRecipesCategory();
 			dispatch(categoriesActions.setCategories(categories));
-		} catch (err) {}
+		} catch (err) {
+			Utils.setSnackbarError(err, dispatch);
+		}
 	};
 
 	return (

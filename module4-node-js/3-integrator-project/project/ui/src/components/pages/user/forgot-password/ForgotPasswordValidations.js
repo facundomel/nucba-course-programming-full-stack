@@ -1,9 +1,9 @@
-import CustomError from "../../../../model/CustomError";
+import CustomException from "../../../../model/CustomException";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 
 export const isValidEmail = (email, setError, emailRef) => {
 	if (email === "") {
-		setError(new CustomError(UserErrorType.ERROR_EMAIL, "Campo requerido"));
+		setError(new CustomException(UserErrorType.ERROR_EMAIL, "Campo requerido"));
 		emailRef.current.focus();
 		return false;
 	}
@@ -13,7 +13,7 @@ export const isValidEmail = (email, setError, emailRef) => {
 export const isExistEmail = (userSoraged, email, setError, emailRef, userPassword, setUserPassword) => {
 	if (userSoraged == null || userSoraged.email !== email) {
 		if (userPassword) setUserPassword(null);
-		setError(new CustomError(UserErrorType.ERROR_EMAIL, "Email inexistente"));
+		setError(new CustomException(UserErrorType.ERROR_EMAIL, "Email inexistente"));
 		emailRef.current.focus();
 		return false;
 	}

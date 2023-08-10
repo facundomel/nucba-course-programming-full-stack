@@ -19,6 +19,7 @@ import { isValidSelectedRecipeCategory, isValidVariusFields } from "./CreateReci
 import RecipeService from "../../../../service/RecipeService";
 import * as categoriesActions from "../../../../redux/categories/CategoriesActions.js";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
+import Utils from "../../../../utils/Utils";
 
 const CreateRecipe = () => {
 	const [error, setError] = useState(null);
@@ -56,7 +57,7 @@ const CreateRecipe = () => {
 			const recipesCategories = await RecipeCategoryService.getRecipesCategory();
 			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (error) {
-			console.log(error);
+			Utils.setSnackbarError(error, dispatch);
 		}
 	};
 
@@ -108,7 +109,7 @@ const CreateRecipe = () => {
 				})
 			);
 		} catch (error) {
-			// console.log(error);
+			Utils.setSnackbarError(error, dispatch);
 		}
 
 		// const user = localStorage.get(KEY_USER_SESSION) || null;

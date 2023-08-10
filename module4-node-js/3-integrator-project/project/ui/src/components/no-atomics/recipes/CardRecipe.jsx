@@ -21,6 +21,7 @@ import {
 	ModalBodyCardRecipeInformation,
 	ModalBodyCardRecipePublisher,
 } from "./CardRecipeStyles.js";
+import Utils from "../../../utils/Utils.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
@@ -64,7 +65,7 @@ const CardRecipe = ({ recipe }) => {
 				}
 				// setIsFavoriteRecipe(true);
 			} catch (error) {
-				console.log(error);
+				Utils.setSnackbarError(error, dispatch);
 			}
 		} else {
 			try {
@@ -88,7 +89,7 @@ const CardRecipe = ({ recipe }) => {
 					);
 				}
 			} catch (error) {
-				console.log(error);
+				Utils.setSnackbarError(error, dispatch);
 			}
 			// dispatch(
 			// 	snackbarActions.setOptionsSnackbar({

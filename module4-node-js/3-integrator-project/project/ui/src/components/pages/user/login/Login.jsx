@@ -24,6 +24,9 @@ import AuthService from "../../../../service/AuthService";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 import UserLogin from "../../../../model/UserLogin";
 import RecipeService from "../../../../service/RecipeService";
+import Utils from "../../../../utils/Utils";
+import CustomException from "../../../../model/CustomException";
+import { HttpStatusCode } from "axios";
 
 const Login = () => {
 	const [error, setError] = useState(null);
@@ -78,6 +81,16 @@ const Login = () => {
 				})
 			);
 		} catch (error) {
+			if (error instanceof CustomException) {
+				setError(error);
+				if (error.type === UserErrorType.ERROR_EMAIL) {
+					emailRef.current.focus();
+				} else if (error.type === UserErrorType.ERROR_PASSWORD) {
+					passwordRef.current.focus();
+				} else {
+					emailRef.current.focus();
+				}
+			}
 		}
 	};
 
@@ -114,7 +127,9 @@ const Login = () => {
 							paddingRight="3rem"
 							inputRef={passwordRef}
 							handleOnChange={handleChangeInputs}
-							error={error && (error.type === UserErrorType.ERROR_PASSWORD || error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) && error}
+							error={
+								error && (error.type === UserErrorType.ERROR_PASSWORD || error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) && error
+							}
 						/>
 
 						<IconShowAndHidePasswordContainer
@@ -129,7 +144,9 @@ const Login = () => {
 						</IconShowAndHidePasswordContainer>
 					</InputPasswordAndIconShowAndHideContainer>
 					<ErrorContainer isGap={true}>
-						{error && error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD && <ErrorMessage textAlign="center">{error.message}</ErrorMessage>}
+						{error && error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD && (
+							<ErrorMessage textAlign="center">{error.message}</ErrorMessage>
+						)}
 						<Button type="submit" width="100%">
 							Ingresar
 						</Button>

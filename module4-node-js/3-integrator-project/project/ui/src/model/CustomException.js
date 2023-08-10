@@ -1,4 +1,4 @@
-export default class CustomError {
+export default class CustomException {
 	type = "";
 	message = "";
 	statusCode = "";

@@ -1,19 +1,20 @@
-import Configs from "../configs/Configs";
+import Config from "../config/Config";
+import CustomException from "../model/CustomException";
 import Utils from "../utils/Utils";
-import axios from "axios";
+import axios, { HttpStatusCode } from "axios";
 
 export default class RecipeCategoryService {
-	static utils = new Utils();
-	static baseUrl = new Configs().baseUrlLocal;
+	static headersDefault = Config.HEADERS_DEFAULT;
+	static baseUrl = Config.BASE_URL;
 
 	static getRecipesCategory = async () => {
 		try {
 			const response = await axios.get(`${this.baseUrl}/api/recipes/categories`, {
-				headers: this.utils.getHeadersDefault(),
+				headers: this.headersDefault,
 			});
-			return this.utils.convertFromSnakeToCamel(response.data);
+			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			throw err;
+			throw new CustomException("", "Error al obtener las categorías de las recetas", HttpStatusCode.InternalServerError);
 		}
 	};
 }
