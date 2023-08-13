@@ -2,10 +2,10 @@
 	"name": "project",
 	"version": "1.0.0",
 	"description": "",
-	"main": "build/index.js",
+	"main": "build/src/index.js",
 	"scripts": {
 		"build": "npm i && tsc",
-		"start": "node build/index.js",
+		"start": "node build/src/index.js",
 		"dev": "ts-node-dev src/index.ts",
 		"migration:create": "typeorm-ts-node-commonjs migration:create",
 		"migration:run": "typeorm-ts-node-commonjs migration:run -d src/repository/database/DataSource.ts",
