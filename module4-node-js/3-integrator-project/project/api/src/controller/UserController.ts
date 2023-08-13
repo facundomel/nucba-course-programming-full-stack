@@ -6,15 +6,6 @@ import User from "../model/entity/User";
 import CustomException from "../model/CustomException";
 
 export default class UserController {
-	static getUsers = async (req: Request, res: Response): Promise<void> => {
-		try {
-			const users: User[] = (await UserService.getUsers()) as User[];
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(users));
-		} catch (error: any) {
-			ResponseUtils.getException(res, error);
-		}
-	};
-
 	static getUserSearch = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const userId = req.query.id;

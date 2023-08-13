@@ -73,21 +73,6 @@ export default class UserRepository {
 		}
 	};
 
-	static getExpensesByUserId = async (userId: number): Promise<User> => {
-		try {
-			const user: User = (await this.userRepository
-				.createQueryBuilder()
-				.select(this.fieldsUserToGet)
-				.from(User, "users")
-				.leftJoinAndSelect("users.expenses", "expense")
-				.where("users.id = :id", { id: userId })
-				.getOne()) as User;
-			return user;
-		} catch (error: any) {
-			throw error;
-		}
-	};
-
 	static registerUser = async (newUser: User): Promise<User> => {
 		try {
 			const user: User = (await this.userRepository.save(newUser)) as User;
@@ -99,37 +84,10 @@ export default class UserRepository {
 
 	static updateUserPassword = async (userId: number, newPassword: string): Promise<any> => {
 		try {
-			const result = await this.userRepository.update(userId, {password: newPassword});
+			const result = await this.userRepository.update(userId, { password: newPassword });
 			return result;
 		} catch (error: any) {
 			throw error;
 		}
 	};
-
-	// static deleteUserById = async (userId: number): Promise<void> => {
-	// 	const queryRunner = (await AppDataSource.getConnection()).createQueryRunner();
-	// 	await queryRunner.connect();
-	// 	await queryRunner.startTransaction();
-
-	// 	try {
-	// 		const userRepository = queryRunner.manager.getRepository(User);
-	// 		const expenseRepository = queryRunner.manager.getRepository(Expense);
-	// 		await expenseRepository.softDelete({ userId: userId });
-	// 		await userRepository.softDelete({ id: userId });
-	// 		await queryRunner.commitTransaction();
-	// 	} catch (error: any) {
-	// 		await queryRunner.rollbackTransaction();
-	// 		throw error;
-	// 	} finally {
-	// 		await queryRunner.release();
-	// 	}
-	// };
-
-	// static deleteExpensesByUserId = async (userId: number): Promise<void> => {
-	// 	try {
-	// 		await this.expenseRepository.softDelete({ userId: userId });
-	// 	} catch (error: any) {
-	// 		throw error;
-	// 	}
-	// };
 }

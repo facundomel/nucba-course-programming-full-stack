@@ -34,16 +34,6 @@ export default class UserService {
 		}
 	};
 
-	static getExpensesByUserId = async (userId: number): Promise<User> => {
-		try {
-			const user: User = (await UserRepository.getExpensesByUserId(userId)) as User;
-			if (user == null) throw new CustomException("User not found", StatusCodes.NOT_FOUND);
-			return user;
-		} catch (error: any) {
-			throw error;
-		}
-	};
-
 	static registerUser = async (newUser: User): Promise<any> => {
 		try {
 			let user: User = (await UserRepository.getUserByEmail(newUser.email, false)) as User;
