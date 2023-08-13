@@ -87,7 +87,7 @@ const NewPassword = () => {
 		} catch (error) {
 			setOtherError(error);
 			Utils.setSnackbarError(error, dispatch);
-			passwordRef.current.focus()
+			passwordRef.current.focus();
 		}
 	};
 
@@ -120,6 +120,7 @@ const NewPassword = () => {
 						/>
 
 						<IconShowAndHidePasswordContainer
+							type="button"
 							onClick={(e) => {
 								typeInputPassword === "password" ? showPassword(e) : hidePassword(e);
 							}}

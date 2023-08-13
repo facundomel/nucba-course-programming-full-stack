@@ -162,6 +162,7 @@ const Register = () => {
 						/>
 
 						<IconShowAndHidePasswordContainer
+							type="button"
 							onClick={(e) => {
 								typeInputPassword === "password" ? showPassword(e) : hidePassword(e);
 							}}

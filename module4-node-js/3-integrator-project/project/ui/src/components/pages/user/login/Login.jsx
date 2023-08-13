@@ -145,6 +145,7 @@ const Login = () => {
 						/>
 
 						<IconShowAndHidePasswordContainer
+							type="button"
 							onClick={(e) => {
 								typeInputPassword === "password" ? showPassword(e) : hidePassword(e);
 							}}

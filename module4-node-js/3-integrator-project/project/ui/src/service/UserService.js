@@ -25,7 +25,6 @@ export default class UserService {
 
 	static registerUser = async (user) => {
 		try {
-			throw new Error("")
 			const response = await axios.post(`${this.baseUrl}/api/users`, Utils.convertFromCamelToSnake(user), {
 				headers: this.headersDefault,
 			});
