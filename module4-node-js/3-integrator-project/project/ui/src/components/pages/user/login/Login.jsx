@@ -168,15 +168,13 @@ const Login = () => {
 				</UserForm>
 			</UserContainer>
 
-			{otherError && (
-				<SnackbarCustom
-					open={optionsSnackbar.open}
-					onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
-					severity={optionsSnackbar.severity}
-					message={optionsSnackbar.message}
-					autoHideDuration={optionsSnackbar.autoHideDuration}
-				/>
-			)}
+			<SnackbarCustom
+				open={optionsSnackbar.open}
+				onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
+				severity={optionsSnackbar.severity}
+				message={optionsSnackbar.message}
+				autoHideDuration={optionsSnackbar.autoHideDuration}
+			/>
 		</>
 	);
 };
