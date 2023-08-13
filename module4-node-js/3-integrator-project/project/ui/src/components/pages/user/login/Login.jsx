@@ -46,6 +46,13 @@ const Login = () => {
 	}, []);
 
 	useEffect(() => {
+		if ((valueInputs.email !== "" || valueInputs.password !== "") && optionsSnackbar.message === "Contraseña actualizada correctamente") {
+			dispatch(
+				snackbarActions.setOptionsSnackbar({
+					open: false,
+				})
+			);
+		}
 		if (!errorInput && !otherError) return;
 		if (errorInput) setErrorInput(null);
 		if (otherError) setOtherError(null);
@@ -168,13 +175,16 @@ const Login = () => {
 				</UserForm>
 			</UserContainer>
 
-			<SnackbarCustom
-				open={optionsSnackbar.open}
-				onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
-				severity={optionsSnackbar.severity}
-				message={optionsSnackbar.message}
-				autoHideDuration={optionsSnackbar.autoHideDuration}
-			/>
+			{otherError ||
+				(optionsSnackbar.message === "Contraseña actualizada correctamente" && (
+					<SnackbarCustom
+						open={optionsSnackbar.open}
+						onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
+						severity={optionsSnackbar.severity}
+						message={optionsSnackbar.message}
+						autoHideDuration={optionsSnackbar.autoHideDuration}
+					/>
+				))}
 		</>
 	);
 };
