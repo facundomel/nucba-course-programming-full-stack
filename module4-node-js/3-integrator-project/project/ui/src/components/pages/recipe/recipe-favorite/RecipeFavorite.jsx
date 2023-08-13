@@ -12,6 +12,7 @@ import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 import { FcRating } from "react-icons/fc";
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 import Utils from "../../../../utils/Utils";
+import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 
 const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -71,14 +72,18 @@ const RecipeFavorite = () => {
 					<SpinnerCustom message={"Cargando favoritos..."} />
 				) : (
 					<>
-						{recipesFavorite.length > 0 && (
-							<h1>
-								Mis recetas favoritas <FcRating />
-							</h1>
+						{recipesFavorite.length > 0 ? (
+							<>
+								<h1>
+									Mis recetas favoritas <FcRating />
+								</h1>
+								<Hero />
+								<Categories />
+								<Recipes />
+							</>
+						) : (
+							<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
 						)}
-						<Hero />
-						<Categories />
-						<Recipes />
 						{recipesFavorite.length > 0 && totalPages > 1 && (
 							<PaginationCustom
 								currentPage={currentPage}

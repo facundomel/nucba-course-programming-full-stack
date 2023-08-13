@@ -18,6 +18,7 @@ import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 import CustomException from "../../../../model/CustomException";
 import { HttpStatusCode } from "axios";
 import Utils, { setSnackbarError } from "../../../../utils/Utils";
+import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -84,14 +85,18 @@ const RecipeAll = () => {
 				<SpinnerCustom message={"Cargando recetas..."} />
 			) : (
 				<>
-					{recipesAll.length > 0 && (
-						<h1>
-							Encontrá las mejores recetas aquí <FcReading />
-						</h1>
+					{recipesAll.length > 0 ? (
+						<>
+							<h1>
+								Encontrá las mejores recetas aquí <FcReading />
+							</h1>
+							<Hero />
+							<Categories />
+							<Recipes />
+						</>
+					) : (
+						<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
 					)}
-					<Hero />
-					<Categories />
-					<Recipes />
 					{recipesAll.length > 0 && totalPages > 1 && (
 						<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />
 					)}
