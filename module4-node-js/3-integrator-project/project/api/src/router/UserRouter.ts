@@ -3,15 +3,15 @@ import { body, query } from "express-validator";
 import HandlerValidationErrors from "./middlwares/HandlerValidationErrors";
 import UserController from "../controller/UserController";
 
-export default class UsersRouter {
+export default class UserRouter {
 	static init = (): routerExpress => {
 		const router = routerExpress();
 
 		/**
 		 * @swagger
 		 * tags:
-		 *   name: Users
-		 *   description: Administración de usuarios
+		 *   name: User
+		 *   description: Usuarios
 		 */
 
 		/**
@@ -23,7 +23,7 @@ export default class UsersRouter {
 		 *       Si se proporciona una identificación o un correo electrónico, devuelve un solo usuario.
 		 *       De lo contrario, devuelve una lista de todos los usuarios.
 		 *     tags:
-		 *       - Users
+		 *       - User
 		 *     parameters:
 		 *       - in: query
 		 *         name: id
@@ -62,7 +62,7 @@ export default class UsersRouter {
 		 *     summary: Registro de usuario
 		 *     description: Registra un nuevo usuario con la información proporcionada.
 		 *     tags:
-		 *       - Users
+		 *       - User
 		 *     requestBody:
 		 *       required: true
 		 *       content:
@@ -109,7 +109,7 @@ export default class UsersRouter {
 		 *     summary: Actualización de contraseña de usuario
 		 *     description: Actualiza la contraseña de un usuario existente.
 		 *     tags:
-		 *       - Users
+		 *       - User
 		 *     requestBody:
 		 *       required: true
 		 *       content:

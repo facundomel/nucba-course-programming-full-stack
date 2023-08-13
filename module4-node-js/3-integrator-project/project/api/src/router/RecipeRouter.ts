@@ -8,8 +8,56 @@ export default class RecipeRouter {
 	static init = (): routerExpress => {
 		const router = routerExpress();
 
-    router.get("/recipes", RecipeController.getRecipes); 
+		/**
+		 * @swagger
+		 * tags:
+		 *   name: Recipe
+		 *   description: Recetas
+		 */
 
+		/**
+		 * @swagger
+		 * /api/recipes:
+		 *   get:
+		 *     summary: Obtener todas las recetas
+		 *     description: Obtener una lista de todas las recetas disponibles.
+		 *     tags:
+		 *       - Recipe
+		 *     responses:
+		 *       200:
+		 *         description: Lista de recetas
+		 *       500:
+		 *         description: Error interno del servidor
+		 */
+		router.get("/recipes", RecipeController.getRecipes);
+
+		/**
+		 * @swagger
+		 * /api/recipes/{recipeId}:
+		 *   get:
+		 *     summary: Obtener receta por ID
+		 *     description: Obtener una receta por su ID.
+		 *     tags:
+		 *       - Recipe
+		 *     parameters:
+		 *       - in: path
+		 *         name: recipeId
+		 *         required: true
+		 *         description: ID de la receta a obtener
+		 *         schema:
+		 *           type: integer
+		 *     responses:
+		 *       200:
+		 *         description: Receta
+		 *       400:
+		 *         description: Solicitud incorrecta
+		 *       401:
+		 *         description: No autorizado
+		 *       404:
+		 *         description: Receta no encontrada
+		 *       500:
+		 *         description: Error interno del servidor
+		 */
 		router.get(
 			"/recipes/:recipeId",
 			param("recipeId").isNumeric().withMessage("ID is not numeric"),
@@ -17,7 +65,53 @@ export default class RecipeRouter {
 			HandlerAuth.authenticate,
 			RecipeController.getRecipeById
 		);
-		
+
+		/**
+		 * @swagger
+		 * /api/recipes:
+		 *   post:
+		 *     summary: Crear una nueva receta
+		 *     description: Crear una nueva receta con la información proporcionada.
+		 *     tags:
+		 *       - Recipe
+		 *     requestBody:
+		 *       required: true
+		 *       content:
+		 *         application/json:
+		 *           schema:
+		 *             type: object
+		 *             properties:
+		 *               title:
+		 *                 type: string
+		 *                 description: Título de la receta
+		 *               description:
+		 *                 type: string
+		 *                 description: Descripción de la receta
+		 *               url_image:
+		 *                 type: string
+		 *                 description: URL de la imagen de la receta
+		 *               ingredients:
+		 *                 type: string
+		 *                 description: Ingredientes de la receta
+		 *               instructions:
+		 *                 type: string
+		 *                 description: Instrucciones de la receta
+		 *               user_id:
+		 *                 type: integer
+		 *                 description: ID del usuario creador de la receta
+		 *               category_id:
+		 *                 type: integer
+		 *                 description: ID de la categoría de la receta
+		 *     responses:
+		 *       201:
+		 *         description: Receta creada exitosamente
+		 *       400:
+		 *         description: Solicitud incorrecta
+		 *       401:
+		 *         description: No autorizado
+		 *       500:
+		 *         description: Error interno del servidor
+		 */
 		router.post(
 			"/recipes",
 			body("title").notEmpty().withMessage("Title is empty").isString().withMessage("Title is not string"),
@@ -32,14 +126,6 @@ export default class RecipeRouter {
 			HandlerAuth.authorizeAdminOrUserRole,
 			RecipeController.createRecipe
 		);
-
-		// router.delete(
-		// 	"/recipes/:recipeId",
-		// 	param("recipeId").isNumeric().withMessage("ID is not numeric"),
-		// 	HandlerValidationErrors.executeValidation,
-		// 	HandlerAuth.authenticate,
-		// 	RecipeController.deleteRecipeById
-		// );
 
 		return router;
 	};

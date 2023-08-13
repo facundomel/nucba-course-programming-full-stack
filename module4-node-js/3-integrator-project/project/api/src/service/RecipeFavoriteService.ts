@@ -61,7 +61,7 @@ export default class RecipeFavoriteService {
 				newRecipeFavorite.userId,
 				newRecipeFavorite.recipeId
 			)) as Recipe;
-			if (recipeFavoriteWithDetails != null) throw new CustomException("Recipe favorite already exist", StatusCodes.CONFLICT);
+			if (recipeFavoriteWithDetails != null) throw new CustomException("Recipe favorite already exist for the user", StatusCodes.CONFLICT);
 			const recipeFavoriteCreated: RecipeFavorite = await RecipeFavoriteRepository.createRecipeFavorite(newRecipeFavorite);
 			return recipeFavoriteCreated;
 		} catch (error: any) {

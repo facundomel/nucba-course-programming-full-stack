@@ -28,20 +28,6 @@ export default class RecipeCategoryRepository {
 		}
 	};
 
-	// static getRecipeCategoryById = async (recipeCategoryId: number): Promise<RecipeCategory> => {
-	// 	try {
-	// 		const recipeCategory: RecipeCategory = (await this.recipeCategoryRepository
-	// 			.createQueryBuilder()
-	// 			.select("recipes_category")
-	// 			.from(RecipeCategory, "recipes_category")
-	// 			.where("recipes_category.id = :id", { id: recipeCategoryId })
-	// 			.getOne()) as RecipeCategory;
-	// 		return recipeCategory;
-	// 	} catch (error: any) {
-	// 		throw error;
-	// 	}
-	// };
-
 	static createRecipeCategory = async (newRecipeCategory: RecipeCategory): Promise<RecipeCategory> => {
 		try {
 			const recipeCategory: RecipeCategory = (await this.recipeCategoryRepository.save(newRecipeCategory)) as RecipeCategory;
@@ -50,12 +36,4 @@ export default class RecipeCategoryRepository {
 			throw error;
 		}
 	};
-
-	// static deleteRecipeCategoryById = async (recipeCategoryId: number): Promise<void> => {
-	// 	try {
-	// 		await this.recipeCategoryRepository.softDelete({ id: recipeCategoryId });
-	// 	} catch (error: any) {
-	// 		throw error;
-	// 	}
-	// };
 }

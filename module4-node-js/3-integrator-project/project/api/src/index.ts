@@ -1,5 +1,5 @@
 import express from "express";
-import UsersRouter from "./router/UsersRouter";
+import UserRouter from "./router/UserRouter";
 import { StatusCodes } from "http-status-codes";
 import CustomException from "./model/CustomException";
 import ResponseUtils from "./utils/ResponseUtils";
@@ -24,7 +24,7 @@ class Main {
 
 		app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 		app.use("/api", AuthRouter.init());
-		app.use("/api", UsersRouter.init());
+		app.use("/api", UserRouter.init());
 		app.use("/api", RecipeCategoryRouter.init());
 		app.use("/api", RecipeFavoriteRouter.init());
 		app.use("/api", RecipeRouter.init());
