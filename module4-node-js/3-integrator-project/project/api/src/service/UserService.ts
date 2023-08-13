@@ -3,8 +3,6 @@ import CustomException from "../model/CustomException";
 import User from "../model/entity/User";
 import UserRepository from "../repository/UserRepository";
 import bcrypt from "bcrypt";
-import UserRole from "../model/entity/UserRole";
-import UserRoleService from "./UserRoleService";
 
 export default class UserService {
 	static getUsers = async (): Promise<User[]> => {
@@ -74,28 +72,4 @@ export default class UserService {
 			throw error;
 		}
 	};
-
-	// static deleteUserById = async (userId: number): Promise<User> => {
-	// 	try {
-	// 		let user: User = (await this.getUserById(userId)) as User;
-	// 		if (user.deletedDate != null) throw new CustomException("User is already deleted", StatusCodes.CONFLICT);
-	// 		await UserRepository.deleteUserById(userId);
-	// 		user = (await this.getUserById(userId)) as User;
-	// 		return user;
-	// 	} catch (error: any) {
-	// 		throw error;
-	// 	}
-	// };
-
-	// static deleteExpensesByUserId = async (userId: number): Promise<User> => {
-	// 	try {
-	// 		let user: User = (await this.getExpensesByUserId(userId)) as User;
-	// 		if (user.expenses.length == 0) throw new CustomException("User has not expenses", StatusCodes.CONFLICT);
-	// 		await UserRepository.deleteExpensesByUserId(userId);
-	// 		user = (await this.getExpensesByUserId(userId)) as User;
-	// 		return user;
-	// 	} catch (error: any) {
-	// 		throw error;
-	// 	}
-	// };
 }

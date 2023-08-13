@@ -9,6 +9,8 @@ import cors from "cors";
 import RecipeRouter from "./router/RecipeRouter";
 import RecipeCategoryRouter from "./router/RecipeCategoryRouter";
 import RecipeFavoriteRouter from "./router/RecipeFavoriteRouter";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpecs from "../swagger-config"; // Importa la configuración de Swagger
 
 class Main {
 	static init = () => {
@@ -20,6 +22,7 @@ class Main {
 		app.use(express.json({ strict: false }));
 		app.use(cors());
 
+		app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 		app.use("/api", AuthRouter.init());
 		app.use("/api", UsersRouter.init());
 		app.use("/api", RecipeCategoryRouter.init());
