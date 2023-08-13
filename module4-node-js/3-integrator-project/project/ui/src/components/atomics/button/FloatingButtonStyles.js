@@ -5,9 +5,9 @@ import { Fab } from "@mui/material";
 export const FloatinButtonStyled = styled(motion(Fab))`
 	position: fixed;
 	bottom: 20px;
-	right: 20px;
-	width: 60px;
-	height: 60px;
+	right: 10px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	background-color: var(--white);
 	color: var(--black);
@@ -19,4 +19,9 @@ export const FloatinButtonStyled = styled(motion(Fab))`
 	cursor: pointer;
 	padding: 0;
 	margin: 0;
+
+	@media (max-width: 600px) {
+		width: 40px;
+		height: 40px;
+	}
 `;

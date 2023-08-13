@@ -64,7 +64,7 @@ export const FooterSectionFinalStyled = styled.div`
 	justify-content: space-between;
 	flex-wrap: wrap;
 	margin: 0;
-	padding: 1.5% 2%;
+	padding: 10px 80px;
 
 	p {
 		margin: 0;
@@ -81,12 +81,12 @@ export const FooterSectionFinalStyled = styled.div`
 		color: var(--white);
 	}
 
-	@media (max-width: 800px) {
+	@media (max-width: 900px) {
 		justify-content: center;
 
 		p {
 			margin: 0;
-			padding: 1.5% 2%;
+			padding-bottom: 10px;
 		}
 
 		div {
@@ -94,13 +94,18 @@ export const FooterSectionFinalStyled = styled.div`
 		}
 	}
 
-	@media (max-width: 400px) {
-		p {
-			padding-bottom: 3%;
-		}
+	@media (max-width: 600px) {
+		padding-right: 65px;
+		padding-left: 65px;
 
 		div {
 			width: 60%;
+		}
+	}
+
+	@media (max-width: 400px) {
+		div {
+			width: 100%;
 		}
 	}
 `;

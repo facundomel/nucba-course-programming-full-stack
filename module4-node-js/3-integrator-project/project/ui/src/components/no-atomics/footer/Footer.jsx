@@ -31,7 +31,7 @@ const Footer = () => {
 				<FooterDivisorStyled />
 
 				<FooterSectionFinalStyled>
-					<p>Copyright © 2022 - Creado por Facundo Melgar - Todos los derechos reservados</p>
+					<p>Copyright © 2023 - Creado por Facundo Melgar - Todos los derechos reservados</p>
 					<div>
 						<Link to={"mailto:facundo.melgarr@gmail.com"} title="Email" target="_blank">
 							<GrMail className="email-contact" />
