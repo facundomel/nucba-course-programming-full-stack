@@ -22,7 +22,7 @@ const Categories = () => {
 			const categories = await RecipeCategoryService.getRecipesCategory();
 			dispatch(categoriesActions.setCategories(categories));
 		} catch (err) {
-			Utils.setSnackbarError(err, dispatch);
+			// Utils.setSnackbarError(err, dispatch);
 		}
 	};
 

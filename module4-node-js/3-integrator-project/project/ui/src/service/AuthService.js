@@ -19,26 +19,28 @@ export default class AuthService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			const errorData = Utils.convertFromSnakeToCamel(err.response.data);
-			switch (errorData.statusCode) {
-				case HttpStatusCode.BadRequest:
-					if (errorData.message.includes("Email is not valid")) {
-						throw new CustomException(UserErrorType.ERROR_EMAIL, "Formato de email incorrecto", errorData.statusCode);
-					} else if (errorData.message === "Password is not valid") {
-						throw new CustomException(UserErrorType.ERROR_PASSWORD, "Password incorrecto", HttpStatusCode.BadRequest);
-					}
-					break;
-				case HttpStatusCode.NotFound:
-					if (errorData.message === "User not found") {
-						throw new CustomException(UserErrorType.ERROR_EMAIL, "Email incorrecto", errorData.statusCode);
-					}
-					break;
-				default:
-					throw new CustomException(
-						UserErrorType.ERROR_EMAIL_OR_PASSWORD,
-						"Ocurrió un error. Inténtelo más tarde.",
-						HttpStatusCode.InternalServerError
-					);
+			const errorData = Utils.convertFromSnakeToCamel(err.response?.data);
+			if (errorData) {
+				switch (errorData.statusCode) {
+					case HttpStatusCode.BadRequest:
+						if (errorData.message.includes("Email is not valid")) {
+							throw new CustomException(UserErrorType.ERROR_EMAIL, "Formato de email incorrecto", errorData.statusCode);
+						} else if (errorData.message === "Password is not valid") {
+							throw new CustomException(UserErrorType.ERROR_PASSWORD, "Password incorrecto", HttpStatusCode.BadRequest);
+						}
+						break;
+
+					case HttpStatusCode.NotFound:
+						if (errorData.message === "User not found") {
+							throw new CustomException(UserErrorType.ERROR_EMAIL, "Email incorrecto", errorData.statusCode);
+						}
+						break;
+
+					default:
+						throw new CustomException("", "Ha ocurrido un error. Inténtelo más tarde", HttpStatusCode.InternalServerError);
+				}
+			} else {
+				throw new CustomException("", "Ha ocurrido un error. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 			}
 		}
 	};
@@ -57,17 +59,13 @@ export default class AuthService {
 			dispatch(userActions.setCurrentUser(new UserSession(response)));
 			return response;
 		} catch (err) {
-			const errResponseData = err.response?.data && Utils.convertFromSnakeToCamel(err.response.data);
-			if (
-				errResponseData &&
-				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
-				errResponseData.message === "Not authorized: Refresh token expired"
-			) {
+			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Refresh token expired") {
 				dispatch(userActions.removeCurrentUser());
 				navigate("/recetas/1");
-				throw new CustomException("", "¡La sesión ha caducado!", errResponseData.statusCode);
+				throw new CustomException("", "¡La sesión ha caducado!", errData.statusCode);
 			}
-			throw new CustomException("", "Ha ocurrido un error inesperado", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Ha ocurrido un error. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 }

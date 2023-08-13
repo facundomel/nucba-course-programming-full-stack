@@ -55,7 +55,7 @@ export default class RecipeFavoriteService {
 
 	static createRecipeFavorite = async (newRecipeFavorite: RecipeFavorite): Promise<RecipeFavorite> => {
 		try {
-			await UserService.getUserById(newRecipeFavorite.userId);
+			await UserService.getUserById(newRecipeFavorite.userId, true);
 			await RecipeService.getRecipeById(newRecipeFavorite.recipeId);
 			const recipeFavoriteWithDetails: Recipe = (await RecipeFavoriteRepository.getRecipeFavoriteWithDetailsByUserIdAndRecipeId(
 				newRecipeFavorite.userId,
@@ -76,9 +76,10 @@ export default class RecipeFavoriteService {
 				const response = await RecipeFavoriteRepository.deleteRecipeFavoriteByUserIdAndRecipeId(userId, recipeId);
 				if (response.affected > 0) {
 					return recipeFavoriteWithDetails;
+				} else {
+					throw new CustomException("Recipe favorite not found", StatusCodes.NOT_FOUND);
 				}
 			}
-			return null;
 		} catch (error: any) {
 			throw error;
 		}

@@ -121,7 +121,7 @@ export const TextAreaAndSmall = styled.div`
 	width: 100%;
 
 	& small {
-		color: var(--red);
+		color: var(--orange2);
 		font-size: 12px;
 	}
 `;

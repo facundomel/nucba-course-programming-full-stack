@@ -22,6 +22,7 @@ import {
 	ModalBodyCardRecipePublisher,
 } from "./CardRecipeStyles.js";
 import Utils from "../../../utils/Utils.js";
+import CustomException from "../../../model/CustomException.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;

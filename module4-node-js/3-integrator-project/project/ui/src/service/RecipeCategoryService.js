@@ -14,7 +14,7 @@ export default class RecipeCategoryService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			throw new CustomException("", "Error al obtener las categorías de las recetas", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al obtener las categorías de las recetas. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 }

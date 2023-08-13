@@ -41,11 +41,13 @@ export default class UserRepository {
 		}
 	};
 
-	static getUserById = async (userId: number): Promise<User> => {
+	static getUserById = async (userId: number, shouldOfuscatePass: boolean): Promise<User> => {
 		try {
+			const fieldsSelect: any = shouldOfuscatePass ? this.fieldsUserToGet : "users";
+
 			const user: User = (await this.userRepository
 				.createQueryBuilder()
-				.select(this.fieldsUserToGet)
+				.select(fieldsSelect)
 				.from(User, "users")
 				.where("users.id = :id", { id: userId })
 				.getOne()) as User;
@@ -55,11 +57,13 @@ export default class UserRepository {
 		}
 	};
 
-	static getUserByEmail = async (email: string): Promise<User> => {
+	static getUserByEmail = async (email: string, shouldOfuscatePass: boolean): Promise<User> => {
 		try {
+			const fieldsSelect: any = shouldOfuscatePass ? this.fieldsUserToGet : "users";
+
 			const user: User = (await this.userRepository
 				.createQueryBuilder()
-				.select("users")
+				.select(fieldsSelect)
 				.from(User, "users")
 				.where("users.email = :email", { email: email })
 				.getOne()) as User;
@@ -88,6 +92,15 @@ export default class UserRepository {
 		try {
 			const user: User = (await this.userRepository.save(newUser)) as User;
 			return user;
+		} catch (error: any) {
+			throw error;
+		}
+	};
+
+	static updateUserPassword = async (userId: number, newPassword: string): Promise<any> => {
+		try {
+			const result = await this.userRepository.update(userId, {password: newPassword});
+			return result;
 		} catch (error: any) {
 			throw error;
 		}

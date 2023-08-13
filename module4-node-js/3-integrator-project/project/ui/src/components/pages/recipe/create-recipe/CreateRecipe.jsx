@@ -20,9 +20,11 @@ import RecipeService from "../../../../service/RecipeService";
 import * as categoriesActions from "../../../../redux/categories/CategoriesActions.js";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import Utils from "../../../../utils/Utils";
+import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 
 const CreateRecipe = () => {
-	const [error, setError] = useState(null);
+	const [errorInput, setErrorInput] = useState(null);
+	const [otherError, setOtherError] = useState(null);
 	const [valueInputs, setValueInputs] = useState(new Recipe());
 	// const [recipesCategories, setRecipesCategories] = useState([new RecipeCategory()]);
 	const [selectedOptionRecipeCategory, setSelectedOptionRecipeCategory] = useState({ value: -1, label: "default" });
@@ -37,6 +39,7 @@ const CreateRecipe = () => {
 	const { currentUser } = useSelector((state) => state.user);
 	const { categories } = useSelector((state) => state.categories);
 	const { recipesAll } = useSelector((state) => state.recipes);
+	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 
 	useEffect(() => {
 		titleRef.current.focus();
@@ -47,9 +50,9 @@ const CreateRecipe = () => {
 	}, []);
 
 	useEffect(() => {
-		if (!error) return;
+		if (!errorInput) return;
 
-		setError(null);
+		setErrorInput(null);
 	}, [valueInputs]);
 
 	const handlerSetRecipesCategories = async () => {
@@ -57,6 +60,7 @@ const CreateRecipe = () => {
 			const recipesCategories = await RecipeCategoryService.getRecipesCategory();
 			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (error) {
+			setOtherError(error);
 			Utils.setSnackbarError(error, dispatch);
 		}
 	};
@@ -88,7 +92,7 @@ const CreateRecipe = () => {
 				urlImageRef,
 				ingredientsRef,
 				instructionsRef,
-				setError
+				setErrorInput
 			)
 		)
 			return;
@@ -109,6 +113,7 @@ const CreateRecipe = () => {
 				})
 			);
 		} catch (error) {
+			setErrorInput(error);
 			Utils.setSnackbarError(error, dispatch);
 		}
 
@@ -124,18 +129,19 @@ const CreateRecipe = () => {
 	};
 
 	return (
-		<CreateRecipeContainer>
-			<h1>Creá tu receta</h1>
-			<CreateRecipeForm onSubmit={onSubmitCreateRecipe}>
-				<Input
-					name="title"
-					type="text"
-					placeholder="Título"
-					inputRef={titleRef}
-					handleOnChange={handleChangeInputs}
-					error={error && error.type === RecipeErrorType.ERROR_TITLE && error}
-				/>
-				{/* <SelectCustom
+		<>
+			<CreateRecipeContainer>
+				<h1>Creá tu receta</h1>
+				<CreateRecipeForm onSubmit={onSubmitCreateRecipe}>
+					<Input
+						name="title"
+						type="text"
+						placeholder="Título"
+						inputRef={titleRef}
+						handleOnChange={handleChangeInputs}
+						error={errorInput && errorInput.type === RecipeErrorType.ERROR_TITLE && errorInput}
+					/>
+					{/* <SelectCustom
 					defaultValue="-1"
 					name="recipesCategories"
 					selectRef={selectRef}
@@ -151,60 +157,71 @@ const CreateRecipe = () => {
 						</SelectOptionStyled>
 					))}
 				</SelectCustom> */}
-				<SelectCustom
-					name={"recipesCategory"}
-					placeholder="Categoría"
-					selectRef={recipesCategoryRef}
-					options={categories.map((recipeCategory) => ({ value: recipeCategory.id, label: recipeCategory.title }))}
-					handleOnChange={handleChangeSelectRecipeCategory}
-					error={error && error.type === RecipeErrorType.ERROR_CATEGORIES && error}
-				/>
-				<Input
-					name="urlImage"
-					type="text"
-					placeholder="URL de imagen"
-					inputRef={urlImageRef}
-					handleOnChange={handleChangeInputs}
-					error={error && error.type === RecipeErrorType.ERROR_URL_IMAGE && error}
-				/>
-				<TextArea
-					name="description"
-					type="text"
-					placeholder="Breve descripción"
-					textAreaRef={descriptionRef}
-					handleOnChange={handleChangeInputs}
-					error={error && error.type === RecipeErrorType.ERROR_DESCRIPTION && error}
-					rows={5}
-				/>
-				<TextAreaAndSmall>
-					<TextArea
-						name="ingredients"
-						type="text"
-						placeholder="Ingredientes"
-						textAreaRef={ingredientsRef}
-						handleOnChange={handleChangeInputs}
-						error={error && error.type === RecipeErrorType.ERROR_INGREDIENTS && error}
-						rows={10}
+					<SelectCustom
+						name={"recipesCategory"}
+						placeholder="Categoría"
+						selectRef={recipesCategoryRef}
+						options={categories.map((recipeCategory) => ({ value: recipeCategory.id, label: recipeCategory.title }))}
+						handleOnChange={handleChangeSelectRecipeCategory}
+						error={errorInput && errorInput.type === RecipeErrorType.ERROR_CATEGORIES && errorInput}
 					/>
-					<small>Al final de cada ingrediente debe presionar enter</small>
-				</TextAreaAndSmall>
-				<TextAreaAndSmall>
-					<TextArea
-						name="instructions"
+					<Input
+						name="urlImage"
 						type="text"
-						placeholder="Instrucciones"
-						textAreaRef={instructionsRef}
+						placeholder="URL de imagen"
+						inputRef={urlImageRef}
 						handleOnChange={handleChangeInputs}
-						error={error && error.type === RecipeErrorType.ERROR_INSTRUCTIONS && error}
-						rows={10}
+						error={errorInput && errorInput.type === RecipeErrorType.ERROR_URL_IMAGE && errorInput}
 					/>
-					<small>Al final de cada paso debe presionar enter</small>
-				</TextAreaAndSmall>
-				<Button type="submit" width="100%">
-					Crear Receta
-				</Button>
-			</CreateRecipeForm>
-		</CreateRecipeContainer>
+					<TextArea
+						name="description"
+						type="text"
+						placeholder="Breve descripción"
+						textAreaRef={descriptionRef}
+						handleOnChange={handleChangeInputs}
+						error={errorInput && errorInput.type === RecipeErrorType.ERROR_DESCRIPTION && errorInput}
+						rows={5}
+					/>
+					<TextAreaAndSmall>
+						<TextArea
+							name="ingredients"
+							type="text"
+							placeholder="Ingredientes"
+							textAreaRef={ingredientsRef}
+							handleOnChange={handleChangeInputs}
+							error={errorInput && errorInput.type === RecipeErrorType.ERROR_INGREDIENTS && errorInput}
+							rows={10}
+						/>
+						<small>Al final de cada ingrediente debe presionar enter</small>
+					</TextAreaAndSmall>
+					<TextAreaAndSmall>
+						<TextArea
+							name="instructions"
+							type="text"
+							placeholder="Instrucciones"
+							textAreaRef={instructionsRef}
+							handleOnChange={handleChangeInputs}
+							error={errorInput && errorInput.type === RecipeErrorType.ERROR_INSTRUCTIONS && errorInput}
+							rows={10}
+						/>
+						<small>Al final de cada paso debe presionar enter</small>
+					</TextAreaAndSmall>
+					<Button type="submit" width="100%">
+						Crear Receta
+					</Button>
+				</CreateRecipeForm>
+			</CreateRecipeContainer>
+
+			{otherError && (
+				<SnackbarCustom
+					open={optionsSnackbar.open}
+					onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
+					severity={optionsSnackbar.severity}
+					message={optionsSnackbar.message}
+					autoHideDuration={optionsSnackbar.autoHideDuration}
+				/>
+			)}
+		</>
 	);
 };
 

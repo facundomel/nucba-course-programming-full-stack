@@ -13,5 +13,5 @@ export const MainContainerStyled = styled.div`
 			? "var(--bg-recipe-all)"
 			: props.userSection === "RecipeFavorite"
 			? "var(--bg-recipe-favorite)"
-			: "var(--black-light)"};
+			: "var(--bg-body)"};
 `;

@@ -10,13 +10,12 @@ import {
 	IconShowAndHidePasswordContainer,
 } from "../UserStyles";
 import Button from "../../../atomics/button/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 import { KEY_USER_SESSION } from "../../../../repository/LocalStorage";
 import localStorage from "../../../../repository/LocalStorage";
-import { isValidEmail, isValidEmailAndPassword, isValidPassword } from "./LoginValidations";
 import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -27,11 +26,15 @@ import RecipeService from "../../../../service/RecipeService";
 import Utils from "../../../../utils/Utils";
 import CustomException from "../../../../model/CustomException";
 import { HttpStatusCode } from "axios";
+import { isValidEmail, isValidPassword } from "../UserValidations";
+import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 
 const Login = () => {
-	const [error, setError] = useState(null);
+	const [errorInput, setErrorInput] = useState(null);
+	const [otherError, setOtherError] = useState(null);
 	const [valueInputs, setValueInputs] = useState(new UserLogin());
 	const [typeInputPassword, setTypeInputPassword] = useState("password");
+	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const emailRef = useRef();
@@ -43,9 +46,9 @@ const Login = () => {
 	}, []);
 
 	useEffect(() => {
-		if (!error) return;
-
-		setError(null);
+		if (!errorInput && !otherError) return;
+		if (errorInput) setErrorInput(null);
+		if (otherError) setOtherError(null);
 	}, [valueInputs]);
 
 	const handleChangeInputs = (e) => {
@@ -64,8 +67,8 @@ const Login = () => {
 	const onSubmitLoginUser = async (e) => {
 		e.preventDefault();
 
-		if (!isValidEmail(valueInputs.email, setError, emailRef)) return;
-		if (!isValidPassword(valueInputs.password, setError, passwordRef)) return;
+		if (!isValidEmail(valueInputs.email, setErrorInput, emailRef, false)) return;
+		if (!isValidPassword(valueInputs.password, setErrorInput, passwordRef, false)) return;
 
 		try {
 			const response = await AuthService.loginUser(valueInputs);
@@ -82,12 +85,15 @@ const Login = () => {
 			);
 		} catch (error) {
 			if (error instanceof CustomException) {
-				setError(error);
 				if (error.type === UserErrorType.ERROR_EMAIL) {
+					setErrorInput(error);
 					emailRef.current.focus();
 				} else if (error.type === UserErrorType.ERROR_PASSWORD) {
+					setErrorInput(error);
 					passwordRef.current.focus();
 				} else {
+					setOtherError(error);
+					Utils.setSnackbarError(error, dispatch);
 					emailRef.current.focus();
 				}
 			}
@@ -117,18 +123,24 @@ const Login = () => {
 						placeholder="Email"
 						inputRef={emailRef}
 						handleOnChange={handleChangeInputs}
-						error={error && (error.type === UserErrorType.ERROR_EMAIL || error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) && error}
+						error={
+							errorInput &&
+							(errorInput.type === UserErrorType.ERROR_EMAIL || errorInput.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) &&
+							errorInput
+						}
 					/>
 					<InputPasswordAndIconShowAndHideContainer>
 						<Input
 							name="password"
 							type="password"
-							placeholder="Password"
+							placeholder="Contraseña"
 							paddingRight="3rem"
 							inputRef={passwordRef}
 							handleOnChange={handleChangeInputs}
 							error={
-								error && (error.type === UserErrorType.ERROR_PASSWORD || error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) && error
+								errorInput &&
+								(errorInput.type === UserErrorType.ERROR_PASSWORD || errorInput.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD) &&
+								errorInput
 							}
 						/>
 
@@ -143,15 +155,10 @@ const Login = () => {
 							{typeInputPassword === "password" || !valueInputs.password ? <AiFillEyeInvisible /> : <AiFillEye />}
 						</IconShowAndHidePasswordContainer>
 					</InputPasswordAndIconShowAndHideContainer>
-					<ErrorContainer isGap={true}>
-						{error && error.type === UserErrorType.ERROR_EMAIL_OR_PASSWORD && (
-							<ErrorMessage textAlign="center">{error.message}</ErrorMessage>
-						)}
-						<Button type="submit" width="100%">
-							Ingresar
-						</Button>
-					</ErrorContainer>
-					<UserLink to="/recuperar-password">
+					<Button type="submit" width="100%">
+						Ingresar
+					</Button>
+					<UserLink to="/recuperar-contraseña">
 						<small>¿Olvidaste la contraseña? Restablecela</small>
 					</UserLink>
 					<UserLink to="/registro">
@@ -159,6 +166,16 @@ const Login = () => {
 					</UserLink>
 				</UserForm>
 			</UserContainer>
+
+			{otherError && (
+				<SnackbarCustom
+					open={optionsSnackbar.open}
+					onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
+					severity={optionsSnackbar.severity}
+					message={optionsSnackbar.message}
+					autoHideDuration={optionsSnackbar.autoHideDuration}
+				/>
+			)}
 		</>
 	);
 };

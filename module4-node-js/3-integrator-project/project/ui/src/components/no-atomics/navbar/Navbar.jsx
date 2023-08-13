@@ -125,7 +125,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								</NavbarLinkRight>
 							)}
 							{!currentUser ? (
-								location.pathname === "/login" || location.pathname === "/recuperar-password" ? (
+								location.pathname === "/login" || location.pathname === "/recuperar-contraseña" ? (
 									<NavbarLinkRight>
 										<FaUserAlt />
 									</NavbarLinkRight>

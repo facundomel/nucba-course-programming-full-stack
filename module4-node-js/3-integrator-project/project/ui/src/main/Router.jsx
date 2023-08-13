@@ -10,9 +10,10 @@ import CreateRecipe from "../components/pages/recipe/create-recipe/CreateRecipe"
 import RecipeAll from "../components/pages/recipe/recipe-all/RecipeAll";
 import RecipeService from "../service/RecipeService";
 import * as recipesActions from "../redux/recipes/RecipesActions.js";
+import NewPassword from "../components/pages/user/forgot-password/NewPassword";
 
 const Router = () => {
-	const { currentUser } = useSelector((state) => state.user);
+	const { currentUser, userForgotPassword } = useSelector((state) => state.user);
 
 	return (
 		<Routes>
@@ -22,7 +23,8 @@ const Router = () => {
 			<Route path="/recetas/:page" element={<RecipeAll />} />
 			<Route path="/registro" element={<Register />} />
 			<Route path="/login" element={<Login />} />
-			<Route path="/recuperar-password" element={<ForgotPassword />} />
+			<Route path="/recuperar-contraseña" element={<ForgotPassword />} />
+			{userForgotPassword && <Route path="/nueva-contraseña" element={<NewPassword />} />}
 			{currentUser && (
 				<>
 					<Route path="/recetas-favoritas/:page" element={<RecipeFavorite />} />

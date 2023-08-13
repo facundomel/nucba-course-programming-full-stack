@@ -19,8 +19,7 @@ export default class RecipeService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			console.log(err);
-			throw new CustomException("", "Error al obtener las recetas", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al obtener las recetas. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 
@@ -35,17 +34,17 @@ export default class RecipeService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			const errResponseData = err.response?.data && Utils.convertFromSnakeToCamel(err.response.data);
+			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (
-				errResponseData &&
-				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
-				errResponseData.message === "Not authorized: Access token expired"
+				errData &&
+				errData.statusCode === HttpStatusCode.Unauthorized &&
+				errData.message === "Not authorized: Access token expired"
 			) {
 				let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
 				response = await this.getRecipeById(recipeId, new UserSession(response).authToken, navigate, dispatch);
 				return response;
 			}
-			throw new CustomException("", "Error al obtener la receta", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al obtener la receta. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 
@@ -63,17 +62,17 @@ export default class RecipeService {
 			);
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			const errResponseData = err.response?.data && Utils.convertFromSnakeToCamel(err.response.data);
+			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (
-				errResponseData &&
-				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
-				errResponseData.message === "Not authorized: Access token expired"
+				errData &&
+				errData.statusCode === HttpStatusCode.Unauthorized &&
+				errData.message === "Not authorized: Access token expired"
 			) {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.getRecipesFavoriteWithDetailsByUserId(new UserSession(response), navigate, dispatch);
 				return response;
 			}
-			throw new CustomException("", "Error al obtener las recetas", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al obtener las recetas favoritas. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 
@@ -88,17 +87,17 @@ export default class RecipeService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			const errResponseData = err.response?.data && Utils.convertFromSnakeToCamel(err.response.data);
+			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (
-				errResponseData &&
-				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
-				errResponseData.message === "Not authorized: Access token expired"
+				errData &&
+				errData.statusCode === HttpStatusCode.Unauthorized &&
+				errData.message === "Not authorized: Access token expired"
 			) {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(new UserSession(response), recipeId, navigate, dispatch);
 				return response;
 			}
-			throw new CustomException("", "Error al obtener las recetas", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al obtener las recetas favoritas. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 
@@ -114,17 +113,17 @@ export default class RecipeService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			const errResponseData = err.response?.data && Utils.convertFromSnakeToCamel(err.response.data);
+			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (
-				errResponseData &&
-				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
-				errResponseData.message === "Not authorized: Access token expired"
+				errData &&
+				errData.statusCode === HttpStatusCode.Unauthorized &&
+				errData.message === "Not authorized: Access token expired"
 			) {
 				let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
 				response = await this.createRecipe(recipe, new UserSession(response).authToken, navigate, dispatch);
 				return response;
 			}
-			throw new CustomException("", "Error al crear la receta", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al crear la receta. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 
@@ -143,17 +142,17 @@ export default class RecipeService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			const errResponseData = err.response?.data && Utils.convertFromSnakeToCamel(err.response.data);
+			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (
-				errResponseData &&
-				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
-				errResponseData.message === "Not authorized: Access token expired"
+				errData &&
+				errData.statusCode === HttpStatusCode.Unauthorized &&
+				errData.message === "Not authorized: Access token expired"
 			) {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.createRecipeFavorite((new UserSession(response), recipeId, navigate, dispatch));
 				return response;
 			}
-			throw new CustomException("", "Error al crear la receta", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al crear la receta favorita. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 
@@ -168,17 +167,17 @@ export default class RecipeService {
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			const errResponseData = err.response?.data && Utils.convertFromSnakeToCamel(err.response.data);
+			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (
-				errResponseData &&
-				errResponseData.statusCode === HttpStatusCode.Unauthorized &&
-				errResponseData.message === "Not authorized: Access token expired"
+				errData &&
+				errData.statusCode === HttpStatusCode.Unauthorized &&
+				errData.message === "Not authorized: Access token expired"
 			) {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.deleteRecipeFavorite((new UserSession(response), recipeId, navigate, dispatch));
 				return response;
 			}
-			throw new CustomException("", "Error al eliminar la receta", HttpStatusCode.InternalServerError);
+			throw new CustomException("", "Error al eliminar la receta favorita. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};
 }

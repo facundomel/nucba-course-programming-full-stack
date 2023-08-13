@@ -16,7 +16,7 @@ export default class AuthService {
 
 	static login = async (loginData: UserLogin): Promise<any> => {
 		try {
-			let user: User = (await UserService.getUserByEmail(loginData.email)) as User;
+			let user: User = (await UserService.getUserByEmail(loginData.email, false)) as User;
 			const result = await bcrypt.compare(loginData.password, user.password);
 			if (!result) {
 				throw new CustomException("Password is not valid", StatusCodes.BAD_REQUEST);
@@ -41,7 +41,7 @@ export default class AuthService {
 		try {
 			const data: any = jwt.verify(autorizationToken, this.refreshTokenSecret);
 			if (data) {
-				let user: User = (await UserService.getUserByEmail(data.email)) as User;
+				let user: User = (await UserService.getUserByEmail(data.email, true)) as User;
 				const userRole: UserRole = await UserRoleService.getUserRoleById(user.roleId);
 				const accessToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.accessTokenSecret, {
 					expiresIn: "12h",

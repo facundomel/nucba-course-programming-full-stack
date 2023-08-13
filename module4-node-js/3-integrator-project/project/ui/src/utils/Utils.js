@@ -17,7 +17,7 @@ export default class Utils {
 				open: true,
 				severity: "error",
 				message: error instanceof CustomException ? `${error.message}` : `Ha ocurrido un error inesperado. Vuelva a intentarlo más tarde.`,
-				autoHideDuration: 3000,
+				autoHideDuration: 2500,
 			})
 		);
 	}
