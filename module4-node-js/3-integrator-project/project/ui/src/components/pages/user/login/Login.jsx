@@ -28,6 +28,7 @@ import CustomException from "../../../../model/CustomException";
 import { HttpStatusCode } from "axios";
 import { isValidEmail, isValidPassword } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
+import SnackbarUtils from "../../../../utils/SnackbarUtils";
 
 const Login = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -47,11 +48,7 @@ const Login = () => {
 
 	useEffect(() => {
 		if ((valueInputs.email !== "" || valueInputs.password !== "") && optionsSnackbar.message === "Contraseña actualizada correctamente") {
-			dispatch(
-				snackbarActions.setOptionsSnackbar({
-					open: false,
-				})
-			);
+			dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }));
 		}
 		if (!errorInput && !otherError) return;
 		if (errorInput) setErrorInput(null);
@@ -82,14 +79,7 @@ const Login = () => {
 			const currentUser = new UserSession(response);
 			dispatch(userActions.setCurrentUser(currentUser));
 			navigate("/recetas/1");
-			dispatch(
-				snackbarActions.setOptionsSnackbar({
-					open: true,
-					severity: "info",
-					message: `¡Bienvenido nuevamente ${response.user.firstName}!`,
-					autoHideDuration: 2500,
-				})
-			);
+			SnackbarUtils.info(`¡Bienvenido nuevamente ${response.user.firstName}!`, 2500, dispatch);
 		} catch (error) {
 			if (error instanceof CustomException) {
 				if (error.type === UserErrorType.ERROR_EMAIL) {
@@ -100,7 +90,7 @@ const Login = () => {
 					passwordRef.current.focus();
 				} else {
 					setOtherError(error);
-					Utils.setSnackbarError(error, dispatch);
+					SnackbarUtils.error(error, 2500, dispatch);
 					emailRef.current.focus();
 				}
 			}

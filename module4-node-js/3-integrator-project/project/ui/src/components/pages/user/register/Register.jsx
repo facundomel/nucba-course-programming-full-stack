@@ -25,6 +25,7 @@ import Utils from "../../../../utils/Utils";
 import CustomException from "../../../../model/CustomException";
 import { isValidEmail, isValidFirstName, isValidLastName, isValidPassword } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
+import SnackbarUtils from "../../../../utils/SnackbarUtils";
 
 const Register = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -77,14 +78,7 @@ const Register = () => {
 
 			dispatch(userActions.setCurrentUser(new UserSession(response)));
 			navigate("/recetas/1");
-			dispatch(
-				snackbarActions.setOptionsSnackbar({
-					open: true,
-					severity: "success",
-					message: `¡Felicitaciones ${response.user.firstName}! Se ha registrado correctamente`,
-					autoHideDuration: 2500,
-				})
-			);
+			SnackbarUtils.success(`¡Felicitaciones ${response.user.firstName}! Se ha registrado correctamente`, 2500, dispatch)
 		} catch (error) {
 			if (error instanceof CustomException) {
 				if (error.type === UserErrorType.ERROR_EMAIL) {
@@ -92,21 +86,11 @@ const Register = () => {
 					emailRef.current.focus();
 				} else {
 					setOtherError(error);
-					Utils.setSnackbarError(error, dispatch);
+					SnackbarUtils.error(error, 2500, dispatch);
 					firstNameRef.current.focus();
 				}
 			}
 		}
-
-		// const user = localStorage.get(KEY_USER_SESSION) || null;
-
-		// if (user != null && user.email == valueInputs.email) {
-		// 	setError(new ErrorCustom(ERROR_EMAIL, "El email ya se encuentra en uso"));
-		// 	emailRef.current.focus();
-		// 	return;
-		// }
-
-		// localStorage.save(KEY_USER_SESSION, valueInputs);
 	};
 
 	const showPassword = (e) => {

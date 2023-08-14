@@ -5,6 +5,7 @@ import Category from "./Category";
 import * as categoriesActions from "../../../redux/categories/CategoriesActions.js";
 import RecipeCategoryService from "../../../service/RecipeCategoryService";
 import Utils from "../../../utils/Utils";
+import SnackbarUtils from "../../../utils/SnackbarUtils";
 
 const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
@@ -22,7 +23,7 @@ const Categories = () => {
 			const categories = await RecipeCategoryService.getRecipesCategory();
 			dispatch(categoriesActions.setCategories(categories));
 		} catch (err) {
-			Utils.setSnackbarError(err, dispatch);
+			SnackbarUtils.error(err, 2500, dispatch);
 		}
 	};
 

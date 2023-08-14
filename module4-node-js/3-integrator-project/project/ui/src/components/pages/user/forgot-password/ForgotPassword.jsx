@@ -23,6 +23,7 @@ import { isValidEmail } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions";
 import Utils from "../../../../utils/Utils";
+import SnackbarUtils from "../../../../utils/SnackbarUtils";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
@@ -74,7 +75,7 @@ const ForgotPassword = () => {
 					emailRef.current.focus();
 				} else {
 					setOtherError(error);
-					Utils.setSnackbarError(error, dispatch);
+					SnackbarUtils.error(error, 2500, dispatch);
 					emailRef.current.focus();
 				}
 			}

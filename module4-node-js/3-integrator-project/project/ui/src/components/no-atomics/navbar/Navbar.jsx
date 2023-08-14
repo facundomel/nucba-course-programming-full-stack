@@ -32,6 +32,7 @@ import Modal from "../modal/Modal";
 import Button from "../../atomics/button/Button";
 import { AiFillStar, AiOutlineCheck } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
+import SnackbarUtils from "../../../utils/SnackbarUtils";
 
 const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const { currentUser, isOpenMenuSessionUser, userSection } = useSelector((state) => state.user);
@@ -57,14 +58,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 		dispatch(userActions.removeCurrentUser());
 		setOpenModal(false);
 		navigate("/recetas/1");
-		dispatch(
-			snackbarActions.setOptionsSnackbar({
-				open: true,
-				severity: "info",
-				message: `¡Vuelva pronto!`,
-				autoHideDuration: 2500,
-			})
-		);
+		SnackbarUtils.info("¡Vuelva pronto!", 2500, dispatch);
 	};
 
 	const handlerUserCancelCloseSession = () => {

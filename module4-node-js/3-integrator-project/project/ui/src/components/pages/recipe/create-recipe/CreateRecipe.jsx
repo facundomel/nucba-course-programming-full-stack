@@ -21,6 +21,7 @@ import * as categoriesActions from "../../../../redux/categories/CategoriesActio
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import Utils from "../../../../utils/Utils";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
+import SnackbarUtils from "../../../../utils/SnackbarUtils";
 
 const CreateRecipe = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -61,7 +62,7 @@ const CreateRecipe = () => {
 			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (error) {
 			setOtherError(error);
-			Utils.setSnackbarError(error, dispatch);
+			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
 
@@ -104,28 +105,11 @@ const CreateRecipe = () => {
 			recipeCreated = await RecipeService.getRecipeById(recipeCreated.id, currentUser.authToken, navigate, dispatch);
 			dispatch(recipesActions.setRecipesAll([...recipesAll, recipeCreated]));
 			navigate("/recetas/1");
-			dispatch(
-				snackbarActions.setOptionsSnackbar({
-					open: true,
-					severity: "success",
-					message: `¡Receta ${recipeCreated.title} creada correctamente!`,
-					autoHideDuration: 2500,
-				})
-			);
+			SnackbarUtils.success(`¡Receta ${recipeCreated.title} creada correctamente!`, 2500, dispatch);
 		} catch (error) {
 			setErrorInput(error);
-			Utils.setSnackbarError(error, dispatch);
+			SnackbarUtils.error(error, 2500, dispatch);
 		}
-
-		// const user = localStorage.get(KEY_USER_SESSION) || null;
-
-		// if (user != null && user.email == valueInputs.email) {
-		// 	setError(new ErrorCustom(ERROR_EMAIL, "El email ya se encuentra en uso"));
-		// 	emailRef.current.focus();
-		// 	return;
-		// }
-
-		// localStorage.save(KEY_USER_SESSION, valueInputs);
 	};
 
 	return (

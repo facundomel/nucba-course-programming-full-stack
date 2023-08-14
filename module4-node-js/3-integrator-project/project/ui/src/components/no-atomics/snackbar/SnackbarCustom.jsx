@@ -2,7 +2,7 @@ import { Slide, Snackbar } from "@mui/material";
 import React from "react";
 import { AlertStyled } from "./SnackbarCustomStyles";
 
-const SnackbarCustom = ({ open, onClose, severity, message, autoHideDuration = 2000 }) => {
+const SnackbarCustom = ({ open, onClose, severity, message, autoHideDuration }) => {
 	return (
 		<>
 			<Snackbar

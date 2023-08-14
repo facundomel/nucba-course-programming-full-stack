@@ -13,6 +13,7 @@ import { FcRating } from "react-icons/fc";
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 import Utils from "../../../../utils/Utils";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
+import SnackbarUtils from "../../../../utils/SnackbarUtils";
 
 const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -61,7 +62,7 @@ const RecipeFavorite = () => {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
-			Utils.setSnackbarError(error, dispatch);
+			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
 

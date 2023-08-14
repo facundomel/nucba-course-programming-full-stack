@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
-import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import RecipeService from "../../../service/RecipeService";
@@ -21,17 +20,15 @@ import {
 	ModalBodyCardRecipeInformation,
 	ModalBodyCardRecipePublisher,
 } from "./CardRecipeStyles.js";
-import Utils from "../../../utils/Utils.js";
-import CustomException from "../../../model/CustomException.js";
+import SnackbarUtils from "../../../utils/SnackbarUtils.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
-	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
+	const { recipesFavorite } = useSelector((state) => state.recipes);
 	const { userSection } = useSelector((state) => state.user);
-	const recipeIndex = recipesAll.findIndex((recipe) => recipe.id === id);
-	const [hiddenCard, setHiddenCard] = useState(false);
+	const [hiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
 	const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false);
 	const navigate = useNavigate();
@@ -39,13 +36,6 @@ const CardRecipe = ({ recipe }) => {
 
 	const handlerOnClickStar = async () => {
 		if (!isFavoriteRecipe) {
-			// recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: true };
-			// dispatch(recipeActions.setRecipesFavorite(recipesAll));
-			// if (userSection === "RecipeFavorite") {
-			// 	dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
-			// }
-			// setIsFavoriteRecipe(true);
-
 			try {
 				let recipeFavoriteCreated = await RecipeService.createRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
 				if (recipeFavoriteCreated != null) {
@@ -56,61 +46,25 @@ const CardRecipe = ({ recipe }) => {
 						dispatch
 					);
 					dispatch(recipeActions.setRecipesFavorite([...recipesFavorite, recipeFavoriteCreated]));
-					dispatch(
-						snackbarActions.setOptionsSnackbar({
-							open: true,
-							severity: "success",
-							message: `Receta agregada a favorito`,
-						})
-					);
+					SnackbarUtils.success("Receta agregada a favorito", 2000, dispatch);
 				}
-				// setIsFavoriteRecipe(true);
 			} catch (error) {
-				Utils.setSnackbarError(error, dispatch);
+				SnackbarUtils.error(error, 2500, dispatch);
 			}
 		} else {
 			try {
 				const recipeFavoriteDeleted = await RecipeService.deleteRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
-				// recipeFavoriteDeleted = await RecipeService.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(
-				// 	currentUser,
-				// 	recipe.id,
-				// 	navigate,
-				// 	dispatch
-				// );
 				if (recipeFavoriteDeleted != null) {
 					dispatch(
 						recipeActions.setRecipesFavorite(recipesFavorite.filter((recipeFavorite) => recipeFavorite.id !== recipeFavoriteDeleted.id))
 					);
-					dispatch(
-						snackbarActions.setOptionsSnackbar({
-							open: true,
-							severity: "warning",
-							message: `Receta quitada de favorito`,
-						})
-					);
+					SnackbarUtils.warning("Receta quitada de favorito", 2000, dispatch);
 				}
 			} catch (error) {
-				Utils.setSnackbarError(error, dispatch);
+				SnackbarUtils.error(error, 2500, dispatch);
 			}
-			// dispatch(
-			// 	snackbarActions.setOptionsSnackbar({
-			// 		open: true,
-			// 		severity: "warning",
-			// 		message: `Receta quitada de favorito`,
-			// 	})
-			// );
-			// recipesAll[recipeIndex] = { ...recipesAll[recipeIndex], isFavorite: false };
-			// dispatch(recipeActions.setRecipesFavorite(recipesAll));
-			// if (userSection === "RecipeFavorite") {
-			// 	setHiddenCard(true);
-			// 	dispatch(recipeActions.setRecipesFiltered(recipesAll.filter((recipe) => recipe.isFavorite)));
-			// }
 		}
 	};
-
-	// useEffect(() => {
-	// 	setIsOpenModal(openModal)
-	// }, [openModal]);
 
 	const handlerOpenModal = (status) => {
 		setOpenModal(status);
@@ -141,7 +95,6 @@ const CardRecipe = ({ recipe }) => {
 						</ButtonIconCard>
 						{currentUser && (
 							<ButtonIconCard onClick={() => handlerOnClickStar()}>
-								{/* {recipesAll[recipeIndex].isFavorite ? <AiFillStarCustom /> : <AiOutlineStarCustom />} */}
 								{isFavoriteRecipe ? <AiFillStarCustom /> : <AiOutlineStarCustom />}
 							</ButtonIconCard>
 						)}

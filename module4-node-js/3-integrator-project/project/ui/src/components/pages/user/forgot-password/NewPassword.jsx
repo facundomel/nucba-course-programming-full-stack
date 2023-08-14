@@ -25,6 +25,7 @@ import { useNavigate } from "react-router-dom";
 import Utils from "../../../../utils/Utils";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions";
+import SnackbarUtils from "../../../../utils/SnackbarUtils";
 
 const NewPassword = () => {
 	const passwordRef = useRef();
@@ -39,13 +40,6 @@ const NewPassword = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		// if (!userForgotPassword) {
-		// 	Utils.setSnackbarError(new CustomException("", "Ocurrió un error. Será redireccionado para que vuelva a intentarlo"), dispatch);
-		// 	setTimeout(() => {
-		// 		navigate("/recuperar-contraseña");
-		// 	}, 3000);
-		// }
-
 		passwordRef.current.focus();
 		dispatch(userActions.setUserSection("NewPassword"));
 	}, []);
@@ -65,28 +59,16 @@ const NewPassword = () => {
 
 		if (!isValidPassword(password, setErrorInput, passwordRef, true)) return;
 
-		// const user = localStorage.get(KEY_USER_SESSION) || null;
-
-		// if (!isExistEmail(user, email, setError, passwordRef, userPassword, setUserPassword)) return;
-
-		// setUserPassword(user.password);
 		try {
 			const user = await UserService.updateUserPassword(userForgotPassword.id, password);
 			if (user != null) {
 				navigate("/login");
 				dispatch(userActions.removeUserForgotPassword());
-				dispatch(
-					snackbarActions.setOptionsSnackbar({
-						open: true,
-						severity: "success",
-						message: `Contraseña actualizada correctamente`,
-						autoHideDuration: 2500,
-					})
-				);
+				SnackbarUtils.success("Contraseña actualizada correctamente", 2500, dispatch);
 			}
 		} catch (error) {
 			setOtherError(error);
-			Utils.setSnackbarError(error, dispatch);
+			SnackbarUtils.error(error, 2500, dispatch);
 			passwordRef.current.focus();
 		}
 	};

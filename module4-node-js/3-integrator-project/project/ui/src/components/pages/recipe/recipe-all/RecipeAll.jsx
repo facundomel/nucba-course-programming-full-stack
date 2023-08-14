@@ -17,8 +17,8 @@ import { SpinnerCustomContainer } from "../../../atomics/spinner/SpinnerCustomSt
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 import CustomException from "../../../../model/CustomException";
 import { HttpStatusCode } from "axios";
-import Utils, { setSnackbarError } from "../../../../utils/Utils";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
+import SnackbarUtils from "../../../../utils/SnackbarUtils";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -61,7 +61,7 @@ const RecipeAll = () => {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
-			Utils.setSnackbarError(error, dispatch);
+			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
 
@@ -75,7 +75,7 @@ const RecipeAll = () => {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
-			Utils.setSnackbarError(error, dispatch);
+			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
 
