@@ -14,8 +14,6 @@ import swaggerSpecs from "../swagger-config"; // Importa la configuración de Sw
 
 class Main {
 	static init = () => {
-		Config.getInstance();
-
 		const port = Config.getInstance().appPort;
 		const app = express();
 
