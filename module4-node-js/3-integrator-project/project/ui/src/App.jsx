@@ -6,7 +6,6 @@ import { persistor, store } from "./redux/Store";
 import React from "react";
 
 const App = () => {
-	const BASE_URL = process.env.REACT_APP_BASE_URL;
 	return (
 		<>
 			<Provider store={store}>
