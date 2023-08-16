@@ -1,8 +1,8 @@
 import express from "express";
+import "dotenv/config";
 import UserRouter from "./router/UserRouter";
 import { StatusCodes } from "http-status-codes";
 import CustomException from "./model/CustomException";
-import Utils from "./utils/Utils";
 import AuthRouter from "./router/AuthRouter";
 import Config from "./config/Config";
 import cors from "cors";
@@ -10,7 +10,7 @@ import RecipeRouter from "./router/RecipeRouter";
 import RecipeCategoryRouter from "./router/RecipeCategoryRouter";
 import RecipeFavoriteRouter from "./router/RecipeFavoriteRouter";
 import swaggerUi from "swagger-ui-express";
-import swaggerSpecs from "../swagger-config"; // Importa la configuración de Swagger
+import swaggerSpecs from "../swagger-config";
 import ControllerUtils from "./utils/ControllerUtils";
 
 class Main {

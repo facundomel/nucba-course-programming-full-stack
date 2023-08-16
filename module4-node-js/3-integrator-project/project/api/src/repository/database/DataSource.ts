@@ -1,7 +1,6 @@
 import { DataSource } from "typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import User from "../../model/entity/User";
-import "dotenv/config";
 import { EmailUnique1689389603912 } from "./migrations/1689389603912-EmailUnique";
 import UserRole from "../../model/entity/UserRole";
 import Recipe from "../../model/entity/Recipe";

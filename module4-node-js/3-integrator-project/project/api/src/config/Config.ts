@@ -1,6 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
 import CustomException from "../model/CustomException";
-import "dotenv/config";
 
 export default class Config {
 	private static instance: Config;
