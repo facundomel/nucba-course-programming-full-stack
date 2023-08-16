@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
-import ResponseUtils from "../utils/ResponseUtils";
+import Utils from "../utils/Utils";
 import RecipeFavorite from "../model/entity/RecipesFavorite";
 import RecipeFavoriteService from "../service/RecipeFavoriteService";
 import Recipe from "../model/entity/Recipe";
+import ControllerUtils from "../utils/ControllerUtils";
 
 export default class RecipeFavoriteController {
 	static getRecipesFavoriteByUserId = async (req: Request, res: Response): Promise<void> => {
@@ -11,9 +11,9 @@ export default class RecipeFavoriteController {
 			const recipesFavorite: RecipeFavorite[] = (await RecipeFavoriteService.getRecipesFavoriteByUserId(
 				Number(req.params.userId)
 			)) as RecipeFavorite[];
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipesFavorite));
+			ControllerUtils.ok(res, recipesFavorite);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
@@ -23,9 +23,9 @@ export default class RecipeFavoriteController {
 				Number(req.params.userId),
 				Number(req.params.recipeId)
 			)) as RecipeFavorite;
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipeFavorite));
+			ControllerUtils.ok(res, recipeFavorite);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
@@ -46,15 +46,14 @@ export default class RecipeFavoriteController {
 				limit = null;
 			}
 
-			const recipesFavoriteWothDetails: any = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(
+			const recipesFavoriteWithDetails: any = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(
 				Number(req.params.userId),
 				offset,
 				limit
 			);
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipesFavoriteWothDetails));
+			ControllerUtils.ok(res, recipesFavoriteWithDetails);
 		} catch (error: any) {
-			console.log(error);
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
@@ -64,20 +63,20 @@ export default class RecipeFavoriteController {
 				Number(req.params.userId),
 				Number(req.params.recipeId)
 			)) as Recipe;
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipeFavoriteWithDetails));
+			ControllerUtils.ok(res, recipeFavoriteWithDetails);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
 	static createRecipeFavorite = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const recipeFavorite: RecipeFavorite = await RecipeFavoriteService.createRecipeFavorite(
-				ResponseUtils.convertFromSnakeToCamel(req.body) as RecipeFavorite
+				Utils.convertFromSnakeToCamel(req.body) as RecipeFavorite
 			);
-			res.status(StatusCodes.CREATED).json(ResponseUtils.convertFromCamelToSnake(recipeFavorite));
+			ControllerUtils.created(res, recipeFavorite);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
@@ -87,9 +86,9 @@ export default class RecipeFavoriteController {
 				Number(req.params.userId),
 				Number(req.params.recipeId)
 			);
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipeFavoriteWithDetails));
+			ControllerUtils.ok(res, recipeFavoriteWithDetails);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 }

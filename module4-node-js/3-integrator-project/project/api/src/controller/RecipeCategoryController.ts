@@ -1,27 +1,27 @@
 import { Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
-import ResponseUtils from "../utils/ResponseUtils";
+import Utils from "../utils/Utils";
 import RecipeCategory from "../model/entity/RecipeCategory";
 import RecipeCategoryService from "../service/RecipeCategoryService";
+import ControllerUtils from "../utils/ControllerUtils";
 
 export default class RecipeCategoryController {
 	static getRecipesCategory = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const recipesCategory: RecipeCategory[] = (await RecipeCategoryService.getRecipesCategory()) as RecipeCategory[];
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipesCategory));
+			ControllerUtils.ok(res, recipesCategory);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
 	static createRecipeCategory = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const recipeCategory: RecipeCategory = await RecipeCategoryService.createRecipeCategory(
-				ResponseUtils.convertFromSnakeToCamel(req.body) as RecipeCategory
+				Utils.convertFromSnakeToCamel(req.body) as RecipeCategory
 			);
-			res.status(StatusCodes.CREATED).json(ResponseUtils.convertFromCamelToSnake(recipeCategory));
+			ControllerUtils.created(res, recipeCategory);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 }

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
-import ResponseUtils from "../utils/ResponseUtils";
+import Utils from "../utils/Utils";
 import Recipe from "../model/entity/Recipe";
 import RecipeService from "../service/RecipeService";
+import ControllerUtils from "../utils/ControllerUtils";
 
 export default class RecipeController {
 	static getRecipes = async (req: Request, res: Response): Promise<void> => {
@@ -11,27 +11,27 @@ export default class RecipeController {
 			const limit = Number(req.query.limit) || 12;
 
 			const recipes: any = await RecipeService.getRecipes(offset, limit);
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipes));
+			ControllerUtils.ok(res, recipes);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
 	static getRecipeById = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const recipe: Recipe = (await RecipeService.getRecipeById(Number(req.params.recipeId))) as Recipe;
-			res.status(StatusCodes.OK).json(ResponseUtils.convertFromCamelToSnake(recipe));
+			ControllerUtils.ok(res, recipe);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 
 	static createRecipe = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const recipe: Recipe = await RecipeService.createRecipe(ResponseUtils.convertFromSnakeToCamel(req.body) as Recipe);
-			res.status(StatusCodes.CREATED).json(ResponseUtils.convertFromCamelToSnake(recipe));
+			const recipe: Recipe = await RecipeService.createRecipe(Utils.convertFromSnakeToCamel(req.body) as Recipe);
+			ControllerUtils.created(res, recipe);
 		} catch (error: any) {
-			ResponseUtils.getException(res, error);
+			ControllerUtils.exception(res, error);
 		}
 	};
 }

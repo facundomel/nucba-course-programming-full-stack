@@ -2,7 +2,7 @@ import express from "express";
 import UserRouter from "./router/UserRouter";
 import { StatusCodes } from "http-status-codes";
 import CustomException from "./model/CustomException";
-import ResponseUtils from "./utils/ResponseUtils";
+import Utils from "./utils/Utils";
 import AuthRouter from "./router/AuthRouter";
 import Config from "./config/Config";
 import cors from "cors";
@@ -11,6 +11,7 @@ import RecipeCategoryRouter from "./router/RecipeCategoryRouter";
 import RecipeFavoriteRouter from "./router/RecipeFavoriteRouter";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpecs from "../swagger-config"; // Importa la configuración de Swagger
+import ControllerUtils from "./utils/ControllerUtils";
 
 class Main {
 	static init = () => {
@@ -27,9 +28,7 @@ class Main {
 		app.use("/api", RecipeFavoriteRouter.init());
 		app.use("/api", RecipeRouter.init());
 		app.all("*", (req, res) => {
-			res
-				.status(StatusCodes.NOT_FOUND)
-				.json(ResponseUtils.convertFromCamelToSnake(new CustomException("URL not found", StatusCodes.NOT_FOUND)));
+			ControllerUtils.notFound(res, new CustomException("URL not found", StatusCodes.NOT_FOUND));
 		});
 
 		app.listen(port, () => {
