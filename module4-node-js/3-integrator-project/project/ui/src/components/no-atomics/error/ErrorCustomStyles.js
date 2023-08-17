@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const ErrorHandlerContainer = styled.div`
+export const ErrorCustomContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;

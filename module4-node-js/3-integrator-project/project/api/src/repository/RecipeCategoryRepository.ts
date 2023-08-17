@@ -21,6 +21,7 @@ export default class RecipeCategoryRepository {
 				.createQueryBuilder()
 				.select("recipes_category")
 				.from(RecipeCategory, "recipes_category")
+				.orderBy("recipes_category.title")
 				.getMany()) as RecipeCategory[];
 			return recipesCategory;
 		} catch (error: any) {

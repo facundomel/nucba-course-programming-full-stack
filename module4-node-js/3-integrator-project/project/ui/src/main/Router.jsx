@@ -8,9 +8,9 @@ import RecipeFavorite from "../components/pages/recipe/recipe-favorite/RecipeFav
 import CreateRecipe from "../components/pages/recipe/create-recipe/CreateRecipe";
 import RecipeAll from "../components/pages/recipe/recipe-all/RecipeAll";
 import { HttpStatusCode } from "axios";
-import ErrorHandler from "../components/pages/error-handler/ErrorHandler";
 import Config from "../config/Config";
 import NewPassword from "../components/pages/user/forgot-password/NewPassword";
+import ErrorCustom from "../components/no-atomics/error/ErrorCustom";
 
 const Router = () => {
 	const { currentUser, userForgotPassword } = useSelector((state) => state.user);
@@ -20,7 +20,7 @@ const Router = () => {
 
 		return (
 			<Routes>
-				<Route path="*" element={<ErrorHandler statusCode={HttpStatusCode.NotFound} />} />
+				<Route path="*" element={<ErrorCustom statusCode={HttpStatusCode.NotFound} />} />
 				<Route path="/" element={<Navigate to="/recetas/1" />} />
 				<Route path="/recetas" element={<Navigate to="/recetas/1" />} />
 				<Route path="/recetas/:page" element={<RecipeAll />} />
@@ -38,7 +38,7 @@ const Router = () => {
 			</Routes>
 		);
 	} catch (error) {
-		return <ErrorHandler statusCode={HttpStatusCode.InternalServerError} />;
+		return <ErrorCustom statusCode={HttpStatusCode.InternalServerError} />;
 	}
 };
 

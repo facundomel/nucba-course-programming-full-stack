@@ -4,6 +4,17 @@ import Recipe from "../model/entity/Recipe";
 
 export default class RecipeRepository {
 	static recipeRepository: Repository<Recipe>;
+	static readonly recipeFieldsToGet = [
+		"recipes",
+		"recipe_category.id",
+		"recipe_category.category",
+		"recipe_category.title",
+		"recipe_category.urlImage",
+		"users.id",
+		"users.firstName",
+		"users.lastName",
+		"users.email",
+	];
 
 	static {
 		Database.getConnection()
@@ -19,23 +30,14 @@ export default class RecipeRepository {
 		try {
 			const [recipes, totalRecipes] = await this.recipeRepository
 				.createQueryBuilder("recipes")
-				.select([
-					"recipes",
-					"recipe_category.id",
-					"recipe_category.category",
-					"recipe_category.title",
-					"recipe_category.urlImage",
-					"users.id",
-					"users.firstName",
-					"users.lastName",
-					"users.email",
-				])
+				.select(this.recipeFieldsToGet)
 				.offset(offset)
 				.limit(limit)
 				.leftJoin("recipes.recipeCategory", "recipe_category")
 				.where("recipes.categoryId = recipe_category.id")
 				.leftJoin("recipes.user", "users")
 				.where("recipes.userId = users.id")
+				.orderBy("recipes.title")
 				.getManyAndCount();
 
 			return { recipes, totalRecipes };
@@ -48,17 +50,7 @@ export default class RecipeRepository {
 		try {
 			const recipe: Recipe = (await this.recipeRepository
 				.createQueryBuilder()
-				.select([
-					"recipes",
-					"recipe_category.id",
-					"recipe_category.category",
-					"recipe_category.title",
-					"recipe_category.urlImage",
-					"users.id",
-					"users.firstName",
-					"users.lastName",
-					"users.email",
-				])
+				.select(this.recipeFieldsToGet)
 				.from(Recipe, "recipes")
 				.leftJoin("recipes.recipeCategory", "recipe_category")
 				.where("recipes.categoryId = recipe_category.id")

@@ -1,6 +1,5 @@
 import { Repository } from "typeorm";
 import User from "../model/entity/User";
-import AppDataSource from "./database/Database";
 import Database from "./database/Database";
 
 export default class UserRepository {
@@ -15,13 +14,11 @@ export default class UserRepository {
 		"users.roleId",
 	];
 	static userRepository: Repository<User>;
-	// static expenseRepository: Repository<Expense>;
 
 	static {
 		Database.getConnection()
 			.then((dataSource) => {
 				this.userRepository = dataSource.getRepository(User);
-				// this.expenseRepository = dataSource.getRepository(Expense);
 			})
 			.catch((error: any) => {
 				throw error;
@@ -34,6 +31,8 @@ export default class UserRepository {
 				.createQueryBuilder()
 				.select(this.fieldsUserToGet)
 				.from(User, "users")
+				.orderBy("users.firstName")
+				.addOrderBy("users.lastName")
 				.getMany()) as User[];
 			return users;
 		} catch (error: any) {
