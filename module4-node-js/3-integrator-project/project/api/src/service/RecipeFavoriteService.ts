@@ -33,6 +33,10 @@ export default class RecipeFavoriteService {
 	static getRecipesFavoriteWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
 		try {
 			const results: any = await RecipeFavoriteRepository.getRecipesFavoriteWithDetailsByUserId(userId, offset, limit);
+			if (offset === null && limit === null) {
+				offset = 0;
+				limit = results.totalRecipes;
+			}
 			return { recipes: results.recipes, paging: { offset: offset, limit: limit, total: results.totalRecipes } };
 		} catch (error: any) {
 			throw error;

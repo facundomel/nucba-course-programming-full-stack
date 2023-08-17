@@ -31,13 +31,13 @@ export default class RecipeRepository {
 			const [recipes, totalRecipes] = await this.recipeRepository
 				.createQueryBuilder("recipes")
 				.select(this.recipeFieldsToGet)
-				.offset(offset)
-				.limit(limit)
 				.leftJoin("recipes.recipeCategory", "recipe_category")
 				.where("recipes.categoryId = recipe_category.id")
 				.leftJoin("recipes.user", "users")
 				.where("recipes.userId = users.id")
 				.orderBy("recipes.title")
+				.offset(offset)
+				.limit(limit)
 				.getManyAndCount();
 
 			return { recipes, totalRecipes };

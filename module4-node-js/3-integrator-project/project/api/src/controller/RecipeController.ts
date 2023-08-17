@@ -7,8 +7,16 @@ import ResponseUtils from "../utils/ResponseUtils";
 export default class RecipeController {
 	static getRecipes = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const offset = Number(req.query.offset) || 0;
-			const limit = Number(req.query.limit) || 12;
+			let offset: any = req.query.offset;
+			let limit: any = req.query.limit;
+
+			if (offset && limit && !isNaN(offset) && !isNaN(limit)) {
+				offset = Number(offset);
+				limit = Number(limit);
+			} else {
+				offset = 0;
+				limit = 12;
+			}
 
 			const recipes: any = await RecipeService.getRecipes(offset, limit);
 			ResponseUtils.ok(res, recipes);

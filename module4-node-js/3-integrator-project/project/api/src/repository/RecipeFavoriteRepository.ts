@@ -72,7 +72,8 @@ export default class RecipeFavoriteRepository {
 					"recipes.id = recipeFavorite.recipeId AND recipeFavorite.deletedDate is null AND recipeFavorite.userId = :userId",
 					{ userId: userId }
 				)
-				.leftJoin("recipes.user", "users");
+				.leftJoin("recipes.user", "users")
+				.orderBy("recipes.title");
 
 			if (offset !== null) {
 				query = query.offset(offset);
@@ -82,7 +83,7 @@ export default class RecipeFavoriteRepository {
 				query = query.limit(limit);
 			}
 
-			const [recipes, totalRecipes] = await query.orderBy("recipes.title").getManyAndCount();
+			const [recipes, totalRecipes] = await query.getManyAndCount();
 
 			return { recipes, totalRecipes };
 		} catch (error: any) {

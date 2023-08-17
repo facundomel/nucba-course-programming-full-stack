@@ -34,15 +34,11 @@ export default class RecipeFavoriteController {
 			let offset: any = req.query.offset;
 			let limit: any = req.query.limit;
 
-			if (!isNaN(offset)) {
+			if (offset && limit && !isNaN(offset) && !isNaN(limit)) {
 				offset = Number(offset);
-			} else {
-				offset = null;
-			}
-
-			if (!isNaN(limit)) {
 				limit = Number(limit);
 			} else {
+				offset = null;
 				limit = null;
 			}
 
