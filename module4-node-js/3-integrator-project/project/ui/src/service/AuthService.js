@@ -1,8 +1,6 @@
-import Configs from "../config/Config";
 import Utils from "../utils/Utils";
 import axios, { HttpStatusCode } from "axios";
 import * as userActions from "../redux/user/UserActions.js";
-import * as snackbarActions from "../redux/snackbar/SnackbarActions.js";
 import UserSession from "../model/UserSession";
 import Config from "../config/Config";
 import CustomException from "../model/CustomException";

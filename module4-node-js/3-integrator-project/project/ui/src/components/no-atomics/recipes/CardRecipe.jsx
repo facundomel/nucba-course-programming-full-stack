@@ -4,7 +4,6 @@ import * as recipeActions from "../../../redux/recipes/RecipesActions.js";
 import Modal from "../modal/Modal";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import RecipeService from "../../../service/RecipeService";
 import { useNavigate } from "react-router-dom";
 import {
 	AiFillStarCustom,
@@ -21,6 +20,7 @@ import {
 	ModalBodyCardRecipePublisher,
 } from "./CardRecipeStyles.js";
 import SnackbarUtils from "../../../utils/SnackbarUtils.js";
+import RecipeFavoriteService from "../../../service/RecipeFavoriteService.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
@@ -37,9 +37,9 @@ const CardRecipe = ({ recipe }) => {
 	const handlerOnClickStar = async () => {
 		if (!isFavoriteRecipe) {
 			try {
-				let recipeFavoriteCreated = await RecipeService.createRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
+				let recipeFavoriteCreated = await RecipeFavoriteService.createRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
 				if (recipeFavoriteCreated != null) {
-					recipeFavoriteCreated = await RecipeService.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(
+					recipeFavoriteCreated = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(
 						currentUser,
 						recipeFavoriteCreated.recipeId,
 						navigate,
@@ -53,7 +53,7 @@ const CardRecipe = ({ recipe }) => {
 			}
 		} else {
 			try {
-				const recipeFavoriteDeleted = await RecipeService.deleteRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
+				const recipeFavoriteDeleted = await RecipeFavoriteService.deleteRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
 				if (recipeFavoriteDeleted != null) {
 					dispatch(
 						recipeActions.setRecipesFavorite(recipesFavorite.filter((recipeFavorite) => recipeFavorite.id !== recipeFavoriteDeleted.id))

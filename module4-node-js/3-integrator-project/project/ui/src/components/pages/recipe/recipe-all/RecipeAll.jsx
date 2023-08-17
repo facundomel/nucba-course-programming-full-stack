@@ -19,6 +19,7 @@ import CustomException from "../../../../model/CustomException";
 import { HttpStatusCode } from "axios";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
+import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -68,7 +69,7 @@ const RecipeAll = () => {
 	const handlerSetRecipesFavorite = async () => {
 		try {
 			if (currentUser) {
-				const { recipes } = await RecipeService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
+				const { recipes } = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(currentUser, navigate, dispatch);
 				dispatch(recipesActions.setRecipesFavorite(recipes));
 			}
 		} catch (error) {

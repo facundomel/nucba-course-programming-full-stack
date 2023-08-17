@@ -14,6 +14,7 @@ import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 import Utils from "../../../../utils/Utils";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
+import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
 
 const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -43,7 +44,7 @@ const RecipeFavorite = () => {
 	const handlerSetRecipesFavorite = async () => {
 		try {
 			if (currentUser) {
-				const { recipes, paging } = await RecipeService.getRecipesFavoriteWithDetailsByUserId(
+				const { recipes, paging } = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(
 					currentUser,
 					navigate,
 					dispatch,

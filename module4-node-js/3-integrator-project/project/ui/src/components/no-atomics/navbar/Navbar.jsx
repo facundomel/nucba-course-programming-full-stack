@@ -106,7 +106,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								className={isRecipesAllPage() ? "active" : ""}
 								onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 							>
-								<FaHome />
+								<FaHome title="Inicio" />
 							</NavbarLinkRight>
 							{currentUser && (
 								<NavbarLinkRight
@@ -115,17 +115,17 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 									className={isRecipesFavoritePage() ? "active" : ""}
 									onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
 								>
-									<AiFillStar />
+									<AiFillStar title="Recetas favoritas" />
 								</NavbarLinkRight>
 							)}
 							{!currentUser ? (
 								location.pathname === "/login" || location.pathname === "/recuperar-contraseña" ? (
 									<NavbarLinkRight>
-										<FaUserAlt />
+										<FaUserAlt title="Perfil" />
 									</NavbarLinkRight>
 								) : (
 									<NavbarLinkRight to={"/registro"} onClick={() => extendNavbar && setExtendNavbar((curr) => !curr)}>
-										<FaUserAlt />
+										<FaUserAlt title="Perfil" />
 									</NavbarLinkRight>
 								)
 							) : (
@@ -136,7 +136,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 											extendNavbar && setExtendNavbar((curr) => !curr);
 										}}
 									>
-										<FaUserAlt />
+										<FaUserAlt title="Perfil" />
 									</IconUserContainer>
 									{/* <LoginMenuSessionUser
 										isOpenMenuSessionUser={isOpenMenuSessionUser}
@@ -185,7 +185,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 						</NavbarLinkExtended>
 						{currentUser && (
 							<NavbarLinkExtended to={"/recetas-favoritas/1"} onClick={() => setExtendNavbar(false)}>
-								<p>Mis recetas</p>
+								<p>Recetas favoritas</p>
 							</NavbarLinkExtended>
 						)}
 					</NavbarExtendedContainer>
