@@ -58,7 +58,7 @@ export default class AuthService {
 			return response;
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Refresh token expired") {
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Refresh token expired") {
 				dispatch(userActions.removeCurrentUser());
 				navigate("/recetas/1");
 				throw new CustomException("", "¡La sesión ha caducado!", errData.statusCode);

@@ -24,7 +24,7 @@ export default class RecipeFavoriteService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Access token expired") {
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.getRecipesFavoriteWithDetailsByUserId(new UserSession(response), navigate, dispatch);
 				return response;
@@ -45,7 +45,7 @@ export default class RecipeFavoriteService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Access token expired") {
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(new UserSession(response), recipeId, navigate, dispatch);
 				return response;
@@ -70,7 +70,7 @@ export default class RecipeFavoriteService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Access token expired") {
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.createRecipeFavorite((new UserSession(response), recipeId, navigate, dispatch));
 				return response;
@@ -91,7 +91,7 @@ export default class RecipeFavoriteService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Access token expired") {
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
 				response = await this.deleteRecipeFavorite((new UserSession(response), recipeId, navigate, dispatch));
 				return response;

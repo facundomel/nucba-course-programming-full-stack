@@ -15,7 +15,7 @@ export default class HandlerAuth {
 		const headerAuthorization = req.headers.authorization;
 
 		if (!headerAuthorization) {
-			ResponseUtils.unauthorized(res, new CustomException("Not authorized: Access token is not present", StatusCodes.UNAUTHORIZED));
+			ResponseUtils.unauthorized(res, new CustomException("Not authenticated: Access token is not present", StatusCodes.UNAUTHORIZED));
 			return;
 		}
 
@@ -30,10 +30,10 @@ export default class HandlerAuth {
 			}
 		} catch (err: any) {
 			if (err.name == "TokenExpiredError") {
-				ResponseUtils.unauthorized(res, new CustomException("Not authorized: Access token expired", StatusCodes.UNAUTHORIZED));
+				ResponseUtils.unauthorized(res, new CustomException("Not authenticated: Access token expired", StatusCodes.UNAUTHORIZED));
 				return;
 			}
-			ResponseUtils.unauthorized(res, new CustomException("Not authorized: Access token is not valid", StatusCodes.UNAUTHORIZED));
+			ResponseUtils.unauthorized(res, new CustomException("Not authenticated: Access token is not valid", StatusCodes.UNAUTHORIZED));
 		}
 	};
 
@@ -41,7 +41,7 @@ export default class HandlerAuth {
 	static authorizeAdminRole = async (req: Request, res: Response, next: NextFunction) => {
 		const currentUser: CurrentUser = res.locals.currentUser;
 		if (currentUser.role && currentUser.role != UserRoleStringEnum.ADMIN) {
-			ResponseUtils.unauthorized(res, new CustomException("Not authorized: Need admin role", StatusCodes.UNAUTHORIZED));
+			ResponseUtils.forbidden(res, new CustomException("Not authorized: Need admin role", StatusCodes.FORBIDDEN));
 			return;
 		}
 		next();
@@ -56,7 +56,7 @@ export default class HandlerAuth {
 
 		const currentUser: CurrentUser = res.locals.currentUser;
 		if (currentUser.role && currentUser.role == UserRoleStringEnum.USER && currentUser.userId != userId) {
-			ResponseUtils.unauthorized(res, new CustomException("User not authorized", StatusCodes.UNAUTHORIZED));
+			ResponseUtils.forbidden(res, new CustomException("User not authorized", StatusCodes.FORBIDDEN));
 			return;
 		}
 		next();
@@ -79,6 +79,6 @@ export default class HandlerAuth {
 			return;
 		}
 
-		ResponseUtils.unauthorized(res, new CustomException("User not authorized", StatusCodes.UNAUTHORIZED));
+		ResponseUtils.forbidden(res, new CustomException("User not authorized", StatusCodes.FORBIDDEN));
 	};
 }

@@ -32,7 +32,7 @@ export default class RecipeService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Access token expired") {
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
 				let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
 				response = await this.getRecipeById(recipeId, new UserSession(response).authToken, navigate, dispatch);
 				return response;
@@ -54,7 +54,7 @@ export default class RecipeService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authorized: Access token expired") {
+			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
 				let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
 				response = await this.createRecipe(recipe, new UserSession(response).authToken, navigate, dispatch);
 				return response;

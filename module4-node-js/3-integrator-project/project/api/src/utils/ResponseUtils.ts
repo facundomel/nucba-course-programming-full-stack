@@ -20,6 +20,10 @@ export default class ResponseUtils {
 		res.status(StatusCodes.UNAUTHORIZED).json(Utils.convertFromCamelToSnake(dataResponse));
 	};
 
+	static forbidden = (res: Response, dataResponse: any) => {
+		res.status(StatusCodes.FORBIDDEN).json(Utils.convertFromCamelToSnake(dataResponse));
+	};
+
 	static notFound = (res: Response, dataResponse: any) => {
 		res.status(StatusCodes.NOT_FOUND).json(Utils.convertFromCamelToSnake(dataResponse));
 	};

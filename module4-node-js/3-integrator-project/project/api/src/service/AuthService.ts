@@ -56,9 +56,9 @@ export default class AuthService {
 			}
 		} catch (error: any) {
 			if (error.name == "TokenExpiredError") {
-				throw new CustomException("Not authorized: Refresh token expired", StatusCodes.UNAUTHORIZED);
+				throw new CustomException("Not authenticated: Refresh token expired", StatusCodes.UNAUTHORIZED);
 			}
-			throw new CustomException("Not authorized: Refresh token is not valid", StatusCodes.UNAUTHORIZED);
+			throw new CustomException("Not authenticated: Refresh token is not valid", StatusCodes.UNAUTHORIZED);
 		}
 	};
 }
