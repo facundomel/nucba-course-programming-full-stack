@@ -8,7 +8,7 @@ import Config from "../config/Config";
 export default class RecipeFavoriteService {
 	static headersDefault = Config.HEADERS_DEFAULT;
 	static baseUrl = Config.BASE_URL;
-
+	
 	static getRecipesFavoriteWithDetailsByUserId = async (currentUser, navigate, dispatch, offset, limit) => {
 		try {
 			const headers = {
@@ -26,7 +26,7 @@ export default class RecipeFavoriteService {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
 				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
-				response = await this.getRecipesFavoriteWithDetailsByUserId(new UserSession(response), navigate, dispatch);
+				response = await this.getRecipesFavoriteWithDetailsByUserId(new UserSession(response), navigate, dispatch, offset, limit);
 				return response;
 			}
 			throw new CustomException("", "Error al obtener las recetas favoritas. Inténtelo más tarde", HttpStatusCode.InternalServerError);

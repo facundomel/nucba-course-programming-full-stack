@@ -5,7 +5,7 @@ import UserLogin from "../model/LoginUser";
 import UserService from "./UserService";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import AuthToken from "../model/AuthToken";
+import AuthTokenUserData from "../model/AuthTokenUserData";
 import Config from "../config/Config";
 import UserRoleService from "./UserRoleService";
 import UserRole from "../model/entity/UserRole";
@@ -22,15 +22,16 @@ export default class AuthService {
 				throw new CustomException("Password is not valid", StatusCodes.BAD_REQUEST);
 			}
 			const userRole: UserRole = await UserRoleService.getUserRoleById(user.roleId);
-			const accessToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.accessTokenSecret, {
+			const authTokenUserData: AuthTokenUserData = new AuthTokenUserData(user, userRole);
+			const accessToken = jwt.sign(JSON.parse(JSON.stringify(authTokenUserData)), this.accessTokenSecret, {
 				expiresIn: "12h",
 			});
-			const refreshToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.refreshTokenSecret, {
+			const refreshToken = jwt.sign(JSON.parse(JSON.stringify(authTokenUserData)), this.refreshTokenSecret, {
 				expiresIn: "1d",
 			});
 			return {
-				user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email },
-				authToken: new AuthToken(accessToken, refreshToken),
+				accessToken: accessToken,
+				refreshToken: refreshToken,
 			};
 		} catch (error: any) {
 			throw error;
@@ -43,15 +44,16 @@ export default class AuthService {
 			if (data) {
 				let user: User = (await UserService.getUserByEmail(data.email, true)) as User;
 				const userRole: UserRole = await UserRoleService.getUserRoleById(user.roleId);
-				const accessToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.accessTokenSecret, {
+				const authTokenUserData: AuthTokenUserData = new AuthTokenUserData(user, userRole);
+				const accessToken = jwt.sign(JSON.parse(JSON.stringify(authTokenUserData)), this.accessTokenSecret, {
 					expiresIn: "12h",
 				});
-				const refreshToken = jwt.sign({ userId: user.id, email: user.email, role: userRole.role }, this.refreshTokenSecret, {
+				const refreshToken = jwt.sign(JSON.parse(JSON.stringify(authTokenUserData)), this.refreshTokenSecret, {
 					expiresIn: "1d",
 				});
 				return {
-					user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email },
-					authToken: new AuthToken(accessToken, refreshToken),
+					accessToken: accessToken,
+					refreshToken: refreshToken,
 				};
 			}
 		} catch (error: any) {

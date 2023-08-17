@@ -5,6 +5,8 @@ import UserSession from "../model/UserSession";
 import Config from "../config/Config";
 import CustomException from "../model/CustomException";
 import { UserErrorType } from "../model/enum/ErrorType";
+import jwtDecode from "jwt-decode";
+import UserDataAndAuthToken from "../model/UserDataAndAuthToken";
 
 export default class AuthService {
 	static headersDefault = Config.HEADERS_DEFAULT;
@@ -15,7 +17,9 @@ export default class AuthService {
 			const response = await axios.post(`${this.baseUrl}/api/login`, Utils.convertFromCamelToSnake(userLogin), {
 				headers: this.headersDefault,
 			});
-			return Utils.convertFromSnakeToCamel(response.data);
+			const responseData = Utils.convertFromSnakeToCamel(response.data);
+			const decodedToken = jwtDecode(responseData.accessToken);
+			return new UserDataAndAuthToken(decodedToken, responseData);
 		} catch (err) {
 			const errorData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errorData) {
@@ -53,9 +57,11 @@ export default class AuthService {
 				headers: headers,
 			});
 
-			response = Utils.convertFromSnakeToCamel(response.data);
-			dispatch(userActions.setCurrentUser(new UserSession(response)));
-			return response;
+			const responseData = Utils.convertFromSnakeToCamel(response.data);
+			const decodedToken = jwtDecode(responseData.accessToken);
+			const userDataAndAuthToken = new UserDataAndAuthToken(decodedToken, responseData);
+			dispatch(userActions.setCurrentUser(new UserSession(userDataAndAuthToken)));
+			return userDataAndAuthToken;
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Refresh token expired") {
