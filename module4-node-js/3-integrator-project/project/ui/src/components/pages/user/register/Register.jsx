@@ -12,7 +12,6 @@ import localStorage, { KEY_USER_SESSION } from "../../../../repository/LocalStor
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
-import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import UserService from "../../../../service/UserService";
@@ -74,12 +73,11 @@ const Register = () => {
 		if (!isValidPassword(valueInputs.password, setErrorInput, passwordRef, true)) return;
 
 		try {
-			let response = await UserService.registerUser(valueInputs);
-			response = await AuthService.loginUser(new UserLogin(valueInputs.email, valueInputs.password));
-
-			dispatch(userActions.setCurrentUser(new UserSession(response)));
+			const userRegistered = await UserService.registerUser(valueInputs);
+			const userSession = await AuthService.loginUser(new UserLogin(valueInputs.email, valueInputs.password));
+			dispatch(userActions.setCurrentUser(userSession));
 			navigate("/recetas/1");
-			SnackbarUtils.success(`¡Felicitaciones ${response.user.firstName}! Se ha registrado correctamente`, 2500, dispatch)
+			SnackbarUtils.success(`¡Felicitaciones ${userRegistered.user.firstName}! Se ha registrado correctamente`, 2500, dispatch)
 		} catch (error) {
 			if (error instanceof CustomException) {
 				if (error.type === UserErrorType.ERROR_EMAIL) {

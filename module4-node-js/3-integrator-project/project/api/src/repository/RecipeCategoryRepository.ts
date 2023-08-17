@@ -15,15 +15,15 @@ export default class RecipeCategoryRepository {
 			});
 	}
 
-	static getRecipesCategory = async (): Promise<RecipeCategory[]> => {
+	static getRecipesCategories = async (): Promise<RecipeCategory[]> => {
 		try {
-			const recipesCategory: RecipeCategory[] = (await this.recipeCategoryRepository
+			const recipesCategories: RecipeCategory[] = (await this.recipeCategoryRepository
 				.createQueryBuilder()
 				.select("recipes_category")
 				.from(RecipeCategory, "recipes_category")
 				.orderBy("recipes_category.title")
 				.getMany()) as RecipeCategory[];
-			return recipesCategory;
+			return recipesCategories;
 		} catch (error: any) {
 			throw error;
 		}

@@ -5,10 +5,10 @@ import RecipeCategoryService from "../service/RecipeCategoryService";
 import ResponseUtils from "../utils/ResponseUtils";
 
 export default class RecipeCategoryController {
-	static getRecipesCategory = async (req: Request, res: Response): Promise<void> => {
+	static getRecipesCategories = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const recipesCategory: RecipeCategory[] = (await RecipeCategoryService.getRecipesCategory()) as RecipeCategory[];
-			ResponseUtils.ok(res, recipesCategory);
+			const recipesCategories: RecipeCategory[] = (await RecipeCategoryService.getRecipesCategories()) as RecipeCategory[];
+			ResponseUtils.ok(res, recipesCategories);
 		} catch (error: any) {
 			ResponseUtils.exception(res, error);
 		}

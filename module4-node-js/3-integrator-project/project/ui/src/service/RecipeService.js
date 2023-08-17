@@ -1,6 +1,5 @@
 import Utils from "../utils/Utils";
 import axios, { HttpStatusCode } from "axios";
-import UserSession from "../model/UserSession";
 import AuthService from "./AuthService";
 import Config from "../config/Config";
 import CustomException from "../model/CustomException";
@@ -33,9 +32,9 @@ export default class RecipeService {
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
-				let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
-				response = await this.getRecipeById(recipeId, new UserSession(response).authToken, navigate, dispatch);
-				return response;
+				const userSession = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
+				const recipe = await this.getRecipeById(recipeId, userSession.authToken, navigate, dispatch);
+				return recipe;
 			}
 			throw new CustomException("", "Error al obtener la receta. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
@@ -55,9 +54,9 @@ export default class RecipeService {
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
-				let response = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
-				response = await this.createRecipe(recipe, new UserSession(response).authToken, navigate, dispatch);
-				return response;
+				const userSession = await AuthService.refreshToken(authToken.refreshToken, navigate, dispatch);
+				const recipeCreated = await this.createRecipe(recipe, userSession.authToken, navigate, dispatch);
+				return recipeCreated;
 			}
 			throw new CustomException("", "Error al crear la receta. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}

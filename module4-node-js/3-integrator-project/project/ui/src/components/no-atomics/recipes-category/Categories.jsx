@@ -21,8 +21,8 @@ const Categories = () => {
 
 	const handlerSetCategories = async () => {
 		try {
-			const categories = await RecipeCategoryService.getRecipesCategory();
-			dispatch(categoriesActions.setCategories(categories));
+			const recipesCategories = await RecipeCategoryService.getRecipesCategories();
+			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (err) {
 			SnackbarUtils.error(err, 2500, dispatch);
 		}

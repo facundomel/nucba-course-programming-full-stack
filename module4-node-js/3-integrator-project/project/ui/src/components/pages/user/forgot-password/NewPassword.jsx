@@ -61,8 +61,8 @@ const NewPassword = () => {
 		if (!isValidPassword(password, setErrorInput, passwordRef, true)) return;
 
 		try {
-			const user = await UserService.updateUserPassword(userForgotPassword.id, password);
-			if (user != null) {
+			const userUpdated = await UserService.updateUserPassword(userForgotPassword.id, password);
+			if (userUpdated != null) {
 				navigate("/login");
 				dispatch(userActions.removeUserForgotPassword());
 				SnackbarUtils.success("Contraseña actualizada correctamente", 2500, dispatch);

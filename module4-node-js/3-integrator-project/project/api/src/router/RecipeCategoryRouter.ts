@@ -29,7 +29,7 @@ export default class RecipeCategoryRouter {
 		 *       500:
 		 *         description: Error interno del servidor
 		 */
-		router.get("/recipes/categories", RecipeCategoryController.getRecipesCategory);
+		router.get("/recipes/categories", RecipeCategoryController.getRecipesCategories);
 
 		/**
 		 * @swagger

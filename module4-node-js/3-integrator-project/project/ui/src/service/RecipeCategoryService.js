@@ -7,14 +7,18 @@ export default class RecipeCategoryService {
 	static headersDefault = Config.HEADERS_DEFAULT;
 	static baseUrl = Config.BASE_URL;
 
-	static getRecipesCategory = async () => {
+	static getRecipesCategories = async () => {
 		try {
 			const response = await axios.get(`${this.baseUrl}/api/recipes/categories`, {
 				headers: this.headersDefault,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
-			throw new CustomException("", "Error al obtener las categorías de las recetas. Inténtelo más tarde", HttpStatusCode.InternalServerError);
+			throw new CustomException(
+				"",
+				"Error al obtener las categorías de las recetas. Inténtelo más tarde",
+				HttpStatusCode.InternalServerError
+			);
 		}
 	};
 }

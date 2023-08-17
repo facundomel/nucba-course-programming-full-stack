@@ -2,10 +2,10 @@ import RecipeCategoryRepository from "../repository/RecipeCategoryRepository";
 import RecipeCategory from "../model/entity/RecipeCategory";
 
 export default class RecipeCategoryService {
-	static getRecipesCategory = async (): Promise<RecipeCategory[]> => {
+	static getRecipesCategories = async (): Promise<RecipeCategory[]> => {
 		try {
-			const recipesCategory: RecipeCategory[] = (await RecipeCategoryRepository.getRecipesCategory()) as RecipeCategory[];
-			return recipesCategory;
+			const recipesCategories: RecipeCategory[] = (await RecipeCategoryRepository.getRecipesCategories()) as RecipeCategory[];
+			return recipesCategories;
 		} catch (error: any) {
 			throw error;
 		}

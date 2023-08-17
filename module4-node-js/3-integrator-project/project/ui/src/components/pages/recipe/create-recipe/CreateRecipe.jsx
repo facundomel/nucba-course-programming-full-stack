@@ -4,7 +4,6 @@ import Button from "../../../atomics/button/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
-import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import User from "../../../../model/User";
 import { CreateRecipeContainer, CreateRecipeForm, TextAreaAndSmall } from "./CreateRecipeStyles";
@@ -59,7 +58,7 @@ const CreateRecipe = () => {
 
 	const handlerSetRecipesCategories = async () => {
 		try {
-			const recipesCategories = await RecipeCategoryService.getRecipesCategory();
+			const recipesCategories = await RecipeCategoryService.getRecipesCategories();
 			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (error) {
 			setOtherError(error);

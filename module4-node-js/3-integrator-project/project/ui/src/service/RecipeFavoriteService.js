@@ -1,14 +1,13 @@
 import axios, { HttpStatusCode } from "axios";
 import Utils from "../utils/Utils";
 import AuthService from "./AuthService";
-import UserSession from "../model/UserSession";
 import CustomException from "../model/CustomException";
 import Config from "../config/Config";
 
 export default class RecipeFavoriteService {
 	static headersDefault = Config.HEADERS_DEFAULT;
 	static baseUrl = Config.BASE_URL;
-	
+
 	static getRecipesFavoriteWithDetailsByUserId = async (currentUser, navigate, dispatch, offset, limit) => {
 		try {
 			const headers = {
@@ -25,9 +24,9 @@ export default class RecipeFavoriteService {
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
-				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
-				response = await this.getRecipesFavoriteWithDetailsByUserId(new UserSession(response), navigate, dispatch, offset, limit);
-				return response;
+				const userSession = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
+				const recipesFavorite = await this.getRecipesFavoriteWithDetailsByUserId(userSession, navigate, dispatch, offset, limit);
+				return recipesFavorite;
 			}
 			throw new CustomException("", "Error al obtener las recetas favoritas. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
@@ -46,9 +45,9 @@ export default class RecipeFavoriteService {
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
-				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
-				response = await this.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(new UserSession(response), recipeId, navigate, dispatch);
-				return response;
+				const userSession = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
+				const recipesFavorite = await this.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(userSession, recipeId, navigate, dispatch);
+				return recipesFavorite;
 			}
 			throw new CustomException("", "Error al obtener las recetas favoritas. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
@@ -60,20 +59,20 @@ export default class RecipeFavoriteService {
 				...this.headersDefault,
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
-			const recipeFavorite = {
+			const dataRecipeFavoriteToCreate = {
 				recipeId: recipeId,
 				userId: currentUser.user.id,
 			};
-			const response = await axios.post(`${this.baseUrl}/api/recipes/favorite`, Utils.convertFromCamelToSnake(recipeFavorite), {
+			const response = await axios.post(`${this.baseUrl}/api/recipes/favorite`, Utils.convertFromCamelToSnake(dataRecipeFavoriteToCreate), {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
-				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
-				response = await this.createRecipeFavorite((new UserSession(response), recipeId, navigate, dispatch));
-				return response;
+				const userSession = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
+				const recipeFavoriteCreated = await this.createRecipeFavorite(userSession, recipeId, navigate, dispatch);
+				return recipeFavoriteCreated;
 			}
 			throw new CustomException("", "Error al crear la receta favorita. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
@@ -92,9 +91,9 @@ export default class RecipeFavoriteService {
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Access token expired") {
-				let response = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
-				response = await this.deleteRecipeFavorite((new UserSession(response), recipeId, navigate, dispatch));
-				return response;
+				const userSession = await AuthService.refreshToken(currentUser.authToken.refreshToken, navigate, dispatch);
+				const recipeFavoriteDeleted = await this.deleteRecipeFavorite(userSession, recipeId, navigate, dispatch);
+				return recipeFavoriteDeleted;
 			}
 			throw new CustomException("", "Error al eliminar la receta favorita. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}

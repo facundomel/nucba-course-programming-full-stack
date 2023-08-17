@@ -16,7 +16,6 @@ import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 import { KEY_USER_SESSION } from "../../../../repository/LocalStorage";
 import localStorage from "../../../../repository/LocalStorage";
-import UserSession from "../../../../model/UserSession";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import AuthService from "../../../../service/AuthService";
@@ -76,11 +75,10 @@ const Login = () => {
 		if (!isValidPassword(valueInputs.password, setErrorInput, passwordRef, false)) return;
 
 		try {
-			const response = await AuthService.loginUser(valueInputs);
-			const currentUser = new UserSession(response);
-			dispatch(userActions.setCurrentUser(currentUser));
+			const userSession = await AuthService.loginUser(valueInputs);
+			dispatch(userActions.setCurrentUser(userSession));
 			navigate("/recetas/1");
-			SnackbarUtils.info(`¡Bienvenido nuevamente ${response.user.firstName}!`, 2500, dispatch);
+			SnackbarUtils.info(`¡Bienvenido nuevamente ${userSession.user.firstName}!`, 2500, dispatch);
 		} catch (error) {
 			if (error instanceof CustomException) {
 				if (error.type === UserErrorType.ERROR_EMAIL) {

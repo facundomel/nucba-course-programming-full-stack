@@ -1,12 +1,11 @@
 import Utils from "../utils/Utils";
 import axios, { HttpStatusCode } from "axios";
 import * as userActions from "../redux/user/UserActions.js";
-import UserSession from "../model/UserSession";
 import Config from "../config/Config";
 import CustomException from "../model/CustomException";
 import { UserErrorType } from "../model/enum/ErrorType";
 import jwtDecode from "jwt-decode";
-import UserDataAndAuthToken from "../model/UserDataAndAuthToken";
+import UserSession from "../model/UserSession";
 
 export default class AuthService {
 	static headersDefault = Config.HEADERS_DEFAULT;
@@ -19,7 +18,7 @@ export default class AuthService {
 			});
 			const responseData = Utils.convertFromSnakeToCamel(response.data);
 			const decodedToken = jwtDecode(responseData.accessToken);
-			return new UserDataAndAuthToken(decodedToken, responseData);
+			return new UserSession(decodedToken, responseData);
 		} catch (err) {
 			const errorData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errorData) {
@@ -56,12 +55,11 @@ export default class AuthService {
 			let response = await axios.post(`${this.baseUrl}/api/refresh-token`, null, {
 				headers: headers,
 			});
-
 			const responseData = Utils.convertFromSnakeToCamel(response.data);
 			const decodedToken = jwtDecode(responseData.accessToken);
-			const userDataAndAuthToken = new UserDataAndAuthToken(decodedToken, responseData);
-			dispatch(userActions.setCurrentUser(new UserSession(userDataAndAuthToken)));
-			return userDataAndAuthToken;
+			const userSession = new UserSession(decodedToken, responseData);
+			dispatch(userActions.setCurrentUser(userSession));
+			return userSession;
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
 			if (errData && errData.statusCode === HttpStatusCode.Unauthorized && errData.message === "Not authenticated: Refresh token expired") {
