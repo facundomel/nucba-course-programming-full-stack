@@ -119,6 +119,7 @@ export const TextAreaAndSmall = styled.div`
 	align-items: center;
 	flex-direction: column;
 	width: 100%;
+	gap: 5px;
 
 	& small {
 		color: var(--orange2);
