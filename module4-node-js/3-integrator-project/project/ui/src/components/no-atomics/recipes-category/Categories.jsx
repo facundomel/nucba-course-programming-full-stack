@@ -6,6 +6,7 @@ import * as categoriesActions from "../../../redux/categories/CategoriesActions.
 import RecipeCategoryService from "../../../service/RecipeCategoryService";
 import Utils from "../../../utils/Utils";
 import SnackbarUtils from "../../../utils/SnackbarUtils";
+import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
@@ -29,7 +30,8 @@ const Categories = () => {
 
 	return (
 		<>
-			{((userSection === "RecipeFavorite" && recipesFavorite.length > 0) || (userSection === "RecipeAll" && recipesAll.length > 0)) && (
+			{((userSection === RecipePageSection.RecipeFavorite && recipesFavorite.length > 0) ||
+				(userSection === RecipePageSection.RecipeAll && recipesAll.length > 0)) && (
 				<CategoriesGridContainer>
 					{categories.map((category) => (
 						<Category key={category.id} {...category} />

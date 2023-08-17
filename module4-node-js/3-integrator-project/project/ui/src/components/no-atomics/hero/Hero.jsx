@@ -5,6 +5,7 @@ import { HeroContainerStyled, HeroFormStyled, HeroSearchBarStyled, IconWrapperSt
 import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
 import RecipeService from "../../../service/RecipeService";
 import { FcSearch } from "react-icons/fc";
+import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Hero = () => {
 	const [searchedRecipe, setSearchedRecipe] = useState("");
@@ -15,7 +16,7 @@ const Hero = () => {
 	useEffect(() => {
 		let filteredRecipes = [];
 
-		if (userSection === "RecipeAll") {
+		if (userSection === RecipePageSection.RecipeAll) {
 			if (searchedRecipe === "") {
 				filteredRecipes = recipesAll;
 			} else {
@@ -25,7 +26,7 @@ const Hero = () => {
 					}
 				});
 			}
-		} else if (userSection === "RecipeFavorite") {
+		} else if (userSection === RecipePageSection.RecipeFavorite) {
 			if (searchedRecipe === "") {
 				filteredRecipes = recipesFavorite;
 			} else {
@@ -42,7 +43,8 @@ const Hero = () => {
 
 	return (
 		<>
-			{((userSection === "RecipeFavorite" && recipesFavorite.length > 0) || (userSection === "RecipeAll" && recipesAll.length > 0)) && (
+			{((userSection === RecipePageSection.RecipeFavorite && recipesFavorite.length > 0) ||
+				(userSection === RecipePageSection.RecipeAll && recipesAll.length > 0)) && (
 				<HeroContainerStyled>
 					<HeroFormStyled>
 						<HeroSearchBarStyled

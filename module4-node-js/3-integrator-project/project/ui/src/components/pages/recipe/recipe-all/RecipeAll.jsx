@@ -20,6 +20,7 @@ import { HttpStatusCode } from "axios";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
+import { RecipePageSection } from "../../../../model/enum/PageSection";
 
 const RecipeAll = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -35,7 +36,7 @@ const RecipeAll = () => {
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection("RecipeAll"));
+		dispatch(userActions.setUserSection(RecipePageSection.RecipeAll));
 	}, []);
 
 	useEffect(() => {

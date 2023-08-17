@@ -29,6 +29,7 @@ import { HttpStatusCode } from "axios";
 import { isValidEmail, isValidPassword } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
+import { UserPageSection } from "../../../../model/enum/PageSection";
 
 const Login = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -43,7 +44,7 @@ const Login = () => {
 
 	useEffect(() => {
 		emailRef.current.focus();
-		dispatch(userActions.setUserSection("UserLogin"));
+		dispatch(userActions.setUserSection(UserPageSection.UserLogin));
 	}, []);
 
 	useEffect(() => {

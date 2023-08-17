@@ -22,6 +22,7 @@ import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import Utils from "../../../../utils/Utils";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
+import { RecipePageSection } from "../../../../model/enum/PageSection";
 
 const CreateRecipe = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -44,7 +45,7 @@ const CreateRecipe = () => {
 
 	useEffect(() => {
 		titleRef.current.focus();
-		dispatch(userActions.setUserSection("CreateRecipe"));
+		dispatch(userActions.setUserSection(RecipePageSection.RecipeCreate));
 		if (categories.length === 0) {
 			handlerSetRecipesCategories();
 		}

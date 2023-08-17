@@ -24,6 +24,7 @@ import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions";
 import Utils from "../../../../utils/Utils";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
+import { UserPageSection } from "../../../../model/enum/PageSection";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
@@ -39,7 +40,7 @@ const ForgotPassword = () => {
 
 	useEffect(() => {
 		emailRef.current.focus();
-		dispatch(userActions.setUserSection("UserForgotPassword"));
+		dispatch(userActions.setUserSection(UserPageSection.UserForgotPassword));
 	}, []);
 
 	useEffect(() => {

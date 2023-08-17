@@ -7,6 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../redux/user/UserActions.js";
+import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Footer = () => {
 	const { isOpenMenuSessionUser, userSection } = useSelector((state) => state.user);
@@ -20,7 +21,7 @@ const Footer = () => {
 						to={"/recetas/1"}
 						onClick={() => {
 							isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-							userSection === "RecipeAll" && window.scrollTo(0, 0);
+							userSection === RecipePageSection.RecipeAll && window.scrollTo(0, 0);
 						}}
 					>
 						<img src={logo} alt="Logo" title="Inicio" />

@@ -21,6 +21,7 @@ import {
 } from "./CardRecipeStyles.js";
 import SnackbarUtils from "../../../utils/SnackbarUtils.js";
 import RecipeFavoriteService from "../../../service/RecipeFavoriteService.js";
+import { RecipePageSection } from "../../../model/enum/PageSection.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
@@ -77,7 +78,7 @@ const CardRecipe = ({ recipe }) => {
 
 	return (
 		<>
-			<CardRecipeContainer hiddenCard={userSection === "RecipeFavorite" && hiddenCard} userSection={userSection}>
+			<CardRecipeContainer hiddenCard={userSection === RecipePageSection.RecipeFavorite && hiddenCard} userSection={userSection}>
 				<ImageDiv>
 					<img src={urlImage} alt={title} />
 				</ImageDiv>

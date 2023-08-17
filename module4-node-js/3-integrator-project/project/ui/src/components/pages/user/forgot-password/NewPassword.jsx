@@ -26,6 +26,7 @@ import Utils from "../../../../utils/Utils";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
+import { UserPageSection } from "../../../../model/enum/PageSection";
 
 const NewPassword = () => {
 	const passwordRef = useRef();
@@ -41,7 +42,7 @@ const NewPassword = () => {
 
 	useEffect(() => {
 		passwordRef.current.focus();
-		dispatch(userActions.setUserSection("NewPassword"));
+		dispatch(userActions.setUserSection(UserPageSection.UserNewPassword));
 	}, []);
 
 	useEffect(() => {

@@ -1,3 +1,4 @@
+import { RecipePageSection } from "../../model/enum/PageSection";
 import {
 	SET_CURRENT_USER,
 	REMOVE_CURRENT_USER,
@@ -10,7 +11,7 @@ import {
 const INITIAL_STATE = {
 	currentUser: null,
 	isOpenMenuSessionUser: false,
-	userSection: "Home",
+	userSection: RecipePageSection.RecipeAll,
 	userForgotPassword: null,
 };
 

@@ -15,6 +15,7 @@ import Utils from "../../../../utils/Utils";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
+import { RecipePageSection } from "../../../../model/enum/PageSection";
 
 const RecipeFavorite = () => {
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
@@ -29,7 +30,7 @@ const RecipeFavorite = () => {
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection("RecipeFavorite"));
+		dispatch(userActions.setUserSection(RecipePageSection.RecipeFavorite));
 	}, []);
 
 	useEffect(() => {

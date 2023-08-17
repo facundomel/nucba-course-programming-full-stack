@@ -33,6 +33,7 @@ import Button from "../../atomics/button/Button";
 import { AiFillStar, AiOutlineCheck } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 import SnackbarUtils from "../../../utils/SnackbarUtils";
+import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 	const { currentUser, isOpenMenuSessionUser, userSection } = useSelector((state) => state.user);
@@ -81,7 +82,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								to={"/recetas/1"}
 								onClick={() => {
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-									userSection === "RecipeAll" && window.scrollTo(0, 0);
+									userSection === RecipePageSection.RecipeAll && window.scrollTo(0, 0);
 								}}
 							>
 								<img src={logo} alt="Logo" className="logo" />

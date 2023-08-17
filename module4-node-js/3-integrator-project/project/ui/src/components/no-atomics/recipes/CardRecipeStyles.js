@@ -1,6 +1,7 @@
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { GoBook } from "react-icons/go";
 import styled from "styled-components";
+import { RecipePageSection } from "../../../model/enum/PageSection";
 
 export const CardRecipeContainer = styled.div`
 	display: ${(props) => (props.hiddenCard ? "none" : "")};
@@ -8,11 +9,9 @@ export const CardRecipeContainer = styled.div`
 	width: 300px;
 	border-radius: 10px;
 	border: ${(props) =>
-		props.userSection === "RecipeAll"
+		props.userSection === RecipePageSection.RecipeAll
 			? "1px solid var(--black)"
-			: props.userSection === "RecipeFavorite"
-			? "1px solid var(--yellow-light2)"
-			: ""};
+			: props.userSection === RecipePageSection.RecipeFavorite && "1px solid var(--yellow-light2)"};
 
 	@media (max-width: 400px) {
 		width: 250px;

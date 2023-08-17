@@ -26,6 +26,7 @@ import CustomException from "../../../../model/CustomException";
 import { isValidEmail, isValidFirstName, isValidLastName, isValidPassword } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
+import { UserPageSection } from "../../../../model/enum/PageSection";
 
 const Register = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -42,7 +43,7 @@ const Register = () => {
 
 	useEffect(() => {
 		firstNameRef.current.focus();
-		dispatch(userActions.setUserSection("UserRegister"));
+		dispatch(userActions.setUserSection(UserPageSection.UserRegister));
 	}, []);
 
 	useEffect(() => {

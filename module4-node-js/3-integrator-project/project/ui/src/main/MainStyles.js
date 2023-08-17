@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RecipePageSection } from "../model/enum/PageSection";
 
 export const MainContainerStyled = styled.div`
 	display: flex;
@@ -9,9 +10,9 @@ export const MainContainerStyled = styled.div`
 	height: 100vh;
 	margin-top: 80px;
 	background-color: ${(props) =>
-		props.userSection === "RecipeAll"
+		props.userSection === RecipePageSection.RecipeAll
 			? "var(--bg-recipe-all)"
-			: props.userSection === "RecipeFavorite"
+			: props.userSection === RecipePageSection.RecipeFavorite
 			? "var(--bg-recipe-favorite)"
 			: "var(--bg-body)"};
 `;

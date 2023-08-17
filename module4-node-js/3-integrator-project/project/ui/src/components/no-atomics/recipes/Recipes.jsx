@@ -15,6 +15,7 @@ import RecipeService from "../../../service/RecipeService";
 import RecipeAll from "../../pages/recipe/recipe-all/RecipeAll";
 import { v4 as uuid } from "uuid";
 import PaginationCustom from "../pagination/PaginationCustom";
+import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Recipes = () => {
 	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
@@ -26,9 +27,9 @@ const Recipes = () => {
 	const { currentUser, userSection } = useSelector((state) => state.user);
 
 	useEffect(() => {
-		if (userSection === "RecipeAll") {
+		if (userSection === RecipePageSection.RecipeAll) {
 			dispatch(recipesActions.setRecipesFiltered(recipesAll));
-		} else if (userSection === "RecipeFavorite") {
+		} else if (userSection === RecipePageSection.RecipeFavorite) {
 			dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
 		}
 	}, [userSection, recipesAll, recipesFavorite]);
