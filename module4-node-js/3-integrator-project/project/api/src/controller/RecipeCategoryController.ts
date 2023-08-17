@@ -2,15 +2,15 @@ import { Request, Response } from "express";
 import Utils from "../utils/Utils";
 import RecipeCategory from "../model/entity/RecipeCategory";
 import RecipeCategoryService from "../service/RecipeCategoryService";
-import ControllerUtils from "../utils/ControllerUtils";
+import ResponseUtils from "../utils/ResponseUtils";
 
 export default class RecipeCategoryController {
 	static getRecipesCategory = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const recipesCategory: RecipeCategory[] = (await RecipeCategoryService.getRecipesCategory()) as RecipeCategory[];
-			ControllerUtils.ok(res, recipesCategory);
+			ResponseUtils.ok(res, recipesCategory);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 
@@ -19,9 +19,9 @@ export default class RecipeCategoryController {
 			const recipeCategory: RecipeCategory = await RecipeCategoryService.createRecipeCategory(
 				Utils.convertFromSnakeToCamel(req.body) as RecipeCategory
 			);
-			ControllerUtils.created(res, recipeCategory);
+			ResponseUtils.created(res, recipeCategory);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 }

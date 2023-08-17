@@ -3,7 +3,7 @@ import Utils from "../utils/Utils";
 import RecipeFavorite from "../model/entity/RecipesFavorite";
 import RecipeFavoriteService from "../service/RecipeFavoriteService";
 import Recipe from "../model/entity/Recipe";
-import ControllerUtils from "../utils/ControllerUtils";
+import ResponseUtils from "../utils/ResponseUtils";
 
 export default class RecipeFavoriteController {
 	static getRecipesFavoriteByUserId = async (req: Request, res: Response): Promise<void> => {
@@ -11,9 +11,9 @@ export default class RecipeFavoriteController {
 			const recipesFavorite: RecipeFavorite[] = (await RecipeFavoriteService.getRecipesFavoriteByUserId(
 				Number(req.params.userId)
 			)) as RecipeFavorite[];
-			ControllerUtils.ok(res, recipesFavorite);
+			ResponseUtils.ok(res, recipesFavorite);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 
@@ -23,9 +23,9 @@ export default class RecipeFavoriteController {
 				Number(req.params.userId),
 				Number(req.params.recipeId)
 			)) as RecipeFavorite;
-			ControllerUtils.ok(res, recipeFavorite);
+			ResponseUtils.ok(res, recipeFavorite);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 
@@ -51,9 +51,9 @@ export default class RecipeFavoriteController {
 				offset,
 				limit
 			);
-			ControllerUtils.ok(res, recipesFavoriteWithDetails);
+			ResponseUtils.ok(res, recipesFavoriteWithDetails);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 
@@ -63,9 +63,9 @@ export default class RecipeFavoriteController {
 				Number(req.params.userId),
 				Number(req.params.recipeId)
 			)) as Recipe;
-			ControllerUtils.ok(res, recipeFavoriteWithDetails);
+			ResponseUtils.ok(res, recipeFavoriteWithDetails);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 
@@ -74,9 +74,9 @@ export default class RecipeFavoriteController {
 			const recipeFavorite: RecipeFavorite = await RecipeFavoriteService.createRecipeFavorite(
 				Utils.convertFromSnakeToCamel(req.body) as RecipeFavorite
 			);
-			ControllerUtils.created(res, recipeFavorite);
+			ResponseUtils.created(res, recipeFavorite);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 
@@ -86,9 +86,9 @@ export default class RecipeFavoriteController {
 				Number(req.params.userId),
 				Number(req.params.recipeId)
 			);
-			ControllerUtils.ok(res, recipeFavoriteWithDetails);
+			ResponseUtils.ok(res, recipeFavoriteWithDetails);
 		} catch (error: any) {
-			ControllerUtils.exception(res, error);
+			ResponseUtils.exception(res, error);
 		}
 	};
 }

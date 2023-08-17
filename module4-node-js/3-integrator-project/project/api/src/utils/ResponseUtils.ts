@@ -3,7 +3,7 @@ import CustomException from "../model/CustomException";
 import { StatusCodes } from "http-status-codes";
 import Utils from "./Utils";
 
-export default class ControllerUtils {
+export default class ResponseUtils {
 	static ok = (res: Response, dataResponse: any) => {
 		res.status(StatusCodes.OK).json(Utils.convertFromCamelToSnake(dataResponse));
 	};

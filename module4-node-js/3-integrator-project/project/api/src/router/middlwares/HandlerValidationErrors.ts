@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import CustomException from "../../model/CustomException";
-import Utils from "../../utils/Utils";
+import ResponseUtils from "../../utils/ResponseUtils";
 
 export default class HandlerValidationErrors {
 	static executeValidation = (req: Request, res: Response, next: NextFunction) => {
@@ -11,8 +11,7 @@ export default class HandlerValidationErrors {
 			next();
 			return;
 		}
-		res
-			.status(StatusCodes.BAD_REQUEST)
-			.json(Utils.convertFromCamelToSnake(new CustomException(JSON.stringify({ errors: errors.array() }), StatusCodes.BAD_REQUEST)));
+
+		ResponseUtils.badRequest(res, new CustomException(JSON.stringify({ errors: errors.array() }), StatusCodes.BAD_REQUEST));
 	};
 }

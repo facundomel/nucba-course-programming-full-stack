@@ -11,7 +11,7 @@ import RecipeCategoryRouter from "./router/RecipeCategoryRouter";
 import RecipeFavoriteRouter from "./router/RecipeFavoriteRouter";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpecs from "../swagger-config";
-import ControllerUtils from "./utils/ControllerUtils";
+import ResponseUtils from "./utils/ResponseUtils";
 
 class Main {
 	static init = () => {
@@ -28,7 +28,7 @@ class Main {
 		app.use("/api", RecipeFavoriteRouter.init());
 		app.use("/api", RecipeRouter.init());
 		app.all("*", (req, res) => {
-			ControllerUtils.notFound(res, new CustomException("URL not found", StatusCodes.NOT_FOUND));
+			ResponseUtils.notFound(res, new CustomException("URL not found", StatusCodes.NOT_FOUND));
 		});
 
 		app.listen(port, () => {
