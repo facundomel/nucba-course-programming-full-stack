@@ -12,6 +12,7 @@ import RecipeFavoriteRouter from "./router/RecipeFavoriteRouter";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpecs from "../swagger-config";
 import ResponseUtils from "./utils/ResponseUtils";
+import PingRouter from "./router/PingRouter";
 
 class Main {
 	static init = () => {
@@ -22,6 +23,7 @@ class Main {
 		app.use(cors());
 
 		app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+		app.use("/api", PingRouter.init());
 		app.use("/api", AuthRouter.init());
 		app.use("/api", UserRouter.init());
 		app.use("/api", RecipeCategoryRouter.init());
