@@ -59,6 +59,9 @@ const CardRecipe = ({ recipe }) => {
 					dispatch(
 						recipeActions.setRecipesFavorite(recipesFavorite.filter((recipeFavorite) => recipeFavorite.id !== recipeFavoriteDeleted.id))
 					);
+					if (recipesFavorite.length - 1 === 0) {
+						window.scrollTo(0, 0);
+					}
 					// SnackbarUtils.warning("Receta quitada de favorito", 2000, dispatch);
 				}
 			} catch (error) {

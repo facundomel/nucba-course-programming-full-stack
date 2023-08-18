@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import {
-	ArrowIcon,
-	CustomArrow,
-	CustomPaginationItem,
-	PaginationContainer,
-	PaginationCustomStyled,
-	PaginationText,
-	PaginationTextContainer,
-} from "./PaginationCustomStyles";
-import { IconButton, Pagination, PaginationItem, ThemeProvider } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { PaginationCustomStyled, PaginationText } from "./PaginationCustomStyles";
+import { PaginationItem } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
@@ -40,7 +32,6 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange, pathNavigate 
 	}, [page]);
 
 	useEffect(() => {
-		// window.scrollTo(0, 0);
 		if (isMounted) {
 			if (!isNaN(currentPageParam) && currentPageParam >= 1 && currentPageParam <= totalPages) {
 				setCurrentPageParam(Number(currentPageParam));
@@ -102,7 +93,7 @@ const PaginationCustom = ({ currentPage, totalPages, onPageChange, pathNavigate 
 		}
 
 		if (isWindowWidthLessThan400) {
-			return null; // Para ocultar los números de página en móviles
+			return null; // Para ocultar los números de página en dispositivos con pantalla menor a 400px de ancho
 		}
 
 		return (

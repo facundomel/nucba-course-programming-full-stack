@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../../../no-atomics/hero/Hero";
 import Recipes from "../../../no-atomics/recipes/Recipes";
-import { CircularProgressCustom, RecipeAllContainer, RecipeAllTitle } from "./RecipeAllStyles";
+import { RecipeAllContainer } from "./RecipeAllStyles";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
@@ -9,21 +9,15 @@ import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
-import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
-import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import { FcReading } from "react-icons/fc";
-import { CircularProgress, LinearProgress } from "@mui/material";
-import { SpinnerCustomContainer } from "../../../atomics/spinner/SpinnerCustomStyles";
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
-import CustomException from "../../../../model/CustomException";
-import { HttpStatusCode } from "axios";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
 import { RecipePageSection } from "../../../../model/enum/PageSection";
 
 const RecipeAll = () => {
-	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
+	const { recipesAll } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(false);
 	const { currentUser } = useSelector((state) => state.user);
@@ -33,7 +27,6 @@ const RecipeAll = () => {
 	const [totalPages, setTotalPages] = useState(1);
 	const limitRecipes = 12;
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
-	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 
 	useEffect(() => {
 		dispatch(userActions.setUserSection(RecipePageSection.RecipeAll));
@@ -97,9 +90,10 @@ const RecipeAll = () => {
 							<Recipes />
 						</>
 					) : (
-						<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
+						currentPage === 1 && <MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
 					)}
-					{recipesAll.length > 0 && totalPages > 1 && (
+
+					{recipesAll.length > 0 && (
 						<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />
 					)}
 				</>

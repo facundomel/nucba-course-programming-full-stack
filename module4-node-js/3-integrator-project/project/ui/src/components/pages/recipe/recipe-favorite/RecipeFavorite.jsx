@@ -5,21 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
 import { RecipeFavoriteContainer } from "./RecipeFavoriteStyles";
-import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 import { FcRating } from "react-icons/fc";
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
-import Utils from "../../../../utils/Utils";
 import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
 import { RecipePageSection } from "../../../../model/enum/PageSection";
+import { LinkStyled } from "../../../no-atomics/error/ErrorCustomStyles";
 
 const RecipeFavorite = () => {
-	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
-	const { currentUser, userSection } = useSelector((state) => state.user);
+	const { recipesFavorite } = useSelector((state) => state.recipes);
+	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
@@ -68,6 +67,13 @@ const RecipeFavorite = () => {
 		}
 	};
 
+	const goToPreviousPage = () => {
+		if (currentPage > 1) {
+			setCurrentPage(currentPage - 1);
+			navigate(`/recetas-favoritas/${currentPage - 1}`);
+		}
+	};
+
 	return (
 		<>
 			<RecipeFavoriteContainer>
@@ -85,9 +91,25 @@ const RecipeFavorite = () => {
 								<Recipes />
 							</>
 						) : (
-							<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
+							<>
+								{currentPage === 1 ? (
+									<MessageNotExistRecipes>¡Lo sentimos! No existen recetas favoritas</MessageNotExistRecipes>
+								) : (
+									currentPage > 1 && (
+										<>
+											<MessageNotExistRecipes>¡Lo sentimos! No existen recetas favoritas en la página actual</MessageNotExistRecipes>
+											{
+												<LinkStyled to={`/recetas-favoritas/${currentPage - 1}`} onClick={() => goToPreviousPage()}>
+													Volver a la página anterior
+												</LinkStyled>
+											}
+										</>
+									)
+								)}
+							</>
 						)}
-						{recipesFavorite.length > 0 && totalPages > 1 && (
+
+						{recipesFavorite.length > 0 && (
 							<PaginationCustom
 								currentPage={currentPage}
 								totalPages={totalPages}
