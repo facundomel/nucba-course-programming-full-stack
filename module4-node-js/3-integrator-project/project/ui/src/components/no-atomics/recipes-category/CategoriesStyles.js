@@ -23,7 +23,7 @@ export const CardCategory = styled(motion.div)`
 	justify-content: center;
 	align-items: center;
 	width: 150px;
-	padding: 1rem 0;
+	padding-bottom: 1rem;
 	background-color: ${({ selected }) => (selected ? "var(--orange-bg)" : "var(--gray-bg)")};
 	border-radius: 15px;
 	cursor: pointer;
@@ -34,9 +34,10 @@ export const CardCategory = styled(motion.div)`
 	}
 
 	img {
-		width: 100px;
-		height: 70px;
-		border-radius: 15px;
+		width: 100%;
+		height: 80px;
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
 	}
 `;
 
