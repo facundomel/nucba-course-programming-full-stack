@@ -19,11 +19,39 @@ export default class RecipeCategoryRepository {
 		try {
 			const recipesCategories: RecipeCategory[] = (await this.recipeCategoryRepository
 				.createQueryBuilder()
-				.select("recipes_category")
-				.from(RecipeCategory, "recipes_category")
-				.orderBy("recipes_category.title")
+				.select("recipes_categories")
+				.from(RecipeCategory, "recipes_categories")
+				.orderBy("recipes_categories.title")
 				.getMany()) as RecipeCategory[];
 			return recipesCategories;
+		} catch (error: any) {
+			throw error;
+		}
+	};
+
+	static getRecipeCategoryById = async (recipeCategoryId: number): Promise<RecipeCategory> => {
+		try {
+			const recipeCategory: RecipeCategory = (await this.recipeCategoryRepository
+				.createQueryBuilder()
+				.select("recipes_categories")
+				.from(RecipeCategory, "recipes_categories")
+				.where("recipes_categories.id = :id", { id: recipeCategoryId })
+				.getOne()) as RecipeCategory;
+			return recipeCategory;
+		} catch (error: any) {
+			throw error;
+		}
+	};
+
+	static getRecipeCategoryByCategoryName = async (categoryName: string): Promise<RecipeCategory> => {
+		try {
+			const recipeCategory: RecipeCategory = (await this.recipeCategoryRepository
+				.createQueryBuilder()
+				.select("recipes_categories")
+				.from(RecipeCategory, "recipes_categories")
+				.where("recipes_categories.category = :category", { category: categoryName })
+				.getOne()) as RecipeCategory;
+			return recipeCategory;
 		} catch (error: any) {
 			throw error;
 		}

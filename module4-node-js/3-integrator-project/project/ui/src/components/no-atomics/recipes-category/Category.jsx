@@ -9,7 +9,7 @@ const Category = ({ img, title, category }) => {
 
 	return (
 		<CardCategory selected={category === selectedCategory} onClick={() => dispatch(categoriesActions.selectCategory(category))}>
-			<img src={img} alt={category} />
+			<img src={img} alt={title} />
 			<h2>{title}</h2>
 			<BorderDecoration></BorderDecoration>
 		</CardCategory>

@@ -19,8 +19,8 @@ export default class UserRoleRepository {
 		try {
 			const userRoles: UserRole[] = (await this.userRoleRepository
 				.createQueryBuilder()
-				.select("user_roles")
-				.from(UserRole, "user_roles")
+				.select("users_roles")
+				.from(UserRole, "users_roles")
 				.getMany()) as UserRole[];
 			return userRoles;
 		} catch (error: any) {
@@ -32,9 +32,9 @@ export default class UserRoleRepository {
 		try {
 			const userRole: UserRole = (await this.userRoleRepository
 				.createQueryBuilder()
-				.select("user_roles")
-				.from(UserRole, "user_roles")
-				.where("user_roles.id = :id", { id: userRoleId })
+				.select("users_roles")
+				.from(UserRole, "users_roles")
+				.where("users_roles.id = :id", { id: userRoleId })
 				.getOne()) as UserRole;
 			return userRole;
 		} catch (error: any) {
@@ -46,9 +46,9 @@ export default class UserRoleRepository {
 		try {
 			const userRole: UserRole = (await this.userRoleRepository
 				.createQueryBuilder()
-				.select("user_roles")
-				.from(UserRole, "user_roles")
-				.where("user_roles.name = :name", { name: userRoleName })
+				.select("users_roles")
+				.from(UserRole, "users_roles")
+				.where("users_roles.name = :name", { name: userRoleName })
 				.getOne()) as UserRole;
 			return userRole;
 		} catch (error: any) {

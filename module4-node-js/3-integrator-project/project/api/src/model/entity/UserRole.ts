@@ -7,19 +7,17 @@ import {
 	DeleteDateColumn,
 	OneToMany,
 	Unique,
-	OneToOne,
-	JoinColumn,
 } from "typeorm";
 import {UserRoleStringEnum} from "../enum/UserRoleEnum";
 import User from "./User";
 
-@Entity({ name: "user_roles" })
+@Entity({ name: "users_roles" })
 export default class UserRole {
 	@PrimaryGeneratedColumn({ type: "integer" })
 	id!: number;
 
 	@Column({ type: "varchar", length: 50, default: UserRoleStringEnum.USER, nullable: false })
-	@Unique("UQ_users_role", ["role"])
+	@Unique("UQ_users_roles", ["role"])
 	role!: string;
 
 	@Column({ type: "varchar", length: 50, nullable: true })

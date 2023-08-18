@@ -2,6 +2,8 @@ import { StatusCodes } from "http-status-codes";
 import CustomException from "../model/CustomException";
 import Recipe from "../model/entity/Recipe";
 import RecipeRepository from "../repository/RecipeRepository";
+import UserService from "./UserService";
+import RecipeCategoryService from "./RecipeCategoryService";
 
 export default class RecipeService {
 	static getRecipes = async (offset: number, limit: number): Promise<any> => {
@@ -25,6 +27,8 @@ export default class RecipeService {
 
 	static createRecipe = async (newRecipe: Recipe): Promise<Recipe> => {
 		try {
+			await UserService.getUserById(newRecipe.userId, true);
+			await RecipeCategoryService.getRecipeCategoryById(newRecipe.categoryId);
 			const recipe: Recipe = await RecipeRepository.createRecipe(newRecipe);
 			return recipe;
 		} catch (error: any) {

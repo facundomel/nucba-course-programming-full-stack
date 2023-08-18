@@ -33,9 +33,9 @@ export default class RecipeFavoriteRepository {
 		try {
 			const recipeFavorite: RecipeFavorite[] = (await this.recipeFavoriteRepository
 				.createQueryBuilder()
-				.select("recipes_favorite")
-				.from(RecipeFavorite, "recipes_favorite")
-				.where("recipes_favorite.userId = :userId", { userId: userId })
+				.select("recipes_favorites")
+				.from(RecipeFavorite, "recipes_favorites")
+				.where("recipes_favorites.userId = :userId", { userId: userId })
 				.withDeleted()
 				.getMany()) as RecipeFavorite[];
 			return recipeFavorite;
@@ -48,10 +48,10 @@ export default class RecipeFavoriteRepository {
 		try {
 			const recipeFavorite: RecipeFavorite = (await this.recipeFavoriteRepository
 				.createQueryBuilder()
-				.select("recipes_favorite")
-				.from(RecipeFavorite, "recipes_favorite")
-				.where("recipes_favorite.userId = :userId", { userId: userId })
-				.andWhere("recipes_favorite.recipeId = :recipeId", { recipeId: recipeId })
+				.select("recipes_favorites")
+				.from(RecipeFavorite, "recipes_favorites")
+				.where("recipes_favorites.userId = :userId", { userId: userId })
+				.andWhere("recipes_favorites.recipeId = :recipeId", { recipeId: recipeId })
 				.withDeleted()
 				.getOne()) as RecipeFavorite;
 			return recipeFavorite;

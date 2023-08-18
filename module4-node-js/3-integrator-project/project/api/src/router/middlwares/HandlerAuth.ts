@@ -39,12 +39,23 @@ export default class HandlerAuth {
 
 	//AUTORIZACION
 	static authorizeAdminRole = async (req: Request, res: Response, next: NextFunction) => {
+		const userId = Utils.convertFromSnakeToCamel(req.body).userId;
+
 		const currentUser: CurrentUser = res.locals.currentUser;
-		if (currentUser.role && currentUser.role != UserRoleStringEnum.ADMIN) {
-			ResponseUtils.forbidden(res, new CustomException("Not authorized: Need admin role", StatusCodes.FORBIDDEN));
-			return;
+
+		if (userId) {
+			if (currentUser.role && currentUser.role == UserRoleStringEnum.ADMIN && currentUser.userId == Number(userId)) {
+				next();
+				return;
+			}
+		} else {
+			if (currentUser.role && currentUser.role == UserRoleStringEnum.ADMIN) {
+				next();
+				return;
+			}
 		}
-		next();
+
+		ResponseUtils.forbidden(res, new CustomException("Not authorized: Need admin role", StatusCodes.FORBIDDEN));
 	};
 
 	static authorizeUserRole = async (req: Request, res: Response, next: NextFunction) => {

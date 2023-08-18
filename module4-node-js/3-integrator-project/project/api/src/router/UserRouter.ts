@@ -2,6 +2,7 @@ import { Router as routerExpress } from "express";
 import { body, query } from "express-validator";
 import HandlerValidationErrors from "./middlwares/HandlerValidationErrors";
 import UserController from "../controller/UserController";
+import HandlerAuth from "./middlwares/HandlerAuth";
 
 export default class UserRouter {
 	static init = (): routerExpress => {

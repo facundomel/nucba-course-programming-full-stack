@@ -57,6 +57,6 @@ export default class Recipe {
 	user!: User;
 
 	@ManyToOne(() => RecipeCategory, (recipeCategory) => recipeCategory.recipes)
-	@JoinColumn({ name: "category_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_category_id" })
+	@JoinColumn({ name: "category_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_recipes_categories_id" })
 	recipeCategory!: RecipeCategory;
 }

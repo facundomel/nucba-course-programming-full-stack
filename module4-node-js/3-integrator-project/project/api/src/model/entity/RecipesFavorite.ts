@@ -1,6 +1,5 @@
 import {
 	Entity,
-	Column,
 	CreateDateColumn,
 	UpdateDateColumn,
 	DeleteDateColumn,
@@ -12,7 +11,7 @@ import {
 import Recipe from "./Recipe";
 import User from "./User";
 
-@Entity({ name: "recipes_favorite" })
+@Entity({ name: "recipes_favorites" })
 export default class RecipeFavorite {
 	@PrimaryGeneratedColumn({ type: "integer" })
 	id!: number;
@@ -39,10 +38,10 @@ export default class RecipeFavorite {
 	deletedDate!: Date;
 
 	@ManyToOne(() => User)
-	@JoinColumn({ name: "user_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_favorite_user_id" })
+	@JoinColumn({ name: "user_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_favorites_user_id" })
 	user!: User;
 
   @ManyToOne(() => Recipe)
-	@JoinColumn({ name: "recipe_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_favorite_recipe_id" })
+	@JoinColumn({ name: "recipe_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_favorites_recipe_id" })
 	recipe!: Recipe;
 }

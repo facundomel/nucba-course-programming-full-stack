@@ -36,12 +36,12 @@ export default class UserService {
 
 	static registerUser = async (newUser: User): Promise<any> => {
 		try {
-			let user: User = (await UserRepository.getUserByEmail(newUser.email, false)) as User;
+			const user: User = (await UserRepository.getUserByEmail(newUser.email, false)) as User;
 			if (user != null) throw new CustomException("User already exist", StatusCodes.CONFLICT);
 			newUser.password = await bcrypt.hash(newUser.password, 10);
-			user = (await UserRepository.registerUser(newUser)) as User;
-			user.password = "*****";
-			return user;
+			const userCreated = (await UserRepository.registerUser(newUser)) as User;
+			userCreated.password = "*****";
+			return userCreated;
 		} catch (error: any) {
 			throw error;
 		}

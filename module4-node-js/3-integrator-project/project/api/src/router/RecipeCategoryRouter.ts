@@ -70,9 +70,10 @@ export default class RecipeCategoryRouter {
 			body("category").notEmpty().withMessage("Category is empty").isString().withMessage("Category is not string"),
 			body("title").notEmpty().withMessage("Title is empty").isString().withMessage("Title is not string"),
 			body("url_image").notEmpty().withMessage("URL image is empty").isString().withMessage("URL image is not string"),
+			body("user_id").notEmpty().withMessage("User ID is empty").isNumeric().withMessage("User ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
-			HandlerAuth.authorizeAdminOrUserRole,
+			HandlerAuth.authorizeAdminRole,
 			RecipeCategoryController.createRecipeCategory
 		);
 
