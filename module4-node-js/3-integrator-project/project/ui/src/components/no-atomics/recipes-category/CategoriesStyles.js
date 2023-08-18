@@ -47,3 +47,13 @@ export const BorderDecoration = styled.div`
 	background: var(--gradient);
 	border-radius: 15px;
 `;
+
+export const SelectCategoriesContainer = styled.div`
+	width: 242px;
+	margin-bottom: 40px;
+	display: none;
+
+	@media (max-width: 400px) {
+		display: flex;
+	}
+`;
