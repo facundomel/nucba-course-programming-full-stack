@@ -56,7 +56,7 @@ export default class AuthRouter {
 		router.post(
 			"/login",
 			body("email").notEmpty().withMessage("Email is empty").isEmail().withMessage("Email is not valid"),
-			body("password").notEmpty().withMessage("Password is empty"),
+			body("password").notEmpty().withMessage("Password is empty").isString().withMessage("Password is not string"),
 			HandlerValidationErrors.executeValidation,
 			AuthController.login
 		);
