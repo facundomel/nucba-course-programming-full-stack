@@ -15,6 +15,8 @@ import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyle
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
 import { RecipePageSection } from "../../../../model/enum/PageSection";
+import CustomException from "../../../../model/CustomException";
+import { HttpStatusCode } from "axios";
 
 const RecipeAll = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);
@@ -23,7 +25,8 @@ const RecipeAll = () => {
 	const { currentUser } = useSelector((state) => state.user);
 	const navigate = useNavigate();
 	const { page } = useParams();
-	const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+	const [currentPage, setCurrentPage] = useState(page > 0 ? Number(page) || 1 : 1);
+
 	const [totalPages, setTotalPages] = useState(1);
 	const limitRecipes = 12;
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
@@ -80,18 +83,14 @@ const RecipeAll = () => {
 				<SpinnerCustom message={"Cargando recetas..."} />
 			) : (
 				<>
-					{recipesAll.length > 0 ? (
-						<>
-							<h1>
-								Encontrá las mejores recetas aquí <FcReading />
-							</h1>
-							<Hero />
-							<Categories />
-							<Recipes />
-						</>
-					) : (
-						currentPage === 1 && <MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
+					{recipesAll.length > 0 && (
+						<h1>
+							Encontrá las mejores recetas aquí <FcReading />
+						</h1>
 					)}
+					<Hero />
+					<Categories />
+					<Recipes messageNotExistRecipes={"¡Lo sentimos! No existen recetas"} />
 
 					{recipesAll.length > 0 && (
 						<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />

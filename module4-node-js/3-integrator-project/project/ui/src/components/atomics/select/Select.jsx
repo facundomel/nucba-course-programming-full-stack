@@ -23,6 +23,7 @@ const SelectCustom = ({ name, placeholder, selectRef, options, handleOnChange, e
 					placeholder={placeholder}
 					ref={selectRef}
 					options={options}
+					noOptionsMessage={() => "No hay opciones"}
 					onChange={handleOnChange}
 					styles={customStyles}
 					isSearchable={false}

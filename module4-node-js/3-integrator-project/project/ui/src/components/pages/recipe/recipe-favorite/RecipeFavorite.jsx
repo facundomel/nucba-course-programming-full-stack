@@ -23,7 +23,7 @@ const RecipeFavorite = () => {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const { page } = useParams();
-	const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+	const [currentPage, setCurrentPage] = useState(page > 0 ? Number(page) || 1 : 1);
 	const [totalPages, setTotalPages] = useState(1);
 	const limitRecipes = 12;
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
@@ -81,31 +81,24 @@ const RecipeFavorite = () => {
 					<SpinnerCustom message={"Cargando favoritos..."} />
 				) : (
 					<>
-						{recipesFavorite.length > 0 ? (
+						{recipesFavorite.length > 0 && (
 							<>
 								<h1>
 									Mis recetas favoritas <FcRating />
 								</h1>
-								<Hero />
-								<Categories />
-								<Recipes />
 							</>
-						) : (
+						)}
+
+						<Hero />
+						<Categories />
+						<Recipes messageNotExistRecipes={currentPage === 1 ? "¡Lo sentimos! No existen recetas favoritas" : null} />
+
+						{recipesFavorite.length === 0 && currentPage > 1 && (
 							<>
-								{currentPage === 1 ? (
-									<MessageNotExistRecipes>¡Lo sentimos! No existen recetas favoritas</MessageNotExistRecipes>
-								) : (
-									currentPage > 1 && (
-										<>
-											<MessageNotExistRecipes>¡Lo sentimos! No existen recetas favoritas en la página actual</MessageNotExistRecipes>
-											{
-												<LinkStyled to={`/recetas-favoritas/${currentPage - 1}`} onClick={() => goToPreviousPage()}>
-													Volver a la página anterior
-												</LinkStyled>
-											}
-										</>
-									)
-								)}
+								<MessageNotExistRecipes>¡Lo sentimos! No existen recetas favoritas en la página actual</MessageNotExistRecipes>
+								<LinkStyled to={`/recetas-favoritas/${currentPage - 1}`} onClick={() => goToPreviousPage()}>
+									Volver a la página anterior
+								</LinkStyled>
 							</>
 						)}
 
