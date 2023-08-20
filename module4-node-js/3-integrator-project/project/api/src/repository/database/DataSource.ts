@@ -24,9 +24,10 @@ export const AppDataSource = new DataSource({
 	extra: {
 		connectionTimeoutMillis: 10000,
 	},
+	maxQueryExecutionTime: 10000,
 	// connectTimeout: 1500,
 	// connectTimeoutMS: 3000,
-	maxQueryExecutionTime: 3000,
+	// maxQueryExecutionTime: 3000,
 	namingStrategy: new SnakeNamingStrategy(),
 	dropSchema: false,
 	synchronize: false,
