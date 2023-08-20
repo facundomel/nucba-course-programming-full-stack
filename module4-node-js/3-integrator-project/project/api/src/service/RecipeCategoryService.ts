@@ -27,7 +27,7 @@ export default class RecipeCategoryService {
 	static createRecipeCategory = async (newRecipeCategory: RecipeCategory): Promise<RecipeCategory> => {
 		try {
 			await UserService.getUserById(newRecipeCategory.userId, true);
-			const recipeCategory: RecipeCategory = (await RecipeCategoryRepository.getRecipeCategoryByCategoryName(
+			const recipeCategory: RecipeCategory = (await RecipeCategoryRepository.getRecipeCategoryByName(
 				newRecipeCategory.category
 			)) as RecipeCategory;
 			if (recipeCategory != null) throw new CustomException("Recipe category already exist", StatusCodes.CONFLICT);

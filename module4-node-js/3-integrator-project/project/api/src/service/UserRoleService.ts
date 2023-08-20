@@ -4,9 +4,9 @@ import UserRole from "../model/entity/UserRole";
 import UserRoleRepository from "../repository/UserRoleRepository";
 
 export default class UserRoleService {
-	static getUserRoles = async (): Promise<UserRole[]> => {
+	static getUsersRoles = async (): Promise<UserRole[]> => {
 		try {
-			const userRoles: UserRole[] = (await UserRoleRepository.getUserRoles()) as UserRole[];
+			const userRoles: UserRole[] = (await UserRoleRepository.getUsersRoles()) as UserRole[];
 			return userRoles;
 		} catch (error: any) {
 			throw error;

@@ -110,7 +110,7 @@ export default class RecipeFavoriteRouter {
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
 			HandlerAuth.authorizeAdminOrUserRole,
-			RecipeFavoriteController.getRecipesFavoriteWithDetailsByUserId
+			RecipeFavoriteController.getRecipesFavoritesWithDetailsByUserId
 		);
 
 		/**
@@ -272,7 +272,7 @@ export default class RecipeFavoriteRouter {
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
 			HandlerAuth.authorizeAdminOrUserRole,
-			RecipeFavoriteController.getRecipesFavoriteByUserId
+			RecipeFavoriteController.getRecipesFavoritesByUserId
 		);
 
 		/**

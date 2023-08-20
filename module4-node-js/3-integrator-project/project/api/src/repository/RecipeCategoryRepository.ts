@@ -43,7 +43,7 @@ export default class RecipeCategoryRepository {
 		}
 	};
 
-	static getRecipeCategoryByCategoryName = async (categoryName: string): Promise<RecipeCategory> => {
+	static getRecipeCategoryByName = async (categoryName: string): Promise<RecipeCategory> => {
 		try {
 			const recipeCategory: RecipeCategory = (await this.recipeCategoryRepository
 				.createQueryBuilder()

@@ -15,7 +15,7 @@ export default class UserRoleRepository {
 			});
 	}
 
-	static getUserRoles = async (): Promise<UserRole[]> => {
+	static getUsersRoles = async (): Promise<UserRole[]> => {
 		try {
 			const userRoles: UserRole[] = (await this.userRoleRepository
 				.createQueryBuilder()

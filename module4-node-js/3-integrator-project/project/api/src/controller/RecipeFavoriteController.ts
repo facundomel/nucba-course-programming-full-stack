@@ -6,9 +6,9 @@ import Recipe from "../model/entity/Recipe";
 import ResponseUtils from "../utils/ResponseUtils";
 
 export default class RecipeFavoriteController {
-	static getRecipesFavoriteByUserId = async (req: Request, res: Response): Promise<void> => {
+	static getRecipesFavoritesByUserId = async (req: Request, res: Response): Promise<void> => {
 		try {
-			const recipesFavorite: RecipeFavorite[] = (await RecipeFavoriteService.getRecipesFavoriteByUserId(
+			const recipesFavorite: RecipeFavorite[] = (await RecipeFavoriteService.getRecipesFavoritesByUserId(
 				Number(req.params.userId)
 			)) as RecipeFavorite[];
 			ResponseUtils.ok(res, recipesFavorite);
@@ -29,7 +29,7 @@ export default class RecipeFavoriteController {
 		}
 	};
 
-	static getRecipesFavoriteWithDetailsByUserId = async (req: Request, res: Response): Promise<void> => {
+	static getRecipesFavoritesWithDetailsByUserId = async (req: Request, res: Response): Promise<void> => {
 		try {
 			let offset: any = req.query.offset;
 			let limit: any = req.query.limit;
@@ -42,7 +42,7 @@ export default class RecipeFavoriteController {
 				limit = null;
 			}
 
-			const recipesFavoriteWithDetails: any = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserId(
+			const recipesFavoriteWithDetails: any = await RecipeFavoriteService.getRecipesFavoritesWithDetailsByUserId(
 				Number(req.params.userId),
 				offset,
 				limit

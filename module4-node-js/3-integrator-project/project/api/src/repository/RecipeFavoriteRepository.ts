@@ -29,7 +29,7 @@ export default class RecipeFavoriteRepository {
 			});
 	}
 
-	static getRecipesFavoriteByUserId = async (userId: number): Promise<RecipeFavorite[]> => {
+	static getRecipesFavoritesByUserId = async (userId: number): Promise<RecipeFavorite[]> => {
 		try {
 			const recipeFavorite: RecipeFavorite[] = (await this.recipeFavoriteRepository
 				.createQueryBuilder()
@@ -60,7 +60,7 @@ export default class RecipeFavoriteRepository {
 		}
 	};
 
-	static getRecipesFavoriteWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
+	static getRecipesFavoritesWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
 		try {
 			let query = this.recipeRepository
 				.createQueryBuilder("recipes")

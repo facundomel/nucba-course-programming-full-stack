@@ -7,9 +7,9 @@ import UserService from "./UserService";
 import RecipeService from "./RecipeService";
 
 export default class RecipeFavoriteService {
-	static getRecipesFavoriteByUserId = async (userId: number): Promise<RecipeFavorite[]> => {
+	static getRecipesFavoritesByUserId = async (userId: number): Promise<RecipeFavorite[]> => {
 		try {
-			const recipesFavorite: RecipeFavorite[] = (await RecipeFavoriteRepository.getRecipesFavoriteByUserId(userId)) as RecipeFavorite[];
+			const recipesFavorite: RecipeFavorite[] = (await RecipeFavoriteRepository.getRecipesFavoritesByUserId(userId)) as RecipeFavorite[];
 			return recipesFavorite;
 		} catch (error: any) {
 			throw error;
@@ -29,9 +29,9 @@ export default class RecipeFavoriteService {
 		}
 	};
 
-	static getRecipesFavoriteWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
+	static getRecipesFavoritesWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
 		try {
-			const results: any = await RecipeFavoriteRepository.getRecipesFavoriteWithDetailsByUserId(userId, offset, limit);
+			const results: any = await RecipeFavoriteRepository.getRecipesFavoritesWithDetailsByUserId(userId, offset, limit);
 			if (offset === null && limit === null) {
 				offset = 0;
 				limit = results.totalRecipes;
