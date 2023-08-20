@@ -21,8 +21,11 @@ export const AppDataSource = new DataSource({
 	logger: "simple-console",
 	subscribers: [],
 	ssl: process.env.DB_HOST != "localhost" ? { rejectUnauthorized: false } : false,
-	connectTimeout: 1500,
-	connectTimeoutMS: 3000,
+	extra: {
+		connectionTimeoutMillis: 10000,
+	},
+	// connectTimeout: 1500,
+	// connectTimeoutMS: 3000,
 	maxQueryExecutionTime: 3000,
 	namingStrategy: new SnakeNamingStrategy(),
 	dropSchema: false,
