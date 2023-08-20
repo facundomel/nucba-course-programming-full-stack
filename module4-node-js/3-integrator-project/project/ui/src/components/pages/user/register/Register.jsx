@@ -8,7 +8,6 @@ import {
 	IconShowAndHidePasswordContainer,
 } from "../UserStyles";
 import Button from "../../../atomics/button/Button";
-import localStorage, { KEY_USER_SESSION } from "../../../../repository/LocalStorage.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";

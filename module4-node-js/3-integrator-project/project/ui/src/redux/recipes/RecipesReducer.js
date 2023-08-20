@@ -1,6 +1,4 @@
 import { SET_RECIPE_FAVORITE, SET_RECIPES_FILTERED, SET_RECIPES_ALL } from "./RecipesActions";
-import localStorage, { KEY_RECIPES_ALL } from "../../repository/LocalStorage";
-import DataRecipes from "../../assets/data/DataRecipes";
 
 const INITIAL_STATE = {
 	recipesAll: [],

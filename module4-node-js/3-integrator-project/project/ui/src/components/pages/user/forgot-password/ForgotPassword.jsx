@@ -10,8 +10,6 @@ import {
 } from "../UserStyles";
 import Input from "../../../atomics/input/Input";
 import Button from "../../../atomics/button/Button";
-import { KEY_USER_SESSION } from "../../../../repository/LocalStorage";
-import localStorage from "../../../../repository/LocalStorage";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";

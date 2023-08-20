@@ -1,4 +1,4 @@
-import GlobalStyles from "./global-styles/GlobalStyles";
+import GlobalStyles from "./main/styles/GlobalStyles";
 import Main from "./main/Main";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { RecipePageSection } from "../model/enum/PageSection";
+import { RecipePageSection } from "../../model/enum/PageSection";
 
 export const MainContainerStyled = styled.div`
 	display: flex;

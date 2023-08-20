@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardRecipe from "./CardRecipe";
 import { MessageNotExistRecipes, RecipesContainer } from "./RecipesStyles";
-import localStorage, { KEY_RECIPES_ALL } from "../../../repository/LocalStorage";
 import SnackbarCustom from "../snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import FloatingButton from "../../atomics/button/FloatingButton";

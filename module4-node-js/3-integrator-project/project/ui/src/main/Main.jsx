@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Footer from "../components/no-atomics/footer/Footer";
 import Navbar from "../components/no-atomics/navbar/Navbar";
-import { MainContainerStyled } from "./MainStyles";
+import { MainContainerStyled } from "./styles/MainStyles";
 import Router from "./Router";
 import { useSelector } from "react-redux";
 

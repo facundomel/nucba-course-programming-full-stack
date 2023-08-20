@@ -14,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
-import { KEY_USER_SESSION } from "../../../../repository/LocalStorage";
-import localStorage from "../../../../repository/LocalStorage";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import AuthService from "../../../../service/AuthService";
