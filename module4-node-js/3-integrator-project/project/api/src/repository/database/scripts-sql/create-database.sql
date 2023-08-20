@@ -1,1 +1,1 @@
-CREATE DATABASE expenses_nucba_challenge_required_3_module_4;
+CREATE DATABASE recipes_integrator_project_module_4;

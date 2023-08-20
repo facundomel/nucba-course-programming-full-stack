@@ -1,9 +1,14 @@
 SELECT *
-FROM expenses;
+FROM recipes r;
 
 SELECT *
-FROM users;
+FROM recipes_categories rc;
 
 SELECT *
-FROM users
-  LEFT JOIN expenses ON users.id = expenses.user_id
+FROM recipes_favorites rf;
+
+SELECT *
+FROM users_roles ur;
+
+SELECT *
+FROM users u;

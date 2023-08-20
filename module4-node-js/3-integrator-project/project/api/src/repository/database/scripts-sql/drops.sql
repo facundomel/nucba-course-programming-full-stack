@@ -1,4 +1,7 @@
-DROP TABLE users,
-expenses;
+DROP TABLE recipes,
+recipes_categories,
+recipes_favorites,
+users,
+users_roles;
 
-DROP DATABASE expenses_nucba_challenge_required_3_module_4;
+DROP DATABASE recipes_integrator_project_module_4;
