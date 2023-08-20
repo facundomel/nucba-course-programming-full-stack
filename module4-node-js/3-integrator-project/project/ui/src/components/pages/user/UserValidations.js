@@ -1,14 +1,14 @@
 import CustomException from "../../../model/CustomException";
 import { UserErrorType } from "../../../model/enum/ErrorType";
 
-export const isValidEmail = (email, setError, emailRef, shouldCheckFormat) => {
+export const isValidEmail = (email, setError, emailRef, shouldApplyRegexValidation) => {
 	if (email === "") {
 		setError(new CustomException(UserErrorType.ERROR_EMAIL, "Campo requerido"));
 		emailRef.current.focus();
 		return false;
 	}
 
-	if (shouldCheckFormat) {
+	if (shouldApplyRegexValidation) {
 		const regexEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
 
 		if (!regexEmail.test(email)) {
@@ -39,14 +39,14 @@ export const isValidLastName = (lastName, setError, lastNameRef) => {
 	return true;
 };
 
-export const isValidPassword = (password, setError, passwordRef, shouldCheckFormat) => {
+export const isValidPassword = (password, setError, passwordRef, shouldApplyRegexValidation) => {
 	if (password === "") {
 		setError(new CustomException(UserErrorType.ERROR_PASSWORD, "Campo requerido"));
 		passwordRef.current.focus();
 		return false;
 	}
 
-	if (shouldCheckFormat) {
+	if (shouldApplyRegexValidation) {
 		const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
 
 		if (!regexPassword.test(password)) {

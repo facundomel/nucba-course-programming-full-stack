@@ -155,7 +155,7 @@ const Login = () => {
 					<Button type="submit" width="100%">
 						Ingresar
 					</Button>
-					<UserLink to="/recuperar-contraseña">
+					<UserLink to="/restablecer-contraseña">
 						<small>¿Olvidaste la contraseña? Restablecela</small>
 					</UserLink>
 					<UserLink to="/registro">

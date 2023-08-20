@@ -43,6 +43,10 @@ const NewPassword = () => {
 	useEffect(() => {
 		passwordRef.current.focus();
 		dispatch(userActions.setUserSection(UserPageSection.UserNewPassword));
+
+		return () => {
+			dispatch(userActions.removeUserForgotPassword());
+		};
 	}, []);
 
 	useEffect(() => {
@@ -64,12 +68,15 @@ const NewPassword = () => {
 			const userUpdated = await UserService.updateUserPassword(userForgotPassword.id, password);
 			if (userUpdated != null) {
 				navigate("/login");
-				dispatch(userActions.removeUserForgotPassword());
 				SnackbarUtils.success("Contraseña actualizada correctamente", 2500, dispatch);
 			}
 		} catch (error) {
-			setOtherError(error);
-			SnackbarUtils.error(error, 2500, dispatch);
+			if (error.type === UserErrorType.ERROR_PASSWORD) {
+				setErrorInput(error);
+			} else {
+				setOtherError(error);
+				SnackbarUtils.error(error, 2500, dispatch);
+			}
 			passwordRef.current.focus();
 		}
 	};

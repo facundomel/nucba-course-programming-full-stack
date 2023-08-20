@@ -26,7 +26,7 @@ const Router = () => {
 				<Route path="/recetas/:page" element={<RecipeAll />} />
 				<Route path="/registro" element={<Register />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="/recuperar-contraseña" element={<ForgotPassword />} />
+				<Route path="/restablecer-contraseña" element={<ForgotPassword />} />
 				{userForgotPassword && <Route path="/nueva-contraseña" element={<NewPassword />} />}
 				{currentUser && (
 					<>

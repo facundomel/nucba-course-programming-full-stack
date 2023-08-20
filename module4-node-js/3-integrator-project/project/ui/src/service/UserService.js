@@ -31,7 +31,13 @@ export default class UserService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errorData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errorData && errorData.statusCode === HttpStatusCode.Conflict && errorData.message === "User already exist") {
+			if (errorData && errorData.statusCode === HttpStatusCode.BadRequest && errorData.message.includes("Password is not strong")) {
+				throw new CustomException(
+					UserErrorType.ERROR_PASSWORD,
+					"El password debe contener como mínimo una letra minúscula, una mayúscula, un símbolo y un total de 8 caracteres",
+					errorData.statusCode
+				);
+			} else if (errorData && errorData.statusCode === HttpStatusCode.Conflict && errorData.message === "User already exist") {
 				throw new CustomException(UserErrorType.ERROR_EMAIL, "El email ya se encuentra en uso", errorData.statusCode);
 			}
 			throw new CustomException("", "Error al registrarse. Inténtelo más tarde", HttpStatusCode.InternalServerError);
@@ -49,6 +55,14 @@ export default class UserService {
 			);
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
+			const errorData = Utils.convertFromSnakeToCamel(err.response?.data);
+			if (errorData && errorData.statusCode === HttpStatusCode.BadRequest && errorData.message.includes("New password is not strong")) {
+				throw new CustomException(
+					UserErrorType.ERROR_PASSWORD,
+					"El password debe contener como mínimo una letra minúscula, una mayúscula, un símbolo y un total de 8 caracteres",
+					errorData.statusCode
+				);
+			}
 			throw new CustomException("", "Error al actualizar la contraseña. Inténtelo más tarde", HttpStatusCode.InternalServerError);
 		}
 	};

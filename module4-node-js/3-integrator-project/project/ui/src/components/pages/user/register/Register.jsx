@@ -77,12 +77,15 @@ const Register = () => {
 			const userSession = await AuthService.loginUser(new UserLogin(valueInputs.email, valueInputs.password));
 			dispatch(userActions.setCurrentUser(userSession));
 			navigate("/recetas/1");
-			SnackbarUtils.success(`¡Felicitaciones ${userRegistered.user.firstName}! Se ha registrado correctamente`, 2500, dispatch)
+			SnackbarUtils.success(`¡Felicitaciones ${userRegistered.user.firstName}! Se ha registrado correctamente`, 2500, dispatch);
 		} catch (error) {
 			if (error instanceof CustomException) {
 				if (error.type === UserErrorType.ERROR_EMAIL) {
 					setErrorInput(error);
 					emailRef.current.focus();
+				} else if (error.type === UserErrorType.ERROR_PASSWORD) {
+					setErrorInput(error);
+					passwordRef.current.focus();
 				} else {
 					setOtherError(error);
 					SnackbarUtils.error(error, 2500, dispatch);
