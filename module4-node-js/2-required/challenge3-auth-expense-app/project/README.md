@@ -2,4 +2,4 @@
 
 ## Módulo 4 - Node JS: Challenge 3
 
-La BD MySQL fue hosteada en https://planetscale.com/
+#### Plataforma proveedora de servicios de hosting para la BD MySQL: https://planetscale.com/

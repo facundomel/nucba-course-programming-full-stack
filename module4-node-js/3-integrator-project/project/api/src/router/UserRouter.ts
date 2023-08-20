@@ -2,7 +2,6 @@ import { Router as routerExpress } from "express";
 import { body, query } from "express-validator";
 import HandlerValidationErrors from "./middlwares/HandlerValidationErrors";
 import UserController from "../controller/UserController";
-import HandlerAuth from "./middlwares/HandlerAuth";
 
 export default class UserRouter {
 	static init = (): routerExpress => {
@@ -20,33 +19,68 @@ export default class UserRouter {
 		 * /api/users/search:
 		 *   get:
 		 *     summary: Search de usuarios
-		 *     description: Recuperar usuarios en función de los parámetros de query string.
-		 *       Si se proporciona una identificación o un correo electrónico, devuelve un solo usuario.
-		 *       De lo contrario, devuelve una lista de todos los usuarios.
+		 *     description: Obtener usuarios. 
+		 *       Si se proporciona un user_id o un email, devuelve un solo usuario. 
+		 *       De lo contrario, devuelve todos los usuarios.
 		 *     tags:
 		 *       - User
 		 *     parameters:
+		 *       - in: header
+		 *         name: Authorization
+		 *         required: true
+		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
+		 *         example: Bearer <Access_Token>
+		 *         schema:
+		 *           type: string
 		 *       - in: query
 		 *         name: id
 		 *         required: false
-		 *         description: ID del usuario a buscar
+		 *         description: ID del usuario a buscar.
+		 *         example: 1
 		 *         schema:
 		 *           type: integer
 		 *       - in: query
 		 *         name: email
 		 *         required: false
-		 *         description: Correo electrónico del usuario a buscar
+		 *         description: Correo electrónico del usuario a buscar.
+		 *         example: user@hotmail.com
 		 *         schema:
 		 *           type: string
 		 *     responses:
 		 *       200:
-		 *         description: Respuesta exitosa
+		 *         description: Usuario obtenido exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               id: <ID del usuario>
+		 *               first_name: "<Nombre>"
+		 *               last_name: "<Apellido>"
+		 *               email: "<Email>"
+		 *               created_date: "<Fecha de creación>"
+		 *               updated_date: "<Fecha de actualización>"
+		 *               deleted_date: "<Fecha de eliminación>"
+		 *               role_id: <ID del rol del usuario>
 		 *       400:
-		 *         description: Solicitud incorrecta
+		 *         description: Solicitud incorrecta (no se puede consultar por ambos campos a la vez o algún campo del body es del tipo de dato incorrecto).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 400
 		 *       404:
-		 *         description: Usuario no encontrado
+		 *         description: Usuario no encontrado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "User not found"
+		 *               status_code: 404
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.get(
 			"/users/search",
@@ -60,7 +94,7 @@ export default class UserRouter {
 		 * @swagger
 		 * /api/users:
 		 *   post:
-		 *     summary: Registro de usuario
+		 *     summary: Registro de nuevo usuario
 		 *     description: Registra un nuevo usuario con la información proporcionada.
 		 *     tags:
 		 *       - User
@@ -85,13 +119,40 @@ export default class UserRouter {
 		 *                 description: Contraseña del usuario (debe ser una contraseña segura)
 		 *     responses:
 		 *       201:
-		 *         description: Usuario registrado exitosamente
+		 *         description: Usuario registrado exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               id: <ID del usuario>
+		 *               first_name: "<Nombre>"
+		 *               last_name: "<Apellido>"
+		 *               email: "<Email>"
+		 *               password: <Contraseña ofuscada>
+		 *               created_date: "<Fecha de creación>"
+		 *               updated_date: "<Fecha de actualización>"
+		 *               deleted_date: "<Fecha de eliminación>"
+		 *               role_id: <ID del rol del usuario>
 		 *       400:
-		 *         description: Solicitud incorrecta
+		 *         description: Solicitud incorrecta (algún campo del body no existe o es del tipo de dato incorrecto).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 400
 		 *       409:
-		 *         description: El usuario ya existe
+		 *         description: El usuario ya existe.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "User already exist"
+		 *               status_code: 409
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.post(
 			"/users",
@@ -107,7 +168,7 @@ export default class UserRouter {
 		 * @swagger
 		 * /api/users/password:
 		 *   put:
-		 *     summary: Actualización de contraseña de usuario
+		 *     summary: Actualización de contraseña del usuario
 		 *     description: Actualiza la contraseña de un usuario existente.
 		 *     tags:
 		 *       - User
@@ -126,13 +187,40 @@ export default class UserRouter {
 		 *                 description: Nueva contraseña del usuario (debe ser una contraseña segura)
 		 *     responses:
 		 *       200:
-		 *         description: Contraseña actualizada exitosamente
+		 *         description: Contraseña actualizada exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               id: <ID del usuario>
+		 *               first_name: "<Nombre>"
+		 *               last_name: "<Apellido>"
+		 *               email: "<Email>"
+		 *               password: <Contraseña ofuscada>
+		 *               created_date: "<Fecha de creación>"
+		 *               updated_date: "<Fecha de actualización>"
+		 *               deleted_date: "<Fecha de eliminación>"
+		 *               role_id: <ID del rol del usuario>
 		 *       400:
-		 *         description: Solicitud incorrecta
+		 *         description: Solicitud incorrecta (algún campo del body no existe o es del tipo de dato incorrecto).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 400
 		 *       404:
-		 *         description: Usuario no enontrado
+		 *         description: Usuario no enontrado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "User not found"
+		 *               status_code: 404
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.put(
 			"/users/password",

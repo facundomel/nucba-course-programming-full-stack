@@ -25,9 +25,25 @@ export default class RecipeCategoryRouter {
 		 *       - Recipe Category
 		 *     responses:
 		 *       200:
-		 *         description: Lista de categorías de recetas
+		 *         description: Lista de categorías de recetas obtenida exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               - id: <ID de la categoría creada>
+		 *                 category: "<Categoría>"
+		 *                 title: "<Título>"
+		 *                 url_image: "<URL de la imagen>"
+		 *                 created_date: "<Fecha de creación>"
+		 *                 updated_date: "<Fecha de actualización>"
+		 *                 deleted_date: "<Fecha de eliminación>"
+		 *                 user_id: <ID del usuario que creó la categoría>
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.get("/recipes/categories", RecipeCategoryController.getRecipesCategories);
 
@@ -39,6 +55,14 @@ export default class RecipeCategoryRouter {
 		 *     description: Crear una nueva categoría de receta con la información proporcionada.
 		 *     tags:
 		 *       - Recipe Category
+		 *     parameters:
+		 *       - in: header
+		 *         name: Authorization
+		 *         required: true
+		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
+		 *         example: Bearer <Access_Token>
+		 *         schema:
+		 *           type: string
 		 *     requestBody:
 		 *       required: true
 		 *       content:
@@ -55,15 +79,65 @@ export default class RecipeCategoryRouter {
 		 *               url_image:
 		 *                 type: string
 		 *                 description: URL de la imagen de la categoría
+		 *               user_id:
+		 *                 type: integer
+		 *                 description: ID del usuario que creará la categoría
 		 *     responses:
 		 *       201:
-		 *         description: Categoría de receta creada exitosamente
+		 *         description: Categoría de receta creada exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               id: <ID de la categoría>
+		 *               category: "<Categoría>"
+		 *               title: "<Título>"
+		 *               url_image: "<URL de la imagen>"
+		 *               created_date: "<Fecha de creación>"
+		 *               updated_date: "<Fecha de actualización>"
+		 *               deleted_date: "<Fecha de eliminación>"
+		 *               user_id: <ID del usuario que creó la categoría>
 		 *       400:
-		 *         description: Solicitud incorrecta
+		 *         description: Solicitud incorrecta (algún campo del body es vacío o del tipo de dato incorrecto).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 400
 		 *       401:
-		 *         description: No autorizado
+		 *         description: Usuario no autenticado (el access token no está presente, expiró o no es válido).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 401
+		 *       403:
+		 *         description: Usuario no autorizado (solo un administrador puede crear categorías).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "Not authorized: Need admin role"
+		 *               status_code: 403
+		 *       404:
+		 *         description: El usuario que está creando la categoría no existe.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "User not found"
+		 *               status_code: 404
+		 *       409:
+		 *         description: La categoría de receta que se está creando ya existe.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "Recipe category already exist"
+		 *               status_code: 409
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.post(
 			"/recipes/categories",

@@ -37,21 +37,33 @@ export default class AuthRouter {
 		 *                 description: Contraseña del usuario
 		 *     responses:
 		 *       200:
-		 *         description: Inicio de sesión exitoso
+		 *         description: Inicio de sesión exitoso.
 		 *         content:
 		 *           application/json:
 		 *             example:
-		 *               message: Inicio de sesión exitoso
-		 *               access_token: <Access Token>
-		 *               refresh_token: <Refresh Token>
+		 *               access_token: "<Access token>"
+		 *               refresh_token: "<Refresh token>"
 		 *       400:
-		 *         description: Solicitud o password incorrecto
-		 *       401:
-		 *         description: Credenciales inválidas
+		 *         description: Solicitud incorrecta (algún campo del body es vacío o del tipo de dato incorrecto, o bien el pasword es inválido).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 400
 		 *       404:
-		 *         description: Usuario o role de usuario no encontrado
+		 *         description: Usuario o rol de usuario no encontrado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 404
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.post(
 			"/login",
@@ -69,19 +81,43 @@ export default class AuthRouter {
 		 *     description: Actualiza el token de acceso utilizando un token de actualización válido.
 		 *     tags:
 		 *       - Authentication
+		 *     parameters:
+		 *       - in: header
+		 *         name: Authorization
+		 *         required: true
+		 *         description: Token de actualización válido. Deberá reemplazar "<Refresh_Token>" con su refresh_token real.
+		 *         example: Bearer <Refresh_Token>
+		 *         schema:
+		 *           type: string
 		 *     responses:
 		 *       200:
-		 *         description: Token de acceso actualizado exitosamente
+		 *         description: Token de acceso actualizado exitosamente.
 		 *         content:
 		 *           application/json:
 		 *             example:
-		 *               access_token: <Nuevo Access Token>
+		 *               access_token: "<Nuevo access token>"
+		 *               refresh_token: "<Nuevo refresh token>"
 		 *       401:
-		 *         description: Refresh token no está presente
+		 *         description: El usuario no está autenticado (el refresh token no está presente, expiró o no es válido).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 401
 		 *       404:
-		 *         description: Usuario o role de usuario no encontrado, expiró o no es válido
+		 *         description: Usuario o rol de usuario no encontrado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 404
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.post("/refresh-token", AuthController.refreshToken);
 

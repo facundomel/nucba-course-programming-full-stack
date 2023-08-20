@@ -23,7 +23,7 @@ export default class RecipeFavoriteService {
 				userId,
 				recipeId
 			)) as RecipeFavorite;
-			if (recipeFavorite == null) throw new CustomException("Recipe favorite by user and recipe not found", StatusCodes.NOT_FOUND);
+			if (recipeFavorite == null) throw new CustomException("Recipe favorite by user_id and recipe_id not found", StatusCodes.NOT_FOUND);
 			return recipeFavorite;
 		} catch (error: any) {
 			throw error;
@@ -50,7 +50,7 @@ export default class RecipeFavoriteService {
 				recipeId
 			)) as Recipe;
 			if (recipeFavoriteWithDetails == null)
-				throw new CustomException("Recipe favorite by user and recipe not found", StatusCodes.NOT_FOUND);
+				throw new CustomException("Recipe favorite by user_id and recipe_id not found", StatusCodes.NOT_FOUND);
 			return recipeFavoriteWithDetails;
 		} catch (error: any) {
 			throw error;
@@ -80,8 +80,6 @@ export default class RecipeFavoriteService {
 				const response = await RecipeFavoriteRepository.deleteRecipeFavoriteByUserIdAndRecipeId(userId, recipeId);
 				if (response.affected > 0) {
 					return recipeFavoriteWithDetails;
-				} else {
-					throw new CustomException("Recipe favorite not found", StatusCodes.NOT_FOUND);
 				}
 			}
 		} catch (error: any) {

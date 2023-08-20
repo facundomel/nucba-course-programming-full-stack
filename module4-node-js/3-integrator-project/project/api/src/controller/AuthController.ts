@@ -19,7 +19,7 @@ export default class AuthController {
 	static refreshToken = async (req: Request, res: Response): Promise<void> => {
 		const headerAuthorization = req.headers.authorization;
 		if (!headerAuthorization) {
-			ResponseUtils.forbidden(res, new CustomException("Not authorized: Refresh token is not present", StatusCodes.FORBIDDEN));
+			ResponseUtils.unauthorized(res, new CustomException("Not authenticated: Refresh token is not present", StatusCodes.UNAUTHORIZED));
 			return;
 		}
 		const authorizationToken = headerAuthorization.split(" ")[1];

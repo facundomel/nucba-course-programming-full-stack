@@ -23,11 +23,65 @@ export default class RecipeRouter {
 		 *     description: Obtener una lista de todas las recetas disponibles.
 		 *     tags:
 		 *       - Recipe
+		 *     parameters:
+		 *       - in: header
+		 *         name: Authorization
+		 *         required: true
+		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
+		 *         example: Bearer <Access_Token>
+		 *         schema:
+		 *           type: string
+		 *       - in: query
+		 *         name: offset
+		 *         description: Número de registro desde el que desea obtener datos (para paginación).
+		 *         example: 0
+		 *         schema:
+		 *           type: integer
+		 *       - in: query
+		 *         name: limit
+		 *         description: Número máximo de registros que desea obtener (para paginación).
+		 *         example: 10
+		 *         schema:
+		 *           type: integer
 		 *     responses:
 		 *       200:
-		 *         description: Lista de recetas
+		 *         description: Lista de recetas obtenida existosamete.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               recipes:
+		 *                 - id: <ID de la receta>
+		 *                   title: "<Título>"
+		 *                   description: "<Descripción>"
+		 *                   url_image: "<URL de la imagen>"
+		 *                   ingredients: "<Ingredientes>"
+		 *                   instructions: "<Instrucciones>"
+		 *                   created_date: "<Fecha de creación>"
+		 *                   updated_date: "<Fecha de actualización>"
+		 *                   deleted_date: "<Fecha de eliminación>"
+		 *                   user_id: <ID del usuario que creó la receta>
+		 *                   category_id: <ID de la categoría de la receta>
+		 *                   recipe_category:
+		 *                     id: <ID de la categoría>
+		 *                     category: "<Categoría>"
+		 *                     title: "<Título>"
+		 *                     url_image: "<URL de la imagen>"
+		 *                   user:
+		 *                     id: <ID del usuario>
+		 *                     first_name: "<Nombre>"
+		 *                     last_name: "<Apellido>"
+		 *                     email: "<Email>"
+		 *               paging:
+		 *                 offset: <Offset>
+		 *                 limit: <Limit>
+		 *                 total: <Total de recetas>
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.get("/recipes", RecipeController.getRecipes);
 
@@ -36,27 +90,80 @@ export default class RecipeRouter {
 		 * /api/recipes/{recipeId}:
 		 *   get:
 		 *     summary: Obtener receta por ID
-		 *     description: Obtener una receta por su ID.
+		 *     description: Obtener una receta por ID.
 		 *     tags:
 		 *       - Recipe
 		 *     parameters:
+		 *       - in: header
+		 *         name: Authorization
+		 *         required: true
+		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
+		 *         example: Bearer <Access_Token>
+		 *         schema:
+		 *           type: string
 		 *       - in: path
 		 *         name: recipeId
 		 *         required: true
-		 *         description: ID de la receta a obtener
+		 *         description: ID de la receta a obtener.
+		 *         example: 1
 		 *         schema:
 		 *           type: integer
 		 *     responses:
 		 *       200:
-		 *         description: Receta
+		 *         description: Receta obtenida exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               recipes:
+		 *                 id: <ID de la receta>
+		 *                 title: "<Título>"
+		 *                 description: "<Descripción>"
+		 *                 url_image: "<URL de la imagen>"
+		 *                 ingredients: "<Ingredientes>"
+		 *                 instructions: "<Instrucciones>"
+		 *                 created_date: "<Fecha de creación>"
+		 *                 updated_date: "<Fecha de actualización>"
+		 *                 deleted_date: "<Fecha de eliminación>"
+		 *                 user_id: <ID del usuario que creó la receta>
+		 *                 category_id: <ID de la categoría de la receta>
+		 *                 recipe_category:
+		 *                   id: <ID de la categoría>
+		 *                   category: "<Categoría>"
+		 *                   title: "<Título>"
+		 *                   url_image: "<URL de la imagen>"
+		 *                 user:
+		 *                   id: <ID del usuario>
+		 *                   first_name: "<Nombre>"
+		 *                   last_name: "<Apellido>"
+		 *                   email: "<Email>"
 		 *       400:
-		 *         description: Solicitud incorrecta
+		 *         description: Solicitud incorrecta (el ID del usuario no es numérico).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "{\"errors\":[{\"type\":\"field\",\"value\":\"a\",\"msg\":\"ID is not numeric\",\"path\":\"recipeId\",\"location\":\"params\"}]}"
+		 *               status_code: 400
 		 *       401:
-		 *         description: No autorizado
+		 *         description: Usuario no autenticado (el access token no está presente, expiró o no es válido).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 401
 		 *       404:
-		 *         description: Receta no encontrada
+		 *         description: Receta no encontrada.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "Recipe not found"
+		 *               status_code: 404
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.get(
 			"/recipes/:recipeId",
@@ -74,6 +181,14 @@ export default class RecipeRouter {
 		 *     description: Crear una nueva receta con la información proporcionada.
 		 *     tags:
 		 *       - Recipe
+		 *     parameters:
+		 *       - in: header
+		 *         name: Authorization
+		 *         required: true
+		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
+		 *         example: Bearer <Access_Token>
+		 *         schema:
+		 *           type: string
 		 *     requestBody:
 		 *       required: true
 		 *       content:
@@ -98,19 +213,62 @@ export default class RecipeRouter {
 		 *                 description: Instrucciones de la receta
 		 *               user_id:
 		 *                 type: integer
-		 *                 description: ID del usuario creador de la receta
+		 *                 description: ID del usuario que creará la receta
 		 *               category_id:
 		 *                 type: integer
-		 *                 description: ID de la categoría de la receta
+		 *                 description: ID de la categoría de la receta que se creará
 		 *     responses:
 		 *       201:
-		 *         description: Receta creada exitosamente
+		 *         description: Receta creada exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               id: <ID de la receta>
+		 *               title: "<Título>"
+		 *               description: "<Descripción>"
+		 *               url_image: "<URL de la imagen>"
+		 *               ingredients: "<Ingredientes>"
+		 *               instructions: "<Instrucciones>"
+		 *               created_date: "<Fecha de creación>"
+		 *               updated_date: "<Fecha de actualización>"
+		 *               deleted_date: "<Fecha de eliminación>"
+		 *               user_id: <ID del usuario que creó la receta>
+		 *               category_id: "<ID de la categoría de la receta>"
 		 *       400:
-		 *         description: Solicitud incorrecta
+		 *         description: Solicitud incorrecta (algún campo del body es vacío o del tipo de dato incorrecto).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 400
 		 *       401:
-		 *         description: No autorizado
+		 *         description: Usuario no autenticado (el access token no está presente, expiró o no es válido).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 401
+		 *       403:
+		 *         description: Usuario no autorizado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "User not authorized"
+		 *               status_code: 403
+		 *       404:
+		 *         description: Usuario o categoría de receta no encontrada.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 404
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.post(
 			"/recipes",

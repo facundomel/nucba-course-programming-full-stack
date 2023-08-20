@@ -55,8 +55,6 @@ export default class UserService {
 			if (response.affected > 0) {
 				user.password = "*****";
 				return user;
-			} else {
-				throw new CustomException("User not found", StatusCodes.NOT_FOUND);
 			}
 		} catch (error: any) {
 			throw error;

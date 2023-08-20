@@ -18,14 +18,24 @@ export default class PingRouter {
 		 * /api/ping:
 		 *   get:
 		 *     summary: Ping
-		 *     description: Sirve para verificar que la API esté disponible y operativa.
+		 *     description: Sirve para verificar que la API está disponible y operativa.
 		 *     tags:
 		 *       - Ping
 		 *     responses:
 		 *       200:
-		 *         description: Respuesta exitosa
+		 *         description: La API se encuentra disponible y operativa.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "pong"
+		 *               status_code: 200
 		 *       500:
-		 *         description: Error interno del servidor
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
 		 */
 		router.get("/ping", (req, res) => {
 			ResponseUtils.ok(res, { message: "pong", statusCode: StatusCodes.OK });
