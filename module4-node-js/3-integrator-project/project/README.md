@@ -2,8 +2,14 @@
 
 ## Módulo 4 - Node JS: Proyecto integrador
 
-#### Link de Vercel: https://las-mejores-recetas.vercel.app/
+### URL's Front-End
 
-#### Link de la documentación de la API creada con Swagger: https://the-best-recipes-api.onrender.com/api/docs
+- #### Vercel: https://las-mejores-recetas.vercel.app/
 
-#### Plataforma proveedora de servicios de hosting para la API y la BD PostgreSQL: https://render.com/
+### URL's Back-End
+
+- #### Plataforma proveedora de servicios de hosting para la API y la BD PostgreSQL: https://render.com/
+
+- #### API: https://the-best-recipes-api.onrender.com
+
+- #### Documentación de la API creada con Swagger: https://the-best-recipes-api.onrender.com/api/docs
