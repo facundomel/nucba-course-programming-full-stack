@@ -162,8 +162,7 @@ const Login = () => {
 				</UserForm>
 			</UserContainer>
 
-			{otherError ||
-				(optionsSnackbar.message === "Contraseña actualizada correctamente" && (
+			{(otherError || optionsSnackbar.message === "Contraseña actualizada correctamente") && (
 					<SnackbarCustom
 						open={optionsSnackbar.open}
 						onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
@@ -171,7 +170,7 @@ const Login = () => {
 						message={optionsSnackbar.message}
 						autoHideDuration={optionsSnackbar.autoHideDuration}
 					/>
-				))}
+				)}
 		</>
 	);
 };

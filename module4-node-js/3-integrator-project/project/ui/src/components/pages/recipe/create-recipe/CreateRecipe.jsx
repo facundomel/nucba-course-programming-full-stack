@@ -107,7 +107,7 @@ const CreateRecipe = () => {
 			navigate("/recetas/1");
 			SnackbarUtils.success(`¡Receta ${recipeCreated.title} creada correctamente!`, 2500, dispatch);
 		} catch (error) {
-			setErrorInput(error);
+			setOtherError(error);
 			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};

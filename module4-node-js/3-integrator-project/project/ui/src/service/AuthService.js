@@ -27,7 +27,7 @@ export default class AuthService {
 						if (errorData.message.includes("Email is not valid")) {
 							throw new CustomException(UserErrorType.ERROR_EMAIL, "Formato de email incorrecto", errorData.statusCode);
 						} else if (errorData.message === "Password is not valid") {
-							throw new CustomException(UserErrorType.ERROR_PASSWORD, "Password incorrecto", HttpStatusCode.BadRequest);
+							throw new CustomException(UserErrorType.ERROR_PASSWORD, "Password incorrecto", errorData.statusCode);
 						}
 						break;
 
