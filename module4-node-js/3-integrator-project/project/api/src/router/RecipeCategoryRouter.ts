@@ -52,17 +52,9 @@ export default class RecipeCategoryRouter {
 		 * /api/recipes/categories:
 		 *   post:
 		 *     summary: Crear nueva categoría de receta
-		 *     description: Crear una nueva categoría de receta con la información proporcionada.
+		 *     description: Crear una nueva categoría de receta con la información proporcionada. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
 		 *     tags:
 		 *       - Recipe Category
-		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *     requestBody:
 		 *       required: true
 		 *       content:

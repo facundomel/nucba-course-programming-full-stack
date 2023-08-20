@@ -19,19 +19,12 @@ export default class UserRouter {
 		 * /api/users/search:
 		 *   get:
 		 *     summary: Search de usuarios
-		 *     description: Obtener usuarios. 
+		 *     description: Permite obtener usuarios. 
 		 *       Si se proporciona un user_id o un email, devuelve un solo usuario. 
 		 *       De lo contrario, devuelve todos los usuarios.
 		 *     tags:
 		 *       - User
 		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *       - in: query
 		 *         name: id
 		 *         required: false

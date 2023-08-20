@@ -78,17 +78,9 @@ export default class AuthRouter {
 		 * /api/refresh-token:
 		 *   post:
 		 *     summary: Actualizar token de acceso
-		 *     description: Actualiza el token de acceso utilizando un token de actualización válido.
+		 *     description: Actualiza el token de acceso utilizando un token de actualización válido. Para autorizar la solicitud haga clic en el candado y proporcione el refresh_token.
 		 *     tags:
 		 *       - Authentication
-		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de actualización válido. Deberá reemplazar "<Refresh_Token>" con su refresh_token real.
-		 *         example: Bearer <Refresh_Token>
-		 *         schema:
-		 *           type: string
 		 *     responses:
 		 *       200:
 		 *         description: Token de acceso actualizado exitosamente.

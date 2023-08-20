@@ -24,13 +24,6 @@ export default class RecipeRouter {
 		 *     tags:
 		 *       - Recipe
 		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *       - in: query
 		 *         name: offset
 		 *         description: Número de registro desde el que desea obtener datos (para paginación).
@@ -90,17 +83,10 @@ export default class RecipeRouter {
 		 * /api/recipes/{recipeId}:
 		 *   get:
 		 *     summary: Obtener receta por ID
-		 *     description: Obtener una receta por ID.
+		 *     description: Obtener una receta por ID. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
 		 *     tags:
 		 *       - Recipe
 		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *       - in: path
 		 *         name: recipeId
 		 *         required: true
@@ -178,17 +164,9 @@ export default class RecipeRouter {
 		 * /api/recipes:
 		 *   post:
 		 *     summary: Crear una nueva receta
-		 *     description: Crear una nueva receta con la información proporcionada.
+		 *     description: Crear una nueva receta con la información proporcionada. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
 		 *     tags:
 		 *       - Recipe
-		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *     requestBody:
 		 *       required: true
 		 *       content:

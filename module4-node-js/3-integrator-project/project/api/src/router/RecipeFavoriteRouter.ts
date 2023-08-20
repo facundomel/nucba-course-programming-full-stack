@@ -15,183 +15,15 @@ export default class RecipeFavoriteRouter {
 		 *   description: Recetas favoritas
 		 */
 
-		/**
-		 * @swagger
-		 * /api/recipes/favorite/{userId}:
-		 *   get:
-		 *     summary: Obtener recetas favoritas por ID de usuario
-		 *     description: Obtener una lista de recetas favoritas para un ID de usuario dado.
-		 *     tags:
-		 *       - Recipe Favorite
-		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
-		 *       - in: path
-		 *         name: userId
-		 *         required: true
-		 *         description: ID del usuario del que se quiere obtener las recetas favoritas.
-		 *         example: 1
-		 *         schema:
-		 *           type: integer
-		 *     responses:
-		 *       200:
-		 *         description: Lista de recetas favoritas obtenida exitosamente.
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               - id: <ID de la receta favorita>
-		 *                 created_date: <Fecha de creación>
-		 *                 updated_date: <Fecha de actualización>
-		 *                 deleted_date: <Fecha de eliminación>
-		 *                 user_id: <ID del usuario que asignó la receta a favoritos>
-		 *                 recipe_id: <ID de la receta asignada a favoritos>
-		 *       400:
-		 *         description: Solicitud incorrecta (el ID del usuario no es numérico).
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "{\"errors\":[{\"type\":\"field\",\"value\":\"a\",\"msg\":\"User ID is not numeric\",\"path\":\"userId\",\"location\":\"params\"}]}"
-		 *               status_code: 400
-		 *       401:
-		 *         description: Usuario no autenticado (el access token no está presente, expiró o no es válido).
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "<Depende del escenario>"
-		 *               status_code: 401
-		 *       403:
-		 *         description: Usuario no autorizado.
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "User not authorized"
-		 *               status_code: 403
-		 *       500:
-		 *         description: Error interno del servidor no controlado.
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "<Depende del escenario>"
-		 *               status_code: 500
-		 */
-		router.get(
-			"/recipes/favorite/:userId",
-			param("userId").isNumeric().withMessage("User ID is not numeric"),
-			HandlerValidationErrors.executeValidation,
-			HandlerAuth.authenticate,
-			HandlerAuth.authorizeAdminOrUserRole,
-			RecipeFavoriteController.getRecipesFavoriteByUserId
-		);
-
-		/**
-		 * @swagger
-		 * /api/recipes/favorite/{recipeId}/{userId}:
-		 *   get:
-		 *     summary: Obtener receta favorita por ID de receta y usuario
-		 *     description: Obtener una receta favorita para un ID de receta y usuario dados.
-		 *     tags:
-		 *       - Recipe Favorite
-		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
-		 *       - in: path
-		 *         name: recipeId
-		 *         required: true
-		 *         description: ID de la receta que fue asignada a favoritos.
-		 *         example: 1
-		 *         schema:
-		 *           type: integer
-		 *       - in: path
-		 *         name: userId
-		 *         required: true
-		 *         description: ID del usuario que asignó la receta a favoritos.
-		 *         example: 1
-		 *         schema:
-		 *           type: integer
-		 *     responses:
-		 *       200:
-		 *         description: Receta favorita obtenida exitosamente.
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               id: <ID de la receta favorita>
-		 *               created_date: <Fecha de creación>
-		 *               updated_date: <Fecha de actualización>
-		 *               deleted_date: <Fecha de eliminación>
-		 *               user_id: <ID del usuario que asignó la receta a favoritos>
-		 *               recipe_id: <ID de la receta asignada a favoritos>
-		 *       400:
-		 *         description: Solicitud incorrecta (el ID de la receta o del usuario no es numérico).
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "<Depende del escenario>"
-		 *               status_code: 400
-		 *       401:
-		 *         description: Usuario no autenticado (el access token no está presente, expiró o no es válido).
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "<Depende del escenario>"
-		 *               status_code: 401
-		 *       403:
-		 *         description: Usuario no autorizado.
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "User not authorized"
-		 *               status_code: 403
-		 *       404:
-		 *         description: Receta favorita por user_id y recipe_id no encontrada.
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "Recipe favorite by user_id and recipe_id not found"
-		 *               status_code: 404
-		 *       500:
-		 *         description: Error interno del servidor no controlado.
-		 *         content:
-		 *           application/json:
-		 *             example:
-		 *               message: "<Depende del escenario>"
-		 *               status_code: 500
-		 */
-		router.get(
-			"/recipes/favorite/:recipeId/:userId",
-			param("recipeId").isNumeric().withMessage("Recipe ID is not numeric"),
-			param("userId").isNumeric().withMessage("User ID is not numeric"),
-			HandlerValidationErrors.executeValidation,
-			HandlerAuth.authenticate,
-			HandlerAuth.authorizeAdminOrUserRole,
-			RecipeFavoriteController.getRecipeFavoriteByUserIdAndRecipeId
-		);
-
-		/**
+				/**
 		 * @swagger
 		 * /api/recipes/favorite/{userId}/details:
 		 *   get:
 		 *     summary: Obtener recetas favoritas con detalles por ID de usuario
-		 *     description: Obtener una lista de recetas favoritas con detalles para un ID de usuario dado.
+		 *     description: Obtener una lista de recetas favoritas con detalles para un ID de usuario dado. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
 		 *     tags:
 		 *       - Recipe Favorite
 		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *       - in: path
 		 *         name: userId
 		 *         required: true
@@ -272,31 +104,186 @@ export default class RecipeFavoriteRouter {
 		 *               message: "<Depende del escenario>"
 		 *               status_code: 500
 		 */
+				router.get(
+					"/recipes/favorite/:userId/details",
+					param("userId").isNumeric().withMessage("User ID is not numeric"),
+					HandlerValidationErrors.executeValidation,
+					HandlerAuth.authenticate,
+					HandlerAuth.authorizeAdminOrUserRole,
+					RecipeFavoriteController.getRecipesFavoriteWithDetailsByUserId
+				);
+		
+				/**
+				 * @swagger
+				 * /api/recipes/favorite/{recipeId}/{userId}/details:
+				 *   get:
+				 *     summary: Obtener receta favorita con detalles por ID de receta y usuario
+				 *     description: Obtener una receta favorita con detalles para un ID de receta y usuario dados. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
+				 *     tags:
+				 *       - Recipe Favorite
+				 *     parameters:
+				 *       - in: path
+				 *         name: recipeId
+				 *         required: true
+				 *         description: ID de la receta que fue asignada a favoritos.
+				 *         example: 1
+				 *         schema:
+				 *           type: integer
+				 *       - in: path
+				 *         name: userId
+				 *         required: true
+				 *         description: ID del usuario que asignó la receta a favoritos.
+				 *         example: 1
+				 *         schema:
+				 *           type: integer
+				 *     responses:
+				 *       200:
+				 *         description: Receta favorita con detalles obtenida exitosamente.
+				 *         content:
+				 *           application/json:
+				 *             example:
+				 *               id: <ID de la receta>
+				 *               title: "<Título>"
+				 *               description: "<Descripción>"
+				 *               url_image: "<URL de la imagen>"
+				 *               ingredients: "<Ingredientes>"
+				 *               instructions: "<Instrucciones>"
+				 *               created_date: "<Fecha de creación>"
+				 *               updated_date: "<Fecha de actualización>"
+				 *               deleted_date: "<Fecha de eliminación>"
+				 *               user_id: <ID del Usuario que asignó la receta a favoritos>
+				 *               category_id: <ID de la categoría de la receta asignada a favoritos>
+				 *               recipe_category:
+				 *                 id: <ID de la categoría>
+				 *                 category: "<Categoría>"
+				 *                 title: "<Título>"
+				 *                 url_image: "<URL de la imagen>"
+				 *               user:
+				 *                 id: <ID del usuario>
+				 *                 first_name: "<Nombre>"
+				 *                 last_name: "<Apellido>"
+				 *                 email: "<Email>"
+				 *       400:
+				 *         description: Solicitud incorrecta (el ID de la receta favorita o del usuario no es numérico).
+				 *         content:
+				 *           application/json:
+				 *             example:
+				 *               message: "<Depende del escenario>"
+				 *               status_code: 400
+				 *       401:
+				 *         description: Usuario no autenticado (el access token no está presente, expiró o no es válido).
+				 *         content:
+				 *           application/json:
+				 *             example:
+				 *               message: "<Depende del escenario>"
+				 *               status_code: 401
+				 *       403:
+				 *         description: Usuario no autorizado.
+				 *         content:
+				 *           application/json:
+				 *             example:
+				 *               message: "User not authorized"
+				 *               status_code: 403
+				 *       404:
+				 *         description: Receta favorita por user_id y recipe_id no encontrada.
+				 *         content:
+				 *           application/json:
+				 *             example:
+				 *               message: "Recipe favorite by user_id and recipe_id not found"
+				 *               status_code: 404
+				 *       500:
+				 *         description: Error interno del servidor no controlado.
+				 *         content:
+				 *           application/json:
+				 *             example:
+				 *               message: "<Depende del escenario>"
+				 *               status_code: 500
+				 */
+				router.get(
+					"/recipes/favorite/:recipeId/:userId/details",
+					param("recipeId").isNumeric().withMessage("Recipe ID is not numeric"),
+					param("userId").isNumeric().withMessage("User ID is not numeric"),
+					HandlerValidationErrors.executeValidation,
+					HandlerAuth.authenticate,
+					HandlerAuth.authorizeAdminOrUserRole,
+					RecipeFavoriteController.getRecipeFavoriteWithDetailsByUserIdAndRecipeId
+				);
+
+		/**
+		 * @swagger
+		 * /api/recipes/favorite/{userId}:
+		 *   get:
+		 *     summary: Obtener recetas favoritas por ID de usuario
+		 *     description: Obtener una lista de recetas favoritas para un ID de usuario dado. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
+		 *     tags:
+		 *       - Recipe Favorite
+		 *     parameters:
+		 *       - in: path
+		 *         name: userId
+		 *         required: true
+		 *         description: ID del usuario del que se quiere obtener las recetas favoritas.
+		 *         example: 1
+		 *         schema:
+		 *           type: integer
+		 *     responses:
+		 *       200:
+		 *         description: Lista de recetas favoritas obtenida exitosamente.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               - id: <ID de la receta favorita>
+		 *                 created_date: <Fecha de creación>
+		 *                 updated_date: <Fecha de actualización>
+		 *                 deleted_date: <Fecha de eliminación>
+		 *                 user_id: <ID del usuario que asignó la receta a favoritos>
+		 *                 recipe_id: <ID de la receta asignada a favoritos>
+		 *       400:
+		 *         description: Solicitud incorrecta (el ID del usuario no es numérico).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "{\"errors\":[{\"type\":\"field\",\"value\":\"a\",\"msg\":\"User ID is not numeric\",\"path\":\"userId\",\"location\":\"params\"}]}"
+		 *               status_code: 400
+		 *       401:
+		 *         description: Usuario no autenticado (el access token no está presente, expiró o no es válido).
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 401
+		 *       403:
+		 *         description: Usuario no autorizado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "User not authorized"
+		 *               status_code: 403
+		 *       500:
+		 *         description: Error interno del servidor no controlado.
+		 *         content:
+		 *           application/json:
+		 *             example:
+		 *               message: "<Depende del escenario>"
+		 *               status_code: 500
+		 */
 		router.get(
-			"/recipes/favorite/:userId/details",
+			"/recipes/favorite/:userId",
 			param("userId").isNumeric().withMessage("User ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
 			HandlerAuth.authorizeAdminOrUserRole,
-			RecipeFavoriteController.getRecipesFavoriteWithDetailsByUserId
+			RecipeFavoriteController.getRecipesFavoriteByUserId
 		);
 
 		/**
 		 * @swagger
-		 * /api/recipes/favorite/{recipeId}/{userId}/details:
+		 * /api/recipes/favorite/{recipeId}/{userId}:
 		 *   get:
-		 *     summary: Obtener receta favorita con detalles por ID de receta y usuario
-		 *     description: Obtener una receta favorita con detalles para un ID de receta y usuario dados.
+		 *     summary: Obtener receta favorita por ID de receta y usuario
+		 *     description: Obtener una receta favorita para un ID de receta y usuario dados. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
 		 *     tags:
 		 *       - Recipe Favorite
 		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *       - in: path
 		 *         name: recipeId
 		 *         required: true
@@ -313,33 +300,18 @@ export default class RecipeFavoriteRouter {
 		 *           type: integer
 		 *     responses:
 		 *       200:
-		 *         description: Receta favorita con detalles obtenida exitosamente.
+		 *         description: Receta favorita obtenida exitosamente.
 		 *         content:
 		 *           application/json:
 		 *             example:
-		 *               id: <ID de la receta>
-		 *               title: "<Título>"
-		 *               description: "<Descripción>"
-		 *               url_image: "<URL de la imagen>"
-		 *               ingredients: "<Ingredientes>"
-		 *               instructions: "<Instrucciones>"
-		 *               created_date: "<Fecha de creación>"
-		 *               updated_date: "<Fecha de actualización>"
-		 *               deleted_date: "<Fecha de eliminación>"
-		 *               user_id: <ID del Usuario que asignó la receta a favoritos>
-		 *               category_id: <ID de la categoría de la receta asignada a favoritos>
-		 *               recipe_category:
-		 *                 id: <ID de la categoría>
-		 *                 category: "<Categoría>"
-		 *                 title: "<Título>"
-		 *                 url_image: "<URL de la imagen>"
-		 *               user:
-		 *                 id: <ID del usuario>
-		 *                 first_name: "<Nombre>"
-		 *                 last_name: "<Apellido>"
-		 *                 email: "<Email>"
+		 *               id: <ID de la receta favorita>
+		 *               created_date: <Fecha de creación>
+		 *               updated_date: <Fecha de actualización>
+		 *               deleted_date: <Fecha de eliminación>
+		 *               user_id: <ID del usuario que asignó la receta a favoritos>
+		 *               recipe_id: <ID de la receta asignada a favoritos>
 		 *       400:
-		 *         description: Solicitud incorrecta (el ID de la receta favorita o del usuario no es numérico).
+		 *         description: Solicitud incorrecta (el ID de la receta o del usuario no es numérico).
 		 *         content:
 		 *           application/json:
 		 *             example:
@@ -375,13 +347,13 @@ export default class RecipeFavoriteRouter {
 		 *               status_code: 500
 		 */
 		router.get(
-			"/recipes/favorite/:recipeId/:userId/details",
+			"/recipes/favorite/:recipeId/:userId",
 			param("recipeId").isNumeric().withMessage("Recipe ID is not numeric"),
 			param("userId").isNumeric().withMessage("User ID is not numeric"),
 			HandlerValidationErrors.executeValidation,
 			HandlerAuth.authenticate,
 			HandlerAuth.authorizeAdminOrUserRole,
-			RecipeFavoriteController.getRecipeFavoriteWithDetailsByUserIdAndRecipeId
+			RecipeFavoriteController.getRecipeFavoriteByUserIdAndRecipeId
 		);
 
 		/**
@@ -389,17 +361,9 @@ export default class RecipeFavoriteRouter {
 		 * /api/recipes/favorite:
 		 *   post:
 		 *     summary: Crear un receta favorita
-		 *     description: Crear una nueva receta favorita.
+		 *     description: Crear una nueva receta favorita. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
 		 *     tags:
 		 *       - Recipe Favorite
-		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *     requestBody:
 		 *       required: true
 		 *       content:
@@ -483,17 +447,10 @@ export default class RecipeFavoriteRouter {
 		 * /api/recipes/favorite/{recipeId}/{userId}:
 		 *   delete:
 		 *     summary: Eliminar receta favorita por ID de receta y usuario
-		 *     description: Eliminar una receta favorita por ID de receta y usuario dados.
+		 *     description: Eliminar una receta favorita por ID de receta y usuario dados. Para autorizar la solicitud haga clic en el candado y proporcione el access_token.
 		 *     tags:
 		 *       - Recipe Favorite
 		 *     parameters:
-		 *       - in: header
-		 *         name: Authorization
-		 *         required: true
-		 *         description: Token de acceso válido. Deberá reemplazar "<Access_Token>" con su access_token real.
-		 *         example: Bearer <Access_Token>
-		 *         schema:
-		 *           type: string
 		 *       - in: path
 		 *         name: recipeId
 		 *         required: true
