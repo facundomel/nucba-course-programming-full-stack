@@ -28,7 +28,7 @@ export default class UserRoleRepository {
 		}
 	};
 
-  static getUserRoleById = async (userRoleId: number): Promise<UserRole> => {
+	static getUserRoleById = async (userRoleId: number): Promise<UserRole> => {
 		try {
 			const userRole: UserRole = (await this.userRoleRepository
 				.createQueryBuilder()

@@ -1,14 +1,5 @@
-import {
-	Entity,
-	PrimaryGeneratedColumn,
-	Column,
-	CreateDateColumn,
-	UpdateDateColumn,
-	DeleteDateColumn,
-	OneToMany,
-	Unique,
-} from "typeorm";
-import {UserRoleStringEnum} from "../enum/UserRoleEnum";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, Unique } from "typeorm";
+import { UserRoleStringEnum } from "../enum/UserRoleEnum";
 import User from "./User";
 
 @Entity({ name: "users_roles" })

@@ -1,4 +1,4 @@
-import { StatusCodes } from 'http-status-codes';
+import { StatusCodes } from "http-status-codes";
 import CustomException from "../model/CustomException";
 
 export default class Config {

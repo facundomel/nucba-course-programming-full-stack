@@ -25,10 +25,10 @@ export default class Recipe {
 	@Column({ type: "varchar", nullable: false })
 	urlImage!: number;
 
-  @Column({ type: "varchar", nullable: false })
+	@Column({ type: "varchar", nullable: false })
 	ingredients!: number;
 
-  @Column({ type: "varchar", nullable: false })
+	@Column({ type: "varchar", nullable: false })
 	instructions!: number;
 
 	@CreateDateColumn({ type: "timestamp", precision: 0, default: () => "CURRENT_TIMESTAMP()", nullable: false })
@@ -49,7 +49,7 @@ export default class Recipe {
 	@Column({ type: "integer", nullable: false })
 	userId!: number;
 
-  @Column({ type: "integer", nullable: false })
+	@Column({ type: "integer", nullable: false })
 	categoryId!: number;
 
 	@ManyToOne(() => User, (user) => user.recipes)

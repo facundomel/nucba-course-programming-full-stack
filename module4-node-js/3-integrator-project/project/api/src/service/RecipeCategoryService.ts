@@ -1,7 +1,6 @@
 import RecipeCategoryRepository from "../repository/RecipeCategoryRepository";
 import RecipeCategory from "../model/entity/RecipeCategory";
 import UserService from "./UserService";
-import User from "../model/entity/User";
 import CustomException from "../model/CustomException";
 import { StatusCodes } from "http-status-codes";
 

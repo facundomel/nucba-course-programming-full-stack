@@ -4,8 +4,8 @@ import {
 	UpdateDateColumn,
 	DeleteDateColumn,
 	JoinColumn,
-  ManyToOne,
-  PrimaryColumn,
+	ManyToOne,
+	PrimaryColumn,
 	PrimaryGeneratedColumn,
 } from "typeorm";
 import Recipe from "./Recipe";
@@ -16,10 +16,10 @@ export default class RecipeFavorite {
 	@PrimaryGeneratedColumn({ type: "integer" })
 	id!: number;
 
-  @PrimaryColumn({ type: "integer", nullable: false })
+	@PrimaryColumn({ type: "integer", nullable: false })
 	userId!: number;
 
-  @PrimaryColumn({ type: "integer", nullable: false })
+	@PrimaryColumn({ type: "integer", nullable: false })
 	recipeId!: number;
 
 	@CreateDateColumn({ type: "timestamp", precision: 0, default: () => "CURRENT_TIMESTAMP()", nullable: false })
@@ -41,7 +41,7 @@ export default class RecipeFavorite {
 	@JoinColumn({ name: "user_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_favorites_user_id" })
 	user!: User;
 
-  @ManyToOne(() => Recipe)
+	@ManyToOne(() => Recipe)
 	@JoinColumn({ name: "recipe_id", referencedColumnName: "id", foreignKeyConstraintName: "FK_recipes_favorites_recipe_id" })
 	recipe!: Recipe;
 }

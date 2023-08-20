@@ -19,8 +19,8 @@ export default class UserRouter {
 		 * /api/users/search:
 		 *   get:
 		 *     summary: Search de usuarios
-		 *     description: Permite obtener usuarios. 
-		 *       Si se proporciona un user_id o un email, devuelve un solo usuario. 
+		 *     description: Permite obtener usuarios.
+		 *       Si se proporciona un user_id o un email, devuelve un solo usuario.
 		 *       De lo contrario, devuelve todos los usuarios.
 		 *     tags:
 		 *       - User

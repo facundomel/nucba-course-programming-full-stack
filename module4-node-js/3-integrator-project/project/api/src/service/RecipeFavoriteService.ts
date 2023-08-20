@@ -3,7 +3,6 @@ import RecipeFavorite from "../model/entity/RecipesFavorite";
 import RecipeFavoriteRepository from "../repository/RecipeFavoriteRepository";
 import CustomException from "../model/CustomException";
 import Recipe from "../model/entity/Recipe";
-import User from "../model/entity/User";
 import UserService from "./UserService";
 import RecipeService from "./RecipeService";
 

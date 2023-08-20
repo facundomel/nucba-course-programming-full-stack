@@ -1,7 +1,5 @@
 import { StatusCodes } from "http-status-codes";
 import CustomException from "../model/CustomException";
-import User from "../model/entity/User";
-import UserRepository from "../repository/UserRepository";
 import UserRole from "../model/entity/UserRole";
 import UserRoleRepository from "../repository/UserRoleRepository";
 
@@ -15,7 +13,7 @@ export default class UserRoleService {
 		}
 	};
 
-  static getUserRoleById = async (userRoleId: number): Promise<UserRole> => {
+	static getUserRoleById = async (userRoleId: number): Promise<UserRole> => {
 		try {
 			const userRole: UserRole = (await UserRoleRepository.getUserRoleById(userRoleId)) as UserRole;
 			if (userRole == null) throw new CustomException("User role not found", StatusCodes.NOT_FOUND);
