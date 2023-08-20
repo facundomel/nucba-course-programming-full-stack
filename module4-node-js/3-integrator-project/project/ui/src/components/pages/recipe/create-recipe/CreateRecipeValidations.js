@@ -15,7 +15,6 @@ export const isValidVariusFields = (
 	setError
 ) => {
 	if (title === "") {
-		console.log("object");
 		setError(new CustomException(RecipeErrorType.ERROR_TITLE, "Campo requerido"));
 		titleRef.current.focus();
 		return false;
