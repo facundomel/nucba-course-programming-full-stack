@@ -1,6 +1,6 @@
 import React from "react";
-import notFoundImg from "../../../assets/images/page-errors/page-not-found.png";
-import internalServerErrorImg from "../../../assets/images/page-errors/internal-server-error.png";
+import notFoundImg from "../../../assets/page-errors/page-not-found.png";
+import internalServerErrorImg from "../../../assets/page-errors/internal-server-error.png";
 import { ErrorCustomContainer, LinkStyled } from "./ErrorCustomStyles";
 import { HttpStatusCode } from "axios";
 

@@ -23,7 +23,7 @@ import {
 } from "./NavbarStyles";
 import { FaHome, FaUserAlt } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
-import logo from "../../../assets/images/logo/logo.png";
+import logo from "../../../assets/logo/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../redux/user/UserActions.js";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";

@@ -1,6 +1,6 @@
 import React from "react";
 import { FooterContainerStyled, FooterDivisorStyled, FooterSectionFinalStyled, FooterTitleStyled } from "./FooterStyles";
-import logo from "../../../assets/images/logo/logo.png";
+import logo from "../../../assets/logo/logo.png";
 import { GrMail } from "react-icons/gr";
 import { RiWhatsappFill } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
