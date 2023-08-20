@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { HeroContainerStyled, HeroFormStyled, HeroSearchBarStyled, IconWrapperStyled, MessageNotExistRecipes } from "./HeroStyles";
+import { HeroContainerStyled, HeroFormStyled, HeroSearchBarStyled, IconWrapperStyled } from "./HeroStyles";
 import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
-import RecipeService from "../../../service/RecipeService";
 import { FcSearch } from "react-icons/fc";
 import { RecipePageSection } from "../../../model/enum/PageSection";
 

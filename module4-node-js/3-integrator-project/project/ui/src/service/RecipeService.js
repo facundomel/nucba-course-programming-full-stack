@@ -3,8 +3,6 @@ import axios, { HttpStatusCode } from "axios";
 import AuthService from "./AuthService";
 import Config from "../config/Config";
 import CustomException from "../model/CustomException";
-import { ErrorContainer } from "../components/pages/user/UserStyles";
-import ErrorCustom from "../components/no-atomics/error/ErrorCustom";
 
 export default class RecipeService {
 	static headersDefault = Config.HEADERS_DEFAULT;

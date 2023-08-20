@@ -63,13 +63,8 @@ export const customStyles = {
 		fontSize: "15px",
 		cursor: "pointer",
 		textAlign: "left",
-		// border: ${({ isError }) => (isError ? "1px solid var(--red)" : "none")};
 		border: state.selectProps.isError ? "1px solid var(--red)" : "none",
-    boxShadow: state.isFocused ? "0 0 3px var(--blue)" : "none",
-    // borderColor: state.selectProps.isError ? "var(--red)" : "var(--gray)",
-    // "&:hover": {
-    //   borderColor: state.selectProps.isError ? "var(--red)" : "var(--gray)",
-    // },
+		boxShadow: state.isFocused ? "0 0 3px var(--blue)" : "none",
 	}),
 
 	option: (provided) => ({

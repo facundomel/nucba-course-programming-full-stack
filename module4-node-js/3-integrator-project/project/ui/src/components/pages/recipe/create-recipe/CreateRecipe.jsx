@@ -5,20 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
-import User from "../../../../model/User";
 import { CreateRecipeContainer, CreateRecipeForm, TextAreaAndSmall } from "./CreateRecipeStyles";
 import TextArea from "../../../atomics/text-area/TextArea";
 import Recipe from "../../../../model/Recipe";
 import { RecipeErrorType } from "../../../../model/enum/ErrorType";
-import RecipeCategory from "../../../../model/RecipeCategory";
 import RecipeCategoryService from "../../../../service/RecipeCategoryService";
-import { SelectOptionStyled } from "../../../atomics/select/SelectStyles";
 import SelectCustom from "../../../atomics/select/Select";
-import { isValidSelectedRecipeCategory, isValidVariusFields } from "./CreateRecipeValidations";
+import { isValidVariusFields } from "./CreateRecipeValidations";
 import RecipeService from "../../../../service/RecipeService";
 import * as categoriesActions from "../../../../redux/categories/CategoriesActions.js";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
-import Utils from "../../../../utils/Utils";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import { RecipePageSection } from "../../../../model/enum/PageSection";
@@ -27,7 +23,6 @@ const CreateRecipe = () => {
 	const [errorInput, setErrorInput] = useState(null);
 	const [otherError, setOtherError] = useState(null);
 	const [valueInputs, setValueInputs] = useState(new Recipe());
-	// const [recipesCategories, setRecipesCategories] = useState([new RecipeCategory()]);
 	const [selectedOptionRecipeCategory, setSelectedOptionRecipeCategory] = useState({ value: -1, label: "default" });
 	const titleRef = useRef();
 	const descriptionRef = useRef();
@@ -125,22 +120,6 @@ const CreateRecipe = () => {
 						handleOnChange={handleChangeInputs}
 						error={errorInput && errorInput.type === RecipeErrorType.ERROR_TITLE && errorInput}
 					/>
-					{/* <SelectCustom
-					defaultValue="-1"
-					name="recipesCategories"
-					selectRef={selectRef}
-					handleOnChange={handleChangeInputs}
-					error={error && error.type === RecipeErrorType.ERROR_CATEGORIES && error}
-				>
-					<SelectOptionStyled value="-1" disabled hidden>
-						- Seleccioná una opción -
-					</SelectOptionStyled>
-					{recipesCategories.map((value, index) => (
-						<SelectOptionStyled key={index} value={value.id}>
-							{value.title}
-						</SelectOptionStyled>
-					))}
-				</SelectCustom> */}
 					<SelectCustom
 						name={"recipesCategory"}
 						placeholder="Categoría"

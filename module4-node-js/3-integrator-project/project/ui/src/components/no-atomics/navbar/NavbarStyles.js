@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { AiFillStar } from "react-icons/ai";
 
 export const NavbarContainer = styled.nav`
 	display: flex;
@@ -232,30 +231,6 @@ export const MenuSessionUserDivisor = styled.span`
 `;
 
 export const MenuSessionUserCloseSession = styled.div`
-	/* display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	width: 250px;
-	gap: 10px;
-	position: absolute;
-	top: 80px;
-	right: 0;
-	padding: 40px;
-	font-size: 20px;
-	font-weight: bold;
-	border: 2px solid var(--black);
-	background-color: var(--gray-bg);
-	color: var(--white);
-	z-index: 2;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
-	transform: ${(props) => (!props.isOpenMenuSessionUser ? "translate(200%)" : "translate(0%)")};
-	transition: ${(props) =>
-		!props.isOpenMenuSessionUser ? "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)" : "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)"};
-	overflow: auto;
-	cursor: pointer; */
-
 	display: flex;
 	justify-content: space-around;
 	align-items: center;

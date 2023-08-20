@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
 	LeftContainer,
 	LoginMenuCloseSessionUserOverlay,
-	MenuSessionUser,
 	IconUserContainer,
 	ModalBodyCloseSessionButtons,
 	ModalBodyCloseSessionContainer,
@@ -19,14 +18,12 @@ import {
 	MenuSessionUserCloseSession,
 	MenuSessionUserName,
 	MenuSessionUserDivisor,
-	AiFillStarCustom,
 } from "./NavbarStyles";
 import { FaHome, FaUserAlt } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
 import logo from "../../../assets/logo/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../redux/user/UserActions.js";
-import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "../modal/Modal";
 import Button from "../../atomics/button/Button";
@@ -139,20 +136,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 									>
 										<FaUserAlt title="Perfil" />
 									</IconUserContainer>
-									{/* <LoginMenuSessionUser
-										isOpenMenuSessionUser={isOpenMenuSessionUser}
-										onClick={() => {
-											setOpenModal(true);
-											isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-										}}
-									>
-										<span>
-											{currentUser.user.firstName} {currentUser.user.lastName}
-										</span>
-										<span></span>
-										<span>Cerrar Sesión</span>
-										<ImExit />
-									</LoginMenuSessionUser> */}
+
 									<MenuSessionUserContainer isOpenMenuSessionUser={isOpenMenuSessionUser}>
 										<MenuSessionUserName>
 											<span>

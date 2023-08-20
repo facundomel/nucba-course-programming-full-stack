@@ -5,7 +5,7 @@ export default class UserLogin {
 		} else {
 			this.email = email;
 		}
-		
+
 		if (password === undefined) {
 			this.password = "";
 		} else {

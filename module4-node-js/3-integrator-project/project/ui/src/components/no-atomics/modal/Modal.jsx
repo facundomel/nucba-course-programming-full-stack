@@ -23,8 +23,8 @@ const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxM
 	};
 
 	return (
-		<ModalContainer isOpen={isOpen} >
-			<ModalBodyAndClose heightBodyModal={heightBodyModal} widthBodyModal={widthBodyModal} pxMediaQuery={pxMediaQuery} >
+		<ModalContainer isOpen={isOpen}>
+			<ModalBodyAndClose heightBodyModal={heightBodyModal} widthBodyModal={widthBodyModal} pxMediaQuery={pxMediaQuery}>
 				<ModalClose onClick={onClose}>
 					<AiOutlineClose />
 				</ModalClose>

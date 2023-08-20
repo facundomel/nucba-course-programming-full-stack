@@ -1,4 +1,3 @@
-import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 
 export const RecipeAllContainer = styled.div`

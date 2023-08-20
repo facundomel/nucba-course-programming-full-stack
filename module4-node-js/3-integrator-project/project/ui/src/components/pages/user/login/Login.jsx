@@ -4,25 +4,19 @@ import {
 	UserForm,
 	UserContainer,
 	UserLink,
-	ErrorContainer,
-	ErrorMessage,
 	InputPasswordAndIconShowAndHideContainer,
 	IconShowAndHidePasswordContainer,
 } from "../UserStyles";
 import Button from "../../../atomics/button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions";
-import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import { useNavigate } from "react-router-dom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import AuthService from "../../../../service/AuthService";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 import UserLogin from "../../../../model/UserLogin";
-import RecipeService from "../../../../service/RecipeService";
-import Utils from "../../../../utils/Utils";
 import CustomException from "../../../../model/CustomException";
-import { HttpStatusCode } from "axios";
 import { isValidEmail, isValidPassword } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
@@ -163,14 +157,14 @@ const Login = () => {
 			</UserContainer>
 
 			{(otherError || optionsSnackbar.message === "Contraseña actualizada correctamente") && (
-					<SnackbarCustom
-						open={optionsSnackbar.open}
-						onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
-						severity={optionsSnackbar.severity}
-						message={optionsSnackbar.message}
-						autoHideDuration={optionsSnackbar.autoHideDuration}
-					/>
-				)}
+				<SnackbarCustom
+					open={optionsSnackbar.open}
+					onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
+					severity={optionsSnackbar.severity}
+					message={optionsSnackbar.message}
+					autoHideDuration={optionsSnackbar.autoHideDuration}
+				/>
+			)}
 		</>
 	);
 };

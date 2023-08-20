@@ -1,6 +1,6 @@
 export default class RecipeCategory {
-	id = ""
+	id = "";
 	category = "";
-	title = ""; 
-	urlImage = ""; 
+	title = "";
+	urlImage = "";
 }

@@ -5,15 +5,9 @@ import { MessageNotExistRecipes, RecipesContainer } from "./RecipesStyles";
 import SnackbarCustom from "../snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../redux/snackbar/SnackbarActions.js";
 import FloatingButton from "../../atomics/button/FloatingButton";
-import { Box, Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import { FloatinButtonStyled } from "../../atomics/button/FloatingButtonStyles";
 import { useNavigate } from "react-router-dom";
 import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
-import RecipeService from "../../../service/RecipeService";
-import RecipeAll from "../../pages/recipe/recipe-all/RecipeAll";
 import { v4 as uuid } from "uuid";
-import PaginationCustom from "../pagination/PaginationCustom";
 import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Recipes = ({ messageNotExistRecipes }) => {

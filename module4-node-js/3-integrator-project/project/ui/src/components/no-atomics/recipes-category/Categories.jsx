@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CardsCategoriesContainer, CategoriesGridContainer, SelectCategoriesContainer } from "./CategoriesStyles";
+import { CategoriesGridContainer, SelectCategoriesContainer } from "./CategoriesStyles";
 import Category from "./Category";
 import * as categoriesActions from "../../../redux/categories/CategoriesActions.js";
 import RecipeCategoryService from "../../../service/RecipeCategoryService";
-import Utils from "../../../utils/Utils";
 import SnackbarUtils from "../../../utils/SnackbarUtils";
 import { RecipePageSection } from "../../../model/enum/PageSection";
 import SelectCustom from "../../atomics/select/Select";

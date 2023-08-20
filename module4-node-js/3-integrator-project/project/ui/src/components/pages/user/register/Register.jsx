@@ -15,11 +15,9 @@ import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js"
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import UserService from "../../../../service/UserService";
 import User from "../../../../model/User";
-import { HttpStatusCode } from "axios";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 import AuthService from "../../../../service/AuthService";
 import UserLogin from "../../../../model/UserLogin";
-import Utils from "../../../../utils/Utils";
 import CustomException from "../../../../model/CustomException";
 import { isValidEmail, isValidFirstName, isValidLastName, isValidPassword } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";

@@ -1,4 +1,4 @@
-export const CATEGORIES = "CATEGORIES"
+export const CATEGORIES = "CATEGORIES";
 export const SELECT_CATEGORY = "SELECT_CATEGORY";
 
 export const setCategories = (categories) => ({

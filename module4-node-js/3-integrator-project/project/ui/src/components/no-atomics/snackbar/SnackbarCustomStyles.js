@@ -9,30 +9,30 @@ export const AlertStyled = styled(Alert)`
 	width: 400px;
 	min-width: 200px;
 	background-color: ${(props) =>
-		props.severity == "success"
+		props.severity === "success"
 			? "var(--green-light)"
-			: props.severity == "warning"
+			: props.severity === "warning"
 			? "var(--yellow-light)"
-			: props.severity == "error"
+			: props.severity === "error"
 			? "var(--red-light)"
 			: "var(--blue-light)"} !important;
 	color: ${(props) =>
-		props.severity == "success"
+		props.severity === "success"
 			? "var(--green-dark)"
-			: props.severity == "warning"
+			: props.severity === "warning"
 			? "var(--yellow-dark)"
-			: props.severity == "error"
+			: props.severity === "error"
 			? "var(--red-dark)"
 			: "var(--blue-dark)"} !important;
 	margin: 0 1rem;
 
 	svg {
 		color: ${(props) =>
-			props.severity == "success"
+			props.severity === "success"
 				? "var(--green-dark)"
-				: props.severity == "warning"
+				: props.severity === "warning"
 				? "var(--yellow-dark)"
-				: props.severity == "error"
+				: props.severity === "error"
 				? "var(--red-dark)"
 				: "var(--blue-dark)"} !important;
 	}

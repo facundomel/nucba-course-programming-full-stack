@@ -47,7 +47,6 @@ const CardRecipe = ({ recipe }) => {
 						dispatch
 					);
 					dispatch(recipeActions.setRecipesFavorite([...recipesFavorite, recipeFavoriteCreated]));
-					// SnackbarUtils.success("Receta agregada a favorito", 2000, dispatch);
 				}
 			} catch (error) {
 				SnackbarUtils.error(error, 2500, dispatch);
@@ -62,7 +61,6 @@ const CardRecipe = ({ recipe }) => {
 					if (recipesFavorite.length - 1 === 0) {
 						window.scrollTo(0, 0);
 					}
-					// SnackbarUtils.warning("Receta quitada de favorito", 2000, dispatch);
 				}
 			} catch (error) {
 				SnackbarUtils.error(error, 2500, dispatch);

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Form as FormikForm } from "formik";
 import { Link } from "react-router-dom";
 
 export const UserContainer = styled.div`
@@ -110,5 +109,5 @@ export const IconShowAndHidePasswordContainer = styled.button`
 	background-color: transparent;
 	border: none;
 	padding: 0;
-	opacity: ${(props) => (!props.valuePassword ? "40%" : "")};;
+	opacity: ${(props) => (!props.valuePassword ? "40%" : "")};
 `;

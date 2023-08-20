@@ -1,26 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-	ErrorContainer,
 	IconShowAndHidePasswordContainer,
-	InformationPasswordForgotPasswordContainer,
 	InputPasswordAndIconShowAndHideContainer,
-	PasswordForgotPasswordContainer,
 	UserContainer,
 	UserForm,
 	UserLink,
 } from "../UserStyles";
 import Input from "../../../atomics/input/Input";
 import Button from "../../../atomics/button/Button";
-import { isExistEmail, isValidEmail } from "./ForgotPasswordValidations";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 import { isValidPassword } from "../UserValidations";
 import UserService from "../../../../service/UserService";
-import CustomException from "../../../../model/CustomException";
 import { useNavigate } from "react-router-dom";
-import Utils from "../../../../utils/Utils";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
@@ -28,7 +22,6 @@ import { UserPageSection } from "../../../../model/enum/PageSection";
 
 const NewPassword = () => {
 	const passwordRef = useRef();
-	// const [email, setEmail] = useState("");
 	const [errorInput, setErrorInput] = useState(null);
 	const [otherError, setOtherError] = useState(null);
 	const [password, setPassword] = useState("");

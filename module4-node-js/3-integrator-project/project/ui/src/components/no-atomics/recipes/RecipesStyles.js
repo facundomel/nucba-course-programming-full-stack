@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { GoBook } from "react-icons/go";
 
 export const RecipesContainer = styled.div`
 	display: grid;

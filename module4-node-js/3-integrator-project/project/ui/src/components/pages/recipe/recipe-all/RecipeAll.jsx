@@ -11,12 +11,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import PaginationCustom from "../../../no-atomics/pagination/PaginationCustom";
 import { FcReading } from "react-icons/fc";
 import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
-import { MessageNotExistRecipes } from "../../../no-atomics/recipes/RecipesStyles";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import RecipeFavoriteService from "../../../../service/RecipeFavoriteService";
 import { RecipePageSection } from "../../../../model/enum/PageSection";
-import CustomException from "../../../../model/CustomException";
-import { HttpStatusCode } from "axios";
 
 const RecipeAll = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);

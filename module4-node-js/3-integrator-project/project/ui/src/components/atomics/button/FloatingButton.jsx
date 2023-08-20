@@ -1,4 +1,4 @@
-import { Box, Fab } from "@mui/material";
+import { Box } from "@mui/material";
 import { FloatinButtonStyled } from "./FloatingButtonStyles";
 import AddIcon from "@mui/icons-material/Add";
 

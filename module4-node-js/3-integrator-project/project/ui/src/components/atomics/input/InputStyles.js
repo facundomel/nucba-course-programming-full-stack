@@ -15,7 +15,7 @@ export const InputStyled = styled.input`
 	outline: none;
 	caret-color: white;
 	font-size: 14px;
-	
+
 	::placeholder {
 		opacity: 40%;
 	}
