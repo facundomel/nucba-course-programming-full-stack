@@ -5,13 +5,13 @@ import Config from "../config/Config";
 import CustomException from "../model/CustomException";
 
 export default class RecipeService {
-	static headersDefault = Config.HEADERS_DEFAULT;
-	static baseUrl = Config.BASE_URL;
+	static #headersDefault = Config.HEADERS_DEFAULT;
+	static #baseUrl = Config.BASE_URL;
 
 	static getRecipes = async (offset, limit) => {
 		try {
-			const response = await axios.get(`${this.baseUrl}/api/recipes?offset=${offset}&limit=${limit}`, {
-				headers: this.headersDefault,
+			const response = await axios.get(`${this.#baseUrl}/api/recipes?offset=${offset}&limit=${limit}`, {
+				headers: this.#headersDefault,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
@@ -22,10 +22,10 @@ export default class RecipeService {
 	static getRecipeById = async (recipeId, authToken, navigate, dispatch) => {
 		try {
 			const headers = {
-				...this.headersDefault,
+				...this.#headersDefault,
 				authorization: `Bearer ${authToken.accessToken}`,
 			};
-			const response = await axios.get(`${this.baseUrl}/api/recipes/${recipeId}`, {
+			const response = await axios.get(`${this.#baseUrl}/api/recipes/${recipeId}`, {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -43,11 +43,11 @@ export default class RecipeService {
 	static createRecipe = async (recipe, authToken, navigate, dispatch) => {
 		try {
 			const headers = {
-				...this.headersDefault,
+				...this.#headersDefault,
 				authorization: `Bearer ${authToken.accessToken}`,
 			};
 
-			const response = await axios.post(`${this.baseUrl}/api/recipes`, Utils.convertFromCamelToSnake(recipe), {
+			const response = await axios.post(`${this.#baseUrl}/api/recipes`, Utils.convertFromCamelToSnake(recipe), {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);

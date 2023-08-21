@@ -8,13 +8,13 @@ import jwtDecode from "jwt-decode";
 import UserSession from "../model/UserSession";
 
 export default class AuthService {
-	static headersDefault = Config.HEADERS_DEFAULT;
-	static baseUrl = Config.BASE_URL;
+	static #headersDefault = Config.HEADERS_DEFAULT;
+	static #baseUrl = Config.BASE_URL;
 
 	static loginUser = async (userLogin) => {
 		try {
-			const response = await axios.post(`${this.baseUrl}/api/login`, Utils.convertFromCamelToSnake(userLogin), {
-				headers: this.headersDefault,
+			const response = await axios.post(`${this.#baseUrl}/api/login`, Utils.convertFromCamelToSnake(userLogin), {
+				headers: this.#headersDefault,
 			});
 			const responseData = Utils.convertFromSnakeToCamel(response.data);
 			const decodedToken = jwtDecode(responseData.accessToken);
@@ -49,10 +49,10 @@ export default class AuthService {
 	static refreshToken = async (refreshToken, navigate, dispatch) => {
 		try {
 			const headers = {
-				...this.headersDefault,
+				...this.#headersDefault,
 				authorization: `Bearer ${refreshToken}`,
 			};
-			let response = await axios.post(`${this.baseUrl}/api/refresh-token`, null, {
+			let response = await axios.post(`${this.#baseUrl}/api/refresh-token`, null, {
 				headers: headers,
 			});
 			const responseData = Utils.convertFromSnakeToCamel(response.data);

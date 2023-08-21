@@ -5,17 +5,17 @@ import CustomException from "../model/CustomException";
 import Config from "../config/Config";
 
 export default class RecipeFavoriteService {
-	static headersDefault = Config.HEADERS_DEFAULT;
-	static baseUrl = Config.BASE_URL;
+	static #headersDefault = Config.HEADERS_DEFAULT;
+	static #baseUrl = Config.BASE_URL;
 
 	static getRecipesFavoriteWithDetailsByUserId = async (currentUser, navigate, dispatch, offset, limit) => {
 		try {
 			const headers = {
-				...this.headersDefault,
+				...this.#headersDefault,
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
 			const response = await axios.get(
-				`${this.baseUrl}/api/recipes/favorite/${currentUser.user.id}/details?offset=${offset}&limit=${limit}`,
+				`${this.#baseUrl}/api/recipes/favorite/${currentUser.user.id}/details?offset=${offset}&limit=${limit}`,
 				{
 					headers: headers,
 				}
@@ -35,10 +35,10 @@ export default class RecipeFavoriteService {
 	static getRecipesFavoriteWithDetailsByUserIdAndRecipeId = async (currentUser, recipeId, navigate, dispatch) => {
 		try {
 			const headers = {
-				...this.headersDefault,
+				...this.#headersDefault,
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
-			const response = await axios.get(`${this.baseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}/details`, {
+			const response = await axios.get(`${this.#baseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}/details`, {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -56,14 +56,14 @@ export default class RecipeFavoriteService {
 	static createRecipeFavorite = async (currentUser, recipeId, navigate, dispatch) => {
 		try {
 			const headers = {
-				...this.headersDefault,
+				...this.#headersDefault,
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
 			const dataRecipeFavoriteToCreate = {
 				recipeId: recipeId,
 				userId: currentUser.user.id,
 			};
-			const response = await axios.post(`${this.baseUrl}/api/recipes/favorite`, Utils.convertFromCamelToSnake(dataRecipeFavoriteToCreate), {
+			const response = await axios.post(`${this.#baseUrl}/api/recipes/favorite`, Utils.convertFromCamelToSnake(dataRecipeFavoriteToCreate), {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -81,10 +81,10 @@ export default class RecipeFavoriteService {
 	static deleteRecipeFavorite = async (currentUser, recipeId, navigate, dispatch) => {
 		try {
 			const headers = {
-				...this.headersDefault,
+				...this.#headersDefault,
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
-			const response = await axios.delete(`${this.baseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}`, {
+			const response = await axios.delete(`${this.#baseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}`, {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
