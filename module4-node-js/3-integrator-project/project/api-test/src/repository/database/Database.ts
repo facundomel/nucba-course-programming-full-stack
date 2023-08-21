@@ -20,7 +20,7 @@ export default class Database {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				if (AppDataSource.isInitialized) resolve(AppDataSource);
-				else reject("Failed to create connection with database");
+				else return reject("Failed to create connection with database");
 			}, delay);
 		});
 	};
