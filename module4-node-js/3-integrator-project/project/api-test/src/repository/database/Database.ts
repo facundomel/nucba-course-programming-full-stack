@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import "reflect-metadata";
 import { AppDataSource } from "./DataSource";
+import RepositoryInitializer from "../config/RepositoryInitializer";
 
 export default class Database {
 	// static {
@@ -25,26 +26,36 @@ export default class Database {
 	// 	});
 	// };
 
-	private static initialized = false;
 	private static dataSource: DataSource | null = null;
 
-	static async initializeDatabaseConnection(): Promise<void> {
-		if (!Database.initialized) {
+	static init = async () => {
+		// Inicializar los repositorios antes de configurar las rutas
+		try {
+			await this.initializeDatabaseConnection();
+			const dataSource = this.getDataSource();
+			RepositoryInitializer.initializeRepositories(dataSource);
+		} catch (error) {
+			console.error("Failed to initialize repositories:", error);
+			process.exit(1); // Salir de la aplicación si la inicialización falla
+		}
+	};
+
+	private static initializeDatabaseConnection = async () => {
+		if (!this.dataSource) {
 			try {
-				Database.dataSource = await AppDataSource.initialize();
+				this.dataSource = await AppDataSource.initialize();
 				console.log("Connection initialized with database...");
-				Database.initialized = true;
 			} catch (error) {
 				console.error("Failed to create connection with database", error);
 				throw error;
 			}
 		}
-	}
+	};
 
-  static getDataSource(): DataSource {
-    if (!Database.dataSource) {
-      throw new Error("Database connection has not been initialized.");
-    }
-    return Database.dataSource;
-  }
+	private static getDataSource = (): DataSource => {
+		if (!this.dataSource) {
+			throw new Error("Database connection has not been initialized.");
+		}
+		return this.dataSource;
+	};
 }

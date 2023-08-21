@@ -18,10 +18,9 @@ export default class RecipeFavoriteRepository {
 		"users.email",
 	];
 
-	static async initializeRepository(dataSource: DataSource): Promise<void> {
+	static async init(dataSource: DataSource): Promise<void> {
 		try {
 			this.recipeFavoriteRepository = dataSource.getRepository(RecipeFavorite);
-			console.log("RecipeFavoriteRepository initialized.");
 		} catch (error) {
 			console.error("Error initializing RecipeFavoriteRepository:", error);
 			throw error;

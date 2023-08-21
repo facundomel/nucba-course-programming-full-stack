@@ -5,12 +5,11 @@ import UserRole from "../model/entity/UserRole";
 export default class UserRoleRepository {
 	static userRoleRepository: Repository<UserRole>;
 
-	static async initializeRepository(dataSource: DataSource): Promise<void> {
+	static async init(dataSource: DataSource): Promise<void> {
 		try {
 			this.userRoleRepository = dataSource.getRepository(UserRole);
-			console.log("RecipeFavoriteRepository initialized.");
 		} catch (error) {
-			console.error("Error initializing RecipeFavoriteRepository:", error);
+			console.error("Error initializing UserRoleRepository: ", error);
 			throw error;
 		}
 	}

@@ -16,12 +16,11 @@ export default class RecipeRepository {
 		"users.email",
 	];
 
-	static async initializeRepository(dataSource: DataSource): Promise<void> {
+	static async init(dataSource: DataSource): Promise<void> {
 		try {
 			this.recipeRepository = dataSource.getRepository(Recipe);
-			console.log("RecipeFavoriteRepository initialized.");
 		} catch (error) {
-			console.error("Error initializing RecipeFavoriteRepository:", error);
+			console.error("Error initializing RecipeRepository:", error);
 			throw error;
 		}
 	}
