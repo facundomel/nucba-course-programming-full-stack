@@ -11,8 +11,8 @@ import UserRoleService from "./UserRoleService";
 import UserRole from "../model/entity/UserRole";
 
 export default class AuthService {
-	static readonly accessTokenSecret: string = Config.getInstance().accessTokenSecret;
-	static readonly refreshTokenSecret: string = Config.getInstance().refreshTokenSecret;
+	private static readonly accessTokenSecret: string = Config.getInstance().accessTokenSecret;
+	private static readonly refreshTokenSecret: string = Config.getInstance().refreshTokenSecret;
 
 	static login = async (loginData: UserLogin): Promise<any> => {
 		try {

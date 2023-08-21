@@ -9,7 +9,7 @@ const options: swaggerJsdoc.Options = {
 			// description: 'Documentation for the API the-best-recipes',
 		},
 		components: {
-			// Agrega esta sección para definir el esquema de seguridad
+			// Esquema de seguridad
 			securitySchemes: {
 				Authorization: {
 					type: "http",
@@ -18,7 +18,8 @@ const options: swaggerJsdoc.Options = {
 				},
 			},
 		},
-		security: [{ Authorization: [] }], // Aplica la seguridad globalmente
+		// Se aplica la seguridad globalmente
+		security: [{ Authorization: [] }],
 	},
 	apis: ["./src/router/*.ts"],
 };

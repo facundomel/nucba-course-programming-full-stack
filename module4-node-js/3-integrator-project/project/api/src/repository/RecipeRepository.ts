@@ -1,10 +1,9 @@
 import { DataSource, Repository } from "typeorm";
-import Database from "./database/Database";
 import Recipe from "../model/entity/Recipe";
 
 export default class RecipeRepository {
-	static recipeRepository: Repository<Recipe>;
-	static readonly recipeFieldsToGet = [
+	private static recipeRepository: Repository<Recipe>;
+	private static readonly recipeFieldsToGet = [
 		"recipes",
 		"recipe_category.id",
 		"recipe_category.category",
@@ -15,16 +14,6 @@ export default class RecipeRepository {
 		"users.lastName",
 		"users.email",
 	];
-
-	// static {
-	// 	Database.getConnection()
-	// 		.then((dataSource) => {
-	// 			this.recipeRepository = dataSource.getRepository(Recipe);
-	// 		})
-	// 		.catch((error: any) => {
-	// 			throw error;
-	// 		});
-	// }
 
 	static init = async (dataSource: DataSource) => {
 		try {

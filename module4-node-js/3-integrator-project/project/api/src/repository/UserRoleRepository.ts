@@ -1,19 +1,8 @@
 import { DataSource, Repository } from "typeorm";
-import Database from "./database/Database";
 import UserRole from "../model/entity/UserRole";
 
 export default class UserRoleRepository {
-	static userRoleRepository: Repository<UserRole>;
-
-	// static {
-	// 	Database.getConnection()
-	// 		.then((dataSource) => {
-	// 			this.userRoleRepository = dataSource.getRepository(UserRole);
-	// 		})
-	// 		.catch((error: any) => {
-	// 			throw error;
-	// 		});
-	// }
+	private static userRoleRepository: Repository<UserRole>;
 
 	static init = async (dataSource: DataSource) => {
 		try {

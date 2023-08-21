@@ -1,9 +1,9 @@
 import { DataSource, Repository } from "typeorm";
 import User from "../model/entity/User";
-import Database from "./database/Database";
 
 export default class UserRepository {
-	static readonly fieldsUserToGet = [
+	static userRepository: Repository<User>;
+	private static readonly fieldsUserToGet = [
 		"users.id",
 		"users.firstName",
 		"users.lastName",
@@ -13,17 +13,6 @@ export default class UserRepository {
 		"users.deletedDate",
 		"users.roleId",
 	];
-	static userRepository: Repository<User>;
-
-	// static {
-	// 	Database.getConnection()
-	// 		.then((dataSource) => {
-	// 			this.userRepository = dataSource.getRepository(User);
-	// 		})
-	// 		.catch((error: any) => {
-	// 			throw error;
-	// 		});
-	// }
 
 	static init = async (dataSource: DataSource) => {
 		try {

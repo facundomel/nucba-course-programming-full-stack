@@ -1,1 +1,0 @@
-CREATE DATABASE recipes_integrator_project_module_4;

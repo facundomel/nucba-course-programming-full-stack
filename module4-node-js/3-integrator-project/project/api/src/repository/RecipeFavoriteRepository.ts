@@ -1,12 +1,11 @@
 import { DataSource, Repository } from "typeorm";
-import Database from "./database/Database";
 import RecipeFavorite from "../model/entity/RecipesFavorite";
 import Recipe from "../model/entity/Recipe";
 
 export default class RecipeFavoriteRepository {
-	static recipeFavoriteRepository: Repository<RecipeFavorite>;
-	static recipeRepository: Repository<Recipe>;
-	static readonly recipeFavoritefieldsToGet = [
+	private static recipeFavoriteRepository: Repository<RecipeFavorite>;
+	private static recipeRepository: Repository<Recipe>;
+	private static readonly recipeFavoritefieldsToGet = [
 		"recipes",
 		"recipe_category.id",
 		"recipe_category.category",
@@ -17,17 +16,6 @@ export default class RecipeFavoriteRepository {
 		"users.lastName",
 		"users.email",
 	];
-
-	// static {
-	// 	Database.getConnection()
-	// 		.then((dataSource) => {
-	// 			this.recipeFavoriteRepository = dataSource.getRepository(RecipeFavorite);
-	// 			this.recipeRepository = dataSource.getRepository(Recipe);
-	// 		})
-	// 		.catch((error: any) => {
-	// 			throw error;
-	// 		});
-	// }
 
 	static init = async (dataSource: DataSource) => {
 		try {

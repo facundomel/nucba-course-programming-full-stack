@@ -6,8 +6,15 @@ import UserRepository from "../UserRepository";
 import UserRoleRepository from "../UserRoleRepository";
 
 export default class RepositoryInitializer {
-	static repositories: any[] = [RecipeCategoryRepository, RecipeFavoriteRepository, RecipeRepository, UserRepository, UserRoleRepository];
-	static async initializeRepositories(dataSource: DataSource): Promise<void> {
+	private static readonly repositories: any[] = [
+		RecipeCategoryRepository,
+		RecipeFavoriteRepository,
+		RecipeRepository,
+		UserRepository,
+		UserRoleRepository,
+	];
+
+	static initializeRepositories = async (dataSource: DataSource): Promise<void> => {
 		try {
 			for (const repository of this.repositories) {
 				await repository.init(dataSource);
@@ -16,5 +23,5 @@ export default class RepositoryInitializer {
 			console.error("Failed to initialize repositories: ", error);
 			throw error;
 		}
-	}
+	};
 }
