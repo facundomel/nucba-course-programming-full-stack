@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "836ad0a1-527f-4b58-9f2f-4ae613a9b8da",
+		"name": "integrator-project-recipes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"item": [
+				{
+					"name": "Get Ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/ping",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Post Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@hotmail.com\",\r\n    \"password\": \"123456aA++\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQzNDE3LCJleHAiOjE2OTI2Mjk4MTd9.3PPYbC93Mf-eJ8vJDuyVwPu4VJHV7Heh8ALAvNCQKGg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/refresh-token",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "facu@hotmail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"admin\",\r\n    \"last_name\": \"admin\",\r\n    \"email\": \"admin@hotmail.com\",\r\n    \"password\": \"123456aA++\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 4,\r\n    \"new_password\": \"123456aA++\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/password",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "Get Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recipe By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQzNDMyLCJleHAiOjE2OTI1ODY2MzJ9.2IJkoFEj04vOOC5TVgu3-oi0UaviWyUWD3j-eDeJXiA",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/recipes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Recipe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQzNDMyLCJleHAiOjE2OTI1ODY2MzJ9.2IJkoFEj04vOOC5TVgu3-oi0UaviWyUWD3j-eDeJXiA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Prueba\",\r\n    \"description\": \"Descripcion de prueba\",\r\n    \"url_image\": \"URL de prueba\",\r\n    \"ingredients\": \"Ingredientes de prueba\",\r\n    \"instructions\": \"Instrucciones de prueba\",\r\n    \"user_id\": 1,\r\n    \"category_id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipes Categories",
+			"item": [
+				{
+					"name": "Get Recipes Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/recipes/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImZpcnN0TmFtZSI6ImFkbWluIiwibGFzdE5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AaG90bWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTI1NDM2MTksImV4cCI6MTY5MjU4NjgxOX0.ldi-VMfF6fX_bMtf0f4Zucx7-uUeTiObcruXP9OZcuQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"test3\",\r\n    \"title\": \"Test3\",\r\n    \"url_image\": \"Sin URL\",\r\n    \"user_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/recipes/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipe Favorite",
+			"item": [
+				{
+					"name": "Get Recipe Favorite With Details By User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQxNzIzLCJleHAiOjE2OTI1ODQ5MjN9.NKmMqo0hwKK2_aWbtsUUESPvynz8nfQ4yEFIr97LAaI",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/recipes/favorite/1/details",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"favorite",
+								"1",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recipe Favorite With Details By Recipe ID And User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQwMzU1LCJleHAiOjE2OTI1ODM1NTV9.mEHX5UdzsWEAnCi4N7OsU_jpyqdzY-iG0ZjcsXuBNZY"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/recipes/favorite/1/1/details",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"favorite",
+								"1",
+								"1",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recipe Favorite Without Details By User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQxNzIzLCJleHAiOjE2OTI1ODQ5MjN9.NKmMqo0hwKK2_aWbtsUUESPvynz8nfQ4yEFIr97LAaI"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/recipes/favorite/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"favorite",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recipe Favorite Without Details By Recipe ID And User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQxNzIzLCJleHAiOjE2OTI1ODQ5MjN9.NKmMqo0hwKK2_aWbtsUUESPvynz8nfQ4yEFIr97LAaI"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/recipes/favorite/1/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"favorite",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Recipe Favorite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQxNzIzLCJleHAiOjE2OTI1ODQ5MjN9.NKmMqo0hwKK2_aWbtsUUESPvynz8nfQ4yEFIr97LAaI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"recipe_id\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/recipes/favorite",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"favorite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Recipe Favorite",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6IkZhY3UiLCJsYXN0TmFtZSI6Ik1lbGdhciIsImVtYWlsIjoiZmFjdUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkyNTQxNzIzLCJleHAiOjE2OTI1ODQ5MjN9.NKmMqo0hwKK2_aWbtsUUESPvynz8nfQ4yEFIr97LAaI"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/recipes/favorite/3/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"favorite",
+								"3",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
