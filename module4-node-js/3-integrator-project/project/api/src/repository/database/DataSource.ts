@@ -8,14 +8,12 @@ import RecipeCategory from "../../model/entity/RecipeCategory";
 import RecipeFavorite from "../../model/entity/RecipesFavorite";
 
 export const AppDataSource = new DataSource({
-	// type: process.env.DB_TYPE as any,
-	// host: process.env.DB_HOST,
-	// port: Number(process.env.DB_PORT),
-	// username: process.env.DB_USERNAME,
-	// password: process.env.DB_PASSWORD,
-	// database: process.env.DB_NAME,
-	type: "postgres",
-	url: "postgres://recipes_db_orbe_user:osRI4ZzzvxFDomME5CnVyg4ER0ewPOwS@dpg-cipn2a59aq0dcpr364bg-a/recipes_db_orbe",
+	type: process.env.DB_TYPE as any,
+	host: process.env.DB_HOST,
+	port: Number(process.env.DB_PORT),
+	username: process.env.DB_USERNAME,
+	password: process.env.DB_PASSWORD,
+	database: process.env.DB_NAME,
 	entities: [User, UserRole, Recipe, RecipeCategory, RecipeFavorite],
 	migrations: [EmailUnique1689389603912],
 	// migrationsRun: true,
