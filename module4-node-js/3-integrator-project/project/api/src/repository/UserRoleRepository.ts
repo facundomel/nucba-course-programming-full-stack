@@ -1,19 +1,28 @@
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import Database from "./database/Database";
 import UserRole from "../model/entity/UserRole";
 
 export default class UserRoleRepository {
 	static userRoleRepository: Repository<UserRole>;
 
-	static {
-		Database.getConnection()
-			.then((dataSource) => {
-				this.userRoleRepository = dataSource.getRepository(UserRole);
-			})
-			.catch((error: any) => {
-				throw error;
-			});
-	}
+	// static {
+	// 	Database.getConnection()
+	// 		.then((dataSource) => {
+	// 			this.userRoleRepository = dataSource.getRepository(UserRole);
+	// 		})
+	// 		.catch((error: any) => {
+	// 			throw error;
+	// 		});
+	// }
+
+	static init = async (dataSource: DataSource) => {
+		try {
+			this.userRoleRepository = dataSource.getRepository(UserRole);
+		} catch (error) {
+			console.error("Error initializing UserRoleRepository: ", error);
+			throw error;
+		}
+	};
 
 	static getUsersRoles = async (): Promise<UserRole[]> => {
 		try {

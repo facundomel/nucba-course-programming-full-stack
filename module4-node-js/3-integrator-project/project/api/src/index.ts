@@ -13,6 +13,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerSpecs from "../swagger-config";
 import ResponseUtils from "./utils/ResponseUtils";
 import PingRouter from "./router/PingRouter";
+import Database from "./repository/database/Database";
 
 class Main {
 	static init = () => {
@@ -33,8 +34,9 @@ class Main {
 			ResponseUtils.notFound(res, new CustomException("URL not found", StatusCodes.NOT_FOUND));
 		});
 
-		app.listen(port, () => {
+		app.listen(port, async () => {
 			console.log(`🗲 Server running on port ${port} 🗲`);
+			await Database.init();
 		});
 	};
 }

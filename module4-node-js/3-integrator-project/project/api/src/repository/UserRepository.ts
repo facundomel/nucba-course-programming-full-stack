@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import User from "../model/entity/User";
 import Database from "./database/Database";
 
@@ -15,15 +15,24 @@ export default class UserRepository {
 	];
 	static userRepository: Repository<User>;
 
-	static {
-		Database.getConnection()
-			.then((dataSource) => {
-				this.userRepository = dataSource.getRepository(User);
-			})
-			.catch((error: any) => {
-				throw error;
-			});
-	}
+	// static {
+	// 	Database.getConnection()
+	// 		.then((dataSource) => {
+	// 			this.userRepository = dataSource.getRepository(User);
+	// 		})
+	// 		.catch((error: any) => {
+	// 			throw error;
+	// 		});
+	// }
+
+	static init = async (dataSource: DataSource) => {
+		try {
+			this.userRepository = dataSource.getRepository(User);
+		} catch (error) {
+			console.error("Error initializing UserRepository: ", error);
+			throw error;
+		}
+	};
 
 	static getUsers = async (): Promise<User[]> => {
 		try {
