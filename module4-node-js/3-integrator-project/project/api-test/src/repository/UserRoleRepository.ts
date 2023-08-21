@@ -1,18 +1,18 @@
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import Database from "./database/Database";
 import UserRole from "../model/entity/UserRole";
 
 export default class UserRoleRepository {
 	static userRoleRepository: Repository<UserRole>;
 
-	static {
-		Database.getConnection()
-			.then((dataSource) => {
-				this.userRoleRepository = dataSource.getRepository(UserRole);
-			})
-			.catch((error: any) => {
-				throw error;
-			});
+	static async initializeRepository(dataSource: DataSource): Promise<void> {
+		try {
+			this.userRoleRepository = dataSource.getRepository(UserRole);
+			console.log("RecipeFavoriteRepository initialized.");
+		} catch (error) {
+			console.error("Error initializing RecipeFavoriteRepository:", error);
+			throw error;
+		}
 	}
 
 	static getUsersRoles = async (): Promise<UserRole[]> => {

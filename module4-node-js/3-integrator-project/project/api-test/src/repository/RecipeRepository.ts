@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import Database from "./database/Database";
 import Recipe from "../model/entity/Recipe";
 
@@ -16,14 +16,14 @@ export default class RecipeRepository {
 		"users.email",
 	];
 
-	static {
-		Database.getConnection()
-			.then((dataSource) => {
-				this.recipeRepository = dataSource.getRepository(Recipe);
-			})
-			.catch((error: any) => {
-				throw error;
-			});
+	static async initializeRepository(dataSource: DataSource): Promise<void> {
+		try {
+			this.recipeRepository = dataSource.getRepository(Recipe);
+			console.log("RecipeFavoriteRepository initialized.");
+		} catch (error) {
+			console.error("Error initializing RecipeFavoriteRepository:", error);
+			throw error;
+		}
 	}
 
 	static getRecipes = async (offset: number, limit: number): Promise<any> => {

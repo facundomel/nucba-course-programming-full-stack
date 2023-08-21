@@ -1,18 +1,18 @@
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import Database from "./database/Database";
 import RecipeCategory from "../model/entity/RecipeCategory";
 
 export default class RecipeCategoryRepository {
 	static recipeCategoryRepository: Repository<RecipeCategory>;
 
-	static {
-		Database.getConnection()
-			.then((dataSource) => {
-				this.recipeCategoryRepository = dataSource.getRepository(RecipeCategory);
-			})
-			.catch((error: any) => {
-				throw error;
-			});
+	static async initializeRepository(dataSource: DataSource): Promise<void> {
+		try {
+			this.recipeCategoryRepository = dataSource.getRepository(RecipeCategory);
+			console.log("RecipeFavoriteRepository initialized.");
+		} catch (error) {
+			console.error("Error initializing RecipeFavoriteRepository:", error);
+			throw error;
+		}
 	}
 
 	static getRecipesCategories = async (): Promise<RecipeCategory[]> => {
