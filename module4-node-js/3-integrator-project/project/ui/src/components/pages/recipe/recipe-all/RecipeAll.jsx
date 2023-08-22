@@ -18,7 +18,7 @@ import { RecipePageSection } from "../../../../model/enum/PageSection";
 const RecipeAll = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const { currentUser } = useSelector((state) => state.user);
 	const navigate = useNavigate();
 	const { page } = useParams();
@@ -36,11 +36,10 @@ const RecipeAll = () => {
 		setLoading(true);
 		handlerSetRecipesAll();
 		handlerSetRecipesFavorite();
-		// setTimeout(() => {
-		// 	setLoading(false);
-		// 	window.scrollTo(0, 0);
-		// }, 500);
-		setLoading(false)
+		setTimeout(() => {
+			setLoading(false);
+			window.scrollTo(0, 0);
+		}, 500);
 	}, [currentPage]);
 
 	const handlerSetRecipesAll = async () => {
@@ -56,8 +55,8 @@ const RecipeAll = () => {
 		} catch (error) {
 			setTimeout(() => {
 				setLoading(false);
+				SnackbarUtils.error(error, 2500, dispatch);
 			}, 500);
-			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
 
@@ -70,8 +69,8 @@ const RecipeAll = () => {
 		} catch (error) {
 			setTimeout(() => {
 				setLoading(false);
+				SnackbarUtils.error(error, 2500, dispatch);
 			}, 500);
-			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
 
