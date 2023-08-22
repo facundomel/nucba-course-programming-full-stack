@@ -38,7 +38,7 @@ const Recipes = ({ messageNotExistRecipes, loading }) => {
 
 	return (
 		<>
-			{!loading && (!selectedCategory ? (
+			{!selectedCategory ? (
 				recipesFiltered.length === 0 ? (
 					messageNotExistRecipes && <MessageNotExistRecipes>{messageNotExistRecipes}</MessageNotExistRecipes>
 				) : (
@@ -58,7 +58,7 @@ const Recipes = ({ messageNotExistRecipes, loading }) => {
 				<MessageNotExistRecipes>¡Lo sentimos! No existen recetas de esta categoría</MessageNotExistRecipes>
 			) : (
 				<MessageNotExistRecipes>¡Lo sentimos! No existen recetas</MessageNotExistRecipes>
-			))}
+			)}
 
 			{currentUser && (
 				<FloatingButton
