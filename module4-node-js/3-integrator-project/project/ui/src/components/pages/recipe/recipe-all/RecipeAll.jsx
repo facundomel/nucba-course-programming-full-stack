@@ -33,13 +33,22 @@ const RecipeAll = () => {
 	}, []);
 
 	useEffect(() => {
-		setLoading(true);
-		handlerSetRecipesAll();
-		handlerSetRecipesFavorite();
-		setTimeout(() => {
-			setLoading(false);
-			window.scrollTo(0, 0);
-		}, 500);
+		// setLoading(true);
+		// handlerSetRecipesAll();
+		// handlerSetRecipesFavorite();
+		// setTimeout(() => {
+		// 	setLoading(false);
+		// 	window.scrollTo(0, 0);
+		// }, 500);
+
+		(async () => {
+			await handlerSetRecipesAll();
+			await handlerSetRecipesFavorite();
+			setTimeout(() => {
+				setLoading(false);
+				window.scrollTo(0, 0);
+			}, 500);
+		})();
 	}, [currentPage]);
 
 	const handlerSetRecipesAll = async () => {
