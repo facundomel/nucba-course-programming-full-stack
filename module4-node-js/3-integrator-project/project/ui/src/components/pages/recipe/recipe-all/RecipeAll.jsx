@@ -40,7 +40,7 @@ const RecipeAll = () => {
 		// 	setLoading(false);
 		// 	window.scrollTo(0, 0);
 		// }, 500);
-
+		setLoading(true);
 		(async () => {
 			await handlerSetRecipesAll();
 			await handlerSetRecipesFavorite();
