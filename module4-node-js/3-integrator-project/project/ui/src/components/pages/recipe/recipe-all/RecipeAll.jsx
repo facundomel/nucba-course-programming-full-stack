@@ -34,21 +34,14 @@ const RecipeAll = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		handlerSetRecipesAll();
-		handlerSetRecipesFavorite();
-		setTimeout(() => {
-			setLoading(false);
-			window.scrollTo(0, 0);
-		}, 500);
-		// setLoading(true);
-		// (async () => {
-		// 	await handlerSetRecipesAll();
-		// 	await handlerSetRecipesFavorite();
-		// 	setTimeout(() => {
-		// 		setLoading(false);
-		// 		window.scrollTo(0, 0);
-		// 	}, 500);
-		// })();
+		(async () => {
+			await handlerSetRecipesAll();
+			await handlerSetRecipesFavorite();
+			setTimeout(() => {
+				setLoading(false);
+				window.scrollTo(0, 0);
+			}, 500);
+		})();
 	}, [currentPage]);
 
 	const handlerSetRecipesAll = async () => {
@@ -96,7 +89,7 @@ const RecipeAll = () => {
 					)}
 					<Hero />
 					<Categories />
-					<Recipes messageNotExistRecipes={"¡Lo sentimos! No existen recetas"} loading={loading} />
+					<Recipes messageNotExistRecipes={"¡Lo sentimos! No existen recetas"} />
 
 					{recipesAll.length > 0 && (
 						<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />
