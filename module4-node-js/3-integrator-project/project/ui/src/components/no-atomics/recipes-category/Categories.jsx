@@ -10,7 +10,7 @@ import SelectCustom from "../../atomics/select/Select";
 
 const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
-	const categoriesSelect = [{ id: -1, title: "Ninguna", category: "none" }, ...useSelector((state) => state.categories.categories)];
+	const categoriesSelect = [{ id: -1, title: "Ninguna", category: "none" }, ...categories];
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
 	const { userSection } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const Categories = () => {
 			const recipesCategories = await RecipeCategoryService.getRecipesCategories();
 			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (err) {
+			console.log(err);
 			SnackbarUtils.error(err, 2500, dispatch);
 		}
 	};
