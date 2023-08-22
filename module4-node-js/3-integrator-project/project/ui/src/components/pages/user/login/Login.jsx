@@ -155,7 +155,7 @@ const Login = () => {
 					</InputPasswordAndIconShowAndHideContainer>
 					<Button type="submit" width="100%">
 						<TextButtonAndSpinner>
-							Ingresar {loading && <SpinnerCustom size={"1.2rem"} gap={"0px"} height={"0px"} color={"var(--black-light)"} />}
+							Ingresar {loading && <SpinnerCustom size={"1.2rem"} gap={"0px"} height={"0px"} color={"var(--black)"} />}
 						</TextButtonAndSpinner>
 					</Button>
 					<UserLink to="/restablecer-contraseña">

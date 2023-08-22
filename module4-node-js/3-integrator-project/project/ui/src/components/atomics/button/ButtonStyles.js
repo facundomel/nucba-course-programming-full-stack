@@ -7,7 +7,7 @@ export const ButtonStyled = styled(motion.button)`
 	border: none;
 	border-radius: 10px;
 	background: var(--gradient);
-	color: white;
+	color: var(--white);
 	text-transform: uppercase;
 	font-weight: 400;
 	cursor: pointer;
