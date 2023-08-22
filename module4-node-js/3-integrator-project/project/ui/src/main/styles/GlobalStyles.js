@@ -48,13 +48,22 @@ const GlobalStyles = createGlobalStyle`
       scroll-behavior: smooth;
     }
     
-    ::-webkit-scrollbar {
+    /* ::-webkit-scrollbar {
       display: none;
+    } */
+
+    *::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: var(--black);
     }
 
     *::-webkit-scrollbar-thumb {
-      background-color: var(--black);
+      background-color: var(--gray);
       border-radius: 20px;
     }
+
 `;
 export default GlobalStyles;

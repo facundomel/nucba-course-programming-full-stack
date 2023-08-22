@@ -20,6 +20,11 @@ export const FloatinButtonStyled = styled(motion(Fab))`
 	padding: 0;
 	margin: 0;
 
+	:hover {
+		background: var(--gradient);
+		color: var(--white);
+	}
+
 	@media (max-width: 600px) {
 		width: 40px;
 		height: 40px;

@@ -32,20 +32,29 @@ export const ModalBody = styled.div`
 	height: 100%;
 	overflow-y: scroll;
 	border-radius: 1rem;
+	overflow-x: hidden;
 `;
 
 export const ModalClose = styled.button`
 	position: absolute;
 	top: 0;
 	right: 0;
-	margin: 0;
+	margin-right: 10.8px;
 	font-size: 1.5rem;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
 	padding: 0.5rem;
-	color: var(--white);
-	background-color: var(--black);
+	color: var(--black);
+	background: var(--white);
 	border-bottom-left-radius: 0.5rem;
-	border-top-right-radius: 0.5rem;
+
+	:hover {
+		color: var(--white);
+		background: var(--gradient);
+	}
+
+	@media (max-width: 600px) {
+		font-size: 1.1rem;
+	}
 `;
