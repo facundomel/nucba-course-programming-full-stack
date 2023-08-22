@@ -111,3 +111,10 @@ export const IconShowAndHidePasswordContainer = styled.button`
 	padding: 0;
 	opacity: ${(props) => (!props.valuePassword ? "40%" : "")};
 `;
+
+export const TextButtonAndSpinner = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+`;

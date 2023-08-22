@@ -5,10 +5,10 @@ export const SpinnerCustomContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 20px;
-	height: 300px;
+	gap: ${(props) => (props.gap ? props.gap : "20px")};
+	height: ${(props) => (props.height ? props.height : "300px")};
 
 	& svg {
-		color: var(--orange3);
+		color: ${(props) => (props.color ? props.color : "var(--orange3)")};
 	}
 `;

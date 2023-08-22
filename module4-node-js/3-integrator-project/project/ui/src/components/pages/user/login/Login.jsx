@@ -6,6 +6,7 @@ import {
 	UserLink,
 	InputPasswordAndIconShowAndHideContainer,
 	IconShowAndHidePasswordContainer,
+	TextButtonAndSpinner,
 } from "../UserStyles";
 import Button from "../../../atomics/button/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +22,7 @@ import { isValidEmail, isValidPassword } from "../UserValidations";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import { UserPageSection } from "../../../../model/enum/PageSection";
+import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 
 const Login = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -32,6 +34,7 @@ const Login = () => {
 	const navigate = useNavigate();
 	const emailRef = useRef();
 	const passwordRef = useRef();
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		emailRef.current.focus();
@@ -67,23 +70,30 @@ const Login = () => {
 		if (!isValidPassword(valueInputs.password, setErrorInput, passwordRef, false)) return;
 
 		try {
+			setLoading(true);
 			const userSession = await AuthService.loginUser(valueInputs);
 			dispatch(userActions.setCurrentUser(userSession));
 			navigate("/recetas/1");
 			SnackbarUtils.info(`¡Bienvenido nuevamente ${userSession.user.firstName}!`, 2500, dispatch);
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
 		} catch (error) {
 			if (error instanceof CustomException) {
-				if (error.type === UserErrorType.ERROR_EMAIL) {
-					setErrorInput(error);
-					emailRef.current.focus();
-				} else if (error.type === UserErrorType.ERROR_PASSWORD) {
-					setErrorInput(error);
-					passwordRef.current.focus();
-				} else {
-					setOtherError(error);
-					SnackbarUtils.error(error, 2500, dispatch);
-					emailRef.current.focus();
-				}
+				setTimeout(() => {
+					setLoading(false);
+					if (error.type === UserErrorType.ERROR_EMAIL) {
+						setErrorInput(error);
+						emailRef.current.focus();
+					} else if (error.type === UserErrorType.ERROR_PASSWORD) {
+						setErrorInput(error);
+						passwordRef.current.focus();
+					} else {
+						setOtherError(error);
+						SnackbarUtils.error(error, 2500, dispatch);
+						emailRef.current.focus();
+					}
+				}, 500);
 			}
 		}
 	};
@@ -131,7 +141,6 @@ const Login = () => {
 								errorInput
 							}
 						/>
-
 						<IconShowAndHidePasswordContainer
 							type="button"
 							onClick={(e) => {
@@ -145,7 +154,9 @@ const Login = () => {
 						</IconShowAndHidePasswordContainer>
 					</InputPasswordAndIconShowAndHideContainer>
 					<Button type="submit" width="100%">
-						Ingresar
+						<TextButtonAndSpinner>
+							Ingresar {loading && <SpinnerCustom size={"1.2rem"} gap={"0px"} height={"0px"} color={"var(--black-light)"} />}
+						</TextButtonAndSpinner>
 					</Button>
 					<UserLink to="/restablecer-contraseña">
 						<small>¿Olvidaste la contraseña? Restablecela</small>
