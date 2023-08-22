@@ -9,7 +9,7 @@ const Hero = () => {
 	const [searchedRecipe, setSearchedRecipe] = useState("");
 	const dispatch = useDispatch();
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
-	const { pageSection } = useSelector((state) => state.pageSection); 
+	const { pageSection } = useSelector((state) => state.pageSection);
 
 	useEffect(() => {
 		let filteredRecipes = [];

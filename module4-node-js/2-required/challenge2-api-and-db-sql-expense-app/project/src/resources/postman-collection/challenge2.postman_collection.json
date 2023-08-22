@@ -15,14 +15,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/users",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"users"
-							]
+							"path": ["api", "users"]
 						}
 					},
 					"response": []
@@ -34,15 +29,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/users/3",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"3"
-							]
+							"path": ["api", "users", "3"]
 						}
 					},
 					"response": []
@@ -54,16 +43,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/users/1/expenses",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"1",
-								"expenses"
-							]
+							"path": ["api", "users", "1", "expenses"]
 						}
 					},
 					"response": []
@@ -84,14 +66,9 @@
 						},
 						"url": {
 							"raw": "localhost:3000/api/users",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"users"
-							]
+							"path": ["api", "users"]
 						}
 					},
 					"response": []
@@ -103,15 +80,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/users/1",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"1"
-							]
+							"path": ["api", "users", "1"]
 						}
 					},
 					"response": []
@@ -123,16 +94,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/users/4/expenses",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"4",
-								"expenses"
-							]
+							"path": ["api", "users", "4", "expenses"]
 						}
 					},
 					"response": []
@@ -149,14 +113,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/expenses",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"expenses"
-							]
+							"path": ["api", "expenses"]
 						}
 					},
 					"response": []
@@ -168,15 +127,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/expenses/2",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"expenses",
-								"2"
-							]
+							"path": ["api", "expenses", "2"]
 						}
 					},
 					"response": []
@@ -197,14 +150,9 @@
 						},
 						"url": {
 							"raw": "localhost:3000/api/expenses",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"expenses"
-							]
+							"path": ["api", "expenses"]
 						}
 					},
 					"response": []
@@ -225,15 +173,9 @@
 						},
 						"url": {
 							"raw": "localhost:3000/api/expenses/2",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "3000",
-							"path": [
-								"api",
-								"expenses",
-								"2"
-							]
+							"path": ["api", "expenses", "2"]
 						}
 					},
 					"response": []

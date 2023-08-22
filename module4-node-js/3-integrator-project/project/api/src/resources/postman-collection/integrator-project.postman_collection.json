@@ -15,14 +15,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:8080/api/ping",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"ping"
-							]
+							"path": ["api", "ping"]
 						}
 					},
 					"response": []
@@ -48,14 +43,9 @@
 						},
 						"url": {
 							"raw": "localhost:8080/api/login",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"login"
-							]
+							"path": ["api", "login"]
 						}
 					},
 					"response": []
@@ -82,14 +72,9 @@
 						},
 						"url": {
 							"raw": "localhost:8080/api/refresh-token",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"refresh-token"
-							]
+							"path": ["api", "refresh-token"]
 						}
 					},
 					"response": []
@@ -106,15 +91,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:8080/api/users/search",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"users",
-								"search"
-							],
+							"path": ["api", "users", "search"],
 							"query": [
 								{
 									"key": "id",
@@ -147,14 +126,9 @@
 						},
 						"url": {
 							"raw": "localhost:8080/api/users",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"users"
-							]
+							"path": ["api", "users"]
 						}
 					},
 					"response": []
@@ -175,15 +149,9 @@
 						},
 						"url": {
 							"raw": "localhost:8080/api/users/password",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"users",
-								"password"
-							]
+							"path": ["api", "users", "password"]
 						}
 					},
 					"response": []
@@ -200,14 +168,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:8080/api/recipes",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes"
-							],
+							"path": ["api", "recipes"],
 							"query": [
 								{
 									"key": "offset",
@@ -237,15 +200,9 @@
 						],
 						"url": {
 							"raw": "localhost:8080/api/recipes/1",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"1"
-							]
+							"path": ["api", "recipes", "1"]
 						}
 					},
 					"response": []
@@ -272,14 +229,9 @@
 						},
 						"url": {
 							"raw": "localhost:8080/api/recipes",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes"
-							]
+							"path": ["api", "recipes"]
 						}
 					},
 					"response": []
@@ -296,15 +248,9 @@
 						"header": [],
 						"url": {
 							"raw": "localhost:8080/api/recipes/categories",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"categories"
-							]
+							"path": ["api", "recipes", "categories"]
 						}
 					},
 					"response": []
@@ -331,15 +277,9 @@
 						},
 						"url": {
 							"raw": "localhost:8080/api/recipes/categories",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"categories"
-							]
+							"path": ["api", "recipes", "categories"]
 						}
 					},
 					"response": []
@@ -362,17 +302,9 @@
 						],
 						"url": {
 							"raw": "localhost:8080/api/recipes/favorite/1/details",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"favorite",
-								"1",
-								"details"
-							]
+							"path": ["api", "recipes", "favorite", "1", "details"]
 						}
 					},
 					"response": []
@@ -389,18 +321,9 @@
 						],
 						"url": {
 							"raw": "localhost:8080/api/recipes/favorite/1/1/details",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"favorite",
-								"1",
-								"1",
-								"details"
-							]
+							"path": ["api", "recipes", "favorite", "1", "1", "details"]
 						}
 					},
 					"response": []
@@ -417,16 +340,9 @@
 						],
 						"url": {
 							"raw": "localhost:8080/api/recipes/favorite/1",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"favorite",
-								"1"
-							]
+							"path": ["api", "recipes", "favorite", "1"]
 						}
 					},
 					"response": []
@@ -443,17 +359,9 @@
 						],
 						"url": {
 							"raw": "localhost:8080/api/recipes/favorite/1/1",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"favorite",
-								"1",
-								"1"
-							]
+							"path": ["api", "recipes", "favorite", "1", "1"]
 						}
 					},
 					"response": []
@@ -479,15 +387,9 @@
 						},
 						"url": {
 							"raw": "localhost:8080/api/recipes/favorite",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"favorite"
-							]
+							"path": ["api", "recipes", "favorite"]
 						}
 					},
 					"response": []
@@ -504,17 +406,9 @@
 						],
 						"url": {
 							"raw": "localhost:8080/api/recipes/favorite/3/1",
-							"host": [
-								"localhost"
-							],
+							"host": ["localhost"],
 							"port": "8080",
-							"path": [
-								"api",
-								"recipes",
-								"favorite",
-								"3",
-								"1"
-							]
+							"path": ["api", "recipes", "favorite", "3", "1"]
 						}
 					},
 					"response": []
