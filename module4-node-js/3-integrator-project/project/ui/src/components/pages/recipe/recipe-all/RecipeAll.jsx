@@ -79,7 +79,10 @@ const RecipeAll = () => {
 	return (
 		<RecipeAllContainer>
 			{loading ? (
-				<SpinnerCustom message={"Cargando recetas..."} />
+				<>
+					{window.scrollTo(0, 0)}
+					<SpinnerCustom message={"Cargando recetas..."} />
+				</>
 			) : (
 				<>
 					{recipesAll.length > 0 && (

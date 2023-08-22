@@ -80,17 +80,17 @@ const RecipeFavorite = () => {
 		<>
 			<RecipeFavoriteContainer>
 				{loading ? (
-					<SpinnerCustom message={"Cargando favoritos..."} />
+					<>
+						{window.scrollTo(0, 0)}
+						<SpinnerCustom message={"Cargando favoritos..."} />
+					</>
 				) : (
 					<>
 						{recipesFavorite.length > 0 && (
-							<>
-								<h1>
-									Mis recetas favoritas <FcRating />
-								</h1>
-							</>
+							<h1>
+								Mis recetas favoritas <FcRating />
+							</h1>
 						)}
-
 						<Hero />
 						<Categories />
 						<Recipes messageNotExistRecipes={currentPage === 1 ? "¡Lo sentimos! No existen recetas favoritas" : null} />
