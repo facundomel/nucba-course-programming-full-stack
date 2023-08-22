@@ -38,7 +38,7 @@ const CardRecipe = ({ recipe }) => {
 	const handlerOnClickStar = async () => {
 		if (!isFavoriteRecipe) {
 			try {
-				SnackbarUtils.success("Agregando... Espere unos segundos.", 2000, dispatch);
+				SnackbarUtils.success("Agregando... Espere unos segundos.", 1000, dispatch);
 				let recipeFavoriteCreated = await RecipeFavoriteService.createRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
 				if (recipeFavoriteCreated != null) {
 					recipeFavoriteCreated = await RecipeFavoriteService.getRecipesFavoriteWithDetailsByUserIdAndRecipeId(
@@ -49,24 +49,24 @@ const CardRecipe = ({ recipe }) => {
 					);
 					setTimeout(() => {
 						dispatch(recipeActions.setRecipesFavorite([...recipesFavorite, recipeFavoriteCreated]));
-					}, 2000);
+					}, 1000);
 				}
 			} catch (error) {
 				SnackbarUtils.error(error, 2500, dispatch);
 			}
 		} else {
 			try {
-				SnackbarUtils.warning("Quitando... Espere unos segundos.", 2000, dispatch);
+				SnackbarUtils.warning("Quitando... Espere unos segundos.", 1000, dispatch);
 				const recipeFavoriteDeleted = await RecipeFavoriteService.deleteRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
 				if (recipeFavoriteDeleted != null) {
-					if (pageSection === RecipePageSection.RecipeFavorite && recipesFavorite.length - 1 === 0) {
-						window.scrollTo(0, 0);
-					}
 					setTimeout(() => {
 						dispatch(
 							recipeActions.setRecipesFavorite(recipesFavorite.filter((recipeFavorite) => recipeFavorite.id !== recipeFavoriteDeleted.id))
 						);
-					}, 2000);
+						if (pageSection === RecipePageSection.RecipeFavorite && recipesFavorite.length - 1 === 0) {
+							window.scrollTo(0, 0);
+						}
+					}, 1000);
 				}
 			} catch (error) {
 				SnackbarUtils.error(error, 2500, dispatch);
