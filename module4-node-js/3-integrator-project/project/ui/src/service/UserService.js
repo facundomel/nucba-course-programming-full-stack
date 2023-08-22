@@ -31,7 +31,9 @@ export default class UserService {
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errorData = Utils.convertFromSnakeToCamel(err.response?.data);
-			if (errorData && errorData.statusCode === HttpStatusCode.BadRequest && errorData.message.includes("Password is not strong")) {
+			if (errorData && errorData.statusCode === HttpStatusCode.BadRequest && errorData.message.includes("Email is not valid")) {
+				throw new CustomException(UserErrorType.ERROR_EMAIL, "Formato de email incorrecto", errorData.statusCode);
+			} else if (errorData && errorData.statusCode === HttpStatusCode.BadRequest && errorData.message.includes("Password is not strong")) {
 				throw new CustomException(
 					UserErrorType.ERROR_PASSWORD,
 					"El password debe contener como mínimo una letra minúscula, una mayúscula, un símbolo y un total de 8 caracteres",

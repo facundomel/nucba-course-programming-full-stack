@@ -72,11 +72,11 @@ const Login = () => {
 		try {
 			setLoading(true);
 			const userSession = await AuthService.loginUser(valueInputs);
-			dispatch(userActions.setCurrentUser(userSession));
-			navigate("/recetas/1");
-			SnackbarUtils.info(`¡Bienvenido nuevamente ${userSession.user.firstName}!`, 2500, dispatch);
 			setTimeout(() => {
 				setLoading(false);
+				dispatch(userActions.setCurrentUser(userSession));
+				navigate("/recetas/1");
+				SnackbarUtils.info(`¡Bienvenido nuevamente ${userSession.user.firstName}!`, 2500, dispatch);
 			}, 500);
 		} catch (error) {
 			if (error instanceof CustomException) {
@@ -127,6 +127,7 @@ const Login = () => {
 							errorInput
 						}
 					/>
+
 					<InputPasswordAndIconShowAndHideContainer>
 						<Input
 							name="password"
@@ -153,14 +154,17 @@ const Login = () => {
 							{typeInputPassword === "password" || !valueInputs.password ? <AiFillEyeInvisible /> : <AiFillEye />}
 						</IconShowAndHidePasswordContainer>
 					</InputPasswordAndIconShowAndHideContainer>
+
 					<Button type="submit" width="100%">
 						<TextButtonAndSpinner>
 							Ingresar {loading && <SpinnerCustom size={"1.2rem"} gap={"0px"} height={"0px"} color={"var(--black)"} />}
 						</TextButtonAndSpinner>
 					</Button>
+
 					<UserLink to="/restablecer-contraseña">
 						<small>¿Olvidaste la contraseña? Restablecela</small>
 					</UserLink>
+
 					<UserLink to="/registro">
 						<small>¿No tenés cuenta? Registrate</small>
 					</UserLink>

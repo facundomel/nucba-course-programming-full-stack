@@ -6,6 +6,7 @@ import {
 	UserLink,
 	InputPasswordAndIconShowAndHideContainer,
 	IconShowAndHidePasswordContainer,
+	TextButtonAndSpinner,
 } from "../UserStyles";
 import Button from "../../../atomics/button/Button";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,7 @@ import { isValidEmail, isValidFirstName, isValidLastName, isValidPassword } from
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import { UserPageSection } from "../../../../model/enum/PageSection";
+import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 
 const Register = () => {
 	const [errorInput, setErrorInput] = useState(null);
@@ -36,6 +38,7 @@ const Register = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		firstNameRef.current.focus();
@@ -70,25 +73,32 @@ const Register = () => {
 		if (!isValidPassword(valueInputs.password, setErrorInput, passwordRef, true)) return;
 
 		try {
+			setLoading(true);
 			const userRegistered = await UserService.registerUser(valueInputs);
 			const userSession = await AuthService.loginUser(new UserLogin(valueInputs.email, valueInputs.password));
-			dispatch(userActions.setCurrentUser(userSession));
-			navigate("/recetas/1");
-			SnackbarUtils.success(`¡Felicitaciones ${userRegistered.user.firstName}! Se ha registrado correctamente`, 2500, dispatch);
+			setTimeout(() => {
+				setLoading(false);
+				dispatch(userActions.setCurrentUser(userSession));
+				navigate("/recetas/1");
+				SnackbarUtils.success(`¡Felicitaciones ${userRegistered.firstName}! Se ha registrado correctamente`, 2500, dispatch);
+			}, 500);
 		} catch (error) {
-			if (error instanceof CustomException) {
-				if (error.type === UserErrorType.ERROR_EMAIL) {
-					setErrorInput(error);
-					emailRef.current.focus();
-				} else if (error.type === UserErrorType.ERROR_PASSWORD) {
-					setErrorInput(error);
-					passwordRef.current.focus();
-				} else {
-					setOtherError(error);
-					SnackbarUtils.error(error, 2500, dispatch);
-					firstNameRef.current.focus();
+			setTimeout(() => {
+				setLoading(false);
+				if (error instanceof CustomException) {
+					if (error.type === UserErrorType.ERROR_EMAIL) {
+						setErrorInput(error);
+						emailRef.current.focus();
+					} else if (error.type === UserErrorType.ERROR_PASSWORD) {
+						setErrorInput(error);
+						passwordRef.current.focus();
+					} else {
+						setOtherError(error);
+						SnackbarUtils.error(error, 2500, dispatch);
+						firstNameRef.current.focus();
+					}
 				}
-			}
+			}, 500);
 		}
 	};
 
@@ -117,6 +127,7 @@ const Register = () => {
 						handleOnChange={handleChangeInputs}
 						error={errorInput && errorInput.type === UserErrorType.ERROR_FIRST_NAME && errorInput}
 					/>
+
 					<Input
 						name="lastName"
 						type="text"
@@ -125,6 +136,7 @@ const Register = () => {
 						handleOnChange={handleChangeInputs}
 						error={errorInput && errorInput.type === UserErrorType.ERROR_LAST_NAME && errorInput}
 					/>
+
 					<Input
 						name="email"
 						type="text"
@@ -133,6 +145,7 @@ const Register = () => {
 						handleOnChange={handleChangeInputs}
 						error={errorInput && errorInput.type === UserErrorType.ERROR_EMAIL && errorInput}
 					/>
+
 					<InputPasswordAndIconShowAndHideContainer>
 						<Input
 							name="password"
@@ -143,7 +156,6 @@ const Register = () => {
 							handleOnChange={handleChangeInputs}
 							error={errorInput && errorInput.type === UserErrorType.ERROR_PASSWORD && errorInput}
 						/>
-
 						<IconShowAndHidePasswordContainer
 							type="button"
 							onClick={(e) => {
@@ -156,9 +168,13 @@ const Register = () => {
 							{typeInputPassword === "password" || !valueInputs.password ? <AiFillEyeInvisible /> : <AiFillEye />}
 						</IconShowAndHidePasswordContainer>
 					</InputPasswordAndIconShowAndHideContainer>
+
 					<Button type="submit" width="100%">
-						Registrar
+						<TextButtonAndSpinner>
+							Registrar {loading && <SpinnerCustom size={"1.2rem"} gap={"0px"} height={"0px"} color={"var(--black)"} />}
+						</TextButtonAndSpinner>
 					</Button>
+
 					<UserLink to="/login">
 						<small>¿Ya tenés cuenta? Iniciá sesión</small>
 					</UserLink>

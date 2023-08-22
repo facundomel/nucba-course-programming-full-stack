@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { UserContainer, UserForm, UserLink } from "../UserStyles";
+import { TextButtonAndSpinner, UserContainer, UserForm, UserLink } from "../UserStyles";
 import Input from "../../../atomics/input/Input";
 import Button from "../../../atomics/button/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import { UserPageSection } from "../../../../model/enum/PageSection";
+import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
@@ -22,6 +23,7 @@ const ForgotPassword = () => {
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		emailRef.current.focus();
@@ -44,22 +46,29 @@ const ForgotPassword = () => {
 		if (!isValidEmail(email, setErrorInput, emailRef, true)) return;
 
 		try {
+			setLoading(true);
 			const user = await UserService.getUserByEmail(email);
 			if (user != null) {
-				dispatch(userActions.setUserForgotPassword({ id: user.id }));
-				navigate("/nueva-contraseña");
+				setTimeout(() => {
+					setLoading(false);
+					dispatch(userActions.setUserForgotPassword({ id: user.id }));
+					navigate("/nueva-contraseña");
+				}, 500);
 			}
 		} catch (error) {
-			if (error instanceof CustomException) {
-				if (error.type === UserErrorType.ERROR_EMAIL) {
-					setErrorInput(error);
-					emailRef.current.focus();
-				} else {
-					setOtherError(error);
-					SnackbarUtils.error(error, 2500, dispatch);
-					emailRef.current.focus();
+			setTimeout(() => {
+				setLoading(false);
+				if (error instanceof CustomException) {
+					if (error.type === UserErrorType.ERROR_EMAIL) {
+						setErrorInput(error);
+						emailRef.current.focus();
+					} else {
+						setOtherError(error);
+						SnackbarUtils.error(error, 2500, dispatch);
+						emailRef.current.focus();
+					}
 				}
-			}
+			}, 500);
 		}
 	};
 
@@ -78,7 +87,9 @@ const ForgotPassword = () => {
 					/>
 
 					<Button type="submit" width="100%">
-						Restablecer
+						<TextButtonAndSpinner>
+							Aceptar {loading && <SpinnerCustom size={"1.2rem"} gap={"0px"} height={"0px"} color={"var(--black)"} />}
+						</TextButtonAndSpinner>
 					</Button>
 
 					<UserLink to="/login">

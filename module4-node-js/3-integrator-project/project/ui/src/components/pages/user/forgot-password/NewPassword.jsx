@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
 	IconShowAndHidePasswordContainer,
 	InputPasswordAndIconShowAndHideContainer,
+	TextButtonAndSpinner,
 	UserContainer,
 	UserForm,
 	UserLink,
@@ -19,6 +20,7 @@ import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import { UserPageSection } from "../../../../model/enum/PageSection";
+import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 
 const NewPassword = () => {
 	const passwordRef = useRef();
@@ -30,6 +32,7 @@ const NewPassword = () => {
 	const { userForgotPassword } = useSelector((state) => state.user);
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		passwordRef.current.focus();
@@ -56,19 +59,26 @@ const NewPassword = () => {
 		if (!isValidPassword(password, setErrorInput, passwordRef, true)) return;
 
 		try {
+			setLoading(true);
 			const userUpdated = await UserService.updateUserPassword(userForgotPassword.id, password);
 			if (userUpdated != null) {
-				navigate("/login");
-				SnackbarUtils.success("Contraseña actualizada correctamente", 2500, dispatch);
+				setTimeout(() => {
+					setLoading(false);
+					navigate("/login");
+					SnackbarUtils.success("Contraseña actualizada correctamente", 2500, dispatch);
+				}, 500);
 			}
 		} catch (error) {
-			if (error.type === UserErrorType.ERROR_PASSWORD) {
-				setErrorInput(error);
-			} else {
-				setOtherError(error);
-				SnackbarUtils.error(error, 2500, dispatch);
-			}
-			passwordRef.current.focus();
+			setTimeout(() => {
+				setLoading(false);
+				if (error.type === UserErrorType.ERROR_PASSWORD) {
+					setErrorInput(error);
+				} else {
+					setOtherError(error);
+					SnackbarUtils.error(error, 2500, dispatch);
+				}
+				passwordRef.current.focus();
+			}, 500);
 		}
 	};
 
@@ -87,13 +97,13 @@ const NewPassword = () => {
 	return (
 		<>
 			<UserContainer>
-				<h1>Nueva contraseña</h1>
+				<h1>Restablecé tu contraseña</h1>
 				<UserForm onSubmit={onSubmitNewPassword}>
 					<InputPasswordAndIconShowAndHideContainer>
 						<Input
 							name="password"
 							type="password"
-							placeholder="Contraseña"
+							placeholder="Nueva contraseña"
 							paddingRight="3rem"
 							inputRef={passwordRef}
 							handleOnChange={handleChangeInputPassword}
@@ -114,7 +124,9 @@ const NewPassword = () => {
 					</InputPasswordAndIconShowAndHideContainer>
 
 					<Button type="submit" width="100%">
-						Aceptar
+						<TextButtonAndSpinner>
+							Actualizar {loading && <SpinnerCustom size={"1.2rem"} gap={"0px"} height={"0px"} color={"var(--black)"} />}
+						</TextButtonAndSpinner>
 					</Button>
 
 					<UserLink to="/login">

@@ -26,7 +26,6 @@ const Categories = () => {
 			const recipesCategories = await RecipeCategoryService.getRecipesCategories();
 			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (err) {
-			console.log(err);
 			SnackbarUtils.error(err, 2500, dispatch);
 		}
 	};

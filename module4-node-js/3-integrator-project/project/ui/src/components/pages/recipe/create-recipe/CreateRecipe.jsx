@@ -18,10 +18,10 @@ import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
 import SnackbarCustom from "../../../no-atomics/snackbar/SnackbarCustom";
 import SnackbarUtils from "../../../../utils/SnackbarUtils";
 import { RecipePageSection } from "../../../../model/enum/PageSection";
+import { SpinnerCustom } from "../../../atomics/spinner/SpinnerCustom";
 
 const CreateRecipe = () => {
 	const [errorInput, setErrorInput] = useState(null);
-	const [otherError, setOtherError] = useState(null);
 	const [valueInputs, setValueInputs] = useState(new Recipe());
 	const [selectedOptionRecipeCategory, setSelectedOptionRecipeCategory] = useState({ value: -1, label: "default" });
 	const titleRef = useRef();
@@ -36,6 +36,7 @@ const CreateRecipe = () => {
 	const { categories } = useSelector((state) => state.categories);
 	const { recipesAll } = useSelector((state) => state.recipes);
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		titleRef.current.focus();
@@ -44,6 +45,10 @@ const CreateRecipe = () => {
 			handlerSetRecipesCategories();
 		}
 	}, []);
+
+	useEffect(() => {
+		if (!loading) titleRef.current.focus();
+	}, [loading]);
 
 	useEffect(() => {
 		if (!errorInput) return;
@@ -56,7 +61,6 @@ const CreateRecipe = () => {
 			const recipesCategories = await RecipeCategoryService.getRecipesCategories();
 			dispatch(categoriesActions.setCategories(recipesCategories));
 		} catch (error) {
-			setOtherError(error);
 			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
@@ -94,96 +98,106 @@ const CreateRecipe = () => {
 			return;
 
 		try {
+			setLoading(true);
 			valueInputs.userId = currentUser.user.id;
 			valueInputs.categoryId = selectedOptionRecipeCategory.value;
 			let recipeCreated = await RecipeService.createRecipe(valueInputs, currentUser.authToken, navigate, dispatch);
 			recipeCreated = await RecipeService.getRecipeById(recipeCreated.id, currentUser.authToken, navigate, dispatch);
-			dispatch(recipesActions.setRecipesAll([...recipesAll, recipeCreated]));
-			navigate("/recetas/1");
-			SnackbarUtils.success(`¡Receta ${recipeCreated.title} creada correctamente!`, 2500, dispatch);
+			setTimeout(() => {
+				setLoading(false);
+				dispatch(recipesActions.setRecipesAll([...recipesAll, recipeCreated]));
+				SnackbarUtils.success(`¡Receta ${recipeCreated.title} creada correctamente!`, 2500, dispatch);
+			}, 500);
 		} catch (error) {
-			setOtherError(error);
-			SnackbarUtils.error(error, 2500, dispatch);
+			setTimeout(() => {
+				setLoading(false);
+				SnackbarUtils.error(error, 2500, dispatch);
+			}, 500);
 		}
 	};
 
 	return (
 		<>
 			<CreateRecipeContainer>
-				<h1>Creá tu receta</h1>
-				<CreateRecipeForm onSubmit={onSubmitCreateRecipe}>
-					<Input
-						name="title"
-						type="text"
-						placeholder="Título"
-						inputRef={titleRef}
-						handleOnChange={handleChangeInputs}
-						error={errorInput && errorInput.type === RecipeErrorType.ERROR_TITLE && errorInput}
-					/>
-					<SelectCustom
-						name={"recipesCategory"}
-						placeholder="Categoría"
-						selectRef={recipesCategoryRef}
-						options={categories.map((recipeCategory) => ({ value: recipeCategory.id, label: recipeCategory.title }))}
-						handleOnChange={handleChangeSelectRecipeCategory}
-						error={errorInput && errorInput.type === RecipeErrorType.ERROR_CATEGORIES && errorInput}
-					/>
-					<Input
-						name="urlImage"
-						type="text"
-						placeholder="URL de imagen"
-						inputRef={urlImageRef}
-						handleOnChange={handleChangeInputs}
-						error={errorInput && errorInput.type === RecipeErrorType.ERROR_URL_IMAGE && errorInput}
-					/>
-					<TextArea
-						name="description"
-						type="text"
-						placeholder="Breve descripción"
-						textAreaRef={descriptionRef}
-						handleOnChange={handleChangeInputs}
-						error={errorInput && errorInput.type === RecipeErrorType.ERROR_DESCRIPTION && errorInput}
-						rows={5}
-					/>
-					<TextAreaAndSmall>
-						<TextArea
-							name="ingredients"
-							type="text"
-							placeholder="Ingredientes"
-							textAreaRef={ingredientsRef}
-							handleOnChange={handleChangeInputs}
-							error={errorInput && errorInput.type === RecipeErrorType.ERROR_INGREDIENTS && errorInput}
-							rows={10}
-						/>
-						<small>Al final de cada ingrediente debe presionar enter</small>
-					</TextAreaAndSmall>
-					<TextAreaAndSmall>
-						<TextArea
-							name="instructions"
-							type="text"
-							placeholder="Instrucciones"
-							textAreaRef={instructionsRef}
-							handleOnChange={handleChangeInputs}
-							error={errorInput && errorInput.type === RecipeErrorType.ERROR_INSTRUCTIONS && errorInput}
-							rows={10}
-						/>
-						<small>Al final de cada paso debe presionar enter</small>
-					</TextAreaAndSmall>
-					<Button type="submit" width="100%">
-						Crear Receta
-					</Button>
-				</CreateRecipeForm>
+				{loading ? (
+					<SpinnerCustom message={"Creando receta..."} />
+				) : (
+					<>
+						<h1>Creá tu receta</h1>
+						<CreateRecipeForm onSubmit={onSubmitCreateRecipe}>
+							<Input
+								name="title"
+								type="text"
+								placeholder="Título"
+								inputRef={titleRef}
+								handleOnChange={handleChangeInputs}
+								error={errorInput && errorInput.type === RecipeErrorType.ERROR_TITLE && errorInput}
+							/>
+							<SelectCustom
+								name={"recipesCategory"}
+								placeholder="Categoría"
+								selectRef={recipesCategoryRef}
+								options={categories.map((recipeCategory) => ({ value: recipeCategory.id, label: recipeCategory.title }))}
+								handleOnChange={handleChangeSelectRecipeCategory}
+								error={errorInput && errorInput.type === RecipeErrorType.ERROR_CATEGORIES && errorInput}
+							/>
+							<Input
+								name="urlImage"
+								type="text"
+								placeholder="URL de imagen"
+								inputRef={urlImageRef}
+								handleOnChange={handleChangeInputs}
+								error={errorInput && errorInput.type === RecipeErrorType.ERROR_URL_IMAGE && errorInput}
+							/>
+							<TextArea
+								name="description"
+								type="text"
+								placeholder="Breve descripción"
+								textAreaRef={descriptionRef}
+								handleOnChange={handleChangeInputs}
+								error={errorInput && errorInput.type === RecipeErrorType.ERROR_DESCRIPTION && errorInput}
+								rows={5}
+							/>
+							<TextAreaAndSmall>
+								<TextArea
+									name="ingredients"
+									type="text"
+									placeholder="Ingredientes"
+									textAreaRef={ingredientsRef}
+									handleOnChange={handleChangeInputs}
+									error={errorInput && errorInput.type === RecipeErrorType.ERROR_INGREDIENTS && errorInput}
+									rows={10}
+								/>
+								<small>Al final de cada ingrediente debe presionar enter</small>
+							</TextAreaAndSmall>
+							<TextAreaAndSmall>
+								<TextArea
+									name="instructions"
+									type="text"
+									placeholder="Instrucciones"
+									textAreaRef={instructionsRef}
+									handleOnChange={handleChangeInputs}
+									error={errorInput && errorInput.type === RecipeErrorType.ERROR_INSTRUCTIONS && errorInput}
+									rows={10}
+								/>
+								<small>Al final de cada paso debe presionar enter</small>
+							</TextAreaAndSmall>
+
+							<Button type="submit" width="100%">
+								Crear Receta
+							</Button>
+						</CreateRecipeForm>
+					</>
+				)}
 			</CreateRecipeContainer>
 
-			{otherError && (
-				<SnackbarCustom
-					open={optionsSnackbar.open}
-					onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
-					severity={optionsSnackbar.severity}
-					message={optionsSnackbar.message}
-					autoHideDuration={optionsSnackbar.autoHideDuration}
-				/>
-			)}
+			<SnackbarCustom
+				open={optionsSnackbar.open}
+				onClose={() => dispatch(snackbarActions.setOptionsSnackbar({ ...optionsSnackbar, open: false }))}
+				severity={optionsSnackbar.severity}
+				message={optionsSnackbar.message}
+				autoHideDuration={optionsSnackbar.autoHideDuration}
+			/>
 		</>
 	);
 };
