@@ -1,0 +1,21 @@
+Desafío:
+
+Buenas!
+
+¿Se acuerdan del Integrador de React?
+
+Bueno, la idea ahora es poder realizar el back de la app o bien, si no quieren trabajar sobre el mismo proyecto, realizar uno nuevo que sea fullstack (Front + back completos de 0).
+
+👉 El front del proyecto debe estar deployado en Vercel. Debe cumplir con las mismas condiciones que los proyectos integradores de los módulos anteriores. 😁
+
+👉 El back del proyecto debe estar deployado. De ser posible, deberán mantenerlo activo el tiempo que dure el proceso de corrección, para que el equipo de mentoría pueda hacer las pruebas necesarias.
+
+👉 Deberán entregar Github tanto del front como del back
+
+👉 Los endpoints del back deberán estar correctamente documentados.
+
+👉 Tendrán 30 días para la realización del mismo, los cuales se contabilizarán a partir de las 00:00 Hs del día siguiente de la clase a la cual está vinculado este posteo en la plataforma de entregas (de todas maneras, les figura la fecha de cierre en la plataforma de entregas). Pasado ese plazo, no podrán realizar la entrega del mismo.
+
+👉 Es requisito la entrega de este trabajo para obtener certificado de cumplimiento de Back-End y Desarrollo Web Full Stack, no se duerman 😴
+
+Esperamos esos trabajos! 🚀
