@@ -8,7 +8,7 @@
 
 ### URL's Back-End
 
-- #### Plataforma proveedora de servicios de hosting para la API y la BD PostgreSQL: https://render.com/
+- #### Plataforma proveedora del servicio de hosting para la API y la BD PostgreSQL: https://render.com/
 
 - #### API: https://the-best-recipes-api.onrender.com
 
