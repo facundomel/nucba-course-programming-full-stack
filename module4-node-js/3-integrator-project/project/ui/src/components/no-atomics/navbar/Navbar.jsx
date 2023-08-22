@@ -156,7 +156,9 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 										</MenuSessionUserCloseSession>
 									</MenuSessionUserContainer>
 
-									{isOpenMenuSessionUser && <LoginMenuCloseSessionUserOverlay />}
+									{isOpenMenuSessionUser && (
+										<LoginMenuCloseSessionUserOverlay onClick={() => dispatch(userActions.openOrCloseMenuSessionUser())} />
+									)}
 								</>
 							)}
 						</NavbarLinkContainer>
