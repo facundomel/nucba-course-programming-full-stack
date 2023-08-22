@@ -6,11 +6,11 @@ import axios, { HttpStatusCode } from "axios";
 
 export default class UserService {
 	static #headersDefault = Config.HEADERS_DEFAULT;
-	static #baseUrl = Config.BASE_URL;
+	static #apiBaseUrl = Config.API_BASE_URL;
 
 	static getUserByEmail = async (email) => {
 		try {
-			const response = await axios.get(`${this.#baseUrl}/api/users/search?email=${email}`, {
+			const response = await axios.get(`${this.#apiBaseUrl}/api/users/search?email=${email}`, {
 				headers: this.#headersDefault,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -25,7 +25,7 @@ export default class UserService {
 
 	static registerUser = async (user) => {
 		try {
-			const response = await axios.post(`${this.#baseUrl}/api/users`, Utils.convertFromCamelToSnake(user), {
+			const response = await axios.post(`${this.#apiBaseUrl}/api/users`, Utils.convertFromCamelToSnake(user), {
 				headers: this.#headersDefault,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -47,7 +47,7 @@ export default class UserService {
 	static updateUserPassword = async (userId, newPassword) => {
 		try {
 			const response = await axios.put(
-				`${this.#baseUrl}/api/users/password`,
+				`${this.#apiBaseUrl}/api/users/password`,
 				Utils.convertFromCamelToSnake({ userId: userId, newPassword: newPassword }),
 				{
 					headers: this.#headersDefault,

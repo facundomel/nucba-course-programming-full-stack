@@ -9,11 +9,11 @@ import UserSession from "../model/UserSession";
 
 export default class AuthService {
 	static #headersDefault = Config.HEADERS_DEFAULT;
-	static #baseUrl = Config.BASE_URL;
+	static #apiBaseUrl = Config.API_BASE_URL;
 
 	static loginUser = async (userLogin) => {
 		try {
-			const response = await axios.post(`${this.#baseUrl}/api/login`, Utils.convertFromCamelToSnake(userLogin), {
+			const response = await axios.post(`${this.#apiBaseUrl}/api/login`, Utils.convertFromCamelToSnake(userLogin), {
 				headers: this.#headersDefault,
 			});
 			const responseData = Utils.convertFromSnakeToCamel(response.data);
@@ -52,7 +52,7 @@ export default class AuthService {
 				...this.#headersDefault,
 				authorization: `Bearer ${refreshToken}`,
 			};
-			let response = await axios.post(`${this.#baseUrl}/api/refresh-token`, null, {
+			let response = await axios.post(`${this.#apiBaseUrl}/api/refresh-token`, null, {
 				headers: headers,
 			});
 			const responseData = Utils.convertFromSnakeToCamel(response.data);

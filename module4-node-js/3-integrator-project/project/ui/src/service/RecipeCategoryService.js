@@ -5,11 +5,11 @@ import axios, { HttpStatusCode } from "axios";
 
 export default class RecipeCategoryService {
 	static #headersDefault = Config.HEADERS_DEFAULT;
-	static #baseUrl = Config.BASE_URL;
+	static #apiBaseUrl = Config.API_BASE_URL;
 
 	static getRecipesCategories = async () => {
 		try {
-			const response = await axios.get(`${this.#baseUrl}/api/recipes/categories`, {
+			const response = await axios.get(`${this.#apiBaseUrl}/api/recipes/categories`, {
 				headers: this.#headersDefault,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);

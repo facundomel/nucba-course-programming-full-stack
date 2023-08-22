@@ -6,11 +6,11 @@ import CustomException from "../model/CustomException";
 
 export default class RecipeService {
 	static #headersDefault = Config.HEADERS_DEFAULT;
-	static #baseUrl = Config.BASE_URL;
+	static #apiBaseUrl = Config.API_BASE_URL;
 
 	static getRecipes = async (offset, limit) => {
 		try {
-			const response = await axios.get(`${this.#baseUrl}/api/recipes?offset=${offset}&limit=${limit}`, {
+			const response = await axios.get(`${this.#apiBaseUrl}/api/recipes?offset=${offset}&limit=${limit}`, {
 				headers: this.#headersDefault,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -25,7 +25,7 @@ export default class RecipeService {
 				...this.#headersDefault,
 				authorization: `Bearer ${authToken.accessToken}`,
 			};
-			const response = await axios.get(`${this.#baseUrl}/api/recipes/${recipeId}`, {
+			const response = await axios.get(`${this.#apiBaseUrl}/api/recipes/${recipeId}`, {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -47,7 +47,7 @@ export default class RecipeService {
 				authorization: `Bearer ${authToken.accessToken}`,
 			};
 
-			const response = await axios.post(`${this.#baseUrl}/api/recipes`, Utils.convertFromCamelToSnake(recipe), {
+			const response = await axios.post(`${this.#apiBaseUrl}/api/recipes`, Utils.convertFromCamelToSnake(recipe), {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);

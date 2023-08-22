@@ -6,7 +6,7 @@ import Config from "../config/Config";
 
 export default class RecipeFavoriteService {
 	static #headersDefault = Config.HEADERS_DEFAULT;
-	static #baseUrl = Config.BASE_URL;
+	static #apiBaseUrl = Config.API_BASE_URL;
 
 	static getRecipesFavoriteWithDetailsByUserId = async (currentUser, navigate, dispatch, offset, limit) => {
 		try {
@@ -15,7 +15,7 @@ export default class RecipeFavoriteService {
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
 			const response = await axios.get(
-				`${this.#baseUrl}/api/recipes/favorite/${currentUser.user.id}/details?offset=${offset}&limit=${limit}`,
+				`${this.#apiBaseUrl}/api/recipes/favorite/${currentUser.user.id}/details?offset=${offset}&limit=${limit}`,
 				{
 					headers: headers,
 				}
@@ -38,7 +38,7 @@ export default class RecipeFavoriteService {
 				...this.#headersDefault,
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
-			const response = await axios.get(`${this.#baseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}/details`, {
+			const response = await axios.get(`${this.#apiBaseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}/details`, {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
@@ -63,9 +63,13 @@ export default class RecipeFavoriteService {
 				recipeId: recipeId,
 				userId: currentUser.user.id,
 			};
-			const response = await axios.post(`${this.#baseUrl}/api/recipes/favorite`, Utils.convertFromCamelToSnake(dataRecipeFavoriteToCreate), {
-				headers: headers,
-			});
+			const response = await axios.post(
+				`${this.#apiBaseUrl}/api/recipes/favorite`,
+				Utils.convertFromCamelToSnake(dataRecipeFavoriteToCreate),
+				{
+					headers: headers,
+				}
+			);
 			return Utils.convertFromSnakeToCamel(response.data);
 		} catch (err) {
 			const errData = Utils.convertFromSnakeToCamel(err.response?.data);
@@ -84,7 +88,7 @@ export default class RecipeFavoriteService {
 				...this.#headersDefault,
 				authorization: `Bearer ${currentUser.authToken.accessToken}`,
 			};
-			const response = await axios.delete(`${this.#baseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}`, {
+			const response = await axios.delete(`${this.#apiBaseUrl}/api/recipes/favorite/${recipeId}/${currentUser.user.id}`, {
 				headers: headers,
 			});
 			return Utils.convertFromSnakeToCamel(response.data);
