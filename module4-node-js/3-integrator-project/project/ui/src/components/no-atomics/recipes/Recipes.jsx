@@ -10,7 +10,7 @@ import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
 import { v4 as uuid } from "uuid";
 import { RecipePageSection } from "../../../model/enum/PageSection";
 
-const Recipes = ({ messageNotExistRecipes }) => {
+const Recipes = ({ messageNotExistRecipes, loading }) => {
 	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
 	const selectedCategory = useSelector((state) => state.categories.selectedCategory);
 	const [shouldShowRecipesByCategory, setShouldShowRecipesByCategory] = useState(false);
@@ -38,7 +38,7 @@ const Recipes = ({ messageNotExistRecipes }) => {
 
 	return (
 		<>
-			{!selectedCategory ? (
+			{!loading && !selectedCategory ? (
 				recipesFiltered.length === 0 ? (
 					messageNotExistRecipes && <MessageNotExistRecipes>{messageNotExistRecipes}</MessageNotExistRecipes>
 				) : (

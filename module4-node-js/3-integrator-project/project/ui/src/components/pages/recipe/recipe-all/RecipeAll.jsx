@@ -18,7 +18,7 @@ import { RecipePageSection } from "../../../../model/enum/PageSection";
 const RecipeAll = () => {
 	const { recipesAll } = useSelector((state) => state.recipes);
 	const dispatch = useDispatch();
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const { currentUser } = useSelector((state) => state.user);
 	const navigate = useNavigate();
 	const { page } = useParams();
@@ -87,7 +87,7 @@ const RecipeAll = () => {
 					)}
 					<Hero />
 					<Categories />
-					<Recipes messageNotExistRecipes={"¡Lo sentimos! No existen recetas"} />
+					<Recipes messageNotExistRecipes={"¡Lo sentimos! No existen recetas"} loading={loading} />
 
 					{recipesAll.length > 0 && (
 						<PaginationCustom currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} pathNavigate={"/recetas"} />
