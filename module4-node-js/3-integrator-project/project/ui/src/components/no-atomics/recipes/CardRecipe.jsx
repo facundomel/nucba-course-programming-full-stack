@@ -21,7 +21,7 @@ import {
 } from "./CardRecipeStyles.js";
 import SnackbarUtils from "../../../utils/SnackbarUtils.js";
 import RecipeFavoriteService from "../../../service/RecipeFavoriteService.js";
-import { RecipePageSection, UserPageSection } from "../../../model/enum/PageSection.js";
+import { RecipePageSection } from "../../../model/enum/PageSection.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
