@@ -62,8 +62,8 @@ const RecipeFavorite = () => {
 		} catch (error) {
 			setTimeout(() => {
 				setLoading(false);
+				SnackbarUtils.error(error, 2500, dispatch);
 			}, 500);
-			SnackbarUtils.error(error, 2500, dispatch);
 		}
 	};
 
