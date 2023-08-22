@@ -17,15 +17,16 @@ const Recipes = ({ messageNotExistRecipes }) => {
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { currentUser, userSection } = useSelector((state) => state.user);
+	const { currentUser } = useSelector((state) => state.user);
+	const { pageSection } = useSelector((state) => state.pageSection);
 
 	useEffect(() => {
-		if (userSection === RecipePageSection.RecipeAll) {
+		if (pageSection === RecipePageSection.RecipeAll) {
 			dispatch(recipesActions.setRecipesFiltered(recipesAll));
-		} else if (userSection === RecipePageSection.RecipeFavorite) {
+		} else if (pageSection === RecipePageSection.RecipeFavorite) {
 			dispatch(recipesActions.setRecipesFiltered(recipesFavorite));
 		}
-	}, [userSection, recipesAll, recipesFavorite]);
+	}, [pageSection, recipesAll, recipesFavorite]);
 
 	useEffect(() => {
 		setShouldShowRecipesByCategory(

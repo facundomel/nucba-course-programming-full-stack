@@ -11,6 +11,7 @@ import {
 import Button from "../../../atomics/button/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import * as pageSectionActions from "../../../../redux/page-section/PageSectionActions.js";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -42,7 +43,7 @@ const Register = () => {
 
 	useEffect(() => {
 		firstNameRef.current.focus();
-		dispatch(userActions.setUserSection(UserPageSection.UserRegister));
+		dispatch(pageSectionActions.setPageSection(UserPageSection.UserRegister));
 	}, []);
 
 	useEffect(() => {

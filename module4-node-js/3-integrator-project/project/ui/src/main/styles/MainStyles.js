@@ -10,9 +10,9 @@ export const MainContainerStyled = styled.div`
 	height: 100vh;
 	margin-top: 80px;
 	background-color: ${(props) =>
-		props.userSection === RecipePageSection.RecipeAll
+		props.pageSection === RecipePageSection.RecipeAll
 			? "var(--bg-recipe-all)"
-			: props.userSection === RecipePageSection.RecipeFavorite
+			: props.pageSection === RecipePageSection.RecipeFavorite
 			? "var(--bg-recipe-favorite)"
 			: "var(--bg-body)"};
 `;

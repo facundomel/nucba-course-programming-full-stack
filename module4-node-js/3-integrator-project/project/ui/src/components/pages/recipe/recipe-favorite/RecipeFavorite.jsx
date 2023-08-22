@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Hero from "../../../no-atomics/hero/Hero";
 import Recipes from "../../../no-atomics/recipes/Recipes";
 import { useDispatch, useSelector } from "react-redux";
-import * as userActions from "../../../../redux/user/UserActions.js";
+import * as pageSectionActions from "../../../../redux/page-section/PageSectionActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
 import { RecipeFavoriteContainer } from "./RecipeFavoriteStyles";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
@@ -29,7 +29,7 @@ const RecipeFavorite = () => {
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection(RecipePageSection.RecipeFavorite));
+		dispatch(pageSectionActions.setPageSection(RecipePageSection.RecipeFavorite));
 	}, []);
 
 	useEffect(() => {

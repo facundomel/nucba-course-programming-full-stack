@@ -10,6 +10,7 @@ import {
 import Input from "../../../atomics/input/Input";
 import Button from "../../../atomics/button/Button";
 import { useDispatch, useSelector } from "react-redux";
+import * as pageSectionActions from "../../../../redux/page-section/PageSectionActions.js";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
@@ -36,7 +37,7 @@ const NewPassword = () => {
 
 	useEffect(() => {
 		passwordRef.current.focus();
-		dispatch(userActions.setUserSection(UserPageSection.UserNewPassword));
+		dispatch(pageSectionActions.setPageSection(UserPageSection.UserNewPassword));
 
 		return () => {
 			dispatch(userActions.removeUserForgotPassword());

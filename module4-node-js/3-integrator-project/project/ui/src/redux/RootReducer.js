@@ -5,6 +5,7 @@ import categoriesReducer from "./categories/CategoriesReducer";
 import recipesReducer from "./recipes/RecipesReducer";
 import userReducer from "./user/UserReducer";
 import snackbarReducer from "./snackbar/SnackbarReducer";
+import pageSectionReducer from "./page-section/PageSectionReducer";
 
 const persistConfig = {
 	key: "root",
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	recipes: recipesReducer,
 	categories: categoriesReducer,
 	snackbar: snackbarReducer,
+	pageSection: pageSectionReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

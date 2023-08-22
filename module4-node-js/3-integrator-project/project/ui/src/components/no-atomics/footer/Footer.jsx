@@ -10,7 +10,8 @@ import * as userActions from "../../../redux/user/UserActions.js";
 import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Footer = () => {
-	const { isOpenMenuSessionUser, userSection } = useSelector((state) => state.user);
+	const { isOpenMenuSessionUser } = useSelector((state) => state.user);
+	const { pageSection } = useSelector((state) => state.pageSection);
 	const dispatch = useDispatch();
 
 	return (
@@ -21,7 +22,7 @@ const Footer = () => {
 						to={"/recetas/1"}
 						onClick={() => {
 							isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-							userSection === RecipePageSection.RecipeAll && window.scrollTo(0, 0);
+							pageSection === RecipePageSection.RecipeAll && window.scrollTo(0, 0);
 						}}
 					>
 						<img src={logo} alt="Logo" title="Inicio" />

@@ -10,7 +10,8 @@ import {
 } from "../UserStyles";
 import Button from "../../../atomics/button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import * as userActions from "../../../../redux/user/UserActions";
+import * as pageSectionActions from "../../../../redux/page-section/PageSectionActions.js";
+import * as userActions from "../../../../redux/user/UserActions.js";
 import { useNavigate } from "react-router-dom";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -38,7 +39,7 @@ const Login = () => {
 
 	useEffect(() => {
 		emailRef.current.focus();
-		dispatch(userActions.setUserSection(UserPageSection.UserLogin));
+		dispatch(pageSectionActions.setPageSection(UserPageSection.UserLogin));
 	}, []);
 
 	useEffect(() => {

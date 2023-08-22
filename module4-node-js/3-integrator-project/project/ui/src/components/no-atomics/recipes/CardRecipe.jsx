@@ -21,14 +21,14 @@ import {
 } from "./CardRecipeStyles.js";
 import SnackbarUtils from "../../../utils/SnackbarUtils.js";
 import RecipeFavoriteService from "../../../service/RecipeFavoriteService.js";
-import { RecipePageSection } from "../../../model/enum/PageSection.js";
+import { RecipePageSection, UserPageSection } from "../../../model/enum/PageSection.js";
 
 const CardRecipe = ({ recipe }) => {
 	const { id, title, description, urlImage, ingredients, instructions, user } = recipe;
 	const { currentUser } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	const { recipesFavorite } = useSelector((state) => state.recipes);
-	const { userSection } = useSelector((state) => state.user);
+	const { pageSection } = useSelector((state) => state.pageSection);
 	const [hiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
 	const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false);
@@ -58,7 +58,7 @@ const CardRecipe = ({ recipe }) => {
 					dispatch(
 						recipeActions.setRecipesFavorite(recipesFavorite.filter((recipeFavorite) => recipeFavorite.id !== recipeFavoriteDeleted.id))
 					);
-					if (recipesFavorite.length - 1 === 0) {
+					if (pageSection === RecipePageSection.RecipeFavorite && recipesFavorite.length - 1 === 0) {
 						window.scrollTo(0, 0);
 					}
 				}
@@ -79,7 +79,7 @@ const CardRecipe = ({ recipe }) => {
 
 	return (
 		<>
-			<CardRecipeContainer hiddenCard={userSection === RecipePageSection.RecipeFavorite && hiddenCard} userSection={userSection}>
+			<CardRecipeContainer hiddenCard={pageSection === RecipePageSection.RecipeFavorite && hiddenCard} pageSection={pageSection}>
 				<ImageDiv>
 					<img src={urlImage} alt={title} />
 				</ImageDiv>

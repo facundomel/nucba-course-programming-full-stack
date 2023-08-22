@@ -12,7 +12,7 @@ const Categories = () => {
 	const categories = useSelector((state) => state.categories.categories);
 	const categoriesSelect = [{ id: -1, title: "Ninguna", category: "none" }, ...categories];
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
-	const { userSection } = useSelector((state) => state.user);
+	const { pageSection } = useSelector((state) => state.pageSection);
 	const dispatch = useDispatch();
 	const recipesCategoriesRef = useRef();
 
@@ -40,8 +40,8 @@ const Categories = () => {
 
 	return (
 		<>
-			{((userSection === RecipePageSection.RecipeFavorite && recipesFavorite.length > 0) ||
-				(userSection === RecipePageSection.RecipeAll && recipesAll.length > 0)) && (
+			{((pageSection === RecipePageSection.RecipeFavorite && recipesFavorite.length > 0) ||
+				(pageSection === RecipePageSection.RecipeAll && recipesAll.length > 0)) && (
 				<>
 					<CategoriesGridContainer>
 						{categories.map((category) => (

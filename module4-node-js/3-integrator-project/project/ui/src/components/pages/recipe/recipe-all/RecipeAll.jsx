@@ -3,7 +3,7 @@ import Hero from "../../../no-atomics/hero/Hero";
 import Recipes from "../../../no-atomics/recipes/Recipes";
 import { RecipeAllContainer } from "./RecipeAllStyles";
 import { useDispatch, useSelector } from "react-redux";
-import * as userActions from "../../../../redux/user/UserActions.js";
+import * as pageSectionActions from "../../../../redux/page-section/PageSectionActions.js";
 import Categories from "../../../no-atomics/recipes-category/Categories";
 import RecipeService from "../../../../service/RecipeService";
 import * as recipesActions from "../../../../redux/recipes/RecipesActions.js";
@@ -29,17 +29,18 @@ const RecipeAll = () => {
 	const offsetRecipes = (currentPage - 1) * limitRecipes;
 
 	useEffect(() => {
-		dispatch(userActions.setUserSection(RecipePageSection.RecipeAll));
+		dispatch(pageSectionActions.setPageSection(RecipePageSection.RecipeAll));
 	}, []);
 
 	useEffect(() => {
 		setLoading(true);
 		handlerSetRecipesAll();
 		handlerSetRecipesFavorite();
-		setTimeout(() => {
-			setLoading(false);
-			window.scrollTo(0, 0);
-		}, 500);
+		// setTimeout(() => {
+		// 	setLoading(false);
+		// 	window.scrollTo(0, 0);
+		// }, 500);
+		setLoading(false)
 	}, [currentPage]);
 
 	const handlerSetRecipesAll = async () => {

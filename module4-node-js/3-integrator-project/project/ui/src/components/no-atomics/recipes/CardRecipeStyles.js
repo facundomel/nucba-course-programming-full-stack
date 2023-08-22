@@ -9,9 +9,9 @@ export const CardRecipeContainer = styled.div`
 	width: 300px;
 	border-radius: 10px;
 	border: ${(props) =>
-		props.userSection === RecipePageSection.RecipeAll
+		props.pageSection === RecipePageSection.RecipeAll
 			? "1px solid var(--black)"
-			: props.userSection === RecipePageSection.RecipeFavorite && "1px solid var(--yellow-light2)"};
+			: props.pageSection === RecipePageSection.RecipeFavorite && "1px solid var(--yellow-light2)"};
 
 	@media (max-width: 400px) {
 		width: 250px;

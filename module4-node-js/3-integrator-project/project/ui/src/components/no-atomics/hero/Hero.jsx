@@ -9,12 +9,12 @@ const Hero = () => {
 	const [searchedRecipe, setSearchedRecipe] = useState("");
 	const dispatch = useDispatch();
 	const { recipesAll, recipesFavorite } = useSelector((state) => state.recipes);
-	const { userSection } = useSelector((state) => state.user);
+	const { pageSection } = useSelector((state) => state.pageSection); 
 
 	useEffect(() => {
 		let filteredRecipes = [];
 
-		if (userSection === RecipePageSection.RecipeAll) {
+		if (pageSection === RecipePageSection.RecipeAll) {
 			if (searchedRecipe === "") {
 				filteredRecipes = recipesAll;
 			} else {
@@ -24,7 +24,7 @@ const Hero = () => {
 					}
 				});
 			}
-		} else if (userSection === RecipePageSection.RecipeFavorite) {
+		} else if (pageSection === RecipePageSection.RecipeFavorite) {
 			if (searchedRecipe === "") {
 				filteredRecipes = recipesFavorite;
 			} else {
@@ -41,8 +41,8 @@ const Hero = () => {
 
 	return (
 		<>
-			{((userSection === RecipePageSection.RecipeFavorite && recipesFavorite.length > 0) ||
-				(userSection === RecipePageSection.RecipeAll && recipesAll.length > 0)) && (
+			{((pageSection === RecipePageSection.RecipeFavorite && recipesFavorite.length > 0) ||
+				(pageSection === RecipePageSection.RecipeAll && recipesAll.length > 0)) && (
 				<HeroContainerStyled>
 					<HeroFormStyled>
 						<HeroSearchBarStyled

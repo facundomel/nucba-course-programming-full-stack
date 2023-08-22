@@ -3,7 +3,7 @@ import Input from "../../../atomics/input/Input";
 import Button from "../../../atomics/button/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as userActions from "../../../../redux/user/UserActions.js";
+import * as pageSectionActions from "../../../../redux/page-section/PageSectionActions.js";
 import * as snackbarActions from "../../../../redux/snackbar/SnackbarActions.js";
 import { CreateRecipeContainer, CreateRecipeForm, TextAreaAndSmall } from "./CreateRecipeStyles";
 import TextArea from "../../../atomics/text-area/TextArea";
@@ -40,7 +40,7 @@ const CreateRecipe = () => {
 
 	useEffect(() => {
 		titleRef.current.focus();
-		dispatch(userActions.setUserSection(RecipePageSection.RecipeCreate));
+		dispatch(pageSectionActions.setPageSection(RecipePageSection.RecipeCreate));
 		if (categories.length === 0) {
 			handlerSetRecipesCategories();
 		}

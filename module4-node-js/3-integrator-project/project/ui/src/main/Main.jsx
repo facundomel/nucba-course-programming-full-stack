@@ -9,15 +9,15 @@ import { useSelector } from "react-redux";
 
 const Main = () => {
 	const [extendNavbar, setExtendNavbar] = useState(false);
-	const { userSection } = useSelector((state) => state.user);
+	const { pageSection } = useSelector((state) => state.pageSection);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, [userSection]);
+	}, [pageSection]);
 
 	return (
 		<>
-			<MainContainerStyled userSection={userSection}>
+			<MainContainerStyled pageSection={pageSection}>
 				<BrowserRouter>
 					<Navbar extendNavbar={extendNavbar} setExtendNavbar={setExtendNavbar} />
 					{!extendNavbar && <Router />}

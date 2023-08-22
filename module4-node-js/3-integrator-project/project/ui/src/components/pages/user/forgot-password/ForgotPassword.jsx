@@ -3,6 +3,7 @@ import { TextButtonAndSpinner, UserContainer, UserForm, UserLink } from "../User
 import Input from "../../../atomics/input/Input";
 import Button from "../../../atomics/button/Button";
 import { useDispatch, useSelector } from "react-redux";
+import * as pageSectionActions from "../../../../redux/page-section/PageSectionActions.js";
 import * as userActions from "../../../../redux/user/UserActions.js";
 import { UserErrorType } from "../../../../model/enum/ErrorType";
 import UserService from "../../../../service/UserService";
@@ -27,7 +28,7 @@ const ForgotPassword = () => {
 
 	useEffect(() => {
 		emailRef.current.focus();
-		dispatch(userActions.setUserSection(UserPageSection.UserForgotPassword));
+		dispatch(pageSectionActions.setPageSection(UserPageSection.UserForgotPassword));
 	}, []);
 
 	useEffect(() => {
