@@ -34,11 +34,13 @@ const RecipeFavorite = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		handlerSetRecipesFavorite();
-		setTimeout(() => {
-			setLoading(false);
-			window.scrollTo(0, 0);
-		}, 500);
+		(async () => {
+			await handlerSetRecipesFavorite();
+			setTimeout(() => {
+				setLoading(false);
+				window.scrollTo(0, 0);
+			}, 500);
+		})();
 	}, [currentPage]);
 
 	const handlerSetRecipesFavorite = async () => {
