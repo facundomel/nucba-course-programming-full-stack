@@ -59,13 +59,13 @@ const CardRecipe = ({ recipe }) => {
 				SnackbarUtils.warning("Quitando... Espere unos segundos.", 2000, dispatch);
 				const recipeFavoriteDeleted = await RecipeFavoriteService.deleteRecipeFavorite(currentUser, recipe.id, navigate, dispatch);
 				if (recipeFavoriteDeleted != null) {
+					if (pageSection === RecipePageSection.RecipeFavorite && recipesFavorite.length - 1 === 0) {
+						window.scrollTo(0, 0);
+					}
 					setTimeout(() => {
 						dispatch(
 							recipeActions.setRecipesFavorite(recipesFavorite.filter((recipeFavorite) => recipeFavorite.id !== recipeFavoriteDeleted.id))
 						);
-						if (pageSection === RecipePageSection.RecipeFavorite && recipesFavorite.length - 1 === 0) {
-							window.scrollTo(0, 0);
-						}
 					}, 2000);
 				}
 			} catch (error) {
