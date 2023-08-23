@@ -4,8 +4,6 @@ VALUES ('user');
 INSERT INTO users_roles (ROLE)
 VALUES ('admin');
 
-INSERT INTO users (first_name, last_name, email, PASSWORD)
-VALUES ('first_name', 'last_name', 'email', 'password')
 INSERT INTO recipes_categories (category, title, url_image, user_id)
 VALUES (
 		'pasta',
