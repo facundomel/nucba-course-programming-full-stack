@@ -206,7 +206,6 @@ export const MenuSessionUserContainer = styled.div`
 	transform: ${(props) => (!props.isOpenMenuSessionUser ? "translate(200%)" : "translate(0%)")};
 	transition: ${(props) =>
 		!props.isOpenMenuSessionUser ? "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)" : "all 0.3s cubic-bezier(0.92, 0.01, 0.35, 0.99)"};
-	overflow: auto;
 
 	@media (max-width: 400px) {
 		width: 100%;
