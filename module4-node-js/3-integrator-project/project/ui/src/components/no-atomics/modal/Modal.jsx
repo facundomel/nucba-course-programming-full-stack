@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { ModalBody, ModalBodyAndClose, ModalClose, ModalContainer } from "./ModalStyles";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxMediaQuery }) => {
+const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxMediaQuery, componentModal }) => {
 	const modalBodyRef = useRef();
 
 	useEffect(() => {
@@ -25,10 +25,12 @@ const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxM
 	return (
 		<ModalContainer isOpen={isOpen}>
 			<ModalBodyAndClose heightBodyModal={heightBodyModal} widthBodyModal={widthBodyModal} pxMediaQuery={pxMediaQuery}>
-				<ModalClose onClick={onClose}>
+				<ModalClose onClick={onClose} componentModal={componentModal}>
 					<AiOutlineClose />
 				</ModalClose>
-				<ModalBody ref={modalBodyRef}>{children}</ModalBody>
+				<ModalBody ref={modalBodyRef} componentModal={componentModal}>
+					{children}
+				</ModalBody>
 			</ModalBodyAndClose>
 		</ModalContainer>
 	);

@@ -116,6 +116,7 @@ const CardRecipe = ({ recipe }) => {
 				heightBodyModal={"80%"}
 				widthBodyModal={"700px"}
 				pxMediaQuery={"800px"}
+				componentModal={"CardRecipe"}
 			>
 				<ModalBodyCardRecipeContainer>
 					<img src={urlImage} alt={title} />

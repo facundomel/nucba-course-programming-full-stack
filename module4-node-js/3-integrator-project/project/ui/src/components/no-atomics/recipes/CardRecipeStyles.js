@@ -125,7 +125,7 @@ export const ModalBodyCardRecipeContainer = styled.div`
 `;
 
 export const ModalBodyCardRecipeInformation = styled.div`
-	padding: 0 3.5rem 1rem 1rem;
+	padding: 0 3.2rem 1rem 1rem;
 	font-style: italic;
 	text-align: justify;
 	width: 85%;

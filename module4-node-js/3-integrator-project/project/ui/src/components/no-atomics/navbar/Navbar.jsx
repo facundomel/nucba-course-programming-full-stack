@@ -180,7 +180,14 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 				)}
 			</NavbarContainer>
 
-			<Modal isOpen={openModal} onClose={() => setOpenModal(false)} heightBodyModal={"20%"} widthBodyModal={"500px"} pxMediaQuery={"600px"}>
+			<Modal
+				isOpen={openModal}
+				onClose={() => setOpenModal(false)}
+				heightBodyModal={"20%"}
+				widthBodyModal={"500px"}
+				pxMediaQuery={"600px"}
+				componentModal={"Navbar"}
+			>
 				<ModalBodyCloseSessionContainer>
 					<h3>¿Está seguro que desea cerrar sessión?</h3>
 

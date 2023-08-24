@@ -18,7 +18,7 @@ export const ModalBodyAndClose = styled.div`
 	width: ${(props) => props.widthBodyModal};
 	height: ${(props) => props.heightBodyModal};
 	min-height: 200px;
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	position: relative;
 
 	@media (max-width: ${(props) => props.pxMediaQuery}) {
@@ -31,30 +31,26 @@ export const ModalBody = styled.div`
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	overflow-x: hidden;
+	overflow-y: ${(props) => props.componentModal === "Navbar" && "hidden"};
 `;
 
 export const ModalClose = styled.button`
 	position: absolute;
 	top: 0;
-	right: 0;
-	margin-right: 10.8px;
-	font-size: 1.5rem;
+	right: ${(props) => (props.componentModal === "Navbar" ? "0" : "10px")};
+	font-size: 1.4rem;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
-	padding: 0.5rem;
-	color: var(--black);
-	background: var(--white);
-	border-bottom-left-radius: 0.5rem;
-
-	:hover {
-		color: var(--white);
-		background: var(--gradient);
-	}
+	padding: 0.3rem;
+	color: var(--white);
+	background: var(--gradient);
+	border-top-right-radius: ${(props) => (props.componentModal === "Navbar" ? "0.5rem" : "0.3")};
+	border-bottom-left-radius: 0.2rem;
 
 	@media (max-width: 600px) {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 	}
 `;
