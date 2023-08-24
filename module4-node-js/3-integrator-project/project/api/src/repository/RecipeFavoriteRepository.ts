@@ -50,7 +50,6 @@ export default class RecipeFavoriteRepository {
 				.from(RecipeFavorite, "recipes_favorites")
 				.where("recipes_favorites.userId = :userId", { userId: userId })
 				.andWhere("recipes_favorites.recipeId = :recipeId", { recipeId: recipeId })
-				.withDeleted()
 				.getOne()) as RecipeFavorite;
 			return recipeFavorite;
 		} catch (error: any) {

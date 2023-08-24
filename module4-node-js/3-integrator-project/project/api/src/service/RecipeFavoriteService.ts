@@ -9,6 +9,7 @@ import RecipeService from "./RecipeService";
 export default class RecipeFavoriteService {
 	static getRecipesFavoritesByUserId = async (userId: number): Promise<RecipeFavorite[]> => {
 		try {
+			await UserService.getUserById(userId, true);
 			const recipesFavorite: RecipeFavorite[] = (await RecipeFavoriteRepository.getRecipesFavoritesByUserId(userId)) as RecipeFavorite[];
 			return recipesFavorite;
 		} catch (error: any) {
@@ -31,6 +32,7 @@ export default class RecipeFavoriteService {
 
 	static getRecipesFavoritesWithDetailsByUserId = async (userId: number, offset: any, limit: any): Promise<any> => {
 		try {
+			await UserService.getUserById(userId, true);
 			const results: any = await RecipeFavoriteRepository.getRecipesFavoritesWithDetailsByUserId(userId, offset, limit);
 			if (offset === null && limit === null) {
 				offset = 0;
