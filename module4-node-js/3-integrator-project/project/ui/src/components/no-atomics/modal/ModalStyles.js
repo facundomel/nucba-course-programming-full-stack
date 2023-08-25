@@ -30,7 +30,6 @@ export const ModalBodyAndClose = styled.div`
 export const ModalBody = styled.div`
 	width: 100%;
 	height: 100%;
-	overflow-y: scroll;
 	border-radius: 0.5rem;
 	overflow-x: hidden;
 	overflow-y: ${(props) => props.componentModal === "Navbar" && "hidden"};
