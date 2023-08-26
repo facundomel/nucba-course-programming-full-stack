@@ -1,3 +1,5 @@
+CREATE DATABASE expenses_nucba_challenge_required_2_module_4;
+
 CREATE TABLE expenses (
 	id int NOT NULL AUTO_INCREMENT,
 	name varchar(50) NOT NULL,
