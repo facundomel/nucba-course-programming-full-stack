@@ -6,7 +6,7 @@ import UserRole from "../../model/entity/UserRole";
 import Recipe from "../../model/entity/Recipe";
 import RecipeCategory from "../../model/entity/RecipeCategory";
 import RecipeFavorite from "../../model/entity/RecipesFavorite";
-// Comment
+
 export const AppDataSource = new DataSource({
 	type: process.env.DB_TYPE as any,
 	host: process.env.DB_HOST,
