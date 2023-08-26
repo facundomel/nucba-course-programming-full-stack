@@ -1,3 +1,5 @@
+CREATE DATABASE recipes_integrator_project_module_4;
+
 CREATE TABLE recipes (
 	id serial4 NOT NULL,
 	title varchar(100) NOT NULL,

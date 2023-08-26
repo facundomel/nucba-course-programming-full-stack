@@ -12,3 +12,7 @@ SET ingredients = '400g de espagueti.
 					Sin demora, ya que será el propio calor residual de los espagueti los que vayan a cocinar la carbonara, echamos la pasta en el bol donde la habíamos preparado. Añadimos el bacon, con el juguito que hayan podido soltar y un poco del caldo de la cocción. Removemos todo bien con un tenedor para que los espaguetis absorban toda la salsa. Si ves que queda muy densa puedes añadir más caldo de la cocción, hasta que haya quedado una salsa muy cremosa.
                     Finalmente, cuando hayamos conseguido la cremosidad deseada de la salsa, se debe polvorear con abundante pimienta negra recién molida. Se dice que el nombre "carbonara" viene del color que le da esta especia, es decir, color del carbón. Servir inmediatamente.'
 WHERE id = 1;
+
+UPDATE users
+SET role_id = 2
+WHERE id = 1;
