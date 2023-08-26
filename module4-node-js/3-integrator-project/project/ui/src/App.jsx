@@ -6,6 +6,7 @@ import { persistor, store } from "./redux/Store";
 import React from "react";
 
 const App = () => {
+	console.log("Test log");
 	return (
 		<>
 			<Provider store={store}>
