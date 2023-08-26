@@ -31,6 +31,7 @@ const CardRecipe = ({ recipe }) => {
 	const { pageSection } = useSelector((state) => state.pageSection);
 	const [hiddenCard] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
+	const [clickedOnButtonOpenModal, setClickedOnButtonOpenModal] = useState(false);
 	const [isFavoriteRecipe, setIsFavoriteRecipe] = useState(false);
 	const navigate = useNavigate();
 	const buttonIconGoBookRef = useRef();
@@ -76,6 +77,7 @@ const CardRecipe = ({ recipe }) => {
 
 	const handlerOpenModal = (status) => {
 		setOpenModal(status);
+		setClickedOnButtonOpenModal(true);
 		if (!openModal) buttonIconGoBookRef.current?.blur();
 	};
 
@@ -110,42 +112,44 @@ const CardRecipe = ({ recipe }) => {
 				</CardUserAndFavorite>
 			</CardRecipeContainer>
 
-			<Modal
-				isOpen={openModal}
-				onClose={() => handlerOpenModal(false)}
-				heightBodyModal={"80%"}
-				widthBodyModal={"700px"}
-				pxMediaQuery={"800px"}
-				componentModal={"CardRecipe"}
-			>
-				<ModalBodyCardRecipeContainer>
-					<img src={urlImage} alt={title} />
-					<ModalBodyCardRecipeInformation>
-						<div>
-							<h2>{title}</h2>
-						</div>
+			{clickedOnButtonOpenModal && (
+				<Modal
+					isOpen={openModal}
+					onClose={() => handlerOpenModal(false)}
+					heightBodyModal={"80%"}
+					widthBodyModal={"700px"}
+					pxMediaQuery={"800px"}
+					componentModal={"CardRecipe"}
+				>
+					<ModalBodyCardRecipeContainer>
+						<img src={urlImage} alt={title} />
+						<ModalBodyCardRecipeInformation>
+							<div>
+								<h2>{title}</h2>
+							</div>
 
-						<h3>Ingredientes</h3>
-						<ul>
-							{ingredients?.split("\n").map((ingredient) => {
-								return <li key={uuid()}>{ingredient}</li>;
-							})}
-						</ul>
+							<h3>Ingredientes</h3>
+							<ul>
+								{ingredients?.split("\n").map((ingredient) => {
+									return <li key={uuid()}>{ingredient}</li>;
+								})}
+							</ul>
 
-						<h3>Instrucciones</h3>
-						<ol>
-							{instructions?.split("\n").map((instructions) => {
-								return <li key={uuid()}>{instructions}</li>;
-							})}
-						</ol>
-						<ModalBodyCardRecipePublisher>
-							<p>
-								By {user.firstName} {user.lastName}
-							</p>
-						</ModalBodyCardRecipePublisher>
-					</ModalBodyCardRecipeInformation>
-				</ModalBodyCardRecipeContainer>
-			</Modal>
+							<h3>Instrucciones</h3>
+							<ol>
+								{instructions?.split("\n").map((instructions) => {
+									return <li key={uuid()}>{instructions}</li>;
+								})}
+							</ol>
+							<ModalBodyCardRecipePublisher>
+								<p>
+									By {user.firstName} {user.lastName}
+								</p>
+							</ModalBodyCardRecipePublisher>
+						</ModalBodyCardRecipeInformation>
+					</ModalBodyCardRecipeContainer>
+				</Modal>
+			)}
 		</>
 	);
 };
