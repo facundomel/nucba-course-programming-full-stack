@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ModalContainer = styled.div`
 	display: ${(props) => (props.isOpen ? "grid" : "none")};
 	place-items: center;
-	background-color: rgba(0, 0, 0, 0.5);
 	position: fixed;
 	top: 80px;
 	left: 0;
@@ -20,6 +19,7 @@ export const ModalBodyAndClose = styled.div`
 	min-height: 200px;
 	border-radius: 0.5rem;
 	position: relative;
+	z-index: 999;
 
 	@media (max-width: ${(props) => props.pxMediaQuery}) {
 		width: 90%;
@@ -52,4 +52,13 @@ export const ModalClose = styled.button`
 	@media (max-width: 600px) {
 		font-size: 1.2rem;
 	}
+`;
+
+export const ModalOverlay = styled.div`
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 80px;
+	left: 0;
+	width: 100%;
+	height: 100vh;
 `;

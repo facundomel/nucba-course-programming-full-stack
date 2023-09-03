@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ModalBody, ModalBodyAndClose, ModalClose, ModalContainer } from "./ModalStyles";
+import { ModalBody, ModalBodyAndClose, ModalClose, ModalContainer, ModalOverlay } from "./ModalStyles";
 import { AiOutlineClose } from "react-icons/ai";
 
 const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxMediaQuery, topModalBodyAndClose, componentModal }) => {
@@ -26,21 +26,25 @@ const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxM
 	};
 
 	return (
-		<ModalContainer isOpen={isOpen} onClick={onClose}>
-			<ModalBodyAndClose
-				heightBodyModal={heightBodyModal}
-				widthBodyModal={widthBodyModal}
-				top={topModalBodyAndClose}
-				pxMediaQuery={pxMediaQuery}
-			>
-				<ModalClose onClick={onClose} componentModal={componentModal}>
-					<AiOutlineClose />
-				</ModalClose>
-				<ModalBody ref={modalBodyRef} componentModal={componentModal}>
-					{children}
-				</ModalBody>
-			</ModalBodyAndClose>
-		</ModalContainer>
+		<>
+			<ModalContainer isOpen={isOpen}>
+				<ModalBodyAndClose
+					heightBodyModal={heightBodyModal}
+					widthBodyModal={widthBodyModal}
+					top={topModalBodyAndClose}
+					pxMediaQuery={pxMediaQuery}
+				>
+					<ModalClose onClick={onClose} componentModal={componentModal}>
+						<AiOutlineClose />
+					</ModalClose>
+					<ModalBody ref={modalBodyRef} componentModal={componentModal}>
+						{children}
+					</ModalBody>
+				</ModalBodyAndClose>
+
+				<ModalOverlay onClick={onClose} />
+			</ModalContainer>
+		</>
 	);
 };
 
