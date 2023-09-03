@@ -13,7 +13,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalBodyAndClose = styled.div`
-	margin-top: -80px;
+	top: ${(props) => props.top};
 	background-color: var(--gray-bg);
 	width: ${(props) => props.widthBodyModal};
 	height: ${(props) => props.heightBodyModal};

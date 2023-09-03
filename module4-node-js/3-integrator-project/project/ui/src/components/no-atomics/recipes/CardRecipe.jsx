@@ -119,6 +119,7 @@ const CardRecipe = ({ recipe }) => {
 					heightBodyModal={"80%"}
 					widthBodyModal={"700px"}
 					pxMediaQuery={"800px"}
+					topModalBodyAndClose={"-40px"}
 					componentModal={"CardRecipe"}
 				>
 					<ModalBodyCardRecipeContainer>

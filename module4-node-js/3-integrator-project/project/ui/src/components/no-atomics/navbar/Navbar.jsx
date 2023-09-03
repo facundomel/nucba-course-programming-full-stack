@@ -186,6 +186,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 				heightBodyModal={"20%"}
 				widthBodyModal={"500px"}
 				pxMediaQuery={"600px"}
+				topModalBodyAndClose={"-80px"}
 				componentModal={"Navbar"}
 			>
 				<ModalBodyCloseSessionContainer>

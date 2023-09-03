@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { ModalBody, ModalBodyAndClose, ModalClose, ModalContainer } from "./ModalStyles";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxMediaQuery, componentModal }) => {
+const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxMediaQuery, topModalBodyAndClose, componentModal }) => {
 	const modalBodyRef = useRef();
 
 	useEffect(() => {
@@ -13,6 +13,9 @@ const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxM
 		} else {
 			document.body.style.overflow = "";
 		}
+		return () => {
+			if (isOpen) document.body.style.overflow = "";
+		};
 	}, [isOpen]);
 
 	const closeModalWithKeyScape = (e) => {
@@ -24,7 +27,12 @@ const Modal = ({ isOpen, onClose, children, heightBodyModal, widthBodyModal, pxM
 
 	return (
 		<ModalContainer isOpen={isOpen} onClick={onClose}>
-			<ModalBodyAndClose heightBodyModal={heightBodyModal} widthBodyModal={widthBodyModal} pxMediaQuery={pxMediaQuery}>
+			<ModalBodyAndClose
+				heightBodyModal={heightBodyModal}
+				widthBodyModal={widthBodyModal}
+				top={topModalBodyAndClose}
+				pxMediaQuery={pxMediaQuery}
+			>
 				<ModalClose onClick={onClose} componentModal={componentModal}>
 					<AiOutlineClose />
 				</ModalClose>
