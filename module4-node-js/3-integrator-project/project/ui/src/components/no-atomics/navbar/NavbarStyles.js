@@ -210,7 +210,7 @@ export const MenuSessionUserContainer = styled.div`
 	@media (max-width: 400px) {
 		width: 100%;
 		border: none;
-		padding: 50px 0;
+		padding: 40px 0;
 		border-radius: 0;
 	}
 `;
