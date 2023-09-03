@@ -18,7 +18,7 @@ const Recipes = ({ messageNotExistRecipes }) => {
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { currentUser, isOpenModalSessionUser } = useSelector((state) => state.user);
+	const { currentUser, isOpenModalSessionUser, isOpenMenuSessionUser } = useSelector((state) => state.user);
 	const { pageSection } = useSelector((state) => state.pageSection);
 
 	useEffect(() => {
@@ -66,6 +66,7 @@ const Recipes = ({ messageNotExistRecipes }) => {
 					onClick={() => {
 						navigate("/crear-receta");
 						isOpenModalSessionUser && dispatch(userActions.openModalSessionUser(false));
+						isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
 					}}
 				/>
 			)}
