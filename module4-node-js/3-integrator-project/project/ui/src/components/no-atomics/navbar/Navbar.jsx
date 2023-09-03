@@ -81,6 +81,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								onClick={() => {
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
 									pageSection === RecipePageSection.RecipeAll && window.scrollTo(0, 0);
+									openModal && setOpenModal(false);
 								}}
 							>
 								<img src={logo} alt="Logo" className="logo" />
@@ -89,6 +90,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								onClick={() => {
 									setExtendNavbar((curr) => !curr);
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
+									openModal && setOpenModal(false);
 								}}
 								extendNavbar={extendNavbar}
 							>
@@ -103,7 +105,10 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								to={"/recetas/1"}
 								hidden={true}
 								className={isRecipesAllPage() ? "active" : ""}
-								onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
+								onClick={() => {
+									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
+									openModal && setOpenModal(false);
+								}}
 							>
 								<FaHome title="Inicio" />
 							</NavbarLinkRight>
@@ -112,7 +117,10 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 									to={"/recetas-favoritas/1"}
 									hidden={true}
 									className={isRecipesFavoritePage() ? "active" : ""}
-									onClick={() => isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser())}
+									onClick={() => {
+										isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
+										openModal && setOpenModal(false);
+									}}
 								>
 									<AiFillStar title="Recetas favoritas" />
 								</NavbarLinkRight>
@@ -133,6 +141,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 										onClick={() => {
 											dispatch(userActions.openOrCloseMenuSessionUser());
 											extendNavbar && setExtendNavbar((curr) => !curr);
+											openModal && setOpenModal(false);
 										}}
 									>
 										<FaUserAlt title="Perfil" />
