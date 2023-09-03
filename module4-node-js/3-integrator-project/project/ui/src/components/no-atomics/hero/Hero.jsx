@@ -50,7 +50,6 @@ const Hero = () => {
 							onChange={(event) => setSearchedRecipe(event.target.value)}
 							type="text"
 							placeholder="Buscá tu receta"
-							autoFocus
 						/>
 						<IconWrapperStyled>
 							<FcSearch />
