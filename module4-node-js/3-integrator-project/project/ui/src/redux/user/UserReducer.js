@@ -4,11 +4,13 @@ import {
 	OPEN_OR_CLOSE_MENU_SESSION_USER,
 	SET_USER_FORGOT_PASSWORD,
 	REMOVE_USER_FORGOT_PASSWORD,
+	OPEN_MODAL_SESSION_USER,
 } from "./UserActions";
 
 const INITIAL_STATE = {
 	currentUser: null,
 	isOpenMenuSessionUser: false,
+	isOpenModalSessionUser: false,
 	userForgotPassword: null,
 };
 
@@ -30,6 +32,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				isOpenMenuSessionUser: !state.isOpenMenuSessionUser,
+			};
+
+		case OPEN_MODAL_SESSION_USER:
+			return {
+				...state,
+				isOpenModalSessionUser: action.payload,
 			};
 
 		case SET_USER_FORGOT_PASSWORD:

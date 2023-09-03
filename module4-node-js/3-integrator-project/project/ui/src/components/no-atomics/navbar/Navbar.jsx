@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
 	LeftContainer,
 	LoginMenuCloseSessionUserOverlay,
@@ -33,12 +33,11 @@ import SnackbarUtils from "../../../utils/SnackbarUtils";
 import { RecipePageSection } from "../../../model/enum/PageSection";
 
 const Navbar = ({ extendNavbar, setExtendNavbar }) => {
-	const { currentUser, isOpenMenuSessionUser } = useSelector((state) => state.user);
+	const { currentUser, isOpenMenuSessionUser, isOpenModalSessionUser } = useSelector((state) => state.user);
 	const { pageSection } = useSelector((state) => state.pageSection);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [openModal, setOpenModal] = useState(false);
 
 	useEffect(() => {
 		const scroll = () => {
@@ -55,13 +54,13 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 
 	const handlerUserAcceptCloseSession = () => {
 		dispatch(userActions.removeCurrentUser());
-		setOpenModal(false);
+		dispatch(userActions.openModalSessionUser(false));
 		navigate("/recetas/1");
 		SnackbarUtils.info("¡Vuelva pronto!", 2500, dispatch);
 	};
 
 	const handlerUserCancelCloseSession = () => {
-		setOpenModal(false);
+		dispatch(userActions.openModalSessionUser(false));
 	};
 
 	// Función para verificar si la ubicación actual coincide con "/recetas/"
@@ -80,8 +79,8 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								to={"/recetas/1"}
 								onClick={() => {
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
+									isOpenModalSessionUser && dispatch(userActions.openModalSessionUser(false));
 									pageSection === RecipePageSection.RecipeAll && window.scrollTo(0, 0);
-									openModal && setOpenModal(false);
 								}}
 							>
 								<img src={logo} alt="Logo" className="logo" />
@@ -90,7 +89,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								onClick={() => {
 									setExtendNavbar((curr) => !curr);
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-									openModal && setOpenModal(false);
+									isOpenModalSessionUser && dispatch(userActions.openModalSessionUser(false));
 								}}
 								extendNavbar={extendNavbar}
 							>
@@ -107,7 +106,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 								className={isRecipesAllPage() ? "active" : ""}
 								onClick={() => {
 									isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-									openModal && setOpenModal(false);
+									isOpenModalSessionUser && dispatch(userActions.openModalSessionUser(false));
 								}}
 							>
 								<FaHome title="Inicio" />
@@ -119,7 +118,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 									className={isRecipesFavoritePage() ? "active" : ""}
 									onClick={() => {
 										isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
-										openModal && setOpenModal(false);
+										isOpenModalSessionUser && dispatch(userActions.openModalSessionUser(false));
 									}}
 								>
 									<AiFillStar title="Recetas favoritas" />
@@ -141,7 +140,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 										onClick={() => {
 											dispatch(userActions.openOrCloseMenuSessionUser());
 											extendNavbar && setExtendNavbar((curr) => !curr);
-											openModal && setOpenModal(false);
+											isOpenModalSessionUser && dispatch(userActions.openModalSessionUser(false));
 										}}
 									>
 										<FaUserAlt title="Perfil" />
@@ -157,7 +156,7 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 
 										<MenuSessionUserCloseSession
 											onClick={() => {
-												setOpenModal(true);
+												dispatch(userActions.openModalSessionUser(true));
 												isOpenMenuSessionUser && dispatch(userActions.openOrCloseMenuSessionUser());
 											}}
 										>
@@ -190,8 +189,8 @@ const Navbar = ({ extendNavbar, setExtendNavbar }) => {
 			</NavbarContainer>
 
 			<Modal
-				isOpen={openModal}
-				onClose={() => setOpenModal(false)}
+				isOpen={isOpenModalSessionUser}
+				onClose={() => dispatch(userActions.openModalSessionUser(false))}
 				heightBodyModal={"20%"}
 				widthBodyModal={"500px"}
 				pxMediaQuery={"600px"}

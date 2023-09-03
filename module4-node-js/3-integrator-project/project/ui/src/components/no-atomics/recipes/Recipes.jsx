@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import * as recipesActions from "../../../redux/recipes/RecipesActions.js";
 import { v4 as uuid } from "uuid";
 import { RecipePageSection } from "../../../model/enum/PageSection";
+import * as userActions from "../../../redux/user/UserActions.js";
 
 const Recipes = ({ messageNotExistRecipes }) => {
 	const { recipesAll, recipesFavorite, recipesFiltered } = useSelector((state) => state.recipes);
@@ -17,7 +18,7 @@ const Recipes = ({ messageNotExistRecipes }) => {
 	const { optionsSnackbar } = useSelector((state) => state.snackbar);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { currentUser } = useSelector((state) => state.user);
+	const { currentUser, isOpenModalSessionUser } = useSelector((state) => state.user);
 	const { pageSection } = useSelector((state) => state.pageSection);
 
 	useEffect(() => {
@@ -64,6 +65,7 @@ const Recipes = ({ messageNotExistRecipes }) => {
 				<FloatingButton
 					onClick={() => {
 						navigate("/crear-receta");
+						isOpenModalSessionUser && dispatch(userActions.openModalSessionUser(false));
 					}}
 				/>
 			)}

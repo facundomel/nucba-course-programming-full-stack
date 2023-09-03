@@ -1,6 +1,7 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const REMOVE_CURRENT_USER = "REMOVE_CURRENT_USER";
 export const OPEN_OR_CLOSE_MENU_SESSION_USER = "OPEN_OR_CLOSE_MENU_SESSION_USER";
+export const OPEN_MODAL_SESSION_USER = "OPEN_MODAL_SESSION_USER";
 export const SET_USER_FORGOT_PASSWORD = "SET_USER_FORGOT_PASSWORD";
 export const REMOVE_USER_FORGOT_PASSWORD = "REMOVE_USER_FORGOT_PASSWORD";
 
@@ -15,6 +16,11 @@ export const removeCurrentUser = () => ({
 
 export const openOrCloseMenuSessionUser = () => ({
 	type: OPEN_OR_CLOSE_MENU_SESSION_USER,
+});
+
+export const openModalSessionUser = (openModal) => ({
+	type: OPEN_MODAL_SESSION_USER,
+	payload: openModal,
 });
 
 export const setUserForgotPassword = (user) => ({
