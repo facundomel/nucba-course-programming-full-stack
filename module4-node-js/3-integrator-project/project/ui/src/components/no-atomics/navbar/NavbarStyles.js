@@ -169,7 +169,7 @@ export const IconUserContainer = styled(NavLink)`
 	height: 40px;
 	border-radius: 100px;
 
-	:hover {
+	:active {
 		color: black;
 		background-color: white;
 	}
