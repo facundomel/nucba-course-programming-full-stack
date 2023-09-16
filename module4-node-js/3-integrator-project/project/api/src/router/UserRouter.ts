@@ -1,6 +1,6 @@
 import { Router as routerExpress } from "express";
 import { body, query } from "express-validator";
-import HandlerValidationErrors from "./middlwares/HandlerValidationErrors";
+import HandlerValidationErrors from "./middlewares/HandlerValidationErrors";
 import UserController from "../controller/UserController";
 
 export default class UserRouter {

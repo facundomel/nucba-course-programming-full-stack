@@ -1,8 +1,8 @@
 import { Router as routerExpress } from "express";
 import { body, param } from "express-validator";
-import HandlerValidationErrors from "./middlwares/HandlerValidationErrors";
+import HandlerValidationErrors from "./middlewares/HandlerValidationErrors";
 import ExpenseController from "../controller/ExpenseController";
-import HandlerAuth from "./middlwares/HandlerAuth";
+import HandlerAuth from "./middlewares/HandlerAuth";
 
 export default class ExpensesRouter {
 	static init = (): routerExpress => {

@@ -1,7 +1,7 @@
 import { Router as routerExpress } from "express";
 import { body, param } from "express-validator";
-import HandlerValidationErrors from "./middlwares/HandlerValidationErrors";
-import HandlerAuth from "./middlwares/HandlerAuth";
+import HandlerValidationErrors from "./middlewares/HandlerValidationErrors";
+import HandlerAuth from "./middlewares/HandlerAuth";
 import RecipeController from "../controller/RecipeController";
 
 export default class RecipeRouter {
