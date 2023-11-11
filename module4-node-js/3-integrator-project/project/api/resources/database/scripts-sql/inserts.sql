@@ -1,22 +1,17 @@
--- PASOS PARA INSERTAR DATOS Y PROBAR LA APP CON LA BD
-
--- El primer paso es crear los roles de usuario
-
+-- PASOS PARA INSERTAR DATOS Y PROBAR LA APP CON LA DB
+-- Primer paso: Crear los posibles roles que puede tener un usuario
 INSERT INTO users_roles (role)
 VALUES ('user');
 
 INSERT INTO users_roles (role)
 VALUES ('admin');
 
-/* El segundo paso es crear un user. Se recomienda crearlo vía api call para que la password sea almacenada hasheada. 
-Una vez creado el user vía api call se deberá hacer un select de users y modificar manualmente el role_id de ese 
-user cambiando el 1 por el 2 para que sea admin y poder usarlo en el siguiente paso. */
-
+/* Segundo paso: Crear un user. Se recomienda crearlo vía api call para que la password sea almacenada hasheada. 
+ Una vez creado el user vía api call se deberá hacer un select de users y modificar manualmente el role_id de ese 
+ user cambiando el 1 por el 2 para que sea admin y poder usarlo en el siguiente paso. */
 /*INSERT INTO users (first_name, last_name, email, "password")
-VALUES ('Facu', 'Melgar','facu@hotmail.com', 'password')*/
-
--- El tercer paso es crear las categorías de las recetas. Cabe mencionar esto solo puede ser creado por un user con rol de administrador.
-
+ VALUES ('Facu', 'Melgar','facu@hotmail.com', 'password')*/
+-- Tercer paso: Crear las categorías de las recetas. Cabe mencionar que esto solo puede ser creado por un user con rol de administrador.
 INSERT INTO recipes_categories (category, title, url_image, user_id)
 VALUES (
 		'pasta',
@@ -57,8 +52,7 @@ VALUES (
 		1
 	);
 
--- El último paso es crear las recetas.
-
+-- Cuarto y último paso: Crear las recetas.
 INSERT INTO public.recipes (
 		title,
 		description,
